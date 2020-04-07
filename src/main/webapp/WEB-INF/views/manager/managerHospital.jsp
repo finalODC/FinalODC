@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <!-- saved from url=(0061)https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
 <html lang="ko">
@@ -64,10 +64,13 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <div style="float: right;">
-                <input type="text" class="form-control " placeholder="Search" style="width:150px; display: inline;" > <button class="btn btn-success">검색</button>
+                <div class="input-group mb-3" style="width:200px; float:right;">
+                  <input type="text" class="form-control" style="width:150px;" placeholder="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="submit">Go</button>  
+                   </div>
                 </div>
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
         
                   <thead>
                     <tr>
@@ -140,6 +143,15 @@
                   </tbody>
                 </table>
               </div>
+              <div> 	<ul class="pagination justify-content-center pagination-sm">
+                <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
+                <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+                <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
+              </ul></div>
+              </div>
             </div>
           </div>
 
@@ -151,7 +163,6 @@
 
 
       <!-- Bootstrap core JavaScript-->
-
       <script>
         $(function(){
                     //삭제
@@ -164,7 +175,6 @@
         })
 
       </script>
-
 
 
 

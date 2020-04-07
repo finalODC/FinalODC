@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <!-- saved from url=(0061)https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
 <html lang="ko">
@@ -35,8 +35,8 @@
 
     <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
-     <div id="content-wrapper" class="d-flex flex-column">
+     <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
       <div id="content">
@@ -69,12 +69,12 @@
                   <tbody>
                     <tr>
                       <th width="100px">문의번호:</th>
-                      <td><input type="text" name="nid" value="123"readonly></td>
+                      <td><input type="text" name="nid"class ="form-control" style="width:70px;" value="123"readonly></td>
                      
                      
                     <tr>
                       <th width="100px">작성자:</th>
-                      <td><input type="text" name="nid" value="123"readonly></td>
+                      <td><input type="text" name="nid" class ="form-control" style="width:200px;" value="123"readonly></td>
                      
                     </tr>
                     <tr>
@@ -114,12 +114,18 @@
               답변
               <table class="table table-bordered" style="background: white;">
                 <tbody>
+                <!-- 코멘트가 있을경우 -->
                 <tr>
-                    <th width="100px">관리자</th>
+                    <th width="100px">관리자<br>
+                    <br>
+                    <button class="btn btn-danger">삭제</button></th>
+            
                     <td><div>dsadsadsadasdsadas</div></td>
                 </tr>
+                <tr></tr>
               </tbody>
               </table>
+              <!-- 코멘트가 없을경우 -->
               <form action="" method="POST" enctype="multipart/form-data" id="comment">
               <table class="table table-bordered" style="background: white;">
                 <tr>
@@ -143,7 +149,7 @@
 
 
       <!-- Bootstrap core JavaScript-->
- 
+
       <script>
         $(function(){
           //공지작성

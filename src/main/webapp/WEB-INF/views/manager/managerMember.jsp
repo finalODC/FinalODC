@@ -45,13 +45,17 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <div style="float: right;">
-                <input type="text" class="form-control " placeholder="Search" style="width:150px; display: inline;" > <button class="btn btn-success">검색</button>
-              </div>
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <div class="input-group mb-3" style="width:200px; float:right;">
+                  <input type="text" class="form-control" style="width:150px;" placeholder="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-success" type="submit">Go</button>  
+                   </div>
+                </div>
+                <table class="table table-bordered table-hover" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
         
                   <thead>
                     <tr>
+                      <th width="100px">회원번호</th>
                       <th width="120px">아이디</th>
                       <th width="100px">사용자</th>
                       <th width="170px">사용자 이메일</th>
@@ -66,6 +70,7 @@
                  
                   <tbody>
                     <tr>
+                      <td>233</td>
                       <td>rlacl123</td>
                       <td>장나물</td>
                       <td>rlacl123@naver.com</td>
@@ -78,6 +83,7 @@
                       
                     </tr>
                     <tr>
+                      <td>233</td>
                       <td>ehdclal11</td>
                       <td>동백꽃</td>
                       <td>ehdclal@naver.com</td>
@@ -89,6 +95,7 @@
                       
                     </tr>
                     <tr>
+                      <td>233</td>
                       <td>vkrlacl</td>
                       <td>파란이</td>
                       <td>vkrlacl@naver.com</td>
@@ -100,6 +107,7 @@
                       
                     </tr>
                     <tr>
+                      <td>233</td>
                       <td>Rkrenrl41</td>
                       <td>신까치</td>
                       <td>Rkrenrl@naver.com</td>
@@ -111,6 +119,7 @@
                       
                     </tr>
                     <tr>
+                      <td>233</td>
                       <td>anfdut52</td>
                       <td>신나래</td>
                       <td>anffut@naver.com</td>
@@ -126,6 +135,15 @@
 
                   </tbody>
                 </table>
+              </div>
+              <div> 	<ul class="pagination justify-content-center pagination-sm">
+                <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
+                <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+                <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
+              </ul></div>
               </div>
             </div>
           </div>
@@ -203,7 +221,9 @@
 
       <!-- Bootstrap core JavaScript-->
 
-    
+
+
 
 </body>
+
 </html>

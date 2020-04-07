@@ -1,31 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<!-- saved from url=(0061)https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
-<html lang="ko">
-
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>인트라넷</title>
-
-  <!-- Custom fonts for this template-->
-
-  <style>
-    
-
-  
-  </style>
-
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -34,8 +14,7 @@
  	<jsp:include page="managerInclude.jsp"/>
 
     <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
+ <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
@@ -53,7 +32,7 @@
         <div class="container-fluid">
   
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">공지
+          <h1 class="h3 mb-2 text-gray-800">신고
           </h1>
           
 
@@ -74,6 +53,7 @@
                       <th>제목</th>
                       <th>작성자</th>
                       <th>작성날짜</th>
+                      <th>신고횟수</th>
                       <th>관리</th>
 
                       
@@ -88,7 +68,8 @@
                       <td>장나물</td>
                       <td>rlacl123@naver.com</td>
                       <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td>10</td>
+                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                      
                       
                     </tr>
@@ -99,7 +80,8 @@
                       <td>동백꽃</td>
                       <td>ehdclal@naver.com</td>
                       <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td>10</td>
+                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                       
                     </tr>
                     <tr>
@@ -109,7 +91,8 @@
                       <td>파란이</td>
                       <td>vkrlacl@naver.com</td>
                       <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td>10</td>
+                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                      
                     </tr>
                     <tr>
@@ -119,7 +102,8 @@
                       <td>신까치</td>
                       <td>Rkrenrl@naver.com</td>
                       <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td>10</td>
+                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                       
                     </tr>
                     <tr>
@@ -129,7 +113,8 @@
                       <td>신나래</td>
                       <td>anffut@naver.com</td>
                       <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td>10</td>
+                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                       
                     </tr>
                    
@@ -163,7 +148,7 @@
 
 
       <!-- Bootstrap core JavaScript-->
-
+      
       <script>
         $(function(){
           //공지작성
@@ -185,7 +170,7 @@
             console.log($(this))
              if(!$(this).prop("cellIndex")==0){
               var id = $(this).parent("tr").find("td").eq("1").text();
-              location.href="noticeRead.html"
+              location.href="managerBoardread.html"
               console.log(id)
              } 
           })
@@ -231,6 +216,7 @@
            
           });
         });
+
       </script>
 
 
