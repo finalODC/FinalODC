@@ -8,17 +8,18 @@
 <title>Insert title here</title>
 <!-- Custom fonts for this template-->
 <c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
-  <link href="${path }/resources/css/manager/all.min.css" rel="stylesheet" type="text/css">
-  <link href="${path }/resources/css/manager/css" rel="stylesheet">
-  <link href="${path }/resources/css/manager/1_content" rel="stylesheet">
 
+   <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+  <script src="${path }/resources/js/bootstrap.min.js"></script>
+  <script src="${path }/resources/js/jquery.slicknav.min.js"></script>
+  <script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="${path }/resources/js/main.js"></script>
 
   <!-- Custom styles for this template-->
   <link href="${path }/resources/css/manager/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-<script src="${path }/resources/js/manager/jquery.min.js"></script>
-      <script src="${path }/resources/js/manager/bootstrap.bundle.min.js"></script>
+
 </head>
 <body id="page-top">
 
@@ -125,7 +126,7 @@
                       </tr>
                       <tr>
                         <td><input type="date" value="2020-02-02" readonly></td>
-                        <td>1개월</td>
+                        <td>1개월</td>	
                         <td>5.0kg</td>
                         <td><input type="number" style="text-align: right; width:50px;"><span>kg</span></td>
                       </tr>

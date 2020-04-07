@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <!-- saved from url=(0061)https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
 <html lang="ko">
@@ -36,7 +36,7 @@
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
- 	 <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
       <div id="content">
@@ -53,7 +53,7 @@
         <div class="container-fluid">
   
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">공지
+          <h1 class="h3 mb-2 text-gray-800">문의
           </h1>
           
 
@@ -64,34 +64,37 @@
             <div class="card-body">
               <div class="table-responsive">
                 
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered table-hover" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
         
                   <thead>
                     <tr>
-                      <th>번호</th>
+                      <th width="40px">번호</th>
+                      <th>분류</th>
                       <th>제목</th>
-                      <th>작성자</th>
-                      <th>작성날짜</th>
-                      <th>답변여부</th>
+                      <th width="100px">작성자</th>
+                      <th width="100px">작성날짜</th>
+                      <th width="100px">답변여부</th>
 
                       
                     </tr>
                   </thead>
                  
-                  <tbody>
+                  <tbody id="askbody">
                     <tr>
 
-                      <td>게시글번호</td>
+                      <td>게시글</td>
+                      <td>계정</td>
                       <td>장나물</td>
                       <td>rlacl123@naver.com</td>
                       <td>20/03/25</td>
-                      <td>◎</td>
+                      <td></td>
                      
                       
                     </tr>
                     <tr>
                   
                       <td>ehdclal11</td>
+                      <td>계정</td>
                       <td>동백꽃</td>
                       <td>ehdclal@naver.com</td>
                       <td>20/03/25</td>
@@ -101,6 +104,7 @@
                     <tr>
                     
                       <td>vkrlacl</td>
+                      <td>계정</td>
                       <td>파란이</td>
                       <td>vkrlacl@naver.com</td>
                       <td>20/03/25</td>
@@ -110,6 +114,7 @@
                     <tr>
                    
                       <td>Rkrenrl41</td>
+                      <td>계정</td>
                       <td>신까치</td>
                       <td>Rkrenrl@naver.com</td>
                       <td>20/03/25</td>
@@ -119,6 +124,7 @@
                     <tr>
                  
                       <td>anfdut52</td>
+                      <td>계정</td>
                       <td>신나래</td>
                       <td>anffut@naver.com</td>
                       <td>20/03/25</td>
@@ -131,6 +137,14 @@
                   </tbody>
                 </table>
               </div>
+              <div> 	<ul class="pagination justify-content-center pagination-sm">
+                <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
+                <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+                <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
+              </ul></div>
             </div>
           </div>
 
@@ -142,18 +156,18 @@
 
 
       <!-- Bootstrap core JavaScript-->
-    
+
       <script>
         $(function(){
-          //공지작성
+          $("#askbody tr").click(function(){
+            var aId=$(this).find("td:eq(0)").text();
+            console.log(aId);
 
-          //전체체크
+            location.href="askread.html"
+          })
         });
 
       </script>
-
-
-
 
 </body>
 

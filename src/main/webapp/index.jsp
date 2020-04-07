@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:forward page="/WEB-INF/views/hospital/doctorChart.jsp"/>
+	<jsp:forward page="/WEB-INF/views/homepage/m_signin.jsp"/>
 </body>
 </html>
