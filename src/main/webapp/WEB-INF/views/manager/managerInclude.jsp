@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- Custom fonts for this template-->
-<c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
+	<c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
   <link href="${path }/resources/css/manager/all.min.css" rel="stylesheet" type="text/css">
   <link href="${path }/resources/css/manager/css" rel="stylesheet">
   <link href="${path }/resources/css/manager/1_content" rel="stylesheet">
@@ -17,7 +17,7 @@
   <link href="${path }/resources/css/manager/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-<script src="${path }/resources/js/manager/jquery.min.js"></script>
+	<script src="${path }/resources/js/manager/jquery.min.js"></script>
       <script src="${path }/resources/js/manager/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -85,7 +85,20 @@
 
 
 <!-- Nav Item - 품의 관리 -->
-<li class="nav-item" ><a class="nav-link" href="askno.html"> <i class="fa fa-calendar-alt fa-2x"></i> <span>커뮤니티 관리</span></a></li>
+<li class="nav-item"><a class="nav-link collapsed"
+  href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/blank.html#"
+  data-toggle="collapse" data-target="#collapseRegister2" aria-expanded="true"
+  aria-controls="collapseRegister"> <i class="fa fa-calendar-alt fa-2x"></i> <span>커뮤니티관리</span>
+</a>
+<div id="collapseRegister2" class="collapse" aria-labelledby="headingRegister1"
+  data-parent="#accordionSidebar">
+  <div class="bg-white py-2 collapse-inner rounded">
+      <h6 class="collapse-header">상세 메뉴</h6>
+      <a class="collapse-item" href="managerBoard.html">자유게시판</a> 
+      <a class="collapse-item" href="managerBoard.html">정보게시판</a> 
+  </div>
+</div>
+</li>
 <!-- Divider -->
 <hr class="sidebar-divider">
 
