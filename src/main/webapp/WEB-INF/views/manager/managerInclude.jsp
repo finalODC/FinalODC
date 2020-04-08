@@ -25,7 +25,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - 로고 -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../관리자~2/intranet_main.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="mMain.ma">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-home"></i>
         </div>
@@ -37,7 +37,8 @@
 
       <!-- Nav Item - 메인으로 -->
       <li class="nav-item">
-        <a class="nav-link" href="../관리자~2/intranet_main.html">
+      <c:url var="main" value="mMain.ma"/>
+        <a class="nav-link" href="${main }">
           <i class="fa fa-home fa-2x"></i>
           <span>메인으로</span></a>
       </li>
