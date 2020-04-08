@@ -53,8 +53,7 @@
 
 			<!-- Nav Item - 품의 관리 -->
 			<li class="nav-item"><a class="nav-link"
-				href="chart.ho"> <i
-					class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
+				href="chart.ho"> <i class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
 
 			<li class="nav-item"><a class="nav-link"
 				href="../intranet/intranet_calender.html"> <i
