@@ -12,7 +12,7 @@ public class ManagerController {
 	//private ManagerService mService
 	
 	///Include 연결
-	
+	//추후 ModelAndView로 변경 필요
 	/**
 	 * 메인페이지 이동
 	 * @return
@@ -27,8 +27,9 @@ public class ManagerController {
 	 * 일반회원 관리
 	 * @return
 	 */
-	@RequestMapping("mMmeber.ma")
+	@RequestMapping("mMmember.ma")
 	public String ManagerMember() {
+		
 		return "managerMember";
 	}
 	
@@ -41,10 +42,40 @@ public class ManagerController {
 		return "managerHospital";
 	}
 	
+	/**
+	 * @return
+	 */
 	@RequestMapping("mNotice.ma")
 	public String managerNotice() {
 		return "managerNotice";
 	}
+	/**
+	 * 문의사항
+	 * @return
+	 */
+	@RequestMapping("mAsk.ma")
+	public String managerAsk() {
+		return "managerAsk";
+	}
+	
+	/**
+	 * 팁게시판
+	 * @return
+	 */
+	@RequestMapping("mTip.ma")
+	public String managerTipBoard() {
+		return "managerBoard";
+	}
+	
+	/**
+	 * 자유게시판
+	 * @return
+	 */
+	@RequestMapping("mFree.ma")
+	public String managerFreeBoard() {
+		return "managerBoard";
+	}
+	
 	
 
 }

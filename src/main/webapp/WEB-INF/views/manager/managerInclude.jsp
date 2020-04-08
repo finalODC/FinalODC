@@ -23,9 +23,9 @@
 <body>
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+ <c:url var="main" value="mMain.ma"/>
       <!-- Sidebar - 로고 -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="mMain.ma">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${main }">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-home"></i>
         </div>
@@ -37,7 +37,7 @@
 
       <!-- Nav Item - 메인으로 -->
       <li class="nav-item">
-      <c:url var="main" value="mMain.ma"/>
+     
         <a class="nav-link" href="${main }">
           <i class="fa fa-home fa-2x"></i>
           <span>메인으로</span></a>
@@ -62,8 +62,8 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">상세 메뉴</h6>
-            <a class="collapse-item" href="Hmember.html">일반사용자</a> 
-            <a class="collapse-item" href="HHospital.html">병원</a> 
+            <a class="collapse-item" href="mMmember.ma">일반사용자</a> 
+            <a class="collapse-item" href="mHmember.ma">병원</a> 
         </div>
     </div>
 </li>
@@ -77,8 +77,8 @@
     data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">상세 메뉴</h6>
-        <a class="collapse-item" href="notice.html">공지</a> 
-        <a class="collapse-item" href="ask.html">문의</a> 
+        <a class="collapse-item" href="mNotice.ma">공지</a> 
+        <a class="collapse-item" href="mAsk.ma">문의</a> 
     </div>
 </div>
 </li>
@@ -95,8 +95,8 @@
   data-parent="#accordionSidebar">
   <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">상세 메뉴</h6>
-      <a class="collapse-item" href="managerBoard.html">자유게시판</a> 
-      <a class="collapse-item" href="managerBoard.html">정보게시판</a> 
+      <a class="collapse-item" href="mFree.ma">자유게시판</a> 
+      <a class="collapse-item" href="mTip.ma">정보게시판</a> 
   </div>
 </div>
 </li>
