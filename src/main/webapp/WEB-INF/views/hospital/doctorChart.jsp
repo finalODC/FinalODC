@@ -19,15 +19,12 @@
   <link href="${path }/resources/css/manager/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	
-	
+   
    <style>
    	 #selectPet h4:hover{
       background: lightgray;
       color:white 
-
     }
-
    </style>
 	
 </head>
@@ -61,13 +58,14 @@
 
       <!-- Nav Item - 품의 관리 -->
       <li class="nav-item">
-        <a class="nav-link" href="chart.do">
+      <c:url var = "chart" value="chart.ho"/>
+        <a class="nav-link" href="${chart }">
           <i class="fa fa-calendar-alt fa-2x"></i>
           <span>진료기록 조회 / 처방</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="info.ho">
           <i class="fa fa-calendar-alt fa-2x"></i>
           <span>내 병원 관리</span></a>
       </li>
@@ -113,7 +111,7 @@
                     
                     <input type="text" placeholder="휴대폰 번호 입력">
                     <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"  style="height: 30px; margin-bottom:4px;">
-                      검색
+              		        검색
                     </button>
                   
                     <!-- The Modal -->
