@@ -7,14 +7,18 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
+<c:set var="path" value="${pageContext.servletContext.contextPath }"
+	scope="application" />
 
 
-    <link href="${ path }/resources/css/manager/sb-admin-2.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link href="${ path }/resources/css/manager/sb-admin-2.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
 
-   <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
 <title>내 병원 관리</title>
 
@@ -31,7 +35,9 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - 로고 -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="../intranet/intranet_main.html">
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
+				href="../intranet/intranet_main.html">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-home"></i>
 				</div>
@@ -47,7 +53,7 @@
 
 			<!-- Nav Item - 품의 관리 -->
 			<li class="nav-item"><a class="nav-link"
-				href="../intranet/intranet_calender.html"> <i
+				href="chart.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
 
 			<li class="nav-item"><a class="nav-link"
@@ -113,10 +119,8 @@
 								<div class="card" style="width: 500px text-align=center;">
 									<div class="card-body text-center">
 
-										<p style="padding: 20px;">오시는 길</p>
-										<p style="padding: 20px;">API를 사용해서 위치를 넣어 주세요</p>
 										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#myModal">등록</button>
+											data-toggle="modal" data-target="#myModal">주소 변경</button>
 									</div>
 								</div>
 
@@ -160,8 +164,8 @@
 									value='추가' style="width: 50px;">
 								<button type="button" class="btn btn-primary"
 									data-toggle="modal" data-target="#myModal">등록</button>
-								<input id="ss" type='button' class='btn btn-primary delete' value='삭제' style="width: 50px;">
-								<br> <br>
+								<input id="ss" type='button' class='btn btn-primary delete'
+									value='삭제' style="width: 50px;"> <br> <br>
 							</div>
 
 						</div>
@@ -222,11 +226,19 @@
 				var a = $("#copy").clone("true")
 				$("#cccbody").append(a);
 			});
-			
-			$('.delete').click(function(){
-				var b = $("#copy").detach();  
-	            $("#ccbbdy").parent().detach(); 
-	        });
+
+			var checkTag = $('div#cccbody');
+			console.log(checkTag);
+
+			$('.delete').click(function() {
+
+				if ($('.t1').length == 1) {
+					alert('삭제할수 없습니다.');
+				} else {
+					$("#copy").detach();
+				}
+
+			});
 		})
 	</script>
 
