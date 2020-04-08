@@ -16,6 +16,8 @@
   <title>인트라넷</title>
 
   <!-- Custom fonts for this template-->
+<!-- 스마트 에디터 -->
+	<script type="text/javascript" src="<%=request.getContextPath() %>/resources/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 
   <style>
     
@@ -69,7 +71,7 @@
                   <tbody>
                     <tr>
                         <th class="tatd" width="100px">카테고리:</th>
-                        <td><select>
+                        <td ><select style="float:left;">
                             <option value="1"> 일반
                             </option>
                             <option value="2"> ???
@@ -87,14 +89,17 @@
                               <th width="100px" class="tatd">제목: </th>
                               <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
                           </tr>
+                          <tr>
                               <th class="tatd">내용: </th>
-                              <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="content" class="form-control "  style="resize : none;"></textarea></td>
+                              <td><textarea name="ir1" id="ir1" rows="10" cols="200"></textarea></textarea>
+       
+                              </td>
                           </tr>
                          
                           <tr>
                               <th class="tatd">첨부파일: </th>
                               <td>
-                                  <span><input type="file"></span>
+                                  <span style="float:left;"><input type="file"></span>
                               </td>
                           </tr>
                        
@@ -117,21 +122,35 @@
 
 
       <!-- Bootstrap core JavaScript-->
-     
+     <script type="text/javascript">
+		var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+		 oAppRef: oEditors,
+		 elPlaceHolder: "ir1",
+		 sSkinURI: "<%=request.getContextPath()%>/resources/se2/SmartEditor2Skin.html",
+		 fCreator: "createSEditor2"
+		});
+		</script>
       <script>
+     
         $(function(){
           //공지작성
         
           $("#writeno").click(function(){
-            $("#noticew").submit();
-          })
+        	  oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
+        	  console.log($("#ir1").val());
+        	  $("#noticew").submit()
+  
+          });
 
 
-          //전체체크
         });
+        
+        
+ 
 
       </script>
-
+ 
 
 
 
