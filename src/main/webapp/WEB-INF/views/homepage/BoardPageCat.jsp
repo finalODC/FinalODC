@@ -22,8 +22,9 @@
 <!-- 폰트 아이콘 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/ddfd73bace.js" crossorigin="anonymous"></script>
-  
-  
+
+ <!-- 스마트 에디터 -->
+
     <style>
       .main-menu li a:hover {
         color: #fb105f;
