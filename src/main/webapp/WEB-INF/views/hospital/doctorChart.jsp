@@ -19,7 +19,17 @@
   <link href="${path }/resources/css/manager/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
     integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	
+	
+   <style>
+   	 #selectPet h4:hover{
+      background: lightgray;
+      color:white 
 
+    }
+
+   </style>
+	
 </head>
 <body id="page-top">
 
@@ -98,9 +108,45 @@
 
                 <!--동물 정보! -->
                 <div class="card shadow mb-4">
-                  <div class="card-header py-3">
+                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Information</h6>
+                    
+                    <input type="text" placeholder="휴대폰 번호 입력">
+                    <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"  style="height: 30px; margin-bottom:4px;">
+                      검색
+                    </button>
+                  
+                    <!-- The Modal -->
+                    <div class="modal fade" id="myModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                        
+                          <!-- Modal Header -->
+                          <div class="modal-header">  
+                            <h4 class="modal-title">등록 동물</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          
+                          <!-- Modal body -->
+                          <div class="modal-body">
+                            <div id="selectPet" style="text-align: center;">
+                              <h4>상두</h4>
+                              <h4>노영</h4>
+                            </div>
+
+                            
+                          </div>
+                          
+                          <!-- Modal footer -->
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                  
                   <div class="card-body">
                     <table border="1" class="table" style="font-size:12px;">
                       <tr style="font-weight: bolder;">
