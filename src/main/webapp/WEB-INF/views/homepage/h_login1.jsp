@@ -252,7 +252,7 @@ hr{margin-top:0; margin-bottom:0;}
 						<input type="submit" value="로그인" class="btn login_btn">						
 					</div>
 					<div class="button-area d-flex justify-content-center ">
-						<input type="submit" id="btnsign" value="회원가입" class="btn login_btn" style="margin-top:10px; ">						
+						<input type="button" id="btnsign" value="회원가입" onclick="location.href='msignin.do'" class="btn login_btn" style="margin-top:10px; ">						
 					</div>
 				</form>
 			</div>
