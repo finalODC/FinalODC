@@ -1,6 +1,7 @@
 package com.ohdogcat.odc.homepage.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,9 @@ public class memberController {
 	@Autowired
 	private MemberService mService;
 	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
 	@RequestMapping("mloginp.do")
 	public String mlogin() {
 		return "homepage/h_login1";
@@ -30,6 +34,10 @@ public class memberController {
 	
 	@RequestMapping("minsert.do")
 	public String insertMember(Member m) {
+		
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
+		
+		m.setUserPwd(encPwd);
 		
 		int result = mService.insertMember(m);
 		if(result>0) {
@@ -44,9 +52,11 @@ public class memberController {
 	@RequestMapping("mlogin.do")
 	public ModelAndView loginMember(ModelAndView mv,Member m) {
 		
-		Member loginUser = mService.loginMember(m);
 		
-		if(loginUser!=null) {
+		Member loginUser = mService.loginMember(m);
+
+		
+		if(loginUser!=null && bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
 			mv.addObject("loginUser",loginUser);
 			mv.setViewName("homepage/h_mainpage");
 			
@@ -64,7 +74,7 @@ public class memberController {
 		
 		status.setComplete();
 		
-		return "homepage/h_mainpage";
+		return "homepage/h_login1";
 		
 	}
 	
