@@ -184,12 +184,20 @@
             </tr>
             
             <tr>
-              <td colspan="3"><input type="text" style="height: 500px; width: 700px;"></td>
+              <td colspan="3"><input type="text"style="height: 500px; width: 920px; border:0px;" readonly></td>
             </tr>
            
           </table>
           <!--@@@@@@@@@@@@@@@ 댓글 게시판이에오 @@@@@@@@@@@22-->
           <br><br>
+          <table border="1";>
+          	<tr id="comment">
+          		<th style="width: 100px; height: 70px; background-color: steelblue;">닉네임</th>
+                  <th style="width:740px;">&nbsp;<input type="text" value="내용" style="width:700px; height:70px; border:0px;" ></th>
+                  <td style="width:100px; background-color:white " align="right" align="center"><input type="button" value="확인" style="width:100px;border:0px;" ><td>
+          	</tr>
+          </table>
+          
           <hr style="border: 2px solid black;">
 
           <div align="left">
@@ -198,14 +206,14 @@
               <thead id="comment" >
                 <tr style="border:1px solid black;" id="commentView">
                   <th style="width: 100px; height: 70px; background-color: steelblue;">닉네임</th>
-                  <th style="width:740px;">&nbsp;<input type="text" value="내용" style="width:700px; height:70px; border:0px;"></th>
+                  <th style="width:740px;">&nbsp;<input type="text" value="내용" style="width:700px; height:70px; border:0px; "readonly></th>
                   <td style="width:100px; background-color: tan;" align="right"><input type="text" value="20/04/06 20:45" style="width:80px; font-size: 10px; border:0px;"><td>
                 </tr>
 
                 <tr style="border:1px solid black; " id="commentWriter">
                   <th style="width: 100px; height: 70px; background-color: steelblue;">닉네임</th>
-                  <th style="width:740px;">&nbsp;<input type="text" value="내용" style="width:700px; height:70px; border:0px;"></th>
-                  <th style="width:100px; background-color: tan;" >&nbsp;&nbsp;&nbsp;<a>삭제</a>/<a>수정</a><th>
+                  <th style="width:740px;">&nbsp;<input type="text" value="내용" style="width:700px; height:70px; border:0px; "readonly></th>
+                  <th style="width:100px; background-color: tan;" >&nbsp;&nbsp;&nbsp;<a> 삭제</a> | <a>수정</a><th>
                 </tr>
 
               </thead>

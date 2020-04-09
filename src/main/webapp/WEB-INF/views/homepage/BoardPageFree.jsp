@@ -14,14 +14,19 @@
 <link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${path}/resources/css/font-awesome.min.css" />
 <link rel="stylesheet" href="${path}/resources/css/slicknav.min.css" />
-<link rel="stylesheet" href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400'
+	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="${path}/resources/css/style.css" />
-  <link rel="stylesheet" href="${path}/resources/css/stylne.css">
+<link rel="stylesheet" href="${path}/resources/css/stylne.css">
 <!-- 폰트 아이콘 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="https://kit.fontawesome.com/ddfd73bace.js" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/ddfd73bace.js"
+	crossorigin="anonymous"></script>
 
 
 <style>
@@ -262,14 +267,22 @@
 					<br>
 
 					<div align="center" id="SearchDiv">
-						<select>
-							<option value="제목">제목</option>
-							<option value="작성자">작성자</option>
-							<option value="내용">내용</option>
-						</select> <input id="Search" type="text" placeholder="검색어를 입력하세요">
-						<button id="searchBtn">
-							&nbsp;<i class="fas fa-search"></i>
-						</button>
+						<table border="1">
+							<tr>
+								<td><select style="border: 0px;">
+										<option value="제목">제목</option>
+										<option value="작성자">작성자</option>
+										<option value="내용">내용</option>
+								</select></td>
+								<td><input id="Search" type="text" style="border: 0px;"
+									placeholder="검색어를 입력하세요"></td>
+								<td>
+									<button id="searchBtn" style="border: 0px; background: white;">
+										&nbsp;<i class="fas fa-search"></i>
+									</button>
+								</td>
+							</tr>
+						</table>
 
 					</div>
 					<br> <br>

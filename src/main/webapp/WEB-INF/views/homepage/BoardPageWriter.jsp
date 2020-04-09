@@ -27,8 +27,10 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/ddfd73bace.js"
 	crossorigin="anonymous"></script>
-	
-<script type="text/javascript" src="${path}/resources/se2/js2/service/HuskyEZCreator.js" charset="utf-8"></script>
+
+<script type="text/javascript"
+	src="${path}/resources/se2/js/service/HuskyEZCreator.js"
+	charset="utf-8"></script>
 
 
 <style>
@@ -186,7 +188,7 @@
 						<tbody>
 							<tr>
 								<th style="width: 100px;">제목</th>
-								<td><input type="text" style="border: 0px; width:500px;"
+								<td><input type="text" style="border: 0px; width: 400px;"
 									placeholder="제목을 입력하세요"></td>
 							</tr>
 							<tr>
@@ -194,9 +196,9 @@
 								<td><input type="text" style="border: 0px;" value="tlqkrus"
 									readonly></td>
 							</tr>
-							<tr >
+							<tr>
 								<th style="width: 100px; height: 500px;">내용</th>
-								<td ><textarea id="editer"  rows="10" cols="100"></textarea></td>
+								<td><textarea id="editer" rows="25" cols="100"></textarea></td>
 
 							</tr>
 							<tr>
@@ -260,8 +262,8 @@
 		 fCreator: "createSEditor2"
 		});
 	</script>
-	
-	
+
+
 </body>
 
 

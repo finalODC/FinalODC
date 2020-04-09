@@ -25,6 +25,10 @@
 #aaa {
 	margin-left: 10%;
 }
+
+#map {
+	
+}
 </style>
 </head>
 <body>
@@ -77,55 +81,48 @@
 			<div class="col-lg-12 mb-4">
 
 				<!-- Approach -->
+				
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">동물 병원</h6>
 					</div>
-					<div class="card-columns">
+					<div class="sea"
+						style="width: 100%; height: 400px; padding: 1%;">
+						<div class="par" style="width: 50%; height: 400px; padding: 1%; float: left;">
 
-						<div class="card" style="width: 100%">
-							<div class="card-body text-center">
+							<div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div>
 
-								<img class="img-fluid" src="img/portfolio/cabin.png" alt="">
-								<!-- Button to Open the Modal -->
-								<p>동물병원</p>
-
-
-							</div>
 						</div>
+						<div class="ssa" style="width: 50%; height: 400px; padding: 1%; float: right;">
+						
+							<p style="text-align: center;">oo동물병원</p>
+							<textarea
+								style="width: 100%; height: 90%; padding: 1%; border: none; resize: none; text-align: center;">병원소개</textarea>
 
-						<div class="card" style="width: 500px text-align=center;">
-							<div class="card-body text-center">
-
-								<textarea
-									style="width: 90%; height: 200px; border: none; resize: none;"
-									readonly>병원소개</textarea>
-
-								<br> <br>
-
-
-
-							</div>
 						</div>
-
-							<div id="map" style="width:300px;height:200px;"></div>
-						<div class="card" style="width: 500px text-align=center;">
-							<div class="card-body text-center">
-
-								
-
-
-
-							</div>
-						</div>
-
 
 					</div>
-				</div>
+					<hr>
+					<div id="map" style="width: 500px; height: 300px; padding: 1%;"></div>
 
+					<script type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807"></script>
+					<script>
+						var container = document.getElementById('map');
+						var options = {
+							center : new kakao.maps.LatLng(33.450701, 126.570667),
+							level : 3
+						};
+
+						var map = new kakao.maps.Map(container, options);
+					</script>
+					<textarea
+						style="width: 90%; height: 200px; border: none; resize: none;"
+						readonly>상세주소</textarea>
+				</div>
 			</div>
 
-			<div class="col-lg-12 ">
+			<div class="col-lg-12 mb-4">
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
@@ -147,9 +144,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- <div style="text-align: center;">
-                        <input type="button" value="의사 등록" class="btn btn-primary">
-                    </div> -->
 				</div>
 			</div>
 
@@ -182,47 +176,27 @@
 							<br> <span>아이디 : </span> &nbsp; <input type="text"
 								style="width: 70%;" placeholder="댓글을 입력해주세요"> &nbsp; <input
 								type="button" value="등록">
-
 						</div>
-
 					</div>
-
-
 				</div>
 			</div>
 
 		</div>
-		
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807"></script>
-	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new kakao.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
 
-		var map = new kakao.maps.Map(container, options);
-	</script>
-	</div>
+		<!-- Footer Section -->
+		<br>
+		<hr>
+		<br>
+		<footer class="footer">
+			<div class="container">
+				<div class="copyright">
+					Copyright &copy;
+					<script>
+						document.write(new Date().getFullYear());
+					</script>
+					권한은 전적으로 나한테 있습니다.
 
-
-
-	<!-- Footer Section -->
-	<br>
-	<hr>
-	<br>
-	<footer class="footer">
-		<div class="container">
-			<div class="copyright">
-				Copyright &copy;
-				<script>document.write(new Date().getFullYear());</script>
-				권한은 전적으로 나한테 있습니다.
-
-			</div>
-	</footer>
-
-
-
-
+				</div>
+		</footer>
 </body>
 </html>
