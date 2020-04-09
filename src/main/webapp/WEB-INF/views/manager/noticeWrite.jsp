@@ -91,7 +91,7 @@
                           </tr>
                           <tr>
                               <th class="tatd">내용: </th>
-                              <td><textarea name="ir1" id="ir1" rows="10" cols="200"></textarea></textarea>
+                              <td><textarea name="ir1" id="ir1" rows="10" cols="200"></textarea>
        
                               </td>
                           </tr>

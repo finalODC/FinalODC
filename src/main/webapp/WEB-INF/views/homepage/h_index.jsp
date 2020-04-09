@@ -20,6 +20,7 @@
   <style>
 
 
+
 .login_btn{
 color: white;
 background-color: #30627e;
@@ -56,13 +57,13 @@ box-shadow: 0 0 0 0 !important;
           <div class="card">
           <div class="card-body">
             <div class="button-area d-flex justify-content-center" style="margin-top: 10%;">
-              <input type="submit" value="병원으로 로그인" class="btn login_btn">						
+              <input id="hosbtn1" type="button" value="병원으로 로그인"  class="btn login_btn">						
           </div>
           <div class="button-area d-flex justify-content-center" >
-              <input type="submit" id="btnsign" value="일반회원 로그인" class="btn login_btn">						
+              <input type="button" id="btnsign" value="일반회원 로그인" onclick="javascript:location.href='mlogin.do'" class="btn login_btn">						
           </div>
           <div class="button-area d-flex justify-content-center">
-              <input type="submit" id="btnsign" value="회원가입" class="btn login_btn" >						
+              <input type="button" id="btnsign" value="회원가입" class="btn login_btn" >						
           </div>
 
             </div>
@@ -99,6 +100,7 @@ box-shadow: 0 0 0 0 !important;
   <script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
   
   <script src="${path }/resources/js/main.js"></script>
+  
 </body>
 
 

@@ -227,26 +227,26 @@ hr{margin-top:0; margin-bottom:0;}
 		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 1000px; ">
 			<div class="card" style="width: 600px; margin: 50px;">
 			<div class="card-body" align="center">
-				<form>
+				<form action="minsert.do" method="post">
                     <h5>아이디</h5>
 					<div class="inputgroup">
-						<input type="text" class="input_area" placeholder="아이디를 입력해주세요.">
+						<input name="userId" type="text" class="input_area" placeholder="아이디를 입력해주세요.">
                     </div>
                     <h5>비밀번호</h5>
 					<div class="inputgroup">
-						<input type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
+						<input name="userPwd" type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
                     </div>
                     <h5>이름</h5>
                     <div class="inputgroup">
-						<input type="text" class="input_area" placeholder="이름을 입력해주세요">
+						<input name="userName" type="text" class="input_area" placeholder="이름을 입력해주세요">
                     </div>
                     <h5>이메일</h5>
                     <div class="inputgroup">
-						<input type="text" class="input_area" placeholder="이메일을 입력해주세요">
+						<input name="email" type="email" class="input_area" placeholder="이메일을 입력해주세요">
                     </div>
                     <h5>전화번호</h5>
                     <div class="inputgroup">
-						<input type="text" class="input_area" placeholder="전화번호를 입력해주세요(-빼고)">
+						<input name="phone" type="text" class="input_area" placeholder="전화번호를 입력해주세요(-빼고)">
                     </div>
 
                     <div class="button-area d-flex justify-content-center ">

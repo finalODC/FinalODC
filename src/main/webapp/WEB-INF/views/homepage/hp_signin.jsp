@@ -244,18 +244,22 @@ hr{margin-top:0; margin-bottom:0;}
 			<div class="card" style="width: 600px; margin: 50px;">
 			<div class="card-body" align="center">
 				<form>
+				     <h5>병원명</h5>
+					<div class="inputgroup">
+						<input type="text" id="hName" name ="hName" class="input_area" placeholder="병원이름을 입력해주세요.">
+                    </div>
                     <h5>사업자번호</h5>
 					<div class="inputgroup">
-						<input type="text" class="input_area" placeholder="사업자번호를 입력해주세요.">
+						<input type="text" id="hNumber"class="input_area" placeholder="사업자번호를 입력해주세요.">
                     </div>
-                    <span><input type="button" value="사업자번호 확인" class="btn check_btn"></span>
+                    <span><input type="button" value="사업자번호 확인" class="btn check_btn" id="checkbusiness"></span>
                     <h5>아이디</h5>
 					<div class="inputgroup">
-						<input type="text" class="input_area" placeholder="아이디를 입력해주세요.">
+						<input type="text" name="hId" id="hId" class="input_area" placeholder="아이디를 입력해주세요.">
                     </div>
                     <h5>비밀번호</h5>
 					<div class="inputgroup">
-						<input type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
+						<input type="password" name="" class="input_area" placeholder="비밀번호를 입력해주세요.">
                     </div>
                     <h5>비밀번호 확인</h5>
 					<div class="inputgroup">
