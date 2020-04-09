@@ -41,7 +41,7 @@
       <div class="header-right">
         <div class="user-panel">
           <!-- <a href="login.html" class="login">로그인</a> -->
-          <a href="selectJoinCase.html" class="register">로그아웃</a>
+          <a href="mlogout.do" class="register">로그아웃</a>
         </div>
       </div>
     </div>

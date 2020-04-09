@@ -11,4 +11,18 @@ public interface MemberService {
 	 */
 	int insertMember(Member m);
 
+	/**
+	 * 회원 로그인
+	 * @param m
+	 * @return
+	 */
+	Member loginMember(Member m);
+
+	/**
+	 * 아이디 중복 체크
+	 * @param id
+	 * @return
+	 */
+	int idCheck(String id);
+
 }

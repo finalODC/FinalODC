@@ -222,16 +222,16 @@ hr{margin-top:0; margin-bottom:0;}
 		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 500px;">
 			<div class="card" style="width: 600px;">
 			<div class="card-body">
-				<form>
+				<form action="mlogin.do" method="post">
 				 <div class="inputgroup">
 					<div class="input-groupp">
 						
-						<input type="text" class="input_area" placeholder="아이디를 입력해주세요.">
+						<input name="userId" type="text" class="input_area" placeholder="아이디를 입력해주세요.">
 						
 					</div>
 					<div class="input-group">
 						
-						<input type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
+						<input name="userPwd" type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
 					</div>
                 </div>
                 

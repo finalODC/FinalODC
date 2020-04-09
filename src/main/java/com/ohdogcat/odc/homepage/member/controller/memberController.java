@@ -1,19 +1,28 @@
 package com.ohdogcat.odc.homepage.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ohdogcat.odc.homepage.member.model.vo.Member;
 import com.ohdogcat.odc.homepage.member.service.MemberService;
 
+@SessionAttributes("loginUser")
 @Controller
 public class memberController {
 	
 	@Autowired
 	private MemberService mService;
 	
-	@RequestMapping("mlogin.do")
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@RequestMapping("mloginp.do")
 	public String mlogin() {
 		return "homepage/h_login1";
 	}
@@ -26,9 +35,60 @@ public class memberController {
 	@RequestMapping("minsert.do")
 	public String insertMember(Member m) {
 		
-		int result = mService.insertMember(m);
+		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
 		
-		return "homepage/h_index";
+		m.setUserPwd(encPwd);
+		
+		int result = mService.insertMember(m);
+		if(result>0) {
+			return "homepage/h_login1";
+		}else {
+			return "homepage/h_signin";
+		}
+		
+		
+	}
+	
+	@RequestMapping("mlogin.do")
+	public ModelAndView loginMember(ModelAndView mv,Member m) {
+		
+		
+		Member loginUser = mService.loginMember(m);
+
+		
+		if(loginUser!=null && bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
+			mv.addObject("loginUser",loginUser);
+			mv.setViewName("homepage/h_mainpage");
+			
+		}else {
+			mv.setViewName("homepage/h_login1");
+		}
+		
+			
+			return mv;
+		
+	}
+	
+	@RequestMapping("mlogout.do")
+	public String logoutMember(SessionStatus status) {
+		
+		status.setComplete();
+		
+		return "homepage/h_login1";
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping("idcheck.do")
+	public String idCheck(String id) {
+
+		int result = mService.idCheck(id);
+		
+		if(result>0) {
+			return "fail";
+		}else {
+			return "ok";
+		}
 		
 	}
 
