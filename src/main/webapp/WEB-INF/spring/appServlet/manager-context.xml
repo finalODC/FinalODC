@@ -22,7 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.ohdogcat.odc" />
-	
-	
+	<!-- resuorceMapping -->
+	<!-- <resources  location="/resources/se2/" mapping="/resources/se2/**"/> -->
 	
 </beans:beans>
