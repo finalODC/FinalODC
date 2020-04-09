@@ -244,41 +244,28 @@ hr{margin-top:0; margin-bottom:0;}
 			<div class="card" style="width: 600px; margin: 50px;">
 			<div class="card-body" align="center">
 				<form>
+				     <h5>병원명</h5>
+					<div class="inputgroup">
+						<input type="text" id="hName" name ="hName" class="input_area" placeholder="병원이름을 입력해주세요.">
+                    </div>
                     <h5>사업자번호</h5>
 					<div class="inputgroup">
-						<input type="text" class="input_area" placeholder="사업자번호를 입력해주세요.">
+						<input type="text" id="hNumber"class="input_area" placeholder="사업자번호를 입력해주세요.">
                     </div>
-                    <span><input type="button" value="사업자번호 확인" class="btn check_btn"></span>
+                    <span><input type="button" value="사업자번호 확인" class="btn check_btn" id="checkbusiness"></span>
                     <h5>아이디</h5>
 					<div class="inputgroup">
-						<input type="text" class="input_area" placeholder="아이디를 입력해주세요.">
+						<input type="text" name="userId" id="userId" class="input_area" placeholder="아이디를 입력해주세요.">
                     </div>
                     <h5>비밀번호</h5>
 					<div class="inputgroup">
-						<input type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
+						<input type="password" name="userPwd" id="pwd" class="input_area" placeholder="비밀번호를 입력해주세요.">
                     </div>
                     <h5>비밀번호 확인</h5>
 					<div class="inputgroup">
-						<input type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
+						<input type="password" id="pwd2" class="input_area" placeholder="비밀번호를 입력해주세요.">
                     </div>
-                    <h5>이름</h5>
-                    <div class="inputgroup">
-						<input type="text" class="input_area" placeholder="이름을 입력해주세요">
-                    </div>
-                    <h5>이메일</h5>
-                    <div class="inputgroup">
-                        <input type="text" class="input_area" placeholder="이메일을 입력해주세요">
-												
-                    </div>
-                    <input id="email" type="button" value="이메일확인" class="btn check_btn">  
-                    <div id="emailcheck" class="row" style="display: none;">
-                        <div class="inputgroup" style="width: 69%; margin-right: 2%;">
-                            <input type="text" class="input_area" placeholder="">
-                        </div>
-                        <input type="button" value="번호확인" class="btn check_btn" style="width: 29%; margin-top: 10px;">
-                    </div>
-                    
-												
+										
                     <h5>전화번호</h5>
                     <div class="inputgroup">
 						<input type="text" class="input_area" placeholder="전화번호를 입력해주세요(-빼고)">
@@ -286,14 +273,14 @@ hr{margin-top:0; margin-bottom:0;}
                     <h5>주소</h5>
                     <div class="row">
                         <div class="inputgroup" style="width: 49%; margin-right: 2%;" >
-                            <input type="text" class="input_area" placeholder="" >
+                            <input type="text" class="input_area" placeholder="" id="add1" name="add1">
                         </div>
                         
                         <div class="inputgroup" style="width: 49%;">
-                            <input type="text" class="input_area" placeholder="">
+                            <input type="text" class="input_area" placeholder=""id="add2" name="add2">
                         </div>
                         <div class="inputgroup" style="width: 69%; margin-right: 2%;">
-                            <input type="text" class="input_area" placeholder="">
+                            <input type="text" class="input_area" placeholder=""id="add3" name="add3">
                         </div>
                         <input type="button" value="주소찾기" class="btn check_btn" style="width: 29%; margin-top: 10px;">
                     </div>
@@ -327,9 +314,31 @@ hr{margin-top:0; margin-bottom:0;}
             </div>
 
             <script>
-                $('#email').click(function(){
-                    $('#emailcheck').css('display','');
-                })
+               $("#userId").on("propertychange change keyup paste input",function(){
+            	   var id= $(this).val();
+            	 	if(id.length <=5){
+            	 		console.log("아이디는 6글자 이상");
+            	 	}else{
+            	 		$.ajax({
+            	 			url:"hIdCheck.do",
+            	 			type:"get",
+            	 			data:{userId:id},
+            	 			sucesses:function(result){
+            	 				if(result >0){
+            	 					console.log("중복된 아이디가 있습니다.")
+            	 				}else{
+            	 					console.log("회원가입 가능")
+            	 				}
+            	 			},
+            	 			error:function(){
+            	 				alert("에러")
+            	 			}
+            	 		});
+            	 	}
+            	 	
+            	  
+            	   
+               });
             </script>
 </body>
 </html>

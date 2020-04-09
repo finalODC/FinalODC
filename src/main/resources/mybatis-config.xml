@@ -11,12 +11,14 @@
 	<!-- typeAliases -->
 	<typeAliases>
 		<typeAlias type="com.ohdogcat.odc.homepage.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.ohdogcat.odc.homepage.member.model.vo.HMember" alias="HMember"/>
 	</typeAliases>
 	
 	<!-- mappers -->
 	
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/hmember-mapper.xml"/>
 	</mappers>
 	
 	
