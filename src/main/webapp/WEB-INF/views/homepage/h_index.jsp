@@ -60,7 +60,7 @@ box-shadow: 0 0 0 0 !important;
               <input id="hosbtn1" type="button" value="병원으로 로그인"  class="btn login_btn">						
           </div>
           <div class="button-area d-flex justify-content-center" >
-              <input type="button" id="btnsign" value="일반회원 로그인" onclick="javascript:location.href='mlogin.do'" class="btn login_btn">						
+              <input type="button" id="btnsign" value="일반회원 로그인" onclick="javascript:location.href='mloginp.do'" class="btn login_btn">						
           </div>
           <div class="button-area d-flex justify-content-center">
               <input type="button" id="btnsign" value="회원가입" class="btn login_btn" >						
