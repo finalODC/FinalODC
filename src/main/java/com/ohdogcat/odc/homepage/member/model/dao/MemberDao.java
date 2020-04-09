@@ -18,4 +18,14 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.insertMember",m);
 	}
 
+	public Member loginMember(Member m) {
+		
+		return (Member)sqlSession.selectOne("memberMapper.loginMember",m);
+	}
+
+	public int idCheck(String id) {
+
+		return sqlSession.selectOne("memberMapper.idCheck",id);
+	}
+
 }

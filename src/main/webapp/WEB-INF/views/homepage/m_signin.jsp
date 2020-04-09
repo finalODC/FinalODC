@@ -26,7 +26,7 @@
 
 	
 
-
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js" type="text/javascript"></script>
 
   <style>
 
@@ -125,6 +125,20 @@ color: black;
 background-color: white;
 }
 
+.check_btn{
+color: white;
+background-color: #30627e;
+margin-top:0px;
+margin-bottom: 30px;
+width: 70%;
+height: 50px;
+}
+
+.check_btn:hover{
+color: black;
+background-color: white;
+}
+
 .links{
 color: white;
 }
@@ -170,6 +184,11 @@ margin-left: 4px;
     line-height: 20px;
     
 }
+
+.pwdcheck{
+	display: none;
+}
+
 
 
 .ndd{
@@ -224,17 +243,31 @@ hr{margin-top:0; margin-bottom:0;}
         <div class="container">
 			<div >
             <div class="loginlogo"><h1 class="loginArea">회원가입</h1></div>
-		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 1000px; ">
+		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 1300px; ">
 			<div class="card" style="width: 600px; margin: 50px;">
 			<div class="card-body" align="center">
 				<form action="minsert.do" method="post">
                     <h5>아이디</h5>
 					<div class="inputgroup">
-						<input name="userId" type="text" class="input_area" placeholder="아이디를 입력해주세요.">
+						<input name="userId" id="userId" type="text" class="input_area" placeholder="아이디를 입력해주세요.">
                     </div>
+                    <span><input id="idcheck" type="button" value="아이디 중복 확인" class="btn check_btn"></span>
                     <h5>비밀번호</h5>
 					<div class="inputgroup">
-						<input name="userPwd" type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
+						<input id="pwd1" name="userPwd" type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
+                    </div>
+                    <h5>비밀번호 확인</h5>
+					<div class="inputgroup">
+						<input id="pwd2" name="userPwd2" type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
+                    </div>
+                    <div class="pwdcheck ok" style="margin-bottom: 40px; color: green">
+                    	사용가능
+                    </div>
+                    <div class="pwdcheck error" style="margin-bottom: 40px; color: red;">
+                    	사용불가능
+                    </div>
+                    <div class="pwdcheck short" style="margin-bottom: 40px; color: red;">
+                    	비밀번호는 6자리 이상으로 해주세요!
                     </div>
                     <h5>이름</h5>
                     <div class="inputgroup">
@@ -252,6 +285,8 @@ hr{margin-top:0; margin-bottom:0;}
                     <div class="button-area d-flex justify-content-center ">
 						<input type="submit" value="회원가입" class="btn login_btn">						
                     </div>
+                    <input type="hidden" value="0" id="pwdCheck">
+                    
                 </form>
 			</div>
 		
@@ -276,5 +311,82 @@ hr{margin-top:0; margin-bottom:0;}
 				</address>
                 </div>
             </div>
+            
+  			<script src="${path }/resources/js/bootstrap.min.js"></script>
+  
+  			<script src="${path }/resources/js/jquery.slicknav.min.js"></script>
+  
+  			<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
+  
+  			<script src="${path }/resources/js/main.js"></script>
+            
+            <script>
+            	$('#idcheck').click(function(){
+            		
+             		$.ajax({
+            			url:"idcheck.do",
+            			data:{id:$('#userId').val()},
+            			type:"post",
+            			success:function(data){
+            				if(data == "ok"){
+            					alert("사용 가능한 아이디 입니다!");
+            				}else{
+            					alert("다른 아이디를 입력해 주세요!");
+            				}
+            				
+            			},error:function(data){
+            				alert("ajax 작동 실패!");
+            			}
+            		}); 
+
+            	});
+            	
+            	$(function(){
+            		$('#pwd1').on("keyup",function(){
+            			var pwd1 = $('#pwd1').val();
+            			var pwd2 = $('#pwd2').val();
+            			
+            			if(pwd1.length<6){
+            				$('.short').show();
+            				$('.error').hide();
+            				$('.ok').hide();
+            			}else{
+            				$('.short').hide();
+                			if(pwd1==pwd2){
+                				$('.error').hide();
+                				$('.ok').show();
+                			}else{
+                				$('.error').show();
+                				$('.ok').hide();
+                			}
+            			}
+            			
+    
+            		});
+            		
+            		
+            		$('#pwd2').on("keyup",function(){
+            			var pwd1 = $('#pwd1').val();
+            			var pwd2 = $('#pwd2').val();
+            			
+            			if(pwd1.length<6){
+            				$('.short').show();
+            				$('.error').hide();
+            				$('.ok').hide();
+            			}else{
+                			if(pwd1==pwd2){
+                				$('.error').hide();
+                				$('.ok').show();
+                			}else{
+                				$('.short').hide();
+                				$('.error').show();
+                				$('.ok').hide();
+                			}
+            			}
+            			
+            		});
+            	});
+            
+            </script>
 </body>
 </html>
