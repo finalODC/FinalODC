@@ -45,18 +45,23 @@
 			</a>
 
 			<!-- Divider -->
-			<hr class="sidebar-divider my-0">
+
+			<div class="sidebar-heading">
+        		메뉴
+      		</div>
 
 			<hr class="sidebar-divider">
 
 
 
 			<!-- Nav Item - 품의 관리 -->
-			<li class="nav-item"><a class="nav-link"
-				href="chart.ho"> <i class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
+			<li class="nav-item">
+      			<c:url var = "chart" value="chart.ho"/>
+        		<a class="nav-link" href="${chart }">
+				<i class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
 
 			<li class="nav-item"><a class="nav-link"
-				href="../intranet/intranet_calender.html"> <i
+				href="info.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>내 병원 관리</span></a></li>
 
 

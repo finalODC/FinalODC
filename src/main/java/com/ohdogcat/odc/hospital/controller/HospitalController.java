@@ -11,10 +11,6 @@ public class HospitalController {
 		return "doctorChart";
 	}
 	
-	@RequestMapping("info.ho")
-	public String goInfo() {
-		return "hospital";
-	}
 	
 	
 }
