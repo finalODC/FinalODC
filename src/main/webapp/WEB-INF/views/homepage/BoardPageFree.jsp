@@ -286,6 +286,7 @@
 
 					</div>
 					<br> <br>
+					
 					<button align="right">글쓰기</button>
 				</div>
 

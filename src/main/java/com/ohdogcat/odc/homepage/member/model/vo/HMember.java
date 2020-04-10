@@ -10,6 +10,7 @@ public class HMember {
 	public String hName;
 	public String hAddress;
 	public String hPhone;
+	public String hEmail;
 	public String hComment;
 	public String hFile;
 	public Date hCreateDate;
@@ -21,7 +22,7 @@ public class HMember {
 		// TODO Auto-generated constructor stub
 	}
 
-	public HMember(String userId, String userPwd, String hCode, String hName, String hAddress, String hPhone) {
+	public HMember(String userId, String userPwd, String hCode, String hName, String hAddress, String hPhone, String hEmail) {
 		super();
 		this.userId = userId;
 		this.userPwd = userPwd;
@@ -29,10 +30,11 @@ public class HMember {
 		this.hName = hName;
 		this.hAddress = hAddress;
 		this.hPhone = hPhone;
+		this.hEmail = hEmail;
 	}
 
 	public HMember(String hId, String userId, String userPwd, String hCode, String hName, String hAddress,
-			String hPhone, String hComment, String hFile, Date hCreateDate, Date hModifyDate, String hStatus) {
+			String hPhone,String hEmail, String hComment, String hFile, Date hCreateDate, Date hModifyDate, String hStatus) {
 		super();
 		this.hId = hId;
 		this.userId = userId;
@@ -41,6 +43,7 @@ public class HMember {
 		this.hName = hName;
 		this.hAddress = hAddress;
 		this.hPhone = hPhone;
+		this.hEmail = hEmail;
 		this.hComment = hComment;
 		this.hFile = hFile;
 		this.hCreateDate = hCreateDate;
@@ -106,6 +109,15 @@ public class HMember {
 		this.hPhone = hPhone;
 	}
 
+	
+	public String gethEmail() {
+		return hEmail;
+	}
+
+	public void sethEmail(String hEmail) {
+		this.hEmail = hEmail;
+	}
+
 	public String gethComment() {
 		return hComment;
 	}
@@ -149,7 +161,7 @@ public class HMember {
 	@Override
 	public String toString() {
 		return "HMember [hId=" + hId + ", userId=" + userId + ", userPwd=" + userPwd + ", hCode=" + hCode + ", hName="
-				+ hName + ", hAddress=" + hAddress + ", hPhone=" + hPhone + ", hComment=" + hComment + ", hFile="
+				+ hName + ", hAddress=" + hAddress + ", hPhone=" + hPhone + ", hEmail=" + hEmail + ", hComment=" + hComment + ", hFile="
 				+ hFile + ", hCreateDate=" + hCreateDate + ", hModifyDate=" + hModifyDate + ", hStatus=" + hStatus
 				+ "]";
 	}

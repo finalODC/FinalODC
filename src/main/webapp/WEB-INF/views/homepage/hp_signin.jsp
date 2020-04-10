@@ -13,7 +13,10 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 	<!-- JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -226,7 +229,7 @@ hr{margin-top:0; margin-bottom:0;}
   </style>
 
 </head>
-
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <body>
 	
@@ -243,14 +246,14 @@ hr{margin-top:0; margin-bottom:0;}
 		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 1500px; ">
 			<div class="card" style="width: 600px; margin: 50px;">
 			<div class="card-body" align="center">
-				<form>
+				<form action="hInsert.do" method="post">
 				     <h5>병원명</h5>
 					<div class="inputgroup">
 						<input type="text" id="hName" name ="hName" class="input_area" placeholder="병원이름을 입력해주세요.">
                     </div>
                     <h5>사업자번호</h5>
 					<div class="inputgroup">
-						<input type="text" id="hNumber"class="input_area" placeholder="사업자번호를 입력해주세요.">
+						<input type="text" id="hCode" name="hCode" name="class="input_area" placeholder="사업자번호 앞6자리를 입력해주세요.">
                     </div>
                     <span><input type="button" value="사업자번호 확인" class="btn check_btn" id="checkbusiness"></span>
                     <h5>아이디</h5>
@@ -265,10 +268,23 @@ hr{margin-top:0; margin-bottom:0;}
 					<div class="inputgroup">
 						<input type="password" id="pwd2" class="input_area" placeholder="비밀번호를 입력해주세요.">
                     </div>
+                    
+                      <h5>이메일</h5>
+                    <div class="inputgroup">
+                        <input type="text" class="input_area" placeholder="이메일을 입력해주세요" id="hmail">
+                                    
+                    </div>
+                    <input id="email" type="button" value="이메일확인" class="btn check_btn"> 
+                    <div id="emailcheck" class="row" style="display: none;">
+                        <div class="inputgroup" style="width: 69%; margin-right: 2%;">
+                            <input type="text" id="fillCode"class="input_area" placeholder="">
+                        </div>
+                        <input type="button" value="번호확인" class="btn check_btn" style="width: 29%; margin-top: 10px;" id="codeChk">
+                    </div>
 										
                     <h5>전화번호</h5>
                     <div class="inputgroup">
-						<input type="text" class="input_area" placeholder="전화번호를 입력해주세요(-빼고)">
+						<input type="text" class="input_area" name="hPhone" placeholder="전화번호를 입력해주세요(-빼고)">
                     </div>
                     <h5>주소</h5>
                     <div class="row">
@@ -282,11 +298,11 @@ hr{margin-top:0; margin-bottom:0;}
                         <div class="inputgroup" style="width: 69%; margin-right: 2%;">
                             <input type="text" class="input_area" placeholder=""id="add3" name="add3">
                         </div>
-                        <input type="button" value="주소찾기" class="btn check_btn" style="width: 29%; margin-top: 10px;">
+                        <input type="button" value="주소찾기" id="searchAdd" onclick="sAddr();" class="btn check_btn" style="width: 29%; margin-top: 10px;">
                     </div>
 
                     <div class="button-area d-flex justify-content-center ">
-						<input type="submit" value="회원가입" class="btn login_btn">						
+						<input type="submit" value="회원가입" class="btn login_btn" id="QWER">						
                     </div>
                 </form>
 			</div>
@@ -314,17 +330,36 @@ hr{margin-top:0; margin-bottom:0;}
             </div>
 
             <script>
+            	$("#checkbusiness").click(function(){
+            		var hName = $("#hName").val();
+            		var hCode = $("#hCode").val();
+            		
+            		$.ajax({
+            			url:"hBusiness.do",
+            			type:"get",
+            			dataType:"json",
+            			data:{hName:hName, hCode:hCode},
+            			success:function(result){
+            				console.log(result)
+            			},error:function(){
+            				console.log("에러")
+            			}
+            		});
+            	})
                $("#userId").on("propertychange change keyup paste input",function(){
             	   var id= $(this).val();
+            	    var regid  =/^[a-zA-Z0-9]$/;
             	 	if(id.length <=5){
             	 		console.log("아이디는 6글자 이상");
+            	 	}else if(!regid.test(id)){
+            	 		console.log("영숫자")
             	 	}else{
             	 		$.ajax({
             	 			url:"hIdCheck.do",
             	 			type:"get",
             	 			data:{userId:id},
             	 			sucesses:function(result){
-            	 				if(result >0){
+            	 				if(parseInt(result) >0){
             	 					console.log("중복된 아이디가 있습니다.")
             	 				}else{
             	 					console.log("회원가입 가능")
@@ -335,10 +370,61 @@ hr{margin-top:0; margin-bottom:0;}
             	 			}
             	 		});
             	 	}
-            	 	
-            	  
-            	   
+
                });
+            //이메일 인증
+            
+                $('#email').click(function(){
+                    $('#emailcheck').css('display','');
+                    var email=$("#hmail").val();
+                    $.ajax({
+            			url:"sendCode.do",
+            			type:"post",
+            			data:{email:email},
+            			success:function(){
+            				$("#codeChk").click(function(){
+            					$.ajax({
+            						url:"codeCheck.do",
+            						type:"post",
+            						data:{code:$("#fillCode").val()},
+            						success:function(result){
+            							console.log(result);
+            							if(result != ""){
+            								console.log("맞아요")
+            							}else{
+            								console.log("아니요")
+            							}
+            							
+            						},error:function(){
+            							console.log("이메일코드체크에러")
+            						}
+            						
+            					})
+            				})
+            				
+            				
+            			},error:function(){
+            				console.log("이메일코드에러")
+            			}
+            			
+            		})
+                })
+            
+            	//주소 api
+           	function sAddr(){
+           	 new daum.Postcode({
+         		  oncomplete: function(data) {
+         			  console.log(data)
+              		$("#add1").val(data.zonecode);
+         			$("#add2").val(data.address);
+          			 } 
+      			 }).open();
+            	}
+       		
+            	
             </script>
+            
+            
+
 </body>
 </html>

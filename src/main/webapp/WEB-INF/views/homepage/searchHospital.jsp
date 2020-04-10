@@ -30,6 +30,7 @@
 		<div class="row">
 
 			<div class="col-lg-4 col-md-4" style="margin-bottom: 10px;">
+				<a>
 				<div class="card" style="width:400px">
 					<img class="card-img-top" src="https://imagescdn.gettyimagesbank.com/500/14/141/351/0/510351863.jpg" alt="Card image" style="width:100%">
 					<div class="card-body">
@@ -37,6 +38,7 @@
 					  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
 					</div>
 				  </div>
+				  </a>
 			</div>
 
 			<div class="col-lg-4 col-md-4">

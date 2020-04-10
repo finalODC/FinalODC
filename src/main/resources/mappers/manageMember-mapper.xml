@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="manageMember">
+	<resultMap type="Member" id="manageMemberResultSet">
+	<id property="mId" column="MID"/>
+	<result property="userId" column="USERID"/>
+	<result property="userPwd" column="USERPWD"/>
+	<result property="userName" column="USERNAME"/>
+	<result property="email" column="EMAIL"/>
+	<result property="phone" column="PHONE"/>
+	<result property="mCreateDate" column="M_CREATE_DATE"/>
+	<result property="mModifyDate" column="M_MODIFY_DATE"/>
+	<result property="mStatus" column="M_STATUS"/>
+	</resultMap>
+	
+	<select id="manageMemberList" parameterType="Member" resultMap="manageMemberResultSet">
+	SELECT *
+	FROM MEMBER
+	</select>
+	
+	<select id="MemberListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM MEMBER
+	</select>
+
+</mapper>
