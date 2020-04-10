@@ -14,7 +14,10 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 	<!-- JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -254,25 +257,28 @@ vertical-align: middle;}
 		<div class="card" style="width: 600px;">
 			<div class="card-body">
 				<div class="tabbtn">
-					<a href="#" class="on">아이디찾기</a>
-					<a href="#">비밀번호찾기</a>
+					<a href="idsearch.do" class="on">아이디찾기</a>
+					<a href="pwdsearch.do">비밀번호찾기</a>
 				</div>
 				<div class="tabParent">
 					<div class="tabCon on">
 						<div class="iconArea">
+							<input type="email" class="input_area" id="userId" name="userId" style="width:100%;" placeholder="이메일 주소 입력">
+							<input type="text" class="input_area" id="inputCode" name="inputCode" style="width:100%; display:none;" placeholder="인증 코드 입력" >
+							<br><br>
 							<p class="txt"><Strong class="black">
-								본인 명의의 휴대폰을 통해 본인인증 후 아이디를 찾으실 수 있습니다.</Strong></p>
+								회원 가입 시 등록했던 이메일 주소를 입력해 주세요.</Strong></p>
 							<p class="txtmt">본인인증 시 제공되는 정보는 해당 인증기관에서 직접 수집하므로<br>
 								인증 이외의 용도 또는 저장되지 않습니다.</p>
 						</div>
 						<div class="btnWrap">
-							<input type="submit" value="인증하기" class="btn login_btn">
+							<input type="button" id="findId" value="인증하기" class="btn login_btn">
 						</div>
 					</div>
 				</div>
 			<div class="btna">
-				<a href="">로그인</a>
-				<a href="">회원가입</a>
+				<a href="mloginp.do">로그인</a>
+				<a href="msignin.do">회원가입</a>
 
 			</div>
 			<div id="footer">
@@ -297,5 +303,80 @@ vertical-align: middle;}
 	</div>	
 		
 </div>
+
+
+
+
+	<script>
+		
+		  $('#findId').click(function(){
+			  	var id = $("#userId").val();
+			  	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			  	if(!regExp.test(id)){
+			  		alert('메일형식을 확인해주세요');
+			  		return false;
+			  		
+			  	}
+			 
+			  	$.ajax({
+			  		url:"checkemail.do",
+			  		type:"post",
+			  		data:{email:$("#userId").val()},
+			  		success:function(result){
+			  			if(result == "ok"){
+			  			   $('#inputCode').css('display','');
+		                    var email=$("#userId").val();
+		                    $.ajax({
+		            			url:"sendCode.do",
+		            			type:"post",
+		            			data:{email:email},
+		            			success:function(){
+		            				alert("인증메일을 발송하였습니다.")
+		            				$("#findId").click(function(){
+		            					$.ajax({
+		            						url:"codeCheck.do",
+		            						type:"post",
+		            						data:{code:$("#inputCode").val()},
+		            						success:function(result){
+		            							console.log(result);
+		            							if(result != ""){
+		            								console.log("맞아요")
+		            							}else{
+		            								console.log("아니요")
+		            							}
+		            							
+		            						},error:function(){
+		            							console.log("이메일코드체크에러")
+		            						}
+		            						
+		            					})
+		            				})
+		            				
+		            				
+		            			},error:function(){
+		            				console.log("이메일코드에러")
+		            			}
+		            			
+		            		})
+			  			}else{
+			  				alert('사이트에 등록하지 않은 이메일입니다.');
+			  			}
+			  		}
+			  		
+			  		
+			  	})
+                 
+                })
+	
+	</script>
+
+
+
+
+
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardMapper"> <!-- 사용할 맵퍼의 이름을 정해주고 이걸로 불러온다 -->
+
+<!-- ResultMap -->
+
+<resultMap type="FreeBoard" id="BoardResultSet">
+	<id property="fbId" column="FBID"/>
+	<result property="fbTitle" column="F_BTITLE"/>
+	<result property="fbWriter;" column="F_BWRITER"/>
+	<result property="fbContent;" column="F_BCONTENT"/>
+	<result property="fbCount;" column="F_BCOUNT"/>
+	<result property="fbCreatedate;" column="FB_CREATE_DATE"/>
+	<result property="fbModifydate;" column="FB_MODIFY_DATE"/>
+	<result property="fbType;" column="FB_TYPE"/>
+	<result property="fbStatus;" column="FB_STATUS"/>
+	<result property="Category;" column="CATEGORY"/>
+	<result property="Complain;" column="COMPLAIN"/>
+</resultMap>
+
+
+
+
+
+
+
+<!-- sqlSession -->
+
+<select id="FreeListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM F_BOARD
+	WHERE FB_STATUS='Y'
+</select>
+
+<select id="selectFreeList" resultMap="BoardResultSet">
+	SELECT *
+	FROM F_BOARD
+	WHERE FB_STATUS='Y'
+	ORDER BY FBID DESC
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
