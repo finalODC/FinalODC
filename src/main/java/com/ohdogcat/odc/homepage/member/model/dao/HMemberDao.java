@@ -12,7 +12,7 @@ public class HMemberDao {
 
 	public int hIdCheck(String userId) {
 		
-		return sqlSession.selectOne("hmemberMapper,idCount",userId);
+		return sqlSession.selectOne("hmemberMapper.idCount",userId);
 	}
 
 }

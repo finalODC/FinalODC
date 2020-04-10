@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -20,17 +19,16 @@
 
 
 <!-- Stylesheets -->
- <c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
-	<link rel="stylesheet" href="${path }/resources/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="${path }/resources/css/font-awesome.min.css" />
-	<link rel="stylesheet"
-		href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-		crossorigin="anonymous">
-	<link rel="stylesheet" href="${path }/resources/css/slicknav.min.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/slicknav.min.css" />
 
 <!-- Main Stylesheets -->
-	<link rel="stylesheet" href="${path }/resources/css/style.css" />
+<link rel="stylesheet" href="css/style.css" />
 
 <style>
 #aaa {
@@ -59,9 +57,9 @@
 						</ul></li>
 					<li><a href="#">마이페이지</a>
 						<ul class="sub-menu">
-							<li><a href="myPagePerson.jsp">정보수정</a></li>
-							<li><a href="myPagePet.jsp">반려동물 관리</a></li>
-							<li><a href="myPageQNA.jsp">문희하기</a></li>
+							<li><a href="about-us.html">정보수정</a></li>
+							<li><a href="myPet.html">반려동물 관리</a></li>
+							<li><a href="qna.html">문희하기</a></li>
 						</ul></li>
 					<!-- <li><a href="#"></a>
 			  <ul class="sub-menu">
@@ -95,9 +93,9 @@
 								<tr style="text-align: center;">
 									<td width="140px"><span class="btn btn-outline-info">개인정보
 											변경&nbsp;</span></td>
-									<td width="140px"><a href="myPagePet.jsp"
+									<td width="140px"><a href="myPet.html"
 										class="btn btn-outline-primary">&nbsp;반려동물 정보&nbsp;</a></td>
-									<td width="140px"><a href="myPageQNA.jsp"
+									<td width="140px"><a href="qna.html"
 										class="btn btn-outline-primary">&nbsp;문희하러가기&nbsp;</a></td>
 								</tr>
 							</table>

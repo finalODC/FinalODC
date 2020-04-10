@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<button id="visual-btn" onclick="location.href='info.ho';">병원</button>
+
 	<jsp:forward page="/WEB-INF/views/homepage/myPageQNA.jsp"/>
 </body>
 </html>
