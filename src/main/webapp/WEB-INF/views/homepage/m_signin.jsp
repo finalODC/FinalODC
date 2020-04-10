@@ -246,7 +246,7 @@ hr{margin-top:0; margin-bottom:0;}
 		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 1300px; ">
 			<div class="card" style="width: 600px; margin: 50px;">
 			<div class="card-body" align="center">
-				<form action="minsert.do" method="post">
+				<form action="minsert.do" method="post" onsubmit="return validate();">
                     <h5>아이디</h5>
 					<div class="inputgroup">
 						<input name="userId" id="userId" type="text" class="input_area" placeholder="아이디를 입력해주세요.">
@@ -271,7 +271,7 @@ hr{margin-top:0; margin-bottom:0;}
                     </div>
                     <h5>이름</h5>
                     <div class="inputgroup">
-						<input name="userName" type="text" class="input_area" placeholder="이름을 입력해주세요">
+						<input id="name" name="userName" type="text" class="input_area" placeholder="이름을 입력해주세요">
                     </div>
                     <h5>이메일</h5>
                     <div class="inputgroup">
@@ -286,6 +286,7 @@ hr{margin-top:0; margin-bottom:0;}
 						<input type="submit" value="회원가입" class="btn login_btn">						
                     </div>
                     <input type="hidden" value="0" id="pwdCheck">
+                    <input type="hidden" value="0" id="idCheck">
                     
                 </form>
 			</div>
@@ -321,6 +322,8 @@ hr{margin-top:0; margin-bottom:0;}
   			<script src="${path }/resources/js/main.js"></script>
             
             <script>
+            
+            /* 아이디 중복체크  */
             	$('#idcheck').click(function(){
             		
              		$.ajax({
@@ -330,6 +333,7 @@ hr{margin-top:0; margin-bottom:0;}
             			success:function(data){
             				if(data == "ok"){
             					alert("사용 가능한 아이디 입니다!");
+            					$('#idCheck').val(1);
             				}else{
             					alert("다른 아이디를 입력해 주세요!");
             				}
@@ -339,8 +343,12 @@ hr{margin-top:0; margin-bottom:0;}
             			}
             		}); 
 
+
+            		
             	});
             	
+            	/* 비밀번호 같은지 확인 */
+            
             	$(function(){
             		$('#pwd1').on("keyup",function(){
             			var pwd1 = $('#pwd1').val();
@@ -350,21 +358,20 @@ hr{margin-top:0; margin-bottom:0;}
             				$('.short').show();
             				$('.error').hide();
             				$('.ok').hide();
+            				$('#pwdCheck').val(0);
             			}else{
             				$('.short').hide();
                 			if(pwd1==pwd2){
                 				$('.error').hide();
                 				$('.ok').show();
+                				$('#pwdCheck').val(1);
                 			}else{
                 				$('.error').show();
                 				$('.ok').hide();
+                				$('#pwdCheck').val(0);
                 			}
             			}
-            			
-    
             		});
-            		
-            		
             		$('#pwd2').on("keyup",function(){
             			var pwd1 = $('#pwd1').val();
             			var pwd2 = $('#pwd2').val();
@@ -373,19 +380,62 @@ hr{margin-top:0; margin-bottom:0;}
             				$('.short').show();
             				$('.error').hide();
             				$('.ok').hide();
+            				$('#pwdCheck').val(0);
             			}else{
                 			if(pwd1==pwd2){
                 				$('.error').hide();
                 				$('.ok').show();
+                				$('#pwdCheck').val(1);
                 			}else{
                 				$('.short').hide();
                 				$('.error').show();
                 				$('.ok').hide();
+                				$('#pwdCheck').val(0);
                 			}
             			}
             			
             		});
+            		
+            		
+            		$('#userId').on("keyup",function(){
+            			$('#idCheck').val(0);
+            		})
             	});
+            	
+            	
+            	function validate() {
+            		
+            		var userId = document.getElementById('userId');
+
+		            
+		            if(!chk(/^[a-z\d]{3,}$/, userId, "아이디는 영문 소문자만 입력해주세요, 3글자 이상 입력하세요!")){
+		                return false;
+		            }
+		            
+		            
+		            if($('#idCheck').val()==0){
+		            	alert('아이디 중복을 확인해 주세요!')
+		            	$('#userId').select();
+		            	return false;
+		            }
+		            
+		            if($('#pwdCheck').val()==0){
+		            	alert('비밀번호가 일치하지 않습니다!')
+		            	$('#pwd2').select();
+		            	return false;
+		            }
+					
+				}
+            	
+            	
+                function chk(regExp, element, msg){
+                    if(!regExp.test(element.value)){
+                        alert(msg);
+                        element.select();
+                        return false;
+                    }
+                    return true;
+                }
             
             </script>
 </body>
