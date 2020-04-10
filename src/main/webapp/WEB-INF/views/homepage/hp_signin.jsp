@@ -246,7 +246,7 @@ hr{margin-top:0; margin-bottom:0;}
 		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 1500px; ">
 			<div class="card" style="width: 600px; margin: 50px;">
 			<div class="card-body" align="center">
-				<form action="" method="post">
+				<form action="hInsert.do" method="post">
 				     <h5>병원명</h5>
 					<div class="inputgroup">
 						<input type="text" id="hName" name ="hName" class="input_area" placeholder="병원이름을 입력해주세요.">
@@ -271,15 +271,15 @@ hr{margin-top:0; margin-bottom:0;}
                     
                       <h5>이메일</h5>
                     <div class="inputgroup">
-                        <input type="text" class="input_area" placeholder="이메일을 입력해주세요">
+                        <input type="text" class="input_area" placeholder="이메일을 입력해주세요" id="hmail">
                                     
                     </div>
-                    <input id="email" type="button" value="이메일확인" class="btn check_btn">  
+                    <input id="email" type="button" value="이메일확인" class="btn check_btn"> 
                     <div id="emailcheck" class="row" style="display: none;">
                         <div class="inputgroup" style="width: 69%; margin-right: 2%;">
-                            <input type="text" class="input_area" placeholder="">
+                            <input type="text" id="fillCode"class="input_area" placeholder="">
                         </div>
-                        <input type="button" value="번호확인" class="btn check_btn" style="width: 29%; margin-top: 10px;">
+                        <input type="button" value="번호확인" class="btn check_btn" style="width: 29%; margin-top: 10px;" id="codeChk">
                     </div>
 										
                     <h5>전화번호</h5>
@@ -302,7 +302,7 @@ hr{margin-top:0; margin-bottom:0;}
                     </div>
 
                     <div class="button-area d-flex justify-content-center ">
-						<input type="submit" value="회원가입" class="btn login_btn">						
+						<input type="submit" value="회원가입" class="btn login_btn" id="QWER">						
                     </div>
                 </form>
 			</div>
@@ -372,8 +372,45 @@ hr{margin-top:0; margin-bottom:0;}
             	 	}
 
                });
-            	
-            	
+            //이메일 인증
+            
+                $('#email').click(function(){
+                    $('#emailcheck').css('display','');
+                    var email=$("#hmail").val();
+                    $.ajax({
+            			url:"sendCode.do",
+            			type:"post",
+            			data:{email:email},
+            			success:function(){
+            				$("#codeChk").click(function(){
+            					$.ajax({
+            						url:"codeCheck.do",
+            						type:"post",
+            						data:{code:$("#fillCode").val()},
+            						success:function(result){
+            							console.log(result);
+            							if(result != ""){
+            								console.log("맞아요")
+            							}else{
+            								console.log("아니요")
+            							}
+            							
+            						},error:function(){
+            							console.log("이메일코드체크에러")
+            						}
+            						
+            					})
+            				})
+            				
+            				
+            			},error:function(){
+            				console.log("이메일코드에러")
+            			}
+            			
+            		})
+                })
+            
+            
             	//주소 api
            	function sAddr(){
            	 new daum.Postcode({
