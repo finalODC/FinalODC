@@ -246,14 +246,14 @@ hr{margin-top:0; margin-bottom:0;}
 		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 1500px; ">
 			<div class="card" style="width: 600px; margin: 50px;">
 			<div class="card-body" align="center">
-				<form action="hInsert.do" method="post">
+				<form action="hInsert.do" method="post" onsubmit="return check();">
 				     <h5>병원명</h5>
 					<div class="inputgroup">
 						<input type="text" id="hName" name ="hName" class="input_area" placeholder="병원이름을 입력해주세요.">
                     </div>
                     <h5>사업자번호</h5>
 					<div class="inputgroup">
-						<input type="text" id="hCode" name="hCode" name="class="input_area" placeholder="사업자번호 앞6자리를 입력해주세요.">
+						<input type="text" id="hCode" name="hCode" class="input_area" placeholder="사업자번호를 입력해주세요.">
                     </div>
                     <span><input type="button" value="사업자번호 확인" class="btn check_btn" id="checkbusiness"></span>
                     <h5>아이디</h5>
@@ -348,21 +348,24 @@ hr{margin-top:0; margin-bottom:0;}
             	})
                $("#userId").on("propertychange change keyup paste input",function(){
             	   var id= $(this).val();
-            	    var regid  =/^[a-zA-Z0-9]$/;
-            	 	if(id.length <=5){
-            	 		console.log("아이디는 6글자 이상");
-            	 	}else if(!regid.test(id)){
+            	    var regid  =/^[a-zA-Z0-9]+$/;
+            	 	if(id.length >5){
+	
+            	 	 if(!regid.test(id)){
+
             	 		console.log("영숫자")
             	 	}else{
             	 		$.ajax({
             	 			url:"hIdCheck.do",
             	 			type:"get",
             	 			data:{userId:id},
-            	 			sucesses:function(result){
-            	 				if(parseInt(result) >0){
+            	 			success:function(result){
+            	 				console.log(result);
+            	 				if(result >0){
             	 					console.log("중복된 아이디가 있습니다.")
             	 				}else{
             	 					console.log("회원가입 가능")
+            	 					//아이디 가능 체크
             	 				}
             	 			},
             	 			error:function(){
@@ -370,45 +373,67 @@ hr{margin-top:0; margin-bottom:0;}
             	 			}
             	 		});
             	 	}
-
+            	 	}
                });
             //이메일 인증
             
                 $('#email').click(function(){
-                    $('#emailcheck').css('display','');
-                    var email=$("#hmail").val();
-                    $.ajax({
-            			url:"sendCode.do",
-            			type:"post",
-            			data:{email:email},
-            			success:function(){
-            				$("#codeChk").click(function(){
-            					$.ajax({
-            						url:"codeCheck.do",
-            						type:"post",
-            						data:{code:$("#fillCode").val()},
-            						success:function(result){
-            							console.log(result);
-            							if(result != ""){
-            								console.log("맞아요")
-            							}else{
-            								console.log("아니요")
-            							}
-            							
-            						},error:function(){
-            							console.log("이메일코드체크에러")
-            						}
-            						
-            					})
-            				})
-            				
-            				
-            			},error:function(){
-            				console.log("이메일코드에러")
-            			}
-            			
-            		})
-                })
+                	//이메일 확인
+                	 var email=$("#hmail").val();
+                	$.ajax({
+                		url:"checkHemail.do",
+                		
+                		type:"get",
+                		data:{email:email},
+                		success:function(data){
+                			if(data==0){
+                				 $('#emailcheck').css('display','');
+                                 
+                                 $.ajax({
+                         			url:"sendCode.do",
+                         			type:"post",
+                         			data:{email:email},
+                         			success:function(){
+                         				$("#codeChk").click(function(){
+                         					$.ajax({
+                         						url:"codeCheck.do",
+                         						type:"post",
+                         						data:{code:$("#fillCode").val()},
+                         						success:function(result){
+                         							console.log(result);
+                         							if(result != ""){
+                         								console.log("맞아요")
+                         							}else{
+                         								console.log("아니요")
+                         							}
+                         							
+                         						},error:function(){
+                         							console.log("이메일코드체크에러")
+                         						}
+                         						
+                         					})
+                         				})
+                         				
+                         				
+                         			},error:function(){
+                         				console.log("이메일코드에러")
+                         			}
+                         			
+                         		})
+                				
+                			}else{
+                				alert("이메일이 존재합니다.")
+                			}
+                			
+                		},
+                		error:function(){
+                			console.log("이메일 체크 오류")
+                		}
+                		
+                	});
+             
+                   
+                });
             
             	//주소 api
            	function sAddr(){
@@ -421,6 +446,33 @@ hr{margin-top:0; margin-bottom:0;}
       			 }).open();
             	}
        		
+            function check(){
+            	//특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
+            	var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+
+            	if(!regex.test($("#pwd").val())){
+            		alert("비밀 번호 형식이 다릅니다.")
+            		$("pwd").focus();
+            		return false;
+            	}
+            	
+            	if($("#pwd").val() !=$("#pwd2").val()){
+            		alert("비밀번호가 다릅니다.")
+            		$("pwd").focus();
+            		return false;
+            	}
+            	if(1!= 1){
+            		//아이디 중복 체크 확인
+            		return false;
+            	}
+            	
+            	if(2!=2){
+            		//이메일 코드확인
+            		return false;
+            	}
+            	//상호명 + 주소 체크 확인
+            	return true;
+            }
             	
             </script>
             

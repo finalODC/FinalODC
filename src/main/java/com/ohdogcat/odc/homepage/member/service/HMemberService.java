@@ -8,4 +8,6 @@ public interface HMemberService {
 
 	int hInsert(HMember m);
 
+	int checkHEmail(String email);
+
 }

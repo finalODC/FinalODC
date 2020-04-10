@@ -17,12 +17,22 @@ public class HMemberServiceImpl implements HMemberService {
 		
 		return hmDao.hIdCheck(userId);
 	}
+	
+	
 
 	@Override
 	public int hInsert(HMember m) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return hmDao.hInsert(m);
 	}
+	
+	@Override
+	public int checkHEmail(String email) {
+		
+		return hmDao.checkHEmail(email);
+	}
+
+
 
 	
 }

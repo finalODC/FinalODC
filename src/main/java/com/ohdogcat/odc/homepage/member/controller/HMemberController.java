@@ -55,7 +55,7 @@ public class HMemberController {
 	public String hIdCheck(String userId) {
 		
 		int result = hmService.hIdCheck(userId);
-		
+		System.out.println(result);
 		return Integer.valueOf(result).toString();
 		
 	}
@@ -131,12 +131,19 @@ public class HMemberController {
 			m.sethAddress(add1 + add2 + add3);
 		}
 		
-		System.out.println(m);
+		//System.out.println(m);
 
-//		int result = hmService.hInsert(m);
+		int result = hmService.hInsert(m);
 //		System.out.println(result);
 		
 		
+	}
+	@ResponseBody
+	@RequestMapping("checkHemail.do")
+	public String checkHEmail(String email) {
+		int result = hmService.checkHEmail(email);
+		
+		return Integer.valueOf(result).toString(); 
 	}
 	
 	@ResponseBody

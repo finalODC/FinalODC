@@ -24,6 +24,20 @@
  	WHERE USERID = #{userId}
  </select>
  
+ <select id="emailcheck" resultType="int">
+ 	SELECT COUNT(*) FROM HOSPITAL
+ 	WHERE H_EMAIL = #{email}
+ 
+ </select>
+ 
+ 
+ 
+ <insert id="insertHmember" parameterType="HMember">
+  insert into hospital values
+(SEQ_HID.NEXTVAL,#{userId},#{userPwd},#{hCode},#{hName},
+#{hAddress},#{hPhone},#{hEmail},'','',SYSDATE,SYSDATE,default)
+ </insert>
+ 
  
  
  </mapper>
