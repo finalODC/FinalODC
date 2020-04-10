@@ -162,7 +162,7 @@
 						<br>
 						<a href="ohdogcat_CatBoardPage.html">
 							<h5>
-								<i class="fas fa-cat">&nbsp;</i>고양이 게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-bell"></i>
+								<i class="fas fa-cat">&nbsp;</i>고양이 게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-bell"></i>
 							</h5>
 						</a>
 						<br>
