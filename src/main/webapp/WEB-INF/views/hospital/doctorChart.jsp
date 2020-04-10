@@ -69,6 +69,10 @@
           <i class="fa fa-calendar-alt fa-2x"></i>
           <span>내 병원 관리</span></a>
       </li>
+      
+      <li class="nav-item"><a class="nav-link"
+				href="hosP.ho"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">

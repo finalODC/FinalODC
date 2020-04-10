@@ -22,6 +22,19 @@
 		INSERT INTO MEMBER
 		VALUES(SEQ_MID.NEXTVAL,#{userId},#{userPwd},#{userName},#{email},#{phone},SYSDATE,SYSDATE,'Y')
 	</insert>
+	
+	<select id="loginMember" parameterType="Member" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE USERID=#{userId}
+		AND M_STATUS='Y'
+	</select>
+	
+	<select id="idCheck" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USERID=#{id}
+	</select>
 
 
 </mapper>
