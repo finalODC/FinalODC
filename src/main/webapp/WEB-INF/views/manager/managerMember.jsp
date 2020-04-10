@@ -51,7 +51,7 @@
                     <button class="btn btn-success" type="submit">Go</button>  
                    </div>
                 </div>
-                <table class="table table-bordered table-hover" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
+                <table id="membetTable" class="table table-bordered table-hover" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
         
                   <thead>
                     <tr>
@@ -69,7 +69,7 @@
                   </thead>
                  
                   <tbody>
-                    <tr>
+<!--                <tr>
                       <td>233</td>
                       <td>rlacl123</td>
                       <td>장나물</td>
@@ -79,57 +79,7 @@
                       <td></td>
                       <td><button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">정지</button> &nbsp;
                         <button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                      
-                    </tr>
-                    <tr>
-                      <td>233</td>
-                      <td>ehdclal11</td>
-                      <td>동백꽃</td>
-                      <td>ehdclal@naver.com</td>
-                      <td>20/03/25</td>
-                      <td></td>
-                      <td></td>
-                      <td><button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">정지</button> &nbsp;
-                        <button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <td>233</td>
-                      <td>vkrlacl</td>
-                      <td>파란이</td>
-                      <td>vkrlacl@naver.com</td>
-                      <td>20/03/25</td>
-                      <td></td>
-                      <td></td>
-                      <td><button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">정지</button> &nbsp;
-                        <button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <td>233</td>
-                      <td>Rkrenrl41</td>
-                      <td>신까치</td>
-                      <td>Rkrenrl@naver.com</td>
-                      <td>20/03/25</td>
-                      <td></td>
-                      <td></td>
-                      <td><button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">정지</button> &nbsp;
-                        <button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <td>233</td>
-                      <td>anfdut52</td>
-                      <td>신나래</td>
-                      <td>anffut@naver.com</td>
-                      <td>20/03/25</td>
-                      <td></td>
-                      <td></td>
-                      <td><button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">정지</button> &nbsp;
-                        <button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
+                    </tr> -->
                    
                     
 
@@ -216,7 +166,70 @@
                 location.href=""+mid;
               }
             })
+            
+            
+  /*           $.ajax({
+            	url:"mMember.do",
+            	type:"post",
+            	success:function(data){
+            		$tableBody = $('#membetTable tbody');
+            		$tableBody.html("");
+            		
+            		$.each(data,function(index,value){
+            			
+            			$tr=$('<tr>');
+            			$mId=$('<td>').text(value.mId);
+            			$userId=$('<td>').text(value.userId);
+            			$userName=$('<td>').text(value.userName);
+            			$email=$('<td>').text(value.email);
+            			$mcreateDate=$('<td>').text(value.mCreateDate);
+            			$a1=$('<td>');
+            			$a2=$('<td>');
+            			$buttontd=$('<td>');
+            			$button1=$('<button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">').html("정지");
+            			$button2=$('<button class="btn btn-danger del"  style="width: 80px;">').html("삭제");
+            			
+            			
+            			$tr.append($mId);
+            			$tr.append($userId);
+            			$tr.append($userName);
+            			$tr.append($email);
+            			$tr.append($mcreateDate);
+            			$tr.append($a1);
+            			$tr.append($a2);
+            			
+            			$buttontd.append($button1);
+            			$buttontd.append($button2);
+            			
+            			$tr.append($buttontd);
+            			
+            			$tableBody.append($tr);
+            			
+            		});
+            		
+            	},error:function(data){
+            		alert("ajax 구동 실패!")
+            	}
+            	
+            }); */
+            
+           
           });
+          
+          
+/*           <tr>
+          <td>233</td>
+          <td>rlacl123</td>
+          <td>장나물</td>
+          <td>rlacl123@naver.com</td>
+          <td>20/03/25</td>
+          <td></td>
+          <td></td>
+          <td><button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">정지</button> &nbsp;
+            <button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+        </tr> */
+          
+          
       </script>
 
       <!-- Bootstrap core JavaScript-->
