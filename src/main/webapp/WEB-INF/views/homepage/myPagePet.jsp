@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -9,45 +10,57 @@
 <meta name="keywords" content="real estate, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
-<link href="img/favicon.ico" rel="shortcut icon" />
 
 <!-- Google font -->
-<link
-	href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900%7cRoboto:400,400i,500,500i,700,700i&display=swap"
-	rel="stylesheet">
-
-
-<!-- Stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" />
+<c:set var="path" value="${pageContext.servletContext.contextPath }"
+	scope="application" />
+<!-- <link rel="stylesheet" href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css"> -->
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400'
+	rel='stylesheet' type='text/css'>
+<link href="${path }/resources/css/stylne.css" rel='stylesheet'
+	type='text/css'>
+<link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet'
+	type='text/css'>
+<link href="${path }/resources/css/font-awesome.min.css"
+	rel='stylesheet' type='text/css'>
+<link href="${path }/resources/css/slicknav.min.css" rel='stylesheet'
+	type='text/css'>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/slicknav.min.css" />
+<link href="${path }/resources/css/style.css" rel='stylesheet'
+	type='text/css'>
 
-<!-- Main Stylesheets -->
-<link rel="stylesheet" href="css/style.css" />
 
 <style>
 #aaa {
 	margin-left: 10%;
 }
+
+#choiceDog {
+	background-image:
+		url(https://post-phinf.pstatic.net/MjAxNzA5MjBfMjI1/MDAxNTA1ODg0NjMyNDgw.9GzMHmgvTppZHJAb2BOq1pdQJQqX79NTv003csX-Q6cg.k88VnGh5SQbQiZkDllPRYrmX0kWu1kd0u3CsqWPkfRsg.PNG/20170920_134618.png?type=w1200);
+}
+
+#choiceCat {
+	background-image:
+		url("http://cdn.ppomppu.co.kr/zboard/data3/2019/0910/m_20190910001740_upyzieih.jpeg");
+}
 </style>
 </head>
 <body>
 
-	<jsp:include page="common/menubar.jsp"/>
+
+	<jsp:include page="common/menubar.jsp" />
+
 
 	<div class="container" style="padding-top: 150px;">
 		<div class="row">
 			<div class="col-lg-12 col-md-12">
 				<section class="page-section portfolio">
-
-
-
-
 					<div id="right1" class=" col-md-8 order-md-1 container">
 						<div>
 							<table align="center" width="420px">
@@ -73,9 +86,7 @@
 								style="width: 100%;">
 								<thead>
 									<tr>
-										<th>
-											<h5>사진</h5>
-										</th>
+										<th>사진</th>
 										<th>등록번호</th>
 										<th>분류</th>
 										<th>이름</th>
@@ -85,24 +96,14 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>
-											<div style="width: 150px; height: 100px; background: red">사진이
-												들어감</div>
-										</td>
-
+										<td>뭐가들어갈까룽</td>
 										<td>B165486135424</td>
 										<td>웰시코기</td>
 										<td>상두</td>
 										<td>2016-08</td>
-
-
 									</tr>
 									<tr>
-										<td>
-											<div style="width: 150px; height: 100px; background: red">사진이
-												들어감</div>
-										</td>
-
+										<td>뭐가들어갈까룽</td>
 										<td>B165486135424</td>
 										<td>웰시코기</td>
 										<td>상두</td>
@@ -121,10 +122,13 @@
 
 							</table>
 							<hr>
-
-
-
-
+							<div id="choiceDog"
+								style="width: 600px; height: 300px; margin-top: 30px; margin-left: 50px; margin-right: 30px;">
+								</div><h2 align="center">반려견 등록하시개</h2>
+							<div id="choiceCat"
+								style="width: 600px; height: 300px; margin-top: 30px; margin-left: 50px; margin-right: 30px;">
+								</div><h2 align="center">반려묘 등록하자냥</h2>
+							<hr>
 						</div>
 					</div>
 				</section>
@@ -142,7 +146,9 @@
 		<div class="container">
 			<div class="copyright">
 				Copyright &copy;
-				<script>document.write(new Date().getFullYear());</script>
+				<script>
+					document.write(new Date().getFullYear());
+				</script>
 				권한은 전적으로 나한테 있습니다.
 
 			</div>
@@ -150,11 +156,99 @@
 	<!-- Footer Section end -->
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.slicknav.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/main.js"></script>
+
+	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+
+	<script src="${path }/resources/js/bootstrap.min.js"></script>
+
+	<script src="${path }/resources/js/jquery.slicknav.min.js"></script>
+
+	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
+
+	<script src="${path }/resources/js/main.js"></script>
+	
+	<script>
+		$(function(){
+			alert("Hi");
+			myPetList();
+		});
+		
+		function myPetList(){
+			$.ajax({
+				url:"myPetList.pe",
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+				},error:function(){
+					alert("실패");
+				}
+			});
+		}
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </body>

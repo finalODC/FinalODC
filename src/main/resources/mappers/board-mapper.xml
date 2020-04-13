@@ -5,7 +5,7 @@
 
 <!-- ResultMap -->
 
-<resultMap type="FreeBoard" id="BoardResultSet">
+<resultMap id="FreeBoardResultSet" type="FBoard">
 	<id property="fbId" column="FBID"/>
 	<result property="fbTitle" column="F_BTITLE"/>
 	<result property="fbWriter;" column="F_BWRITER"/>
@@ -21,10 +21,6 @@
 
 
 
-
-
-
-
 <!-- sqlSession -->
 
 <select id="FreeListCount" resultType="_int">
@@ -33,7 +29,7 @@
 	WHERE FB_STATUS='Y'
 </select>
 
-<select id="selectFreeList" resultMap="BoardResultSet">
+<select id="selectFreeList" resultMap="FreeBoardResultSet">
 	SELECT *
 	FROM F_BOARD
 	WHERE FB_STATUS='Y'

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 
-@Repository
+@Repository("bDao")
 public class BoardDao {
 	
 	@Autowired
@@ -21,7 +21,7 @@ public class BoardDao {
 
 	public int FreeListCount() {
 		
-		return sqlSession.selectOne("boardMapper.getFreeListCount");
+		return sqlSession.selectOne("boardMapper.FreeListCount");
 	}
 	
 	
@@ -29,9 +29,9 @@ public class BoardDao {
 	public ArrayList<FreeBoard> selectFreeList(PageInfo pi) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		RowBounds rowBounds =new RowBounds(offset,pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("boardMapper.selectList",null,rowBounds);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeList",null,rowBounds);
 	}
 	
 	

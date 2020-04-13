@@ -86,12 +86,12 @@
                 <div class="col-md-8 order-md-1" id="aaa">
                     <h4 class="mb-3">개인정보 변경</h4>
                     <hr>
-                    <form class="hMember" action="" method="POST" onsubmit="return validate()">
+						<form action="hosupdate.ho" method="post" id="joinForm">
 
                         <div class="mb-3">
 
                             <label for="username">아이디</label> <input type="text" class="form-control"
-                                style="width: 30%;" id="hosName" placeholder="hosName" value="${ userId }" readonly>
+                                style="width: 30%;" id="hosName" placeholder="hosName" value="${ loginUser.userId }" readonly>
                         </div>
                         <br>
                         <div class="mb-3">
@@ -107,7 +107,7 @@
 
                         <div class="mb-3">
                             <label>가입일</label><br> <input type="date" class="form-control" style="width: 30%;"
-                                id="hireDate" value="${ hCreateDate }" disabled>
+                                id="hireDate" value="${ loginUser.hCreateDate }" disabled>
                         </div>
 
                         <div class="mb-3">

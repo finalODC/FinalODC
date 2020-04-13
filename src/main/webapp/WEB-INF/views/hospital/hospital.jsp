@@ -35,7 +35,8 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - 로고 -->
-			<a class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a
+				class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="../intranet/intranet_main.html">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-home"></i>
@@ -92,13 +93,13 @@
 									<div class="card-body text-center">
 
 										<img class="card-body text-center" name="hImage" id="preview"
-											style="width: 100%; height: 250px;"> 
-											<label class="btn btn-primary ">사진등록 
-												<input type="file"class="img-fluid" alt="" id="getfile" style="display: none;">
-											</label> 
-											<label class="btn btn-primary">사진변경 
-												<input type="file" class="img-fluid" style="display: none" id="changfile">
-											</label>
+											style="width: 100%; height: 250px;"> <label
+											class="btn btn-primary ">사진등록 <input type="file"
+											class="img-fluid" alt="" id="getfile" style="display: none;">
+										</label> <label class="btn btn-primary">사진변경 <input
+											type="file" class="img-fluid" style="display: none"
+											id="changfile">
+										</label>
 
 									</div>
 								</div>
@@ -107,7 +108,8 @@
 									<div class="card-body text-center">
 
 										<textarea
-											style="width: 90%; height: 200px; border: none; resize: none;" placeholder="병원소개"></textarea>
+											style="width: 90%; height: 200px; border: none; resize: none;"
+											placeholder="병원소개"></textarea>
 
 										<br> <br>
 
@@ -131,7 +133,7 @@
 					</div>
 
 					<div class="col-lg-11 mb-4">
-						<div class="card shadow mb-4" >
+						<div class="card shadow mb-4">
 							<div class="card-header py-3">
 								<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
 							</div>
@@ -141,18 +143,18 @@
 									style="width: 200px; height: auto; display: inline-block;"
 									id="copy">
 									<div class="card-body text-center">
-										<img class="card-body text-center docImage"  name="docImage" id="docImage"
-											style="width: 90%; height: 200px;">
-											<label class="btn btn-primary "> 사진등록 <input
-												type="file" class="img-fluid docGetfile" id="docGetfile" alt="" style="display: none;">
-											</label>
-										
-										<br> <br> <input type="text"
+										<img class="card-body text-center docImage" name="docImage"
+											id="docImage" style="width: 90%; height: 200px;"> <label
+											class="btn btn-primary "> 사진등록 <input type="file"
+											class="img-fluid docGetfile" id="docGetfile" alt=""
+											style="display: none;">
+										</label> <br> <br> <input type="text"
 											style="text-align: center; width: 100px; border: none;"
 											placeholder="의사이름">
 										<hr>
 										<textarea
-											style="width: 150px; height: 200px; border: none; resize: none;"placeholder="간단한 소개"></textarea>
+											style="width: 150px; height: 200px; border: none; resize: none;"
+											placeholder="간단한 소개"></textarea>
 									</div>
 								</div>
 							</div>
@@ -161,11 +163,10 @@
                         </div> -->
 							<div style="text-align: center;">
 								<input id="ss" type='button' class='btn btn-primary copy'
-									value='추가' style="width: 50px;">
-								<button type="button" class="btn btn-primary"
-									data-toggle="modal" data-target="#myModal">등록</button>
-								<input id="ss" type='button' class='btn btn-primary delete'
-									value='삭제' style="width: 50px;"> <br> <br>
+									value='추가' style="width: 50px;"> <input type="submit"
+									class="btn btn-primary" value="등록"> <input id="ss"
+									type='button' class='btn btn-primary delete' value='삭제'
+									style="width: 50px;"> <br> <br>
 							</div>
 
 						</div>
@@ -176,36 +177,19 @@
 							<div class="card-header py-3">
 								<h6 class="m-0 font-weight-bold text-primary">댓글</h6>
 							</div>
-							<div class="card-body">
+							
+							
+			
+							<table align="center" width="510" border="0" cellspacing="0" id="rtb">
+								<thead>
+									<tr>
+										<td colspan="3"><b id="hrCount"></b></td>
+									</tr>
+								</thead>
+								<tbody>
 
-								<div class="commentArea"
-									style="width: 100%; height: 100%; text-align: left;">
-
-									<div class="commentList">
-										<span>user1 : ooo맛있어요 </span> &nbsp;&nbsp; <span
-											class="report-comment" style="color: red;">삭제하기</span>
-									</div>
-									<div class="commentList">
-										<span>user2 : ooo는 별로 </span> &nbsp;&nbsp; <span
-											class="report-comment" style="color: red;">삭제하기</span>
-									</div>
-									<div class="commentList">
-										<span>user3 : ooo?? </span> &nbsp;&nbsp; <span
-											class="report-comment" style="color: red;">삭제하기</span>
-									</div>
-									<div class="commentList">
-										<span>user4 : ooo!!!!! </span> &nbsp;&nbsp; <span
-											class="report-comment" style="color: red;">삭제하기</span>
-									</div>
-									<br>
-
-
-									<!-- 일반사용자 전용  -->
-									<!-- <span>아이디 : </span> &nbsp; <input type="text" style="width: 70%;" placeholder="댓글을 입력해주세요"> &nbsp; <input type="button" value="등록"> -->
-
-								</div>
-
-							</div>
+								</tbody>
+							</table>
 
 
 						</div>
@@ -221,9 +205,6 @@
 	</div>
 
 	<script>
-		
-
-		
 		// 사진 등록
 		var file = document.querySelector('#getfile');
 
@@ -242,74 +223,135 @@
 
 			};
 		};
-		</script>
+	</script>
+
+	<script>
+	
+		// 댓글 관련 ajax
+	function getReplyList(){
+		var bId = ${ b.bId };
 		
-		<script>
+		$.ajax({
+			url:"hrList.ho",
+			data:{bId:bId},		// 첫번쨰 bId는 controller에 있는bId, 두번째 bId는 function에 선언된 변수 bId
+			dataType:"json",
+			success:function(data){
+				$tableBody = $("#rtb tbody");
+				$tableBody.html("");
+				
+				var $tr;
+				var $hrWriter;
+				var $hrContent;
+				var $hrCreateDate;
+				
+				$("#hrCount").text("댓글(" +  data.length + ")");
+				
+				if(data.length > 0){
+					for(var i in data){
+						$tr = $("<tr>");
+						$hrWriter = $("<td width='100'>").text(data[i].hrWriter);
+						$hrContent = $("<td>").text(data[i].hrContent);
+						$hrCreateDate = $("<td width='100'>").text(data[i].hrCreateDate);
+						
+						$tr.append($hrWriter);
+						$tr.append($hrContent);
+						$tr.append($hrCreateDate);
+						$tableBody.append($tr);
+					}
+				} else {
+					$tr = $("<tr>");
+					$hrContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
+					
+					$tr.append($hrContent);
+					$tableBody.append($tr);
+				}
+				
+			},error:function(){
+				console.log("전송 실패");
+			}
+		});
+	}
+	</script>
+
+
+	<script>
 		$(function() {
-			$('.copy').click(function() {
-				/* var a = $("#copy").clone(true) */
-				$div = "<div class='card-columns' id='cccbody' style='column-count: 1; display:inline-block'>"
-				+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-				+"<div class='card t1' style='width: 200px; height: auto; display: inline-block;'id='copy'>"
-				+"<div class='card-body text-center'>"
-				+"<img class='card-body text-center docImage' name='docImage' id='docImage' style='width: 90%; height: 200px;'>"						
-				+"<label class='btn btn-primary'>" 
-				+"사진등록"
-				+"<input type='file' class='img-fluid docGetfile'  alt='' style='display: none;'>"
-				+"</label>"
-				+"<br> <br>"
-				+"<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름'>"
-				+"<hr>"
-				+"<textarea	style='width: 150px; height: 200px; border: none; resize: none;' placeholder='간단한 소개'>"
-				+"</textarea>"
-				+"</div>"
-				+"</div>"
-				+"</div>"
-					$("#cccbody").append($div);
-			});
+			$('.copy')
+					.click(
+							function() {
+								/* var a = $("#copy").clone(true) */
+								$div = "<div class='card-columns' id='cccbody' style='column-count: 1; display:inline-block'>"
+										+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+										+ "<div class='card t1' style='width: 200px; height: auto; display: inline-block;'id='copy'>"
+										+ "<div class='card-body text-center'>"
+										+ "<img class='card-body text-center docImage' name='docImage' id='docImage' style='width: 90%; height: 200px;'>"
+										+ "<label class='btn btn-primary'>"
+										+ "사진등록"
+										+ "<input type='file' class='img-fluid docGetfile'  alt='' style='display: none;'>"
+										+ "</label>"
+										+ "<br> <br>"
+										+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름'>"
+										+ "<hr>"
+										+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' placeholder='간단한 소개'>"
+										+ "</textarea>"
+										+ "</div>"
+										+ "</div>"
+										+ "</div>"
+								$("#cccbody").append($div);
+							});
 
 			var checkTag = $('div#cccbody');
 			console.log(checkTag);
 
-			$('.delete').click(function() {
+			$('.delete')
+					.click(
+							function() {
 
-				if ($('.t1').length == 1) {
-					alert('삭제할수 없습니다.');
-				} else {
-					$("#copy").detach();
-				}
+								if ($('.t1').length == 1) {
+									alert('삭제할수 없습니다.');
+								} else {
+									$(".card-columns").eq(
+											$('.card-columns').length - 1)
+											.detach();
+								}
 
-			});
+							});
 		});
 		// 의료진 사진 등록
-		 $("#cccbody").mouseenter(function(){
-		 $(".docGetfile").click(function(){ 
-			 //var image = document.querySelector(".docGetfile")
-			 var image= $(this)[0];
-			 var image2 = $(this);
+		$("#cccbody").mouseenter(
+				function() {
+					$(".docGetfile").click(
+							function() {
+								//var image = document.querySelector(".docGetfile")
+								var image = $(this)[0];
+								var image2 = $(this);
 
-			image.onchange = function() {
+								image.onchange = function() {
 
-			
-			var fileList = image.files;
-	
-			var reader = new FileReader();
-			reader.readAsDataURL(fileList[0]);
-			
-			reader.onload = function() {
-				
-				/* document.querySelector('#docImage').src = reader.result; */
-				
-				/* document.querySelector('.docImage').src = reader.result; */
-				
-				var tempImage = new Image();
-				tempImage.src = reader.result;
-				
-				image2.parent().siblings(".docImage").prop("src",reader.result);
-			};
-		}; 
-		 });
-		});
+									var fileList = image.files;
+
+									var reader = new FileReader();
+									reader.readAsDataURL(fileList[0]);
+
+									reader.onload = function() {
+
+										/* document.querySelector('#docImage').src = reader.result; */
+
+										/* document.querySelector('.docImage').src = reader.result; */
+
+										var tempImage = new Image();
+										tempImage.src = reader.result;
+
+										image2.parent().siblings(".docImage")
+												.prop("src", reader.result);
+									};
+								};
+							});
+				});
+		
+		$("adsadsa").click(function(){
+			$("#").submit()
+		})
 	</script>
 
 	<!-- Footer -->

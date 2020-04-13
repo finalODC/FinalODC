@@ -2,6 +2,9 @@ package com.ohdogcat.odc.board.model.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class FreeBoard {
 
 	
