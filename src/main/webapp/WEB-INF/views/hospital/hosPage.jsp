@@ -91,7 +91,7 @@
                         <div class="mb-3">
 
                             <label for="username">아이디</label> <input type="text" class="form-control"
-                                style="width: 30%;" id="username" placeholder="Username" value="아이디" readonly>
+                                style="width: 30%;" id="hosName" placeholder="hosName" value="${ userId }" readonly>
                         </div>
                         <br>
                         <div class="mb-3">
@@ -107,7 +107,7 @@
 
                         <div class="mb-3">
                             <label>가입일</label><br> <input type="date" class="form-control" style="width: 30%;"
-                                id="hireDate" value="2020-02-20" disabled>
+                                id="hireDate" value="${ hCreateDate }" disabled>
                         </div>
 
                         <div class="mb-3">

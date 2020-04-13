@@ -50,9 +50,13 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 	
   <jsp:include page="common/menubar.jsp"/>
 
+=======
+	<jsp:include page="common/menubar.jsp"/>
+>>>>>>> branch 'master' of https://github.com/finalODC/FinalODC.git
 	<!-- Header Section end -->
 
 	<div class="container" style="padding-top: 150px; font-size: 23px">
@@ -65,10 +69,15 @@
 								<tr style="text-align: center;">
 									<td width="140px"><span class="btn btn-outline-info">개인정보
 											변경&nbsp;</span></td>
-									<td width="140px"><a href="myPet.html"
+									<td width="140px"><a href="mypagepet.do"
 										class="btn btn-outline-primary">&nbsp;반려동물 정보&nbsp;</a></td>
+<<<<<<< HEAD
 									<td width="140px"><a href="qna.html"
 										class="btn btn-outline-primary">&nbsp;문의하기&nbsp;</a></td>
+=======
+									<td width="140px"><a href="mypageQNA.do"
+										class="btn btn-outline-primary">&nbsp;문희하러가기&nbsp;</a></td>
+>>>>>>> branch 'master' of https://github.com/finalODC/FinalODC.git
 								</tr>
 							</table>
 						</div>

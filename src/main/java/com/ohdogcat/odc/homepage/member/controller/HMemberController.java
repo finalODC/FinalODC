@@ -1,13 +1,14 @@
 package com.ohdogcat.odc.homepage.member.controller;
 
-import java.io.BufferedReader;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
 import org.json.simple.JSONObject;
@@ -15,13 +16,20 @@ import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
+import com.ohdogcat.odc.common.email.EmailService;
+import com.ohdogcat.odc.common.email.EmailService;
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 import com.ohdogcat.odc.homepage.member.service.HMemberService;
 
+@SessionAttributes("code")
 @Controller
 public class HMemberController {
 	
@@ -30,6 +38,12 @@ public class HMemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	 @Autowired
+		private EmailService mailsender;
+
+
+
 	
 	@RequestMapping("hSignin.do")
 	public String hInsertForm() {
@@ -41,7 +55,7 @@ public class HMemberController {
 	public String hIdCheck(String userId) {
 		
 		int result = hmService.hIdCheck(userId);
-		
+		System.out.println(result);
 		return Integer.valueOf(result).toString();
 		
 	}
@@ -111,17 +125,63 @@ public class HMemberController {
 	@RequestMapping("hInsert.do")
 	public void hInsert(HMember m,String add1, String add2, String add3) {
 		
-		bCryptPasswordEncoder.encode(m.userPwd);
 		
+		m.setUserPwd(bCryptPasswordEncoder.encode(m.userPwd));
 		if(!add1.equals("")) {
 			m.sethAddress(add1 + add2 + add3);
 		}
+		
+		//System.out.println(m);
 
 		int result = hmService.hInsert(m);
-		System.out.println(result);
+//		System.out.println(result);
 		
 		
 	}
+	@ResponseBody
+	@RequestMapping("checkHemail.do")
+	public String checkHEmail(String email) {
+		int result = hmService.checkHEmail(email);
+		
+		return Integer.valueOf(result).toString(); 
+	}
 	
+	@ResponseBody
+	@RequestMapping(value="sendCode.do", method= RequestMethod.POST)
+	public String sendCode(String email, Model m) {
+		//난수 만들기
+		StringBuffer sb = new StringBuffer();
+		for(int i =0; i<3; i++) {
+			int nRan = (int)(Math.random()*123+1);
+			sb.append(nRan);
+
+			for(int j = 0; j<Math.round(Math.random()+1);j++) {
+				sb.append((char)((int)(Math.random()*26)+65));
+			}
+			
+		}
+		
+		
+		m.addAttribute("code",sb.toString());
+		mailsender.mailSendWithUserKey(sb.toString(), email);
+		return "메일이 발송되었습니다.";
+	
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value="codeCheck.do", method=RequestMethod.POST)
+	public String checkCode(String code, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String saveCode = (String)session.getAttribute("code");
+		String result="";
+		System.out.println(code);
+		System.out.println();
+		if(saveCode.equals(code)) {
+			result ="1";
+		}
+		
+		return result;
+	}
 	
 }

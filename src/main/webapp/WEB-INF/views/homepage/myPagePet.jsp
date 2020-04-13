@@ -32,8 +32,12 @@
 </head>
 <body>
 
+<<<<<<< HEAD
   <jsp:include page="common/menubar.jsp"/>
 
+=======
+	<jsp:include page="common/menubar.jsp"/>
+>>>>>>> branch 'master' of https://github.com/finalODC/FinalODC.git
 
 	<div class="container" style="padding-top: 150px;">
 		<div class="row">
@@ -43,11 +47,11 @@
 						<div>
 							<table align="center" width="420px">
 								<tr style="text-align: center;">
-									<td width="140px"><a href="about-us.html"
+									<td width="140px"><a href="mypageperson.do"
 										class="btn btn-outline-primary">개인정보 변경</a></td>
 									<td width="140px"><span class="btn btn-outline-info">&nbsp;반려동물
 											정보&nbsp;</span></td>
-									<td width="140px"><a href="qna.html"
+									<td width="140px"><a href="mypageQNA.do"
 										class="btn btn-outline-primary">&nbsp;문희하러가기&nbsp;</a></td>
 								</tr>
 							</table>

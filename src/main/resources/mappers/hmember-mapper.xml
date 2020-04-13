@@ -11,6 +11,7 @@
  	<result property="hName" column="H_NAME"/>
  	<result property="hAddress" column="H_ADDRESS"/>
  	<result property="hPhone" column="H_PHONE"/>
+ 	<result property="hEmail" column="H_EMAIL"/>
  	<result property="hComment" column="H_COMMENT"/>
  	<result property="hFile" column="H_FILE"/>
  	<result property="hCreateDate" column="H_CREATE_DATE"/>
@@ -22,6 +23,20 @@
  	SELECT COUNT(*) FROM HOSPITAL
  	WHERE USERID = #{userId}
  </select>
+ 
+ <select id="emailcheck" resultType="int">
+ 	SELECT COUNT(*) FROM HOSPITAL
+ 	WHERE H_EMAIL = #{email}
+ 
+ </select>
+ 
+ 
+ 
+ <insert id="insertHmember" parameterType="HMember">
+  insert into hospital values
+(SEQ_HID.NEXTVAL,#{userId},#{userPwd},#{hCode},#{hName},
+#{hAddress},#{hPhone},#{hEmail},'','',SYSDATE,SYSDATE,default)
+ </insert>
  
  
  

@@ -239,6 +239,24 @@
 		    <version>2.9.5</version>
 		</dependency>
 		
+		<!-- email인증 api -->
+		<!-- 메일 전송 -->
+    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+			<dependency>
+			    <groupId>org.springframework</groupId>
+			    <artifactId>spring-context-support</artifactId>
+			    <version>${org.springframework-version}</version>
+			</dependency>
+			   
+			    
+			    
+			    <dependency>
+			    <groupId>javax.mail</groupId>
+			    <artifactId>mail</artifactId>
+			    <version>1.4</version>
+			</dependency>
+
+		
 		
 		        
 	</dependencies>

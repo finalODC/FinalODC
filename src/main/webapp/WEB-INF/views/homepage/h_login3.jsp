@@ -254,26 +254,27 @@ vertical-align: middle;}
 		<div class="card" style="width: 600px;">
 			<div class="card-body">
 				<div class="tabbtn">
-					<a href="#" class="on">아이디찾기</a>
-					<a href="#">비밀번호찾기</a>
+					<a href="idsearch.do" class="on">아이디찾기</a>
+					<a href="pwdsearch.do">비밀번호찾기</a>
 				</div>
 				<div class="tabParent">
 					<div class="tabCon on">
 						<div class="iconArea">
                             <input type="text" class="input_area" placeholder="아이디를 입력해주세요.">
+                            <input type="email" class="input_area" placeholder="이메일을 입력해주세요.">
                             <p class="txt"><Strong class="black">
-								본인 명의의 휴대폰을 통해 본인인증 후 비밀번호를 찾으실 수 있습니다.</Strong></p>
+								가입 시 등록했던 이메일 주소를 입력해 주세요.</Strong></p>
 							<p class="txtmt">본인인증 시 제공되는 정보는 해당 인증기관에서 직접 수집하므로<br>
 								인증 이외의 용도 또는 저장되지 않습니다.</p>
 						</div>
 						<div class="btnWrap">
-							<input type="submit" value="인증하기" class="btn login_btn">
+							<input type="button" id="findPwd" value="인증하기" class="btn login_btn">
 						</div>
 					</div>
 				</div>
 			<div class="btna">
-				<a href="">로그인</a>
-				<a href="">회원가입</a>
+				<a href="mloginp.do">로그인</a>
+				<a href="msignin.do">회원가입</a>
 
 			</div>
 			<div id="footer">

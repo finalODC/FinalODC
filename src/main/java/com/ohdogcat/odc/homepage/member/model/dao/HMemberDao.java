@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ohdogcat.odc.homepage.member.model.vo.HMember;
+
 @Repository("hmDao")
 public class HMemberDao {
 	
@@ -12,7 +14,18 @@ public class HMemberDao {
 
 	public int hIdCheck(String userId) {
 		
+		
 		return sqlSession.selectOne("hmemberMapper.idCount",userId);
+	}
+
+	public int checkHEmail(String email) {
+		
+		return sqlSession.selectOne("hmemberMapper.emailcheck",email);
+	}
+
+	public int hInsert(HMember m) {
+		
+		return sqlSession.insert("hmemberMapper.insertHmember",m);
 	}
 
 }
