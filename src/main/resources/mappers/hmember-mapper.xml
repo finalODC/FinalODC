@@ -19,12 +19,22 @@
  	<result property="hStatus" column="H_STATUS"/>
 
  	</resultMap>
- <select id="idCount" resultType="int">
+ <select id="login" resultMap="HMemberResultMap">
+ 	SELECT * FROM HOSPITAL
+ 	WHERE USERID=#{userId}
+ </select>	
+ 
+  <select id="checkBusiness" parameterType="HMember" resultType="_int">
+ 	SELECT COUNT(*) FROM HOSPITAL
+ 	WHERE H_CODE = #{hCode}
+ </select>	
+ 
+ <select id="idCount" resultType="_int">
  	SELECT COUNT(*) FROM HOSPITAL
  	WHERE USERID = #{userId}
  </select>
  
- <select id="emailcheck" resultType="int">
+ <select id="emailcheck" resultType="_int">
  	SELECT COUNT(*) FROM HOSPITAL
  	WHERE H_EMAIL = #{email}
  
@@ -38,6 +48,6 @@
 #{hAddress},#{hPhone},#{hEmail},'','',SYSDATE,SYSDATE,default)
  </insert>
  
- 
+
  
  </mapper>
