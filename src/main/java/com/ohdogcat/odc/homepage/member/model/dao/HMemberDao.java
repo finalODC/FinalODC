@@ -11,6 +11,18 @@ public class HMemberDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	
+	public HMember loginMem(String userId) {
+		
+		return sqlSession.selectOne("hmemberMapper.login",userId);
+	}
+	
+	public int checkBusiness(String hCode) {
+		
+		return sqlSession.selectOne("hmemberMapper.checkBusiness",hCode);
+	}
+
 
 	public int hIdCheck(String userId) {
 		
@@ -28,4 +40,8 @@ public class HMemberDao {
 		return sqlSession.insert("hmemberMapper.insertHmember",m);
 	}
 
+
+
+
+	
 }
