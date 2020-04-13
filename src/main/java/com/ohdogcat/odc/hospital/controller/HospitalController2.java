@@ -1,18 +1,110 @@
 package com.ohdogcat.odc.hospital.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
+import com.ohdogcat.odc.homepage.member.model.vo.HMember;
+import com.ohdogcat.odc.hospital.model.service.HospitalService2;
+import com.ohdogcat.odc.hospital.model.vo.hoReply;
 
 @Controller
 public class HospitalController2 {
-	
+
+	private HospitalService2 hService2;
+
 	@RequestMapping("info.ho")
 	public String goInfo() {
 		return "hospital";
 	}
-	
+
 	@RequestMapping("hosP.ho")
 	public String goHosP() {
 		return "hosPage";
 	}
+
+	@RequestMapping("hinsert.ho")
+	public String insertHospital(HMember hm, HttpServletRequest request,
+			@RequestParam(name="uploadFile", required=false) MultipartFile file) {
+
+		if(!file.getOriginalFilename().equals("")) {
+
+			String FileName = saveFile(file, request);
+
+			if(FileName != null) {
+				hm.sethFile(file.getOriginalFilename());
+			}
+		}
+
+		int result = hService2.hinsert(hm);
+
+		if(result > 0) {
+			return "redirect:hosp.ho";
+		} else {
+			return "redirect:info.ho";
+		}
+	}
+
+
+
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+
+		String root = request.getSession().getServletContext().getRealPath("resources");
+
+		String savePath = root+"\\hosImages";
+
+		File folder = new File(savePath);
+
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+
+		String originFileName = file.getOriginalFilename();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");											// 파일명 바꿔줌
+
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"." 					// 파일명 바꿔줌
+				+ originFileName.substring(originFileName.lastIndexOf(".")+1);		// 파일명 바꿔줌
+
+		String renamePath = folder + "\\" + renameFileName;			// 실제 저장될 파일 경로 + 파일명
+
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (Exception e) {
+			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+
+		return renameFileName;
+	}
+
+	@RequestMapping("hosupdate.ho")
+	public String hosUpdate(HMember hm, Model model) {
+		
+		int result = hService2.hosUpdate(hm);
+		
+		if(result > 0) {
+			model.addAttribute("loginUser", hm);
+			return "redirect:info.ho";
+		} else {
+			model.addAttribute("msg","정보 변경 실패");
+			return "redirect:hosP.ho";
+		}
+	}
+	
 }

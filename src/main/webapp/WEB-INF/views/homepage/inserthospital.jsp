@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.ohdogcat.odc.homepage.member.model.vo.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="kr">
@@ -74,6 +74,7 @@
 		</nav>
 	</header  class="masthead">
 
+	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 	<div class="container" style="padding-top: 150px;">
 		<div class="row">
 
@@ -152,38 +153,38 @@
 					<div class="card-header py-3">
 						<h6 class="m-0 font-weight-bold text-primary">댓글</h6>
 					</div>
-					<div class="card-body">
+					
+					<table align="center" width="510" border="1" cellspacing="0">
+						<tr>
+							<td>
+								<textarea rows="3" cols="55" id="hrContent" style="resize: none; border:0;"></textarea>
+							</td>
+							<td>
+								<button id="hrSubmit">등록하기</button>
+							</td>
+						</tr>
+					</table>
+					
+					<table align="center" width="510" border="0" cellspacing="0" id="rtb">
+						<thead>
+							<tr>
+								<td colspan="3"><b id="hrCount"></b></td>
+							</tr>
+							</thead>
+						<tbody>
 
-						<div class="commentArea"
-							style="width: 100%; height: 100%; text-align: left;">
-
-							<div class="commentList">
-								<span>user1 : ooo맛있어요 </span> &nbsp;&nbsp; <span
-									class="report-comment" style="color: red;"></span>
-							</div>
-							<div class="commentList">
-								<span>user2 : ooo는 별로 </span> &nbsp;&nbsp; <span
-									class="report-comment" style="color: red;"></span>
-							</div>
-							<div class="commentList">
-								<span>user3 : ooo?? </span> &nbsp;&nbsp; <span
-									class="report-comment" style="color: red;"></span>
-							</div>
-							<div class="commentList">
-								<span>user4 : ooo!!!!! </span> &nbsp;&nbsp; <span
-									class="report-comment" style="color: red;"></span>
-							</div>
-							<br> <span>아이디 : </span> &nbsp; <input type="text"
-								style="width: 70%;" placeholder="댓글을 입력해주세요"> &nbsp; <input
-								type="button" value="등록">
-						</div>
-					</div>
+						</tbody>
+					</table>
 				</div>
 			</div>
 
 		</div>
 
 		<!-- Footer Section -->
+		
+		<script>
+			
+		</script>
 		<br>
 		<hr>
 		<br>
