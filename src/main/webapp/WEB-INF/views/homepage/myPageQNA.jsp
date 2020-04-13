@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="kr">
 
 <head>
+<c:set var="path" value="${pageContext.servletContext.contextPath }" scope="application"></c:set>
 <title>메인페이지</title>
 <meta charset="UTF-8">
 <meta name="description" content="Real estate HTML Template">
@@ -20,16 +22,16 @@
 
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" />
+<link rel="stylesheet" href="${path }/resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${path }/resources/css/font-awesome.min.css" />
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/slicknav.min.css" />
+<link rel="stylesheet" href="${path }/resources/css/slicknav.min.css" />
 
 <!-- Main Stylesheets -->
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="${path }/resources/css/style.css" />
 
 <style>
 #aaa {

@@ -54,8 +54,6 @@
   <jsp:include page="common/menubar.jsp"/>
 
 
-	<jsp:include page="common/menubar.jsp"/>
-
 	<!-- Header Section end -->
 
 	<div class="container" style="padding-top: 150px; font-size: 23px">
