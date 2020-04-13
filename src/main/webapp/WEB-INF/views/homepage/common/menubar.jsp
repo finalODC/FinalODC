@@ -24,8 +24,9 @@
           </ul></li>
         <li><a href="#">마이페이지</a>
           <ul class="sub-menu">
-            <li><a href="about-us.html">정보수정</a></li>
+            <li><a href="updatemem.do">정보수정</a></li>
             <li><a href="search-result.html">반려동물 관리</a></li>
+            <li><a href="search-result.html">문의하기</a></li>
           </ul>
         </li>
         <!-- <li><a href="#"></a>

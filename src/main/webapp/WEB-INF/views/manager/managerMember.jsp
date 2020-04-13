@@ -168,7 +168,7 @@
             })
             
             
-  /*           $.ajax({
+             $.ajax({
             	url:"mMember.do",
             	type:"post",
             	success:function(data){
@@ -210,8 +210,8 @@
             	},error:function(data){
             		alert("ajax 구동 실패!")
             	}
-            	
-            }); */
+            
+            });
             
            
           });
