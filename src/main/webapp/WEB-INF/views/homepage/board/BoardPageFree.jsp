@@ -240,27 +240,54 @@
 							</tr>
 						</tbody>
 					</table>
-
+						
+						
+					<!---------------------- 페이징 처리  ------------------------->
+					
 					<div class="btn-toolbar d-flex justify-content-center">
-
+					
+						<!-- 이전버튼 -->
 						<div class="btn-group">
-							<button type="button" class="btn btn-secondary"><<</button>
+							<c:if test="${pi.currentPage eq 1 }">
+								<button class="btn btn-secondary">[이전]</button>
+							</c:if>
+							
+							<c:if test="${pi.currentPage ne 1 }">
+								<c:url var="before" value="Fblist.bo">
+									<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+								</c:url>
+								<button class="btn btn-secondary" href="${befor}">[이전]</button>
+							</c:if>
 						</div>
-
+						
+						
+						
+						<!-- 페이지 숫자버튼 -->
+						<c:forEach var="p" begin="${ pi.startPage }" end="${pi.endPage }">
+					
 						<div class="btn-group" align="center">
-							<button type="button" class="btn btn-secondary">1</button>
-							<button type="button" class="btn btn-secondary">2</button>
-							<button type="button" class="btn btn-secondary">3</button>
-							<button type="button" class="btn btn-secondary">4</button>
-							<button type="button" class="btn btn-secondary">5</button>
-							<button type="button" class="btn btn-secondary">6</button>
-							<button type="button" class="btn btn-secondary">7</button>
-							<button type="button" class="btn btn-secondary">8</button>
-							<button type="button" class="btn btn-secondary">9</button>
+							<c:if test="${ p ne pi.currentPage }">
+								<c:url var="pagination" value="Fblist.bo">
+									<c:param name="currentPage" value="${ p }"/>
+								</c:url>
+								<button class="btn btn-secondary" href="${ pagination }">${ p }</button>
+							</c:if>
 						</div>
-
+						
+						</c:forEach>
+						
+						
+						<!-- 다음으로 가는 버튼  -->
 						<div class="btn-group">
-							<button type="button" class="btn btn-secondary">>></button>
+							<c:if test="${pi.currentPage eq pi.maxPage }">
+								<button class="btn btn-secondary">[다음]</button>
+							</c:if>
+							<c:if test="${ pi.currentPage ne pi.maxPage }">
+								<c:url var="after" value="Fblist.bo">
+									<c:param name="currentPage" value="${pi.currentPage +1 }"/>	
+								</c:url>
+								<button href="${ after }" class="btn btn-secondary">[다음]</button>
+							</c:if>
 						</div>
 					</div>
 
