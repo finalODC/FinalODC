@@ -14,10 +14,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 	<!-- JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 	<!-- 폰트 -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
@@ -260,15 +262,17 @@ vertical-align: middle;}
 				<div class="tabParent">
 					<div class="tabCon on">
 						<div class="iconArea">
-                            <input type="text" class="input_area" placeholder="아이디를 입력해주세요.">
-                            <input type="email" class="input_area" placeholder="이메일을 입력해주세요.">
+                            <input type="text" class="input_area" id="userId" placeholder="아이디를 입력해주세요.">
+                            <input type="email" class="input_area" id="email"  placeholder="이메일을 입력해주세요.">
+                            <input type="text" class="input_area" id="inputCode" name="inputCode" style="display:none;" placeholder="인증 코드 입력" >
+                            <input type="button" class="input_area" id="checkId" value="아이디,이메일 확인">
                             <p class="txt"><Strong class="black">
 								가입 시 등록했던 이메일 주소를 입력해 주세요.</Strong></p>
 							<p class="txtmt">본인인증 시 제공되는 정보는 해당 인증기관에서 직접 수집하므로<br>
 								인증 이외의 용도 또는 저장되지 않습니다.</p>
 						</div>
 						<div class="btnWrap">
-							<input type="button" id="findPwd" value="인증하기" class="btn login_btn">
+							<input type="button" id="findPwd" value="인증하기" class="btn login_btn" style="display:none;">
 						</div>
 					</div>
 				</div>
@@ -299,5 +303,94 @@ vertical-align: middle;}
 	</div>	
 		
 </div>
+
+
+	
+	<script>
+		$('#checkId').click(function(){
+			var userId=$('#userId').val();
+			var email = $('#email').val();
+			var code = $('#inputCode').val();
+			
+			var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		  	if(!regExp.test(email)){
+		  		alert('메일형식을 확인해주세요');
+		  		return false;
+		  		
+		  	}
+			
+			$.ajax({
+				url:"checkPwdEmail.do",
+				type:"post",
+				data:{id:userId, email:email},
+				success:function(data){
+					if(data=="ok"){
+						$('#inputCode').css('display','');
+						$('#findPwd').css('display','');
+						
+						  $.ajax({
+		            			url:"sendCode.do",
+		            			type:"post",
+		            			data:{email:email},
+		            			success:function(){
+										alert('인증메일을 전송하였습니다');
+										$('#checkId').css('display','none');
+		            					console.log("이메일 보내기 성공");
+		            			},error:function(){
+		            				console.log("이메일코드에러")
+		            			}
+		            		})
+					}else{
+						alert('아이디와 이메일을 다시 확인해주세요');
+						return false;
+					}
+					
+				},error:function(){
+					alert('비밀번호 찾기 오류!!');
+				}
+			});
+		});
+		
+		
+		
+		$('#findPwd').click(function(){
+			var code = $('#inputCode').val();
+			var userId=$('#userId').val();
+			
+				$.ajax({
+					url:"codeCheck.do",
+					type:"post",
+					data:{code:code},
+					success:function(result){
+						console.log(result);
+						if(result != ""){
+							console.log("맞아요")
+							location.href="changePwd.do?userId="+userId;
+						}else{
+							console.log("아니요")
+						}
+						
+					},error:function(){
+						console.log("이메일코드체크에러")
+					}
+					
+				})
+			
+		});
+		
+	
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

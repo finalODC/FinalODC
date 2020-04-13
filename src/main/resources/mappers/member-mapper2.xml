@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     
-<mapper namespace="memberMapper">
+<mapper namespace="memberMapper2">
 	<resultMap type="Member" id="memberResultSet">
 	<id property="mId" column="MID"/>
 	<result property="userId" column="USERID"/>
@@ -20,14 +20,29 @@
 	
 	
 	
-	<select id="findId" parameterType="Member" resultMap="memberResultSet">
-		SELECT *
+	<select id="checkemail" resultType="_int">
+		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE EMAIL=#{email}
+		AND USERID=#{userId}
 		
 	</select>
 	
+	<select id="checkPwdEmail" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USERID=#{userId}
+		AND EMAIL=#{email}
 	
+	</select>
+	
+	<update id="confirmPwd">
+		UPDATE MEMBER
+		SET USERPWD=#{userPwd}
+		WHERE USERID=#{userId}
+		
+		
+	</update>
 
 
 </mapper>
