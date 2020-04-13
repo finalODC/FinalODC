@@ -5,7 +5,7 @@
 
 <!-- ResultMap -->
 
-<resultMap type="FreeBoard" id="BoardResultSet">
+<resultMap type="FBoard" id="BoardResultSet">
 	<id property="fbId" column="FBID"/>
 	<result property="fbTitle" column="F_BTITLE"/>
 	<result property="fbWriter;" column="F_BWRITER"/>
@@ -18,10 +18,6 @@
 	<result property="Category;" column="CATEGORY"/>
 	<result property="Complain;" column="COMPLAIN"/>
 </resultMap>
-
-
-
-
 
 
 

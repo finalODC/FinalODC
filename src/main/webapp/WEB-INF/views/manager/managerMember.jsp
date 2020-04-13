@@ -86,14 +86,16 @@
                   </tbody>
                 </table>
               </div>
-              <div> 	<ul class="pagination justify-content-center pagination-sm">
+              <div id="pagination">
+<!--               <ul class="pagination justify-content-center pagination-sm">
                 <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
                 <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
                 <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
-              </ul></div>
+              </ul> -->
+              </div>
               </div>
             </div>
           </div>
@@ -148,7 +150,11 @@
       </div>
       <!-- End of Page Wrapper -->
       <script>
+      
+      var page=1;
           $(function(){
+        	  
+        	  
             //정지 모달
             $(".stop").click(function(){
              var mid = $(this).parent("td").siblings("td:eq(0)").text();
@@ -167,54 +173,136 @@
               }
             })
             
-            
-             $.ajax({
-            	url:"mMember.do",
-            	type:"post",
-            	success:function(data){
-            		$tableBody = $('#membetTable tbody');
-            		$tableBody.html("");
-            		
-            		$.each(data,function(index,value){
-            			
-            			$tr=$('<tr>');
-            			$mId=$('<td>').text(value.mId);
-            			$userId=$('<td>').text(value.userId);
-            			$userName=$('<td>').text(value.userName);
-            			$email=$('<td>').text(value.email);
-            			$mcreateDate=$('<td>').text(value.mCreateDate);
-            			$a1=$('<td>');
-            			$a2=$('<td>');
-            			$buttontd=$('<td>');
-            			$button1=$('<button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">').html("정지");
-            			$button2=$('<button class="btn btn-danger del"  style="width: 80px;">').html("삭제");
-            			
-            			
-            			$tr.append($mId);
-            			$tr.append($userId);
-            			$tr.append($userName);
-            			$tr.append($email);
-            			$tr.append($mcreateDate);
-            			$tr.append($a1);
-            			$tr.append($a2);
-            			
-            			$buttontd.append($button1);
-            			$buttontd.append($button2);
-            			
-            			$tr.append($buttontd);
-            			
-            			$tableBody.append($tr);
-            			
-            		});
-            		
-            	},error:function(data){
-            		alert("ajax 구동 실패!")
-            	}
-            
-            });
+           
+            getmember();
+   	
             
            
           });
+          
+          function getmember(){
+        	  
+        	 
+          	
+              $.ajax({
+              	url:"mMember.do",
+              	type:"post",
+              	data:{
+              		currentPage:page
+              	},
+              	success:function(data){
+              		$tableBody = $('#membetTable tbody');
+              		$tableBody.html("");
+              	
+              		getPageInfo();
+              		
+               		$.each(data,function(index,value){
+              			
+              			$tr=$('<tr>');
+              			$mId=$('<td>').text(value.mId);
+              			$userId=$('<td>').text(value.userId);
+              			$userName=$('<td>').text(value.userName);
+              			$email=$('<td>').text(value.email);
+              			$mcreateDate=$('<td>').text(value.mCreateDate);
+              			$a1=$('<td>');
+              			$a2=$('<td>');
+              			$buttontd=$('<td>');
+              			$button1=$('<button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">').html("정지");
+              			$button2=$('<button class="btn btn-danger del"  style="width: 80px;">').html("삭제");
+              			
+              			
+              			$tr.append($mId);
+              			$tr.append($userId);
+              			$tr.append($userName);
+              			$tr.append($email);
+              			$tr.append($mcreateDate);
+              			$tr.append($a1);
+              			$tr.append($a2);
+              			
+              			$buttontd.append($button1);
+              			$buttontd.append($button2);
+              			
+              			$tr.append($buttontd);
+              			
+              			$tableBody.append($tr);
+              			
+              		});
+              		
+              	},error:function(data){
+              		console.log(data);
+              		alert("ajax 구동 실패!")
+              	}
+              
+              });
+          };
+          
+          
+          function getPageInfo(){
+        	  $.ajax({
+        		 url:"getpageInfo.do",
+        		 type:"post",
+        		 success:function(data){
+        			 $page = $('#pagination');
+        			 $page.html("");
+        			 
+        			 $ui = $('<ul class="pagination justify-content-center pagination-sm">');
+        			 
+        			 
+        			 
+        			 
+        			 if(data.currentPage != 1){
+        				 $ui.append('<li class="goFirstPage"><a>[처음으로]</a></li>');
+
+					/* 	 $li1= $("<li class='goFirstPage'>");
+						 $a1 = $("<a>");
+						 $a1.text("<<");
+						 
+						 $li1.append($a1);
+						 $ui.append($li1); */
+        			 }
+        			 
+        			for(var i = data.startPage; i<=data.endPage;i++){
+        				$ui.append('<li class="goPage page-item" data-page='+i+'><a class="page-link">'+i+'</a></li>');
+        			}
+        			
+
+        			 $page.append($ui);
+        			 
+        			 
+        	         $('.goPage').click(function(){
+        	        	  page=$(this).attr("data-page");
+        	        	  getmember();
+        	          });
+        	          
+        			 
+/*         			 currentPage: 1
+        			 listCount: 5
+        			 pageLimit: 10
+        			 maxPage: 1
+        			 startPage: 1
+        			 endPage: 1
+        			 boardLimit: 5 */
+        			 
+/*                     <ul class="pagination justify-content-center pagination-sm">
+                     <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
+                     <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
+                     <li class="page-item"><a class="page-link" href="#">1</a></li>
+                     <li class="page-item"><a class="page-link" href="#">2</a></li>
+                     <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
+                     <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
+                   </ul> */
+        			 
+        		 },error:function(){
+        			 alert("페이징 처리 ajax 에러!");
+        		 }
+        	  });
+          };
+          
+          
+          
+          
+ 
+          
           
           
 /*           <tr>

@@ -19,6 +19,7 @@
 	<select id="manageMemberList" parameterType="Member" resultMap="manageMemberResultSet">
 	SELECT *
 	FROM MEMBER
+	ORDER BY MID DESC
 	</select>
 	
 	<select id="MemberListCount" resultType="_int">

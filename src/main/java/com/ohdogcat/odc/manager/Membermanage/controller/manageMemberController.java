@@ -14,7 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
-import com.ohdogcat.odc.manager.Membermanage.model.vo.PageInfo;
+import com.ohdogcat.odc.board.model.vo.PageInfo;
+import com.ohdogcat.odc.common.Pagenation;
 import com.ohdogcat.odc.manager.Membermanage.model.vo.manageMember;
 import com.ohdogcat.odc.manager.Membermanage.service.manageMemberService;
 
@@ -25,21 +26,40 @@ public class manageMemberController {
 	private manageMemberService managemService;
 	
 	@RequestMapping("mMember.do")
-	public void manageMemberList(HttpServletResponse response) throws JsonIOException, IOException {
+	public void manageMemberList(HttpServletResponse response,
+			@RequestParam(value="currentPage", required=false,defaultValue ="1") int currentPage) throws JsonIOException, IOException {
 		
 		int listCount  = managemService.MemberListCount();
-	
 		
-		System.out.println(listCount);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
 		
-		ArrayList<manageMember> list = managemService.manageMemberList();
+		ArrayList<manageMember> list = managemService.manageMemberList(pi);
 		
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		
+		
+		
 		gson.toJson(list,response.getWriter());
 		
+	}
+	
+	
+	@RequestMapping("getpageInfo.do")
+	public void getPageInfo( HttpServletResponse response,
+			@RequestParam(value="currentPage", required=false,defaultValue ="1") int currentPage) throws JsonIOException, IOException{
+		
+		int listCount  = managemService.MemberListCount();
+		
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new GsonBuilder().create();
+	
+		
+		gson.toJson(pi,response.getWriter());
 	}
 	
 //	@RequestMapping("mMemberList.do")
