@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
-import com.ohdogcat.odc.common.Pagenation;
+import com.ohdogcat.odc.common.Pagination;
 import com.ohdogcat.odc.manager.Membermanage.model.vo.manageMember;
 import com.ohdogcat.odc.manager.Membermanage.service.manageMemberService;
 
@@ -31,7 +31,7 @@ public class manageMemberController {
 		
 		int listCount  = managemService.MemberListCount();
 		
-		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<manageMember> list = managemService.manageMemberList(pi);
 		
@@ -52,7 +52,7 @@ public class manageMemberController {
 		
 		int listCount  = managemService.MemberListCount();
 		
-		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		response.setContentType("application/json; charset=utf-8");
 		
