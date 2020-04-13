@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -9,26 +10,19 @@
 <meta name="keywords" content="real estate, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
-<link href="img/favicon.ico" rel="shortcut icon" />
 
 <!-- Google font -->
-<link
-	href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900%7cRoboto:400,400i,500,500i,700,700i&display=swap"
-	rel="stylesheet">
+<c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
+  <link rel="stylesheet" href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
 
-
-<!-- Stylesheets -->
-<link rel="stylesheet" href="css/bootstrap.min.css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" />
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="css/slicknav.min.css" />
-
-<!-- Main Stylesheets -->
-<link rel="stylesheet" href="css/style.css" />
 
 <style>
 #aaa {
@@ -38,16 +32,17 @@
 </head>
 <body>
 
+<<<<<<< HEAD
+  <jsp:include page="common/menubar.jsp"/>
+
+=======
 	<jsp:include page="common/menubar.jsp"/>
+>>>>>>> branch 'master' of https://github.com/finalODC/FinalODC.git
 
 	<div class="container" style="padding-top: 150px;">
 		<div class="row">
 			<div class="col-lg-12 col-md-12">
 				<section class="page-section portfolio">
-
-
-
-
 					<div id="right1" class=" col-md-8 order-md-1 container">
 						<div>
 							<table align="center" width="420px">
@@ -94,8 +89,6 @@
 										<td>웰시코기</td>
 										<td>상두</td>
 										<td>2016-08</td>
-
-
 									</tr>
 									<tr>
 										<td>
@@ -121,10 +114,6 @@
 
 							</table>
 							<hr>
-
-
-
-
 						</div>
 					</div>
 				</section>
@@ -150,11 +139,16 @@
 	<!-- Footer Section end -->
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.slicknav.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/main.js"></script>
+
+  <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+  
+  <script src="${path }/resources/js/bootstrap.min.js"></script>
+  
+  <script src="${path }/resources/js/jquery.slicknav.min.js"></script>
+  
+  <script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
+  
+  <script src="${path }/resources/js/main.js"></script>
 
 
 </body>

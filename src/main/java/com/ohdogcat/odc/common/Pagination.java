@@ -2,7 +2,7 @@ package com.ohdogcat.odc.common;
 
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 
-public class Pagenation {
+public class Pagination {
 	public static PageInfo getPageInfo(int currentPage,int listCount) {
 
 		// 페이지 정보를 담아줄 PageInfo 참조변수 선언

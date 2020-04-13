@@ -9,6 +9,20 @@ import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 @Service("hmService")
 public class HMemberServiceImpl implements HMemberService {
 	
+	
+
+	@Override
+	public HMember loginMem(String userId) {
+		
+		return hmDao.loginMem(userId);
+	}
+
+	@Override
+	public int checkBusiness(String hCode) {
+				return hmDao.checkBusiness(hCode);
+	}
+
+	
 	@Autowired
 	private HMemberDao hmDao;
 
@@ -31,6 +45,11 @@ public class HMemberServiceImpl implements HMemberService {
 		
 		return hmDao.checkHEmail(email);
 	}
+
+
+
+
+
 
 
 

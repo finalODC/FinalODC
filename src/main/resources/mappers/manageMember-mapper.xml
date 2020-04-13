@@ -19,11 +19,31 @@
 	<select id="manageMemberList" parameterType="Member" resultMap="manageMemberResultSet">
 	SELECT *
 	FROM MEMBER
+	ORDER BY MID DESC
 	</select>
 	
 	<select id="MemberListCount" resultType="_int">
 	SELECT COUNT(*)
 	FROM MEMBER
 	</select>
+	
+	<select id="sMemberListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM MEMBER
+	WHERE USERID LIKE '%' || #{searchkey} || '%'
+	</select>
+	
+	<select id="managesMemberList" parameterType="Member" resultMap="manageMemberResultSet">
+	SELECT *
+	FROM MEMBER
+	WHERE USERID LIKE '%' || #{searchkey} || '%'
+	ORDER BY MID DESC
+	</select>
+	
+	<update id="delManageMember" parameterType="_int">
+	UPDATE MEMBER
+	SET M_STATUS='N'
+	WHERE MID = #{mid}
+	</update>
 
 </mapper>

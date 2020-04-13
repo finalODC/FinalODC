@@ -55,7 +55,6 @@
       <hr class="sidebar-divider">
 
 
-
       <!-- Nav Item - 품의 관리 -->
       <li class="nav-item">
       <c:url var = "chart" value="chart.ho"/>
@@ -73,6 +72,11 @@
       <li class="nav-item"><a class="nav-link"
 				href="hosP.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
+					
+	 <li class="nav-item"><a class="nav-link"
+				href="hlogout.do"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>로그아웃</span></a></li>
+	
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -99,7 +103,8 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">진료기록 조회 / 처방</h1>
           </div>
-
+			
+			
   
 
             <!-- Content Row -->
@@ -107,7 +112,7 @@
 
               <!-- Content Column -->
               <div class="col-lg-6 mb-4">
-
+				
                 <!--동물 정보! -->
                 <div class="card shadow mb-4">
                    <div class="card-header py-3">

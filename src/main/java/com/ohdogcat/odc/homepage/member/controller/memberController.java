@@ -91,5 +91,11 @@ public class memberController {
 		}
 		
 	}
+	
+	@RequestMapping("updatemem.do")
+	public String updatemem() {
+		
+		return "homepage/myPagePerson";
+	}
 
 }
