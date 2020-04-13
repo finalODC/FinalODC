@@ -27,4 +27,19 @@ public class manageMemberServiceImpl implements manageMemberService {
 		return managemDao.MemberListCount();
 	}
 
+	@Override
+	public int sMemberListCount(String searchkey) {
+		return managemDao.sMemberListCount(searchkey);
+	}
+
+	@Override
+	public ArrayList<manageMember> managesMemberList(PageInfo pi, String searchkey) {
+		return managemDao.managesMemberList(pi,searchkey);
+	}
+
+	@Override
+	public int delManageMember(int mid) {
+		return managemDao.delManageMember(mid);
+	}
+
 }

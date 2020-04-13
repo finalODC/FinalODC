@@ -30,4 +30,19 @@ public class manageMemberDao {
 		return sqlSession.selectOne("manageMember.MemberListCount");
 	}
 
+	public int sMemberListCount(String searchkey) {
+		return sqlSession.selectOne("manageMember.sMemberListCount",searchkey);
+	}
+
+	public ArrayList<manageMember> managesMemberList(PageInfo pi, String searchkey) {
+		
+		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("manageMember.managesMemberList",searchkey,rowBounds);
+	}
+
+	public int delManageMember(int mid) {
+		return sqlSession.update("manageMember.delManageMember",mid);
+	}
+
 }

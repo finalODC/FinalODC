@@ -19,4 +19,25 @@ public interface manageMemberService {
 	 */
 	int MemberListCount();
 
+	/**
+	 * 검색한 회원 숫자
+	 * @param searchkey
+	 * @return
+	 */
+	int sMemberListCount(String searchkey);
+
+	/**
+	 * 회원 검색
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<manageMember> managesMemberList(PageInfo pi,String searchkey);
+
+	/**
+	 * 회원 삭제
+	 * @param mid
+	 * @return
+	 */
+	int delManageMember(int mid);
+
 }
