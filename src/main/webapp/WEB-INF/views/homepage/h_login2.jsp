@@ -263,7 +263,7 @@ vertical-align: middle;}
 				<div class="tabParent">
 					<div class="tabCon on">
 						<div class="iconArea">
-							<input type="email" class="input_area" id="userId" name="userId" style="width:100%;" placeholder="이메일 주소 입력">
+							<input type="email" class="input_area" id="email" name="email" style="width:100%;" placeholder="이메일 주소 입력">
 							<input type="text" class="input_area" id="inputCode" name="inputCode" style="width:100%; display:none;" placeholder="인증 코드 입력" >
 							<br><br>
 							<p class="txt"><Strong class="black">
@@ -308,9 +308,9 @@ vertical-align: middle;}
 
 
 	<script>
-		
+		var userId;
 		  $('#findId').click(function(){
-			  	var id = $("#userId").val();
+			  	var id = $("#email").val();
 			  	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 			  	if(!regExp.test(id)){
 			  		alert('메일형식을 확인해주세요');
@@ -321,11 +321,12 @@ vertical-align: middle;}
 			  	$.ajax({
 			  		url:"checkemail.do",
 			  		type:"post",
-			  		data:{email:$("#userId").val()},
+			  		data:{email:$("#email").val()},
 			  		success:function(result){
-			  			if(result == "ok"){
+			  			if(result != ""){
+			  				a = result;
 			  			   $('#inputCode').css('display','');
-		                    var email=$("#userId").val();
+		                    var email=$("#email").val();
 		                    $.ajax({
 		            			url:"sendCode.do",
 		            			type:"post",
@@ -341,6 +342,7 @@ vertical-align: middle;}
 		            							console.log(result);
 		            							if(result != ""){
 		            								console.log("맞아요")
+		            								location.href="idResult.do?userId="+userId;
 		            							}else{
 		            								console.log("아니요")
 		            							}

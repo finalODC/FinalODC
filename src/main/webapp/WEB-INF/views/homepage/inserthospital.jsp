@@ -20,6 +20,7 @@
 <!-- Stylesheets -->
 <link rel="stylesheet" href="${ path }/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${ path }/resources/css/style.css" />
+<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
 <style>
 #aaa {
@@ -183,7 +184,80 @@
 		<!-- Footer Section -->
 		
 		<script>
+			// 댓글관련
+			$(function(){
+				
+				setInterval(function(){
+					getReplyList();
+				},3000);
+				
+			$("#hrSubmit").on("click",function(){
+				var hrContent = $("#hrContent").val();
+				var hrefBid = ${ h.hId };
+				var hrWriter = ${ m.mId};
+				
+				$.ajax({
+					url:"addReply.ho",
+					data:{hrContent:hrContent,hrefBid:hrefBid,hrWriter:hrWriter},
+					type:"post",
+					success:function(data){
+						//console.log(data);
+						if(data == "success"){
+							getReplyList();		// 등록 성공 시 다시 댓글 리스트 불러오기
+							
+							$("#hrContent").val("");
+						}
+						
+					},error:function(){
+						console.log("전송실패");
+					}
+				});
+			});
+		});
+		
+		function getReplyList(){
+			var hId = ${ h.hId };
 			
+			$.ajax({
+				url:"hrList.ho",
+				data:{hId:hId},		// 첫번쨰 bId는 controller에 있는bId, 두번째 bId는 function에 선언된 변수 bId
+				dataType:"json",
+				success:function(data){
+					$tableBody = $("#rtb tbody");
+					$tableBody.html("");
+					
+					var $tr;
+					var $hrWriter;
+					var $hrContent;
+					var $hrCreateDate;
+					
+					$("#hrCount").text("댓글(" +  data.length + ")");
+					
+					if(data.length > 0){
+						for(var i in data){
+							$tr = $("<tr>");
+							$hrWriter = $("<td width='100'>").text(data[i].hrWriter);
+							$hrContent = $("<td>").text(data[i].hrContent);
+							$hrCreateDate = $("<td width='100'>").text(data[i].hrCreateDate);
+							
+							$tr.append($hrWriter);
+							$tr.append($hrContent);
+							$tr.append($hrCreateDate);
+							$tableBody.append($tr);
+						}
+					} else {
+						$tr = $("<tr>");
+						$hrContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
+						
+						$tr.append($hrContent);
+						$tableBody.append($tr);
+					}
+					
+				},error:function(){
+					console.log("전송 실패");
+				}
+			});
+		}
 		</script>
 		<br>
 		<hr>

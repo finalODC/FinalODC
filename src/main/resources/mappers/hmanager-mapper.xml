@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="hmanagerMapper">
+ 	<resultMap type="HMember" id="HMemberResultMap">
+ 	<id property="hId" column="HID"/>
+ 	<result property="userId" column="USERID"/>
+ 	<result property="userPwd" column="USERPWD"/>
+ 	<result property="hCode" column="H_CODE"/>
+ 	<result property="hName" column="H_NAME"/>
+ 	<result property="hAddress" column="H_ADDRESS"/>
+ 	<result property="hPhone" column="H_PHONE"/>
+ 	<result property="hEmail" column="H_EMAIL"/>
+ 	<result property="hComment" column="H_COMMENT"/>
+ 	<result property="hFile" column="H_FILE"/>
+ 	<result property="hCreateDate" column="H_CREATE_DATE"/>
+ 	<result property="hModifyDate" column="H_MODIFY_DATE"/>
+ 	<result property="hStatus" column="H_STATUS"/>
+
+ 	</resultMap>
+
+<select id="getlistCount" resultType="_int">
+	SELECT COUNT(*) FROM HOSPITAL
+		WHERE H_STATUS IS NULL
+	<choose>
+ 		<when test="category ==2 and search !=null" >
+ 			AND H_ADDRESS LIKE '%'||#{search}||'%'
+ 		</when>
+ 		<when test="category ==3 and search !=null">
+ 			AND USERID LIKE '%'||#{search}||'%'
+ 		</when>
+ 		<when test="category ==4 and search !=null">
+ 			AND H_NAME LIKE '%'||#{search}||'%'
+ 		</when>
+ 		</choose>
+</select>
+ 
+<select id="getMemberList" resultMap="HMemberResultMap">
+	SELECT * FROM HOSPITAL
+	WHERE H_STATUS IS NULL
+	<choose>
+ 		<when test="category ==2 and search !=null" >
+ 			AND H_ADDRESS LIKE '%'||#{search}||'%'
+ 		</when>
+ 		<when test="category ==3 and search !=null">
+ 			AND USERID LIKE '%'||#{search}||'%'
+ 		</when>
+ 		<when test="category ==4 and search !=null">
+ 			AND H_NAME LIKE '%'||#{search}||'%'
+ 		</when>
+ 		</choose>
+	ORDER BY HID DESC
+</select>
+ 
+ </mapper>

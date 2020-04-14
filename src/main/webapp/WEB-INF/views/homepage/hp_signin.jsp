@@ -253,14 +253,15 @@ hr{margin-top:0; margin-bottom:0;}
                     </div>
                     <h5>사업자번호</h5>
 					<div class="inputgroup">
-						<input type="text" id="hCode" name="hCode" class="input_area" placeholder="사업자번호를 입력해주세요.">
+						<input type="text" id="hCode" name="hCode" class="input_area" placeholder="'-'를 제외한 사업자번호를 입력해주세요.">
                     </div>
                     <span><input type="button" value="사업자번호 확인" class="btn check_btn" id="checkbusiness"></span>
-                    <h5>아이디</h5>
+                    <h5>아이디</h5><span id="idview"></span>
 					<div class="inputgroup">
 						<input type="text" name="userId" id="userId" class="input_area" placeholder="아이디를 입력해주세요.">
+						
                     </div>
-                    <h5>비밀번호</h5>
+                    <h5>비밀번호</h5><span>특수문자/문자/숫자 포함 형태의 8~15자리</span>
 					<div class="inputgroup">
 						<input type="password" name="userPwd" id="pwd" class="input_area" placeholder="비밀번호를 입력해주세요.">
                     </div>
@@ -271,7 +272,7 @@ hr{margin-top:0; margin-bottom:0;}
                     
                       <h5>이메일</h5>
                     <div class="inputgroup">
-                        <input type="text" class="input_area" placeholder="이메일을 입력해주세요" id="hmail">
+                        <input type="text" class="input_area" placeholder="이메일을 입력해주세요" id="hMail" name="hEmail">
                                     
                     </div>
                     <input id="email" type="button" value="이메일확인" class="btn check_btn"> 
@@ -289,11 +290,11 @@ hr{margin-top:0; margin-bottom:0;}
                     <h5>주소</h5>
                     <div class="row">
                         <div class="inputgroup" style="width: 49%; margin-right: 2%;" >
-                            <input type="text" class="input_area" placeholder="" id="add1" name="add1">
+                            <input type="text" class="input_area" placeholder="" id="add1" name="add1" readonly>
                         </div>
                         
                         <div class="inputgroup" style="width: 49%;">
-                            <input type="text" class="input_area" placeholder=""id="add2" name="add2">
+                            <input type="text" class="input_area" placeholder=""id="add2" name="add2" readonly>
                         </div>
                         <div class="inputgroup" style="width: 69%; margin-right: 2%;">
                             <input type="text" class="input_area" placeholder=""id="add3" name="add3">
@@ -330,30 +331,57 @@ hr{margin-top:0; margin-bottom:0;}
             </div>
 
             <script>
-            	$("#checkbusiness").click(function(){
-            		var hName = $("#hName").val();
+            var business = false;
+            var idCh = false;
+           	var emCh = false;
+            
+            $("#hCode").on("propertychange change keyup paste input",function(){
+            	business = false;
+            	
+            });
+            
+           $("#checkbusiness").click(function(){
             		var hCode = $("#hCode").val();
-            		
+            		if( hCode != "" &&  $("#hName").val()!=""){
             		$.ajax({
             			url:"hBusiness.do",
             			type:"get",
-            			dataType:"json",
-            			data:{hName:hName, hCode:hCode},
+            			data:{ hCode:hCode},
             			success:function(result){
-            				console.log(result)
+            			
+            				if(result=="ok"){
+            					alert("가입가능한 번호입니다.");
+            					business=true;
+            				} else{
+            					alert("이미 가입된 번호입니다.");
+            					$("#hCode").select();
+            				}
+	
             			},error:function(){
             				console.log("에러")
             			}
             		});
+            		}else{
+            			alert("병원명 또는 사업자번호가 비어있습니다.")
+            			$("#hName").select();
+            		}
             	})
+            	 $("#idview").text("아이디는 영문 소문자 와 숫자만 가능합니다.")
+            	
+            	//유저이름
                $("#userId").on("propertychange change keyup paste input",function(){
             	   var id= $(this).val();
-            	    var regid  =/^[a-zA-Z0-9]+$/;
+            	   idCh =false;
+            	   console.log(idCh)
+            	    var regid  =/^[a-z0-9]+$/;
+            	   if(id.length >0 && id.length <6){
+            		   $("#idview").text("아이디가 짧습니다.").css("color","tomato");
+            	   }
             	 	if(id.length >5){
-	
+					
             	 	 if(!regid.test(id)){
 
-            	 		console.log("영숫자")
+            	 		$("#idview").text("사용불가능한 아이디입니다.").css("color","tomato");
             	 	}else{
             	 		$.ajax({
             	 			url:"hIdCheck.do",
@@ -361,11 +389,13 @@ hr{margin-top:0; margin-bottom:0;}
             	 			data:{userId:id},
             	 			success:function(result){
             	 				console.log(result);
-            	 				if(result >0){
-            	 					console.log("중복된 아이디가 있습니다.")
-            	 				}else{
-            	 					console.log("회원가입 가능")
+            	 				if(result ==0 ){
+            	 					console.log("회원가입 가능");
+            	 					idCh= true;
+            	 					  $("#idview").text("가입가능한 아이디입니다.").css("color","green");
             	 					//아이디 가능 체크
+            	 				}else{
+            	 					$("#idview").text("중복된 아이디입니다.").css("color","tomato");
             	 				}
             	 			},
             	 			error:function(){
@@ -377,9 +407,21 @@ hr{margin-top:0; margin-bottom:0;}
                });
             //이메일 인증
             
+                  $("#hMail").on("propertychange change keyup paste input",function(){
+            	emCh = false;
+            	
+            });
+            
                 $('#email').click(function(){
                 	//이메일 확인
-                	 var email=$("#hmail").val();
+                	 var email=$("#hMail").val();
+     			  	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+     			  	if(!regExp.test(email)){
+     			  		alert('메일형식을 확인해주세요');
+     			  		$("#hMail").select();
+     			  		return false;
+     			  		
+     			  	}
                 	$.ajax({
                 		url:"checkHemail.do",
                 		
@@ -393,7 +435,8 @@ hr{margin-top:0; margin-bottom:0;}
                          			url:"sendCode.do",
                          			type:"post",
                          			data:{email:email},
-                         			success:function(){
+                         			success:function(data){
+                         				alert("메일을 보냈습니다.");
                          				$("#codeChk").click(function(){
                          					$.ajax({
                          						url:"codeCheck.do",
@@ -402,9 +445,10 @@ hr{margin-top:0; margin-bottom:0;}
                          						success:function(result){
                          							console.log(result);
                          							if(result != ""){
-                         								console.log("맞아요")
+                         								alert("확인완료");
+                         								emCh = true;
                          							}else{
-                         								console.log("아니요")
+                         								alert("코드를 다시 확인해주세요");
                          							}
                          							
                          						},error:function(){
@@ -447,6 +491,9 @@ hr{margin-top:0; margin-bottom:0;}
             	}
        		
             function check(){
+            	
+            	console.log(idCh);
+            	console.log(emCh);
             	//특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
             	var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
@@ -458,19 +505,34 @@ hr{margin-top:0; margin-bottom:0;}
             	
             	if($("#pwd").val() !=$("#pwd2").val()){
             		alert("비밀번호가 다릅니다.")
-            		$("pwd").focus();
+            		$("#pwd").select();
             		return false;
             	}
-            	if(1!= 1){
-            		//아이디 중복 체크 확인
+            	 if(!business){
+            		alert("병원명과 사업자번호를 확인해주세요");
+            		$("#hCode").select();
+            		return false;
+            	} 
+            	
+            	if(!idCh){
+            		alert("아이디 중복을 확인해주세요.")
+            		$("#userId").select();
             		return false;
             	}
             	
-            	if(2!=2){
-            		//이메일 코드확인
+            	if(!emCh){
+            		alert("이메일 인증을 진행해주세요.")
+            		$("#hMail").select();
             		return false;
             	}
-            	//상호명 + 주소 체크 확인
+            	
+            	if($("#add1").val()==""){
+            		alert("주소를 입력해주세요");
+            		return false
+            	}
+            	
+            
+            	
             	return true;
             }
             	

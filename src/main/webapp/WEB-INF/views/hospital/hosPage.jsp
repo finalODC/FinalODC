@@ -86,17 +86,17 @@
                 <div class="col-md-8 order-md-1" id="aaa">
                     <h4 class="mb-3">개인정보 변경</h4>
                     <hr>
-						<form action="hosupdate.ho" method="post" id="joinForm">
+						<!-- <form action="hosupdate.ho" method="post" id="joinForm"> -->
 
                         <div class="mb-3">
 
                             <label for="username">아이디</label> <input type="text" class="form-control"
-                                style="width: 30%;" id="hosName" placeholder="hosName" value="${ loginUser.userId }" readonly>
+                                style="width: 30%;" id="userId" placeholder="hosName" value="${ loginUser.userId }" readonly>
                         </div>
                         <br>
                         <div class="mb-3">
                             <label>변경할 비밀번호</label> <span>[영문대소문자,특수문자(!@#$%*)사용가능,
-                                8자 이상]</span> <input type="password" class="form-control" style="width: 30%;" id="pwd">
+                                8자 이상]</span> <input type="password" class="form-control" style="width: 30%;" id="pwd1">
                         </div>
 
                         <div class="mb-3">
@@ -139,15 +139,10 @@
                         </div> -->
                         
                         
-                    <button class="btn btn-primary btn-lg" type="submit">확인</button>
+                    <input  class="btn btn-primary btn-lg" id="hosupdate" type="submit" value="변경하기">
 
-                    </form>
+                    <!-- </form> -->
                 </div>
-
-
-
-
-
             </div>
 
         </div>
@@ -157,6 +152,37 @@
     </div>
     </div>
 
+	<script>
+		$('#hosupdate').click(function() {
+			var pwd1 = $('#pwd1').val();
+			var pwd2 = $('#pwd2').val();
+			var phone = $('#phone').val();
+			console.log("aaaa");
+			console.log(pwd2)
+			if (pwd1 != pwd2) {
+				alert('비밀번호를 다시 확인해 주세요');
+				return false;
+			}
+
+			$.ajax({
+				url : "hosupdate.ho",
+				type : "post",
+				data : {
+					userId: '${loginUser.userId}',
+					hPhone:phone,
+					userPwd:pwd2
+				},success:function(data){
+					if(data==1){
+						alert('비밀번호가 변경되었습니다');
+						location.href="info.ho";
+					}
+				},error:function(){
+				
+				}
+			})
+
+		});
+	</script>
 
     <!-- Footer -->
     <footer class="sticky-footer bg-white">

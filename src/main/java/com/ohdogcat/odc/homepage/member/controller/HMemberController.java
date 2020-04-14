@@ -88,7 +88,7 @@ public class HMemberController {
 	 * @throws UnsupportedEncodingException 
 	 */
 	@ResponseBody
-	@RequestMapping(value ="hBusiness.do" , produces="text/plain;charset=UTF-8")
+	@RequestMapping(value ="hBusiness.do")
 	public String checkBusiness(String hCode )  {
 		String result ="";
 		

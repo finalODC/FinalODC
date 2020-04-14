@@ -16,7 +16,7 @@ public class MemberServiceImpl2 implements MemberService2 {
 	
 
 	@Override
-	public int checkEmail(String email) {
+	public String checkEmail(String email) {
 		return mDao2.checkEmail(email);
 	}
 
@@ -35,6 +35,6 @@ public class MemberServiceImpl2 implements MemberService2 {
 	}
 
 
-
+	
 
 }

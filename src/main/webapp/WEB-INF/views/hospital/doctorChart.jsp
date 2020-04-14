@@ -109,7 +109,27 @@
 
             <!-- Content Row -->
             <div class="row">
-
+			<div>
+			
+				<select id="doctorlist"></select>
+			</div>
+			<script>
+				$(function(){
+					$.ajax({
+						url:"doctorlist.do",
+						type:"post",
+						data:{hId:${loginUser.hId}},
+						success:function(data){
+							for(var i in data){
+								$("#doctorlist").append($("option").value(data["dId"]).text(data["docName"]));
+							}
+						},
+						error:function(){
+							alert("에러");
+						}
+					})
+				});
+			</script>
               <!-- Content Column -->
               <div class="col-lg-6 mb-4">
 				
@@ -119,10 +139,11 @@
                     <h6 class="m-0 font-weight-bold text-primary">Information</h6>
                     
                     <input type="text" placeholder="휴대폰 번호 입력">
-                    <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"  style="height: 30px; margin-bottom:4px;">
+                    <button type="button" id="phoneNumber" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"  style="height: 30px; margin-bottom:4px;">
               		        검색
                     </button>
-                  
+                  	
+                  	
                     <!-- The Modal -->
                     <div class="modal fade" id="myModal">
                       <div class="modal-dialog">

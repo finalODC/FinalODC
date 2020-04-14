@@ -33,6 +33,27 @@ public class BoardDao {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeList",null,rowBounds);
 	}
+
+
+
+	public int FreeBoardInsert(FreeBoard fb) {
+
+		return sqlSession.insert("boardMapper.FreeBoardInsert",fb);
+	}
+
+
+
+	public FreeBoard selectFreeBoard(int fbId) {
+
+		return sqlSession.selectOne("boardMapper.selectFreeBoard",fbId);
+	}
+
+
+
+	public int updateCount(int fbId) {
+		
+		return sqlSession.update("boarderMapper.updateCount",fbId);
+	}
 	
 	
 	

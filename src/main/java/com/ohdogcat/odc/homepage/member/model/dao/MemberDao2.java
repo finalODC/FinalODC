@@ -14,7 +14,7 @@ public class MemberDao2 {
 	SqlSessionTemplate sqlSession;
 	
 	
-	public int checkEmail(String email) {
+	public String checkEmail(String email) {
 		return sqlSession.selectOne("memberMapper2.checkemail",email);
 	}
 	

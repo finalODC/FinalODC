@@ -196,48 +196,26 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>강아지는 역시</td>
-								<td>포메리안</td>
-								<td>20/04/06</td>
-								<td>4</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>요즘 저희 강아지가털이 많이빠져요</td>
-								<td>tlqkrus123</td>
-								<td>20/04/06</td>
-								<td>48</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>사랑스러운 우리 애</td>
-								<td>wlsehtro</td>
-								<td>20/04/06</td>
-								<td>75</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>저희애가 요즘 하악질을 많이하는데요...</td>
-								<td>ajsclzls</td>
-								<td>20/04/06</td>
-								<td>5</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>요즘 어던 사료가 제일</td>
-								<td>삽살개</td>
-								<td>20/04/06</td>
-								<td>84</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>크림히어로즈에 나오는 루루가</td>
-								<td>루루</td>
-								<td>20/04/06</td>
-								<td>2</td>
-							</tr>
+						
+							
+							<c:forEach var="fb" items="${list}" >	
+								<tr>
+									<td>${fb.fbId}</td>
+									<td>
+										<c:url var="FBviewDetail" value="FBviewDetail.bo">
+										
+										<c:param name="fbId" value="${fb.fbTitle}"/>
+										<c:param name="currentPage" value="${pi.currentPage }"/>
+										</c:url>
+										
+										<a href="${FBviewDetail}">${fb.fbTitle}</a>
+									</td>
+									<td>${fb.fbWriter }</td>
+									<td>${fb.fbCreatedate }</td>
+									<td>${fb.fbCount }</td>
+									
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 						
@@ -314,7 +292,9 @@
 					</div>
 					<br> <br>
 					
-					<button align="right">글쓰기</button>
+					<%-- <c:if test="${!empty sessionScope.loginUser }"> --%>
+						<button onclick="location.href='FBinsertView.bo'" align="right">글쓰기</button>
+					<%-- </c:if> --%>
 				</div>
 
 			</div>
@@ -350,6 +330,11 @@
 	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
 
 	<script src="${path }/resources/js/main.js"></script>
+	
+	<script>
+	
+
+	</script>
 </body>
 
 

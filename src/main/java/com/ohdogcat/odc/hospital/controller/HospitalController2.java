@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,8 +29,12 @@ import com.ohdogcat.odc.hospital.model.vo.hoReply;
 @Controller
 public class HospitalController2 {
 
+	@Autowired
 	private HospitalService2 hService2;
-
+	
+	@Autowired
+	private BCryptPasswordEncoder be;
+	
 	@RequestMapping("info.ho")
 	public String goInfo() {
 		return "hospital";
@@ -39,7 +45,8 @@ public class HospitalController2 {
 		return "hosPage";
 	}
 
-	@RequestMapping("hinsert.ho")
+	
+	@RequestMapping("hupdate.ho")
 	public String insertHospital(HMember hm, HttpServletRequest request,
 			@RequestParam(name="uploadFile", required=false) MultipartFile file) {
 
@@ -52,12 +59,12 @@ public class HospitalController2 {
 			}
 		}
 
-		int result = hService2.hinsert(hm);
+		int result = hService2.hupdate(hm);
 
 		if(result > 0) {
-			return "redirect:hosp.ho";
+			return "redirect:hosP.ho";
 		} else {
-			return "redirect:info.ho";
+			return "homepage/h_index.jsp";
 		}
 	}
 
@@ -92,19 +99,45 @@ public class HospitalController2 {
 
 		return renameFileName;
 	}
-
+	
 	@RequestMapping("hosupdate.ho")
-	public String hosUpdate(HMember hm, Model model) {
+	public String hosupdate( HMember hm) {
+
 		
-		int result = hService2.hosUpdate(hm);
+		
+		
+		System.out.println(hm);
+		int result = hService2.hosupdate(hm);
+		
+		return Integer.valueOf(result).toString();
+		
+	}
+
+	@RequestMapping("hrList.ho")
+	public void getReplyList(HttpServletResponse response, int hId) throws JsonIOException, IOException {
+
+		ArrayList<hoReply> hrList = hService2.selectReplyList(hId);
+
+		response.setContentType("application/json; charset=utf-8");
+
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
+		gson.toJson(hrList, response.getWriter());
+	}
+	
+	@RequestMapping("addReply.ho")
+	@ResponseBody
+	public String addReply(hoReply hr) {
+		
+		int result = hService2.insertReply(hr);
 		
 		if(result > 0) {
-			model.addAttribute("loginUser", hm);
-			return "redirect:info.ho";
+			return "success";
 		} else {
-			model.addAttribute("msg","정보 변경 실패");
-			return "redirect:hosP.ho";
+			return "fail";
 		}
 	}
+	
+	
 	
 }

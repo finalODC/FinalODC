@@ -19,17 +19,36 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	 * 병원 정보 입력
 	 */
 	@Override
-	public int hinsert(HMember hm) {
+	public int hupdate(HMember hm) {
 		
-		return hoDao2.hinsert(hm);
+		return hoDao2.hupdate(hm);
 	}
 
 	/**
 	 * 병원 계정 정보 변경
 	 */
 	@Override
-	public int hosUpdate(HMember hm) {
-		return hoDao2.hosUpdate(hm);
+	public int hosupdate(HMember hm) {
+		
+		return hoDao2.hosupdate(hm);
+	}
+
+	/**
+	 * 댓글 리스트 
+	 */
+	@Override
+	public ArrayList<hoReply> selectReplyList(int hId) {
+		
+		return hoDao2.selectReplyList(hId);
+	}
+
+	/**
+	 * 댓글 등록
+	 */
+	@Override
+	public int insertReply(hoReply hr) {
+		
+		return hoDao2.insertReply(hr);
 	}
 
 	

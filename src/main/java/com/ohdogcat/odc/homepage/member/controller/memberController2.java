@@ -27,6 +27,13 @@ public class memberController2 {
 		return "homepage/h_login2";
 	}
 	
+	@RequestMapping("idResult.do")
+	public String idResult(String userId, Model m) {
+		
+		m.addAttribute("userId",userId);
+		
+		return "homepage/h_login5";
+	}
 	
 	@RequestMapping("pwdsearch.do")
 	public String pwdsearch() {
@@ -43,14 +50,13 @@ public class memberController2 {
 	@RequestMapping("checkemail.do")
 	public String checkEmail(String email) {
 		
-		int result = mService2.checkEmail(email);
-		System.out.println(email);
-		if(result>0) {
-			return "ok";
-		}else {
-			return "fail";
-		}
+		String userId = mService2.checkEmail(email);
 		
+		
+		System.out.println(email);
+		System.out.println(userId);
+		
+		return userId;
 		
 	}
 	
@@ -88,6 +94,11 @@ public class memberController2 {
 		
 		return Integer.valueOf(result).toString();
 	}
+	
+	
+	
+	
+	
 	
 	
 	
