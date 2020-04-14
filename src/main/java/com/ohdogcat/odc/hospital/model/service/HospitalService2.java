@@ -20,7 +20,7 @@ public interface HospitalService2 {
 	 * @param hm
 	 * @return
 	 */
-	int hosUpdate(HMember hm);
+	int hosupdate(HMember hm);
 
 	/**
 	 * 댓글 리스트

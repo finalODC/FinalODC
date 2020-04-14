@@ -28,9 +28,9 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	 * 병원 계정 정보 변경
 	 */
 	@Override
-	public int hosUpdate(HMember hm) {
+	public int hosupdate(HMember hm) {
 		
-		return hoDao2.hosUpdate(hm);
+		return hoDao2.hosupdate(hm);
 	}
 
 	/**

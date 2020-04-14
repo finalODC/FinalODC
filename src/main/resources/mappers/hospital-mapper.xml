@@ -45,9 +45,9 @@
  	
  	
  	<!-- 병원 계정 정보 변경 -->
- 	<update id="hosUpdate" parameterType="HMember">
+ 	<update id="hosupdate" parameterType="HMember">
  		UPDATE HOSPITAL 
- 		SET USERPWD=#{userPwd}, H_ADDRESS=#{hAddress}, H_MODIFY_DATE=SYSDATE
+ 		SET USERPWD=#{userPwd},H_PHONE=#{hPhone},H_MODIFY_DATE=SYSDATE
 		WHERE USERID=#{userId}
  	</update>
  	

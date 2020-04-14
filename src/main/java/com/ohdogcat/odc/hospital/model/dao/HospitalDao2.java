@@ -15,7 +15,7 @@ import com.ohdogcat.odc.hospital.model.vo.hoReply;
 public class HospitalDao2 {
 	
 	@Autowired
-	private SqlSessionTemplate sqlSession;
+	SqlSessionTemplate sqlSession;
 
 	/**
 	 * 병원 정보 입력
@@ -32,9 +32,9 @@ public class HospitalDao2 {
 	 * @param hm
 	 * @return
 	 */
-	public int hosUpdate(HMember hm) {
+	public int hosupdate(HMember hm) {
 		
-		return sqlSession.update("hospitalMapper.hosUpdate", hm);
+		return sqlSession.update("hospitalMapper.hosupdate", hm);
 	}
 
 	/**
