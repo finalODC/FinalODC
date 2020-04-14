@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Pet {
 	int pid;
 	String pCode;
+	String pName;
 	int ref_mid;
 	String pSpecies;//개 고양이
 	String breed;//종
@@ -19,11 +20,12 @@ public class Pet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Pet(int pid, String pCode, int ref_mid, String pSpecies, String breed, String pGender, Date pBirth,
-			char neutralYN, String pUniqueness, Date p_Create_Date, Date p_Modify_Date, String pStatus) {
+	public Pet(int pid, String pCode, String pName, int ref_mid, String pSpecies, String breed, String pGender,
+			Date pBirth, char neutralYN, String pUniqueness, Date p_Create_Date, Date p_Modify_Date, String pStatus) {
 		super();
 		this.pid = pid;
 		this.pCode = pCode;
+		this.pName = pName;
 		this.ref_mid = ref_mid;
 		this.pSpecies = pSpecies;
 		this.breed = breed;
@@ -46,6 +48,12 @@ public class Pet {
 	}
 	public void setpCode(String pCode) {
 		this.pCode = pCode;
+	}
+	public String getpName() {
+		return pName;
+	}
+	public void setpName(String pName) {
+		this.pName = pName;
 	}
 	public int getRef_mid() {
 		return ref_mid;
@@ -109,10 +117,11 @@ public class Pet {
 	}
 	@Override
 	public String toString() {
-		return "Pet [pid=" + pid + ", pCode=" + pCode + ", ref_mid=" + ref_mid + ", pSpecies=" + pSpecies + ", breed="
-				+ breed + ", pGender=" + pGender + ", pBirth=" + pBirth + ", neutralYN=" + neutralYN + ", pUniqueness="
-				+ pUniqueness + ", p_Create_Date=" + p_Create_Date + ", p_Modify_Date=" + p_Modify_Date + ", pStatus="
-				+ pStatus + "]";
+		return "Pet [pid=" + pid + ", pCode=" + pCode + ", pName=" + pName + ", ref_mid=" + ref_mid + ", pSpecies="
+				+ pSpecies + ", breed=" + breed + ", pGender=" + pGender + ", pBirth=" + pBirth + ", neutralYN="
+				+ neutralYN + ", pUniqueness=" + pUniqueness + ", p_Create_Date=" + p_Create_Date + ", p_Modify_Date="
+				+ p_Modify_Date + ", pStatus=" + pStatus + "]";
 	}
+	
 	
 }

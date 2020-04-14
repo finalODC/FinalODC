@@ -40,12 +40,12 @@
 	margin-left: 10%;
 }
 
-#choiceDog {
+#insertDog {
 	background-image:
 		url(https://post-phinf.pstatic.net/MjAxNzA5MjBfMjI1/MDAxNTA1ODg0NjMyNDgw.9GzMHmgvTppZHJAb2BOq1pdQJQqX79NTv003csX-Q6cg.k88VnGh5SQbQiZkDllPRYrmX0kWu1kd0u3CsqWPkfRsg.PNG/20170920_134618.png?type=w1200);
 }
 
-#choiceCat {
+#insertCat {
 	background-image:
 		url("http://cdn.ppomppu.co.kr/zboard/data3/2019/0910/m_20190910001740_upyzieih.jpeg");
 }
@@ -82,35 +82,20 @@
 							<hr>
 
 
-							<table class="table table-striped table-hover"
+							<table id="petlist" class="table table-striped table-hover"
 								style="width: 100%;">
 								<thead>
 									<tr>
-										<th>사진</th>
+										<th>이름</th>
 										<th>등록번호</th>
 										<th>분류</th>
-										<th>이름</th>
+										<th>성별</th>
 										<th>출생년월</th>
 
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>뭐가들어갈까룽</td>
-										<td>B165486135424</td>
-										<td>웰시코기</td>
-										<td>상두</td>
-										<td>2016-08</td>
-									</tr>
-									<tr>
-										<td>뭐가들어갈까룽</td>
-										<td>B165486135424</td>
-										<td>웰시코기</td>
-										<td>상두</td>
-										<td>2016-08-16</td>
-
-
-									</tr>
+									
 									<!-- <tr>
 								
 									<div style="width: 100%; height: 100px; background:red">사진이 들어감</div>
@@ -122,12 +107,14 @@
 
 							</table>
 							<hr>
-							<div id="choiceDog"
+							<div id="insertDog"
 								style="width: 600px; height: 300px; margin-top: 30px; margin-left: 50px; margin-right: 30px;">
-								</div><h2 align="center">반려견 등록하시개</h2>
-							<div id="choiceCat"
+							</div>
+							<h2 align="center">반려견 등록하시개</h2>
+							<div id="insertCat"
 								style="width: 600px; height: 300px; margin-top: 30px; margin-left: 50px; margin-right: 30px;">
-								</div><h2 align="center">반려묘 등록하자냥</h2>
+							</div>
+							<h2 align="center">반려묘 등록하자냥</h2>
 							<hr>
 						</div>
 					</div>
@@ -166,7 +153,7 @@
 	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
 
 	<script src="${path }/resources/js/main.js"></script>
-	
+
 	<script>
 		$(function(){
 			alert("Hi");
@@ -175,15 +162,44 @@
 		
 		function myPetList(){
 			$.ajax({
-				url:"myPetList.pe",
+				url:"mypetlist.pe",
 				dataType:"json",
+				data:{mId:${loginUser.mId}},
 				success:function(data){
 					console.log(data);
+					console.log(data[0].pName)
+					$tableBody=$("#petlist tbody");
+					$tableBody.html("");
+					
+					for(var i in data){
+						var $tr=$("<tr>");
+						var $pName=$("<td>").text(data[i].pName);
+						var $pCode=$("<td>").text(data[i].pCode);
+						var $pBreed=$("<td>").text(data[i].breed);
+						var $pGender=$("<td>").text(data[i].pGender);
+						var $pBirth=$("<td>").text(data[i].pBirth);
+					
+						$tr.append($pName);
+						$tr.append($pCode);
+						$tr.append($pBreed);
+						$tr.append($pGender);
+						$tr.append($pBirth);
+						
+						$tableBody.append($tr);
+					}
 				},error:function(){
 					alert("실패");
 				}
 			});
 		}
+		
+		$("#insertDog").click(function(){
+			location.href="signinPage.pe?pSpecies=dog";
+		});
+		
+		$("#insertCat").click(function(){
+			location.href="signinPage.pe?pSpecies=cat";
+		});
 	</script>
 
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -336,7 +337,8 @@ body {
 	</header  class="masthead">
 
 
-
+	<form action="inserPet.pe" method="get">
+	<input type="hidden" name="pSpecies" value="${pSpecies }" >
 	<div class='signup-container' style="margin-top: 109px;">
 		<div class='left-container'>
 			<h1>
@@ -353,13 +355,13 @@ body {
 				<h1>내 반려동물을 등록해주세요!</h1>
 				<div class='set'>
 					<div class='pets-name'>
-						<label for='pets-name'>*Name</label> <input id='pets-name'
+						<label for='pets-name'>*이름</label> <input id='pets-name' name="pName"
 							placeholder="Pet's name" type='text'>
 					</div>
 					<div class='pets-photo'>
 						<div class='pets-name'>
-							<label for='pets-name'>*CODE</label> <input id='pets-name'
-								placeholder="Pet's Code" type='text'>
+							<label for='pets-name'>*등록번호</label> <input id='pets-name' name="pCode"
+								placeholder="진료에 필요합니다!" type='text'>
 							<!-- <button width='75px'>고양이</button>
                 <button>강아지</button> -->
 						</div>
@@ -371,17 +373,17 @@ body {
 				</div>
 				<div class='set'>
 					<div class='pets-breed'>
-						<label for='pets-breed'>Breed</label> <input id='pets-breed'
+						<label for='pets-breed'>견종*묘종</label> <input id='pets-breed' name="breed"
 							placeholder="Pet's breed" type='text'>
 					</div>
 					<div class='pets-birthday'>
-						<label for='pets-birthday'>*Birthday</label> <input
-							id='pets-birthday' placeholder='YYYY/MM' type='text'>
+						<label for='pets-birthday'>*출생년월</label> 
+						<input id='pets-birthday' name="pBirth" placeholder='YYYY/MM' type='text'>
 					</div>
 				</div>
 				<div class='set'>
 					<div class='pets-gender'>
-						<label for='pet-gender-female'>Gender</label>
+						<label for='pet-gender-female'>성별</label>
 						<div class='radio-container'>
 							<input checked='' id='pet-gender-female' name='pet-gender'
 								type='radio' value='female'> <label
@@ -391,12 +393,12 @@ body {
 						</div>
 					</div>
 					<div class='pets-spayed-neutered'>
-						<label for='pet-spayed'>Spayed or Neutered</label>
+						<label for='pet-spayed'>중성화여부</label>
 						<div class='radio-container'>
-							<input checked='' id='pet-spayed' name='spayed-neutered'
-								type='radio' value='spayed'> <label for='pet-spayed'>Spayed</label>
-							<input id='pet-neutered' name='spayed-neutered' type='radio'
-								value='neutered'> <label for='pet-neutered'>Neutered</label>
+							<input checked='' id='pet-spayed' name='spayed-neutered neutralYN'
+								type='radio' value='Y'> <label for='pet-spayed'>Yes</label>
+							<input id='pet-neutered' name='spayed-neutered neutralYN' type='radio'
+								value='N'> <label for='pet-neutered'>No</label>
 						</div>
 					</div>
 				</div>
@@ -404,28 +406,30 @@ body {
 					<label for='pet-weight-0-25'>Weight</label>
 					<div class='radio-container'>
 						<input checked='' id='pet-weight-0-25' name='pet-weight'
-							type='radio' value='0-25'> <label for='pet-weight-0-25'>0-8kg</label>
+							type='radio' value='0-8'> <label for='pet-weight-0-25'>0-8kg</label>
 						<input id='pet-weight-25-50' name='pet-weight' type='radio'
-							value='25-50'> <label for='pet-weight-25-50'>9-15kg</label>
+							value='9-15'> <label for='pet-weight-25-50'>9-15kg</label>
 						<input id='pet-weight-50-100' name='pet-weight' type='radio'
-							value='50-100'> <label for='pet-weight-50-100'>16-40kg</label>
+							value='16-40'> <label for='pet-weight-50-100'>16-40kg</label>
 						<input id='pet-weight-100-plus' name='pet-weight' type='radio'
-							value='100+'> <label for='pet-weight-100-plus'>40kg+</label>
+							value='40+'> <label for='pet-weight-100-plus'>40kg+</label>
 					</div>
 				</div>
 				<div class='pets-weight'>
 					<label for='pet-weight-0-25'>특이사항</label>
 					<div class='radio-container'>
-						<textarea name="special" id="spc" style="resize: none;" cols="55"
+						<textarea name="pUniqueness" id="spc" style="resize: none;" cols="55"
 							rows="12" placeholder="알러지 유무와 같은 특이사항을 입력해주세요"></textarea>
 					</div>
 				</div>
 
-				<button class="btn next_btn">NEXT</button>
+				<button class="btn next_btn" type="submit">NEXT</button>
 			</header>
 
 		</div>
 	</div>
+	</form>
+	
 
 
 	<div class="footer" style="width: 100%;">
@@ -450,6 +454,7 @@ body {
 	<script src="js/jquery.slicknav.min.js"></script>
 	<script src="js/jquery.magnific-popup.min.js"></script>
 	<script src="js/main.js"></script>
+	
 </body>
 
 

@@ -15,6 +15,7 @@
 		<typeAlias type="com.ohdogcat.odc.board.model.vo.FreeBoard" alias="FBoard"/>
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.hoReply" alias="hoReply"/>
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.Doctor" alias="Doctor"/>
+		<typeAlias type="com.ohdogcat.odc.pet.model.vo.Pet" alias="Pet"/>
 	</typeAliases>
 	
 	<!-- mappers -->
@@ -26,6 +27,7 @@
 		<mapper resource="mappers/manageMember-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/member-mapper2.xml"/>
+		<mapper resource="mappers/pet-mapper.xml"/>
 	</mappers>
 	
 	

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="PetMapper">
+	<resultMap type="Pet" id="petResultSet">
+		<id property="pid" column="PID"/>
+		<result property="pCode" column="P_CODE"/>
+		<result property="pName" column="P_NAME"/>
+		<result property="ref_mid" column="REF_MID"/>
+		<result property="pSpecies" column="P_SPECIES"/>
+		<result property="breed" column="P_BREED"/>
+		<result property="pGender" column="P_GENDER"/>
+		<result property="pBirth" column="P_BIRTH"/>
+		<result property="neutralYN" column="NEUTRAL"/>
+		<result property="pUniqueness" column="P_UNIQUENESS"/>
+		<result property="p_Create_Date" column="P_CREATE_DATE"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="pStatus" column="P_STATUS"/>
+	</resultMap>
+
+	<select id="selectMyPetList" resultMap="petResultSet" parameterType="_int">
+		SELECT *
+		FROM PET
+		WHERE REF_MID=#{mId}
+		AND P_STATUS='NORMAL'
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+   
+
