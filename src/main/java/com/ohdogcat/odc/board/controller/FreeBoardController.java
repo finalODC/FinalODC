@@ -2,6 +2,8 @@ package com.ohdogcat.odc.board.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,13 +35,32 @@ public class FreeBoardController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
 		
-		ArrayList<FreeBoard> list = bService.selectFreeList(pi);
+		ArrayList<FreeBoard> FBlist = bService.selectFreeList(pi);
 		
-		mv.addObject("list",list);
+		System.out.println("FBlist : " +  FBlist);
+		
+		mv.addObject("list",FBlist);
 		mv.addObject("pi",pi);
 		mv.setViewName("BoardPageFree");
 		
 		return mv;
 	}
 	
+	@RequestMapping("FBinsertView.bo")
+	public String FreeBoardView() {
+		return "BoardPageWriter";
+	}
+	
+	
+	@RequestMapping("FBinsert.bo")
+	public String FreeBoardInsert(FreeBoard fb,HttpServletRequest request) {
+		int result = bService.FreeBoardInsert(fb);
+		
+		System.out.println("인설트 값 : " + fb);
+		if(result > 0) {
+			return "redirect:FBlist.bo";
+		}else {
+			return "";
+		}
+	}
 }

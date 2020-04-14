@@ -8,16 +8,20 @@
 <resultMap id="FreeBoardResultSet" type="FBoard">
 	<id property="fbId" column="FBID"/>
 	<result property="fbTitle" column="F_BTITLE"/>
-	<result property="fbWriter;" column="F_BWRITER"/>
-	<result property="fbContent;" column="F_BCONTENT"/>
-	<result property="fbCount;" column="F_BCOUNT"/>
-	<result property="fbCreatedate;" column="FB_CREATE_DATE"/>
-	<result property="fbModifydate;" column="FB_MODIFY_DATE"/>
-	<result property="fbType;" column="FB_TYPE"/>
-	<result property="fbStatus;" column="FB_STATUS"/>
-	<result property="Category;" column="CATEGORY"/>
-	<result property="Complain;" column="COMPLAIN"/>
+	<result property="fbWriter" column="F_BWRITER"/>
+	<result property="fbContent" column="F_BCONTENT"/>
+	<result property="fbCount" column="F_BCOUNT"/>
+	<result property="fbCreatedate" column="FB_CREATE_DATE"/>
+	<result property="fbModifydate" column="FB_MODIFY_DATE"/>
+	<result property="fbType" column="FB_TYPE"/>
+	<result property="fbStatus" column="FB_STATUS"/>
+	<result property="Category" column="CATEGORY"/>
+	<result property="Complain" column="COMPLAIN"/>
 </resultMap>
+
+
+
+
 
 
 
@@ -36,90 +40,10 @@
 	ORDER BY FBID DESC
 </select>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<insert id="FreeBoardInsert" parameterType="FBoard">
+	INSERT INTO F_BOARD
+	VALUES(SEQ_FBID.NEXTVAL,#{fbTitle},#{fbWriter},#{fbContent},0,SYSDATE,SYSDATE
+	,#{fbType},'Y',#{Category},0)
+</insert><!-- 틀리면 fbStatus를 'Y'로 넣어보자 -->
 
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
