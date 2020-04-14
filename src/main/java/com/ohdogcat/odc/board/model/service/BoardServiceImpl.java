@@ -33,6 +33,19 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.FreeBoardInsert(fb);
 	}
 
+	@Override
+	public FreeBoard selectFreeBoard(int fbId) {
+		
+		int result = bDao.updateCount(fbId); //조회수 증가용
+		
+		if(result >0) {
+			
+			return bDao.selectFreeBoard(fbId);
+		}else {
+			return null;
+		}
+	}
+
 	
 	
 	

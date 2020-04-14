@@ -46,4 +46,19 @@
 	,#{fbType},'Y',#{Category},0)
 </insert><!-- 틀리면 fbStatus를 'Y'로 넣어보자 -->
 
+<select id="selectFreeBoard" resultMap="FreeBoardResultSet">
+	SELECT *
+	FROM F_BOARD
+	WHERE FBID = #{fbId}
+	AND FB_STATUS = 'Y'
+	
+</select>
+
+<update id="updateCount" parameterType="FBoard">
+	
+	UPDATE BOARD
+	SET F_BCOUNT = F_BCOUNT+1
+	WHERE FBID = #{fbId} 
+</update>
+
 </mapper>

@@ -168,7 +168,7 @@
       <div id="contents" class="col-lg-6">
 
         <br><br>
-
+		<!-- 게시판 view 에요 @@@@@@@@@@@@@@@@@@@@@@@ -->
         <h3>&nbsp;&nbsp;&nbsp;자유게시판</h3>
         <hr>
         <br><br>
@@ -176,17 +176,17 @@
                   
           <table class="table table-bordered" align="center" >
             <tr>
-              <th colspan="3"><input type="text" style="border:0px;" value="고양이가 계속 하악질해요"></th>
+              <th colspan="3"><input type="text" style="border:0px;" >${fb.fbTitle }</th>
                 
             </tr>
             <tr>
-              <td><input type="text" style="border:0px; width:100px;" value="skql123"></td>
-              <td >날짜<input type="text" style="border:0px;"  value="20/04/06"></td>
-              <td align="right"><input type="text"  style="border:0px; width:20px;" value="64" ></td>
+              <td>닉네임 | <input type="text" style="border:0px; width:100px;">${fb.fbId }</td>
+              <td >날짜 | <input type="text" style="border:0px;">${fb.fbCreatedate}</td>
+              <td align="right">조회수 | <input type="text"  style="border:0px; width:20px;" value="64" >${fb.fbCount }</td>
             </tr>
             
             <tr>
-              <td colspan="3"><input type="text"style="height: 500px; width: 920px; border:0px;" readonly></td>
+              <td colspan="3"><input type="text"style="height: 500px; width: 920px; border:0px;" readonly>${fb.fbContent }</td>
             </tr>
            
           </table>
