@@ -130,6 +130,7 @@
 	</header class="masthead">
 
 	<!--     @@@@@@@@@@@@@@@@@@@@@ 가운데 내용 @@@@@@@@@@@@@@@@@@@@@-->
+	
 	<div class="">
 
 		<div class="row">
@@ -176,12 +177,12 @@
 			<div id="contents" class="col-lg-6">
 
 				<br> <br>
-
+				<form action="FBinsert.bo" method="post" entype="multipart/form-data">
 				<h2>&nbsp;&nbsp;&nbsp;글쓰기</h2>
 
 				<br> <br>
 				<div class="container" align="right">
-
+					
 					<table class="table table-bordered" align="center">
 
 
@@ -189,16 +190,18 @@
 							<tr>
 								<th style="width: 100px;">제목</th>
 								<td><input type="text" style="border: 0px; width: 400px;"
-									placeholder="제목을 입력하세요"></td>
+									placeholder="제목을 입력하세요" name="fbTitle" ></td>
 							</tr>
 							<tr>
 								<th>아이디</th>
+								<!-- <td><input type="text" readonly name="bWriter" value="${ loginUser.id }"></td> 
+										이쪽 로그인 아이디 로 바꿔줍시다.-->
 								<td><input type="text" style="border: 0px;" value="tlqkrus"
-									readonly></td>
+									readonly name="fbWriter"></td>
 							</tr>
 							<tr>
 								<th style="width: 100px; height: 500px;">내용</th>
-								<td><textarea id="editer" rows="25" cols="100"></textarea></td>
+								<td><textarea id="editer" rows="25" cols="100" name="fbContent"></textarea></td>
 
 							</tr>
 							<tr>
@@ -209,14 +212,14 @@
 							</tr>
 						</tbody>
 					</table>
-					<button>확인</button>
-					<button>취소</button>
+					<input type="submit" value="확인">&nbsp;
+					<button href="Fblist.bo">취소</button>
 
 
 
 					<br> <Br> <br> <br> <Br> <Br> <Br>
 				</div>
-
+				</form>
 
 
 			</div>

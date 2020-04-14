@@ -27,6 +27,12 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.selectFreeList(pi);
 	}
 
+	@Override
+	public int FreeBoardInsert(FreeBoard fb) {
+		
+		return bDao.FreeBoardInsert(fb);
+	}
+
 	
 	
 	

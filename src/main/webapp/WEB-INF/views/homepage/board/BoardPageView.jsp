@@ -82,6 +82,8 @@
 
 
 <body>
+
+
   <!--@@@@@@@@@@@@@@@@@@@@@@@@@ 헤더 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
   <header class="header_section" style="background-color: #30627e;">
     <a href="" class="float-left navbar-light slicknav_menu"
@@ -251,6 +253,7 @@
       </div>
     </div>
   </div>
+  
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
 	<script src="${path }/resources/js/bootstrap.min.js"></script>
@@ -260,6 +263,7 @@
 	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
 
 	<script src="${path }/resources/js/main.js"></script>
+	
 </body>
 
 
