@@ -37,10 +37,10 @@ public class ManagerController {
 	 * 병원회원 관리
 	 * @return
 	 */
-	@RequestMapping("mHmember.ma")
-	public String HospitalMember() {
-		return "managerHospital";
-	}
+	/*
+	 * @RequestMapping("mHmember.ma") public String HospitalMember() { return
+	 * "managerHospital"; }
+	 */
 	
 	/**
 	 * @return

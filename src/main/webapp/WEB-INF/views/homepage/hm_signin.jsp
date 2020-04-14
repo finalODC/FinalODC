@@ -50,20 +50,17 @@ box-shadow: 0 0 0 0 !important;
   <div class="jumbotron" style="height: 889px; margin: 0px;">
     <div class="container">
         <br><br><br><br><br><br><br><br><br><br><br>
-      <h1>주변 동물병원을 찾아보세요!</h1>
-      <h2>가입만 하면 편하게 찾을 수 있습니다!</h2>
-
+		<h1>회원가입</h1>
+		<br><br><br><br>
         <div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 260px">
           <div class="card">
           <div class="card-body">
-            <div class="button-area d-flex justify-content-center" style="margin-top: 10%;">
-              <input id="hosbtn1" type="button" value="병원으로 로그인"  class="btn login_btn">						
-          </div>
+          <br><br>
           <div class="button-area d-flex justify-content-center" >
-              <input type="button" id="btnsign" value="일반회원 로그인" onclick="javascript:location.href='mloginp.do'" class="btn login_btn">						
+              <input type="button" id="btnsign" value="일반회원 회원가입" onclick="location.href='msignin.do'" class="btn login_btn">						
           </div>
           <div class="button-area d-flex justify-content-center">
-              <input type="button" id="btnsign" value="회원가입" onclick="location.href='gosignin.do'" class="btn login_btn" >						
+              <input type="button" id="btnsign" value="병원 회원가입" class="btn login_btn" >						
           </div>
 
             </div>
