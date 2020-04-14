@@ -261,18 +261,18 @@ vertical-align: middle;}
 						<div class="iconArea">
                            
                             <p class="txt"><Strong class="black">
-								고객님의 아이디는 ***** 입니다.</Strong></p>
+								고객님의 아이디는 ${userId } 입니다.</Strong></p>
 							<p class="txtmt">이용해주셔서 감사합니다.</p>
 							
 						</div>
 						<div class="btnWrap">
-							<input type="submit" value="비밀번호찾으러가기" class="btn login_btn">
+							<input type="button" id="goPwd" value="비밀번호찾으러가기" class="btn login_btn">
 						</div>
 					</div>
 				</div>
 			<div class="btna">
-				<a href="">로그인</a>
-				<a href="">회원가입</a>
+				<a href="mloginp.do">로그인</a>
+				<a href="msignin.do">회원가입</a>
 
 			</div>
 			<div id="footer">
@@ -296,6 +296,17 @@ vertical-align: middle;}
 	</div>
 	</div>	
 		
+		
+		<script>
+			$('#goPwd').click(function(){
+				location.href="pwdsearch.do";
+				
+				
+			})
+		
+		
+		
+		</script>
 </div>
 </body>
 </html>

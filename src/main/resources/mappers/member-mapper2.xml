@@ -20,11 +20,10 @@
 	
 	
 	
-	<select id="checkemail" resultType="_int">
-		SELECT COUNT(*)
+	<select id="checkemail" resultType="String">
+		SELECT USERID
 		FROM MEMBER
 		WHERE EMAIL=#{email}
-		AND USERID=#{userId}
 		
 	</select>
 	

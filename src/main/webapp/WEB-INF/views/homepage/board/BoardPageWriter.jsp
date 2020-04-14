@@ -172,12 +172,12 @@
 
 				</div>
 			</div>
-
+			<!-- ===================== 글작성 ========================== -->
 
 			<div id="contents" class="col-lg-6">
 
 				<br> <br>
-				<form action="FBinsert.bo" method="post" entype="multipart/form-data">
+				<form action="FBinsert.bo" method="post" entype="multipart/form-data" id="insertView">
 				<h2>&nbsp;&nbsp;&nbsp;글쓰기</h2>
 
 				<br> <br>
@@ -212,8 +212,8 @@
 							</tr>
 						</tbody>
 					</table>
-					<input type="submit" value="확인">&nbsp;
-					<button href="Fblist.bo">취소</button>
+					<input type="button" id="boardEnter" value="확인" href="Fblist.bo">&nbsp;
+					<button type="button" onclick="gotoback()">취소</button>
 
 
 
@@ -265,7 +265,31 @@
 		 fCreator: "createSEditor2"
 		});
 	</script>
+	
+	  <script>
+     
+        $(function(){
+          //공지작성
+        
+          $("#boardEnter").click(function(){
+        	  oEditors.getById["editer"].exec("UPDATE_CONTENTS_FIELD", []);
+        	  console.log($("#editer").val());
+        	  $("#insertView").submit()
+  
+          });
 
+
+        });
+        
+        function gotoback(){
+        	
+        	location.href="cencleW.bo";
+        }
+ 
+
+      </script>
+      
+     
 
 </body>
 

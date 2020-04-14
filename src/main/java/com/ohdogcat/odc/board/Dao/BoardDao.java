@@ -40,6 +40,20 @@ public class BoardDao {
 
 		return sqlSession.insert("boardMapper.FreeBoardInsert",fb);
 	}
+
+
+
+	public FreeBoard selectFreeBoard(int fbId) {
+
+		return sqlSession.selectOne("boardMapper.selectFreeBoard",fbId);
+	}
+
+
+
+	public int updateCount(int fbId) {
+		
+		return sqlSession.update("boarderMapper.updateCount",fbId);
+	}
 	
 	
 	

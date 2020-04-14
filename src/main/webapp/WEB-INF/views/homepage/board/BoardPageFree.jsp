@@ -202,13 +202,13 @@
 								<tr>
 									<td>${fb.fbId}</td>
 									<td>
-										<%-- <c:if test="${!empty loginUser }">
-										</c:if> 
-										<c:url var="FBdetail" value="${fb.fbId }">
+										<c:url var="FBviewDetail" value="FBviewDetail.bo">
+										
 										<c:param name="fbId" value="${fb.fbTitle}"/>
 										<c:param name="currentPage" value="${pi.currentPage }"/>
-										</c:url> --%>
-										${fb.fbTitle}
+										</c:url>
+										
+										<a href="${FBviewDetail}">${fb.fbTitle}</a>
 									</td>
 									<td>${fb.fbWriter }</td>
 									<td>${fb.fbCreatedate }</td>

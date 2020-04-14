@@ -29,4 +29,12 @@ public interface BoardService {
 	 */
 	int FreeBoardInsert(FreeBoard fb);
 	
+
+	/**
+	 * 게시판 상세 보기
+	 * @param fbId
+	 * @return
+	 */
+	FreeBoard selectFreeBoard(int fbId);
+	
 }

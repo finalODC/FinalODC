@@ -26,11 +26,6 @@
 	<link href="https://fonts.googleapis.com/css?family=Cute+Font&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
-
-	
-
-
-
   <style>
 
 * {zoom:100%;}
