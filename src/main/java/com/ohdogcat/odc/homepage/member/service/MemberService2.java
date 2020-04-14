@@ -7,10 +7,12 @@ public interface MemberService2 {
 	//성근
 	
 	
-	int checkEmail(String email);
+	String checkEmail(String email);
 
 	int checkPwdEmail(Member m);
 
 	int confirmPwd(Member m);
+	
+	
 
 }
