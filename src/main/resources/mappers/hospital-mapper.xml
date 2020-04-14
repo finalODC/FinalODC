@@ -39,10 +39,9 @@
  		<result property="docStatus" column="DOC_STATUS"/>
  	</resultMap>
  	
- 	<!-- <insert id="hinsert">
- 		INSERT INTO HOSPITAL
- 		VALUES(SEQ_HID.NEXTVAL,)
- 	</insert> -->
+ 	<update id="hupdate" parameterType="HMember">
+ 		
+ 	</update>
  	
  	
  	<!-- 병원 계정 정보 변경 -->
@@ -60,14 +59,14 @@
  	<select id="selectReplyList" resultMap="hoReplyResultSet">
 		SELECT *
 		FROM H_REPLY
-		WHERE REF_HID=#{hrId}
+		WHERE REF_HID=#{hId}
 		AND HR_STATUS='Y'
 		ORDER BY RID DESC
 	</select>
 	
 	<insert id="insertReply" parameterType="hoReply">
 		INSERT INTO H_REPLY
-		VALUES(SEQ_HRID.NEXTVAL,#{hrContent},#{hrefBid},#{hrWriter},SYSDATE,SYSDATE,DEFAULT)
+		VALUES(SEQ_HRID.NEXTVAL,#{hrContent},#{hrefBid},#{hrWriter},SYSDATE,SYSDATE,NORMAL)
 	</insert>
 	
  

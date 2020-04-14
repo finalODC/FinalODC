@@ -39,7 +39,7 @@ public class HospitalController2 {
 		return "hosPage";
 	}
 
-	@RequestMapping("hinsert.ho")
+	@RequestMapping("hupdate.ho")
 	public String insertHospital(HMember hm, HttpServletRequest request,
 			@RequestParam(name="uploadFile", required=false) MultipartFile file) {
 
@@ -52,7 +52,7 @@ public class HospitalController2 {
 			}
 		}
 
-		int result = hService2.hinsert(hm);
+		int result = hService2.hupdate(hm);
 
 		if(result > 0) {
 			return "redirect:hosp.ho";
@@ -95,9 +95,9 @@ public class HospitalController2 {
 
 	@RequestMapping("hosupdate.ho")
 	public String hosUpdate(HMember hm, Model model) {
-		
+
 		int result = hService2.hosUpdate(hm);
-		
+
 		if(result > 0) {
 			model.addAttribute("loginUser", hm);
 			return "redirect:info.ho";
@@ -106,5 +106,32 @@ public class HospitalController2 {
 			return "redirect:hosP.ho";
 		}
 	}
+
+	@RequestMapping("hrList.ho")
+	public void getReplyList(HttpServletResponse response, int hId) throws JsonIOException, IOException {
+
+		ArrayList<hoReply> hrList = hService2.selectReplyList(hId);
+
+		response.setContentType("application/json; charset=utf-8");
+
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
+		gson.toJson(hrList, response.getWriter());
+	}
+	
+	@RequestMapping("addReply.ho")
+	@ResponseBody
+	public String addReply(hoReply hr) {
+		
+		int result = hService2.insertReply(hr);
+		
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	
 	
 }

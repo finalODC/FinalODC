@@ -22,9 +22,9 @@ public class HospitalDao2 {
 	 * @param hm
 	 * @return
 	 */
-	public int hinsert(HMember hm) {
+	public int hupdate(HMember hm) {
 		
-		return sqlSession.insert("hospitalMapper.hinsert", hm);
+		return sqlSession.update("hospitalMapper.hupdate", hm);
 	}
 
 	/**
@@ -35,6 +35,26 @@ public class HospitalDao2 {
 	public int hosUpdate(HMember hm) {
 		
 		return sqlSession.update("hospitalMapper.hosUpdate", hm);
+	}
+
+	/**
+	 * 댓글 리스트
+	 * @param hId
+	 * @return
+	 */
+	public ArrayList<hoReply> selectReplyList(int hId) {
+		
+		return (ArrayList)sqlSession.selectList("hospitalMapper.selectReplyList", hId);
+	}
+
+	/**
+	 * 댓글 등록
+	 * @param hr
+	 * @return
+	 */
+	public int insertReply(hoReply hr) {
+		
+		return sqlSession.insert("hospitalMapper.insertReply", hr);
 	}
 
 	

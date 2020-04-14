@@ -13,7 +13,7 @@ public interface HospitalService2 {
 	 * @param hm
 	 * @return
 	 */
-	int hinsert(HMember hm);
+	int hupdate(HMember hm);
 
 	/**
 	 * 병원 계정 정보 변경
@@ -21,5 +21,19 @@ public interface HospitalService2 {
 	 * @return
 	 */
 	int hosUpdate(HMember hm);
+
+	/**
+	 * 댓글 리스트
+	 * @param hId
+	 * @return
+	 */
+	ArrayList<hoReply> selectReplyList(int hId);
+
+	/**
+	 * 댓글 등록
+	 * @param hr
+	 * @return
+	 */
+	int insertReply(hoReply hr);
 
 }
