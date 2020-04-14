@@ -264,7 +264,7 @@ hr{margin-top:0; margin-bottom:0;}
                     	사용가능
                     </div>
                     <div class="pwdcheck error" style="margin-bottom: 40px; color: red;">
-                    	사용불가능
+                    	비밀번호를 확인해주세요!
                     </div>
                     <div class="pwdcheck short" style="margin-bottom: 40px; color: red;">
                     	비밀번호는 6자리 이상으로 해주세요!
@@ -326,25 +326,29 @@ hr{margin-top:0; margin-bottom:0;}
             /* 아이디 중복체크  */
             	$('#idcheck').click(function(){
             		
-             		$.ajax({
-            			url:"idcheck.do",
-            			data:{id:$('#userId').val()},
-            			type:"post",
-            			success:function(data){
-            				if(data == "ok"){
-            					alert("사용 가능한 아이디 입니다!");
-            					$('#idCheck').val(1);
-            				}else{
-            					alert("다른 아이디를 입력해 주세요!");
-            				}
-            				
-            			},error:function(data){
-            				alert("ajax 작동 실패!");
-            			}
-            		}); 
-
-
+            		var userId = document.getElementById('userId');
             		
+            		if(!chk(/^[a-z\d]{3,}$/, userId, "아이디는 영문 소문자만 입력해주세요, 3글자 이상 입력하세요!")){
+		                return false;
+		            }else{
+		           		$.ajax({
+	            			url:"idcheck.do",
+	            			data:{id:$('#userId').val()},
+	            			type:"post",
+	            			success:function(data){
+	            				if(data == "ok"){
+	            					alert("사용 가능한 아이디 입니다!");
+	            					$('#idCheck').val(1);
+	            				}else{
+	            					alert("다른 아이디를 입력해 주세요!");
+	            				}
+	            				
+	            			},error:function(data){
+	            				alert("ajax 작동 실패!");
+	            			}
+	            		});
+		            }
+
             	});
             	
             	/* 비밀번호 같은지 확인 */
@@ -406,7 +410,6 @@ hr{margin-top:0; margin-bottom:0;}
             	function validate() {
             		
             		var userId = document.getElementById('userId');
-
 		            
 		            if(!chk(/^[a-z\d]{3,}$/, userId, "아이디는 영문 소문자만 입력해주세요, 3글자 이상 입력하세요!")){
 		                return false;

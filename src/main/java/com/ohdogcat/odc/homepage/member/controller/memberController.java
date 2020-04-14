@@ -97,5 +97,11 @@ public class memberController {
 		
 		return "homepage/myPagePerson";
 	}
+	
+	@RequestMapping("gosignin.do")
+	public String gosignin() {
+		
+		return "homepage/hm_signin";
+	}
 
 }
