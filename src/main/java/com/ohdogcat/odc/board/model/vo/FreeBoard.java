@@ -22,7 +22,7 @@ public class FreeBoard {
 	
 	public FreeBoard() {
 		super();
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	public FreeBoard(String fbId, String fbTitle, String fbWriter, String fbContent, int fbCount, Date fbCreatedate,
@@ -136,6 +136,10 @@ public class FreeBoard {
 				+ fbModifydate + ", fbType=" + fbType + ", fbStatus=" + fbStatus + ", Category=" + Category
 				+ ", Complain=" + Complain + "]";
 	}
+	
+	
+	
+	
 	
 	
 	

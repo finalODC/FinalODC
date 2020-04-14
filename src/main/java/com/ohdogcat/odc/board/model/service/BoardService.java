@@ -22,4 +22,11 @@ public interface BoardService {
 	 */
 	ArrayList<FreeBoard> selectFreeList(PageInfo pi);
 	
+	/**
+	 * 게시판 작성
+	 * @param fb
+	 * @return
+	 */
+	int FreeBoardInsert(FreeBoard fb);
+	
 }
