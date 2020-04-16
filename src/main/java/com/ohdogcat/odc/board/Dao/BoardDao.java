@@ -52,7 +52,7 @@ public class BoardDao {
 
 	public int updateCount(int fbId) {
 		
-		return sqlSession.update("boarderMapper.updateCount",fbId);
+		return sqlSession.update("boardMapper.updateCount",fbId);
 	}
 	
 	

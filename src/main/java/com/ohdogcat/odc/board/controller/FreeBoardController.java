@@ -108,7 +108,8 @@ public class FreeBoardController {
 		FreeBoard fb = bService.selectFreeBoard(fbId);
 		
 		System.out.println("게시글 상세조회 : " +fb);
-		
+		System.out.println("mv : " + mv);
+		System.out.println("currentPage : " + currentPage);
 		if(fb != null) {
 			mv.addObject("fb",fb)
 			  .addObject("currentPage",currentPage)

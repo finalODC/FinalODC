@@ -176,17 +176,17 @@
                   
           <table class="table table-bordered" align="center" >
             <tr>
-              <th colspan="3"><input type="text" style="border:0px;" >${fb.fbTitle }</th>
+              <th colspan="3" align="left">&nbsp;&nbsp;${fb.fbTitle }<input type="text" style="border:0px;" ></th>
                 
             </tr>
             <tr>
-              <td>닉네임 | <input type="text" style="border:0px; width:100px;">${fb.fbId }</td>
-              <td >날짜 | <input type="text" style="border:0px;">${fb.fbCreatedate}</td>
-              <td align="right">조회수 | <input type="text"  style="border:0px; width:20px;" value="64" >${fb.fbCount }</td>
+              <td align="left">닉네임 &nbsp;|&nbsp;&nbsp; ${fb.fbId }<input type="text" style="border:0px; width:100px;"></td>
+              <td align="left">날짜 &nbsp;|&nbsp;&nbsp; ${fb.fbCreatedate}<input type="text" style="border:0px;" align="left"></td>
+              <td>조회수 &nbsp;|&nbsp;&nbsp; ${fb.fbCount }<input type="text"  style="border:0px; width:20px;" value="64" align="left"></td>
             </tr>
             
             <tr>
-              <td colspan="3"><input type="text"style="height: 500px; width: 920px; border:0px;" readonly>${fb.fbContent }</td>
+              <td colspan="3">${fb.fbContent }<input type="text"style="height: 500px; width: 920px; border:0px;" readonly></td>
             </tr>
            
           </table>
