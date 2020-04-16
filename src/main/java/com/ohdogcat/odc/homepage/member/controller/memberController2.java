@@ -22,11 +22,29 @@ public class memberController2 {
 	@Autowired
 	private BCryptPasswordEncoder be;
 	
+	
+	@RequestMapping("goIndex.do")
+	public String goIndex() {
+		return "homepage/h_index";
+	}
+	
+	
+	/**
+	 * 아이디 찾기 이동
+	 * @return
+	 */
 	@RequestMapping("idsearch.do")
 	public String idsearch() {
 		return "homepage/h_login2";
 	}
 	
+	
+	/**
+	 * 찾은 아이디 결과페이지로
+	 * @param userId
+	 * @param m
+	 * @return
+	 */
 	@RequestMapping("idResult.do")
 	public String idResult(String userId, Model m) {
 		
@@ -35,17 +53,32 @@ public class memberController2 {
 		return "homepage/h_login5";
 	}
 	
+	/**
+	 * 비밀번호 찾기
+	 * @return
+	 */
 	@RequestMapping("pwdsearch.do")
 	public String pwdsearch() {
 		return "homepage/h_login3";
 	}
 	
+	/**
+	 * 비밀번호 변경페이지
+	 * @param userId
+	 * @param m
+	 * @return
+	 */
 	@RequestMapping("changePwd.do")
 	public String changePwd(String userId, Model m) {
 		m.addAttribute("userId",userId);
 		return "homepage/changePwd";
 	}
 	
+	/**
+	 * 이메일 체크
+	 * @param email
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("checkemail.do")
 	public String checkEmail(String email) {
@@ -81,6 +114,12 @@ public class memberController2 {
 		return result;
 	}
 	
+	/**
+	 * 입력한 비밀번호로 변경
+	 * @param pwd
+	 * @param userId
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("confirmPwd.do")
 	public String confirmPwd(String pwd, String userId) {

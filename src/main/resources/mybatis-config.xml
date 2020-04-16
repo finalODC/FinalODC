@@ -25,6 +25,7 @@
 		<mapper resource="mappers/hmember-mapper.xml"/>
 		<mapper resource="mappers/hmanager-mapper.xml"/>
 		<mapper resource="mappers/hospital-mapper.xml"/>
+		<mapper resource="mappers/chart-mapper.xml"/>
 		<mapper resource="mappers/manageMember-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/member-mapper2.xml"/>
