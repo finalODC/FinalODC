@@ -411,6 +411,10 @@ body {
 						</div>
 					</div>
 				</div>
+				<div class="pets-weight">
+					<label>몸무게</label>
+					<input type="number" name="pWeight">
+				</div>
 				<!-- <div class='pets-weight'>
 					<label for='pet-weight-0-25'>Weight</label>
 					<div class='radio-container'>
