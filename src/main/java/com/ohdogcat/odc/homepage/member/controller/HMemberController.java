@@ -150,7 +150,7 @@ public class HMemberController {
 			
 		}
 		
-		
+		System.out.println(sb.toString());
 		m.addAttribute("code",sb.toString());
 		mailsender.mailSendWithUserKey(sb.toString(), email);
 		return "1";

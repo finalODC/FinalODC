@@ -2,7 +2,8 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="hmemberMapper">
+    
+ <mapper namespace="chart-mapper">
  	<resultMap type="HMember" id="HMemberResultMap">
  	<id property="hId" column="HID"/>
  	<result property="userId" column="USERID"/>
@@ -26,45 +27,30 @@
  		<result property="docIntro" column="DOC_INTRO"/>
  		<result property="docFile" column="DIC_FILE"/>
  		<result property="docStatus" column="DOC_STATUS"/>
- 	</resultMap>
- 	
- 	
- <select id="login" resultMap="HMemberResultMap">
- 	SELECT * FROM HOSPITAL
- 	WHERE USERID=#{userId}
- </select>	
- 
-  <select id="checkBusiness" parameterType="HMember" resultType="_int">
- 	SELECT COUNT(*) FROM HOSPITAL
- 	WHERE H_CODE = #{hCode}
- </select>	
- 
- <select id="idCount" resultType="_int">
- 	SELECT COUNT(*) FROM HOSPITAL
- 	WHERE USERID = #{userId}
- </select>
- 
- <select id="emailcheck" resultType="_int">
- 	SELECT COUNT(*) FROM HOSPITAL
- 	WHERE H_EMAIL = #{email}
- 
- </select>
- 
- 
- 
- <insert id="insertHmember" parameterType="HMember">
-  insert into hospital values
-(SEQ_HID.NEXTVAL,#{userId},#{userPwd},#{hCode},#{hName},
-#{hAddress},#{hPhone},#{hEmail},'','',SYSDATE,SYSDATE,default)
- </insert>
- 
-
-	<select id="doctorList" resultMap="DoctorResultMap">
-		SELECT DOC_NAME
-		FROM DOCTOR
-		WHERE REF_H_ID=#{hId}
-		
-		
-	</select>
- 
- </mapper>
+ 	</resultMap>  
+    
+	<resultMap type="Pet" id="petResultMap">
+		<id property="pid" column="PID"/>
+		<result property="pCode" column="P_CODE"/>
+		<result property="pName" column="P_NAME"/>
+		<result property="ref_mid" column="REF_MID"/>
+		<result property="pSpecies" column="P_SPECIES"/>
+		<result property="breed" column="P_BREED"/>
+		<result property="pGender" column="P_GENDER"/>
+		<result property="pBirth" column="P_BIRTH"/>
+		<result property="neutralYN" column="NEUTRAL"/>
+		<result property="pUniqueness" column="P_UNIQUENESS"/>
+		<result property="p_Create_Date" column="P_CREATE_DATE"/>
+		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
+		<result property="pStatus" column="P_STATUS"/>
+	</resultMap>
+    
+    
+    <select id="searchPet" resultMap="petResultMap">
+    	SELECT P_NAME,P_CODE FROM PET
+    	JOIN MEMBER ON (mId=REF_MID)
+    	WHERE PHONE=#{phone}
+    </select>
+    
+    
+    </mapper>

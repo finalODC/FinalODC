@@ -109,19 +109,30 @@
 
             <!-- Content Row -->
             <div class="row">
-			<div>
 			
-				<select id="doctorlist"></select>
+              <!-- Content Column -->
+              <div class="col-lg-6 mb-4">
+				
+                <!--동물 정보! -->
+                <div class="card shadow mb-4">
+                   <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Information</h6>
+                    <div>
+				<select id="doctorlist" >
+					<option>--진료담당자 선택--</option>
+				</select>
 			</div>
+			<br>
 			<script>
 				$(function(){
 					$.ajax({
 						url:"doctorlist.do",
 						type:"post",
-						data:{hId:${loginUser.hId}},
+						data:{hId:'${loginUser.hId}'},
 						success:function(data){
+							console.log(data)
 							for(var i in data){
-								$("#doctorlist").append($("option").value(data["dId"]).text(data["docName"]));
+								$("#doctorlist").append($("<option>").val(data[i]["docName"]).text(data[i]["docName"]));
 							}
 						},
 						error:function(){
@@ -130,18 +141,45 @@
 					})
 				});
 			</script>
-              <!-- Content Column -->
-              <div class="col-lg-6 mb-4">
-				
-                <!--동물 정보! -->
-                <div class="card shadow mb-4">
-                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Information</h6>
                     
-                    <input type="text" placeholder="휴대폰 번호 입력">
+                    <input id="phone" type="text" placeholder="휴대폰 번호 입력">
                     <button type="button" id="phoneNumber" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"  style="height: 30px; margin-bottom:4px;">
               		        검색
                     </button>
+                  	
+                  	<script>
+                  		
+                  		
+                  		$('#phoneNumber').click(function(){
+                  			var phone = $('#phone').val();
+                  			
+                  			$.ajax({
+                  				url:"searchPet.do",
+                  				type:"post",
+                  				data:{phone:phone},
+                  				success:function(data){
+                  					console.log(data);
+                  					for(var i in data){
+                  						
+                  					$("#selectPet").append($("<h4 class='pName' data-dismiss='modal'>").text(data[i]["pName"]).append($("<input type='hidden'>").val(data[i]["pCode"])))
+                  					}
+                  					
+                  					$(".pName").click(function(){
+                                		console.log($(this).find("input").val());
+                                	})
+                  					
+                  					
+                  				},error:function(){
+                  					alert('에러');
+                  				}
+                  				
+                  				
+                  			});
+                  			                 			
+                  		});           		
+                  	
+                  	
+                  	</script>
                   	
                   	
                     <!-- The Modal -->
@@ -158,11 +196,9 @@
                           <!-- Modal body -->
                           <div class="modal-body">
                             <div id="selectPet" style="text-align: center;">
-                              <h4>상두</h4>
-                              <h4>노영</h4>
+                             
                             </div>
-
-                            
+                           
                           </div>
                           
                           <!-- Modal footer -->
