@@ -26,7 +26,7 @@
           <ul class="sub-menu">
             <li><a href="mypageperson.do">정보수정</a></li>
             <li><a href="mypagepet.do">반려동물 관리</a></li>
-            <li><a href="mypageQNA.do">반려동물 관리</a></li>
+            <li><a href="mypageQNA.do">문의사항</a></li>
           </ul>
         </li>
         <!-- <li><a href="#"></a>

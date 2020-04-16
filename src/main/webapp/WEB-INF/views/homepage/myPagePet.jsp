@@ -167,7 +167,6 @@
 				data:{mId:${loginUser.mId}},
 				success:function(data){
 					console.log(data);
-					console.log(data[0].pName)
 					$tableBody=$("#petlist tbody");
 					$tableBody.html("");
 					
@@ -194,11 +193,11 @@
 		}
 		
 		$("#insertDog").click(function(){
-			location.href="signinPage.pe?pSpecies=dog";
+			location.href="signinPage.pe?pSpecies=DOG";
 		});
 		
 		$("#insertCat").click(function(){
-			location.href="signinPage.pe?pSpecies=cat";
+			location.href="signinPage.pe?pSpecies=CAT";
 		});
 	</script>
 

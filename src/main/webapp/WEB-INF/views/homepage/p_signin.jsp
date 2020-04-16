@@ -337,8 +337,8 @@ body {
 	</header  class="masthead">
 
 
+	
 	<form action="inserPet.pe" method="get">
-	<input type="hidden" name="pSpecies" value="${pSpecies }" >
 	<div class='signup-container' style="margin-top: 109px;">
 		<div class='left-container'>
 			<h1>
@@ -353,6 +353,8 @@ body {
 		<div class='right-container'>
 			<header>
 				<h1>내 반려동물을 등록해주세요!</h1>
+				<input type="hidden" name="pSpecies" value="${species }" >
+				<input type="hidden" name="ref_mid" value="${loginUser.mId }">
 				<div class='set'>
 					<div class='pets-name'>
 						<label for='pets-name'>*이름</label> <input id='pets-name' name="pName"
@@ -373,36 +375,43 @@ body {
 				</div>
 				<div class='set'>
 					<div class='pets-breed'>
-						<label for='pets-breed'>견종*묘종</label> <input id='pets-breed' name="breed"
+						
+						<c:if test="${species eq 'DOG' }">
+						<label for='pets-breed'>견종</label> <input id='pets-breed' name="breed"
 							placeholder="Pet's breed" type='text'>
+						</c:if>
+						<c:if test="${species eq 'CAT' }">
+						<label for='pets-breed'>묘종</label> <input id='pets-breed' name="breed"
+							placeholder="Pet's breed" type='text'>
+						</c:if>
 					</div>
 					<div class='pets-birthday'>
-						<label for='pets-birthday'>*출생년월</label> 
-						<input id='pets-birthday' name="pBirth" placeholder='YYYY/MM' type='text'>
+						<label for='pets-birthday'>*출생년월(월까지 입력)</label> 
+						<input id='pets-birthday' name="pBirth" placeholder='YYYY-MM' type='text'>
 					</div>
 				</div>
 				<div class='set'>
 					<div class='pets-gender'>
 						<label for='pet-gender-female'>성별</label>
 						<div class='radio-container'>
-							<input checked='' id='pet-gender-female' name='pet-gender'
-								type='radio' value='female'> <label
+							<input checked='' id='pet-gender-female' name='pGender'
+								type='radio' value='FEMAIL'> <label
 								for='pet-gender-female'>Female</label> <input
-								id='pet-gender-male' name='pet-gender' type='radio' value='male'>
+								id='pet-gender-male' name='pGender' type='radio' value='MALE'>
 							<label for='pet-gender-male'>Male</label>
 						</div>
 					</div>
 					<div class='pets-spayed-neutered'>
 						<label for='pet-spayed'>중성화여부</label>
 						<div class='radio-container'>
-							<input checked='' id='pet-spayed' name='spayed-neutered neutralYN'
+							<input checked='' id='pet-spayed' name='neutralYN'
 								type='radio' value='Y'> <label for='pet-spayed'>Yes</label>
-							<input id='pet-neutered' name='spayed-neutered neutralYN' type='radio'
+							<input id='pet-neutered' name='neutralYN' type='radio'
 								value='N'> <label for='pet-neutered'>No</label>
 						</div>
 					</div>
 				</div>
-				<div class='pets-weight'>
+				<!-- <div class='pets-weight'>
 					<label for='pet-weight-0-25'>Weight</label>
 					<div class='radio-container'>
 						<input checked='' id='pet-weight-0-25' name='pet-weight'
@@ -414,7 +423,7 @@ body {
 						<input id='pet-weight-100-plus' name='pet-weight' type='radio'
 							value='40+'> <label for='pet-weight-100-plus'>40kg+</label>
 					</div>
-				</div>
+				</div> -->
 				<div class='pets-weight'>
 					<label for='pet-weight-0-25'>특이사항</label>
 					<div class='radio-container'>
@@ -449,12 +458,20 @@ body {
 	</div>
 
 
-	<script src="js/jquery-3.2.1.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.slicknav.min.js"></script>
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/main.js"></script>
-	
+	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+
+	<script src="${path }/resources/js/bootstrap.min.js"></script>
+
+	<script src="${path }/resources/js/jquery.slicknav.min.js"></script>
+
+	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
+
+	<script src="${path }/resources/js/main.js"></script>
+	<script>
+		$(function(){
+			alert("${species}");
+		});
+	</script>
 </body>
 
 

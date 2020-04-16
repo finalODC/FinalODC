@@ -16,6 +16,7 @@
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.hoReply" alias="hoReply"/>
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.Doctor" alias="Doctor"/>
 		<typeAlias type="com.ohdogcat.odc.pet.model.vo.Pet" alias="Pet"/>
+		<typeAlias type="com.ohdogcat.odc.qna.model.vo.Qna" alias="Qna"/>
 	</typeAliases>
 	
 	<!-- mappers -->
@@ -29,6 +30,7 @@
 		<mapper resource="mappers/board-mapper.xml"/>
 		<mapper resource="mappers/member-mapper2.xml"/>
 		<mapper resource="mappers/pet-mapper.xml"/>
+		<mapper resource="mappers/qna-mapper.xml"/>
 	</mappers>
 	
 	
