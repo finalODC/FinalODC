@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="hospitalsearchMapper">
+ 	<resultMap type="HMember" id="HospitalResultMap1">
+ 	<id property="hId" column="HID"/>
+ 	<result property="userId" column="USERID"/>
+ 	<result property="userPwd" column="USERPWD"/>
+ 	<result property="hCode" column="H_CODE"/>
+ 	<result property="hName" column="H_NAME"/>
+ 	<result property="hAddress" column="H_ADDRESS"/>
+ 	<result property="hPhone" column="H_PHONE"/>
+ 	<result property="hComment" column="H_COMMENT"/>
+ 	<result property="hFile" column="H_FILE"/>
+ 	<result property="hCreateDate" column="H_CREATE_DATE"/>
+ 	<result property="hModifyDate" column="H_MODIFY_DATE"/>
+ 	<result property="hStatus" column="H_STATUS"/>
+
+ 	</resultMap>
+ 	
+ 	<select id="hospitalListCount" resultType="_int">
+ 		SELECT COUNT(*)
+ 		FROM HOSPITAL
+ 		WHERE H_STATUS='Y'
+ 		<if test="sName != null">
+ 			AND H_NAME LIKE '%' || #{sName} || '%'
+ 		</if>
+ 		<if test="sArea != null">
+ 			AND H_ADDRESS LIKE '%' || #{sArea} || '%'
+ 		</if>
+ 	</select>
+ 	
+ 	<select id="hospitalList" resultMap="HospitalResultMap1">
+ 		SELECT *
+ 		FROM HOSPITAL
+ 		WHERE H_STATUS='Y'
+ 		<if test="sName != null">
+ 			AND H_NAME LIKE '%' || #{sName} || '%'
+ 		</if>
+ 		<if test="sArea != null">
+ 			AND H_ADDRESS LIKE '%' || #{sArea} || '%'
+ 		</if>
+ 	</select>
+
+</mapper>

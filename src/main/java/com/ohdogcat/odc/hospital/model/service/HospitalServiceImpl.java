@@ -9,6 +9,7 @@ import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 import com.ohdogcat.odc.hospital.model.dao.HospitalDao;
 import com.ohdogcat.odc.hospital.model.dao.HospitalDao2;
 import com.ohdogcat.odc.hospital.model.vo.hoReply;
+import com.ohdogcat.odc.pet.model.vo.Pet;
 
 @Service("hoService")
 public class HospitalServiceImpl implements HospitalService{
@@ -17,10 +18,15 @@ public class HospitalServiceImpl implements HospitalService{
 	private HospitalDao hoDao;
 
 	@Override
-	public ArrayList<HMember> doctorList(String hId) {
+	public ArrayList<HMember> doctorList(int hId) {
 		
 		
 		return hoDao.doctorList(hId);
+	}
+
+	@Override
+	public ArrayList<Pet> searchPet(String phone) {
+		return hoDao.searchPet(phone);
 	}
 
 	

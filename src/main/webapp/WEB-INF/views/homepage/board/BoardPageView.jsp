@@ -176,17 +176,17 @@
                   
           <table class="table table-bordered" align="center" >
             <tr>
-              <th colspan="3"><input type="text" style="border:0px;" >${fb.fbTitle }</th>
+              <th colspan="3" align="left">&nbsp;&nbsp;${fb.fbTitle }<input type="text" style="border:0px;" ></th>
                 
             </tr>
             <tr>
-              <td>닉네임 | <input type="text" style="border:0px; width:100px;">${fb.fbId }</td>
-              <td >날짜 | <input type="text" style="border:0px;">${fb.fbCreatedate}</td>
-              <td align="right">조회수 | <input type="text"  style="border:0px; width:20px;" value="64" >${fb.fbCount }</td>
+              <td align="left">닉네임 &nbsp;|&nbsp;&nbsp; ${fb.fbId }<input type="text" style="border:0px; width:100px;"></td>
+              <td align="left">날짜 &nbsp;|&nbsp;&nbsp; ${fb.fbCreatedate}<input type="text" style="border:0px;" align="left"></td>
+              <td>조회수 &nbsp;|&nbsp;&nbsp; ${fb.fbCount }<input type="text"  style="border:0px; width:20px;" value="64" align="left"></td>
             </tr>
             
             <tr>
-              <td colspan="3"><input type="text"style="height: 500px; width: 920px; border:0px;" readonly>${fb.fbContent }</td>
+              <td colspan="3">${fb.fbContent }<input type="text"style="height: 500px; width: 920px; border:0px;" readonly></td>
             </tr>
            
           </table>
@@ -207,7 +207,7 @@
             <table>
               <thead id="comment" >
                 <tr style="border:1px solid black;" id="commentView">
-                  <th style="width: 100px; height: 70px; background-color: steelblue;">닉네임</th>
+                  <th style="width: 100px; height: 70px; background-color: steelblue;">댓글달기</th>
                   <th style="width:740px;">&nbsp;<input type="text" value="내용" style="width:700px; height:70px; border:0px; "readonly></th>
                   <td style="width:100px; background-color: tan;" align="right"><input type="text" value="20/04/06 20:45" style="width:80px; font-size: 10px; border:0px;"><td>
                 </tr>

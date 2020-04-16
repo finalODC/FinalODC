@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
+import com.ohdogcat.odc.board.model.vo.FreeReply;
 
 public interface BoardService {
 
@@ -36,5 +37,14 @@ public interface BoardService {
 	 * @return
 	 */
 	FreeBoard selectFreeBoard(int fbId);
+	
+	/**
+	 * 댓글상세보기
+	 * @param frId
+	 * @return
+	 */
+	ArrayList<FreeReply> FreeReplyList(int bId);
+	
+	int insertFreeReply(FreeReply fr);
 	
 }

@@ -3,7 +3,7 @@ package com.ohdogcat.odc.hospital.model.vo;
 public class Doctor {
 
 	private int dId;
-	private String refHid;
+	private int refHid;
 	private String docName;
 	private String docIntro;
 	private String docFile;
@@ -13,7 +13,7 @@ public class Doctor {
 		super();
 	}
 
-	public Doctor(int dId, String refHid, String docName, String docIntro, String docFile, String docStatus) {
+	public Doctor(int dId, int refHid, String docName, String docIntro, String docFile, String docStatus) {
 		super();
 		this.dId = dId;
 		this.refHid = refHid;
@@ -31,11 +31,11 @@ public class Doctor {
 		this.dId = dId;
 	}
 
-	public String getRefHid() {
+	public int getRefHid() {
 		return refHid;
 	}
 
-	public void setRefHid(String refHid) {
+	public void setRefHid(int refHid) {
 		this.refHid = refHid;
 	}
 
