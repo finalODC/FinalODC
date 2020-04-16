@@ -32,10 +32,10 @@
 </head>
 <body>
 	<header class="header-section" style="background-color: #30627e;">
-		<a href="" class="float-left navbar-light slicknav_menu" style="color: white; font-size: 30px; margin-top: 7px;"><b>Oh!DogCat</b></a>
+		<a href="gomainPage.do" class="float-left navbar-light slicknav_menu" style="color: white; font-size: 30px; margin-top: 7px;"><b>Oh!DogCat</b></a>
 		<nav class="header-nav"  >
 		  <div class="container" style="padding-bottom: 30px;">	
-			<a href="mainpage.html" class="float-left navbar-light " style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
+			<a href="gomainPage.do" class="float-left navbar-light " style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
 		  <ul class="main-menu">
 			<li><a href="#">병원찾기</a></li>
 			<li><a href="cuponcheck.html">커뮤니티</a>
