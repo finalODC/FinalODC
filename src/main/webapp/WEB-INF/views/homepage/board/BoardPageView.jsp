@@ -207,7 +207,7 @@
             <table>
               <thead id="comment" >
                 <tr style="border:1px solid black;" id="commentView">
-                  <th style="width: 100px; height: 70px; background-color: steelblue;">닉네임</th>
+                  <th style="width: 100px; height: 70px; background-color: steelblue;">댓글달기</th>
                   <th style="width:740px;">&nbsp;<input type="text" value="내용" style="width:700px; height:70px; border:0px; "readonly></th>
                   <td style="width:100px; background-color: tan;" align="right"><input type="text" value="20/04/06 20:45" style="width:80px; font-size: 10px; border:0px;"><td>
                 </tr>

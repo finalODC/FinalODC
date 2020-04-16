@@ -19,8 +19,17 @@
 	<result property="Complain" column="COMPLAIN"/>
 </resultMap>
 
+<resultMap id="FreeReplyResultSet" type="FReply">
+	<id property="frId" column="FRID"/>
+	<result property="rContent" column="RCONTENT"/>
+	<result property="reffbId" column="REF_FBID"/>
+	<result property="frWriter" column="F_RWRITER"/>
+	<result property="frCreateDate" column="FR_CREATE_DATE"/>
+	<result property="frModifyDate" column="FR_MODIFY_DATE"/>
+	<result property="frStatus" column="FR_STATUS"/>
+</resultMap>
 
-
+<!--  새로운 resultMap을설정해주고 mybites에 새로운 설정을 업데이트 해주지 않으면 상관없는 페이지라도 오류가 걸린다. -->
 
 
 
@@ -32,6 +41,7 @@
 	FROM F_BOARD
 	WHERE FB_STATUS='Y'
 </select>
+
 <!--  ResultMap = 결과값이 객체일떄
 	  parameterType = 들어오는 값 형태
  -->
@@ -57,10 +67,24 @@
 </select>
 
 <update id="updateCount" parameterType="_int">
-	
 	UPDATE F_BOARD
 	SET F_BCOUNT = F_BCOUNT+1
 	WHERE FBID = #{fbId} 
 </update>
+
+<select id="FreeReplyList" resultMap="FreeReplyResultSet">
+	SELECT * 
+	FROM F_REPLY
+	WHERE F_RWRITER = #{frWriter}
+	AND FR_STATUS = 'Y'
+	ORDER BY FRID DESC
+</select>
+
+<insert id="insertFreeReply" parameterType="FReply">
+	INSERT INTO F_REPLY VALUES
+	(SEQ_FRID.NEXTVAL,#{frContent},#{reffbId},#{frWriter},SYSDATE,SYSDATE,'Y')
+</insert>
+
+
 
 </mapper>

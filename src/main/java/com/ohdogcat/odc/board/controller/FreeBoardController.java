@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ohdogcat.odc.board.model.service.BoardService;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
+import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.common.Pagination;
 
@@ -118,5 +120,17 @@ public class FreeBoardController {
 			
 		}
 		return mv;
+	}
+	
+	@RequestMapping("addFreeReply.bo")
+	@ResponseBody
+	public String addFreeReply(FreeReply fr) {
+		int result = bService.insertFreeReply(fr);
+		
+		if(result>0) {
+			return"success";
+		}else {
+			return "fail";
+		}
 	}
 }
