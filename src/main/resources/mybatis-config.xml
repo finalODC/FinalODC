@@ -13,10 +13,12 @@
 		<typeAlias type="com.ohdogcat.odc.homepage.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.ohdogcat.odc.homepage.member.model.vo.HMember" alias="HMember"/>
 		<typeAlias type="com.ohdogcat.odc.board.model.vo.FreeBoard" alias="FBoard"/>
+		<typeAlias type="com.ohdogcat.odc.board.model.vo.FreeReply" alias="FReply"/>
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.hoReply" alias="hoReply"/>
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.Doctor" alias="Doctor"/>
 		<typeAlias type="com.ohdogcat.odc.pet.model.vo.Pet" alias="Pet"/>
 		<typeAlias type="com.ohdogcat.odc.qna.model.vo.Qna" alias="Qna"/>
+		<typeAlias alias="QnaReply" type="com.ohdogcat.odc.qna.model.vo.QnaReply"/>
 	</typeAliases>
 	
 	<!-- mappers -->
@@ -33,6 +35,7 @@
 		<mapper resource="mappers/pet-mapper.xml"/>
 		<mapper resource="mappers/qna-mapper.xml"/>
 		<mapper resource="mappers/hospitalsearch-mapper.xml"/>
+		<mapper resource="mappers/managerAsk-mapper.xml"/>
 	</mappers>
 	
 	

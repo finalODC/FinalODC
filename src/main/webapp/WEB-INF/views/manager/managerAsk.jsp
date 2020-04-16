@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <!-- saved from url=(0061)https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
@@ -68,8 +69,8 @@
         
                   <thead>
                     <tr>
-                      <th width="40px">번호</th>
-                      <th>분류</th>
+                      <th width="60px">번호</th>
+                      
                       <th>제목</th>
                       <th width="100px">작성자</th>
                       <th width="100px">작성날짜</th>
@@ -78,72 +79,38 @@
                       
                     </tr>
                   </thead>
+                  
+                 <%--  <div>
+                  	${list["2"]["qId"] }
+                  	${list["2"]["qnaRe"]["aContent"]}
+                  
+                  </div> --%>
                  
                   <tbody id="askbody">
-                    <tr>
-
-                      <td>게시글</td>
-                      <td>계정</td>
-                      <td>장나물</td>
-                      <td>rlacl123@naver.com</td>
-                      <td>20/03/25</td>
-                      <td></td>
-                     
-                      
-                    </tr>
-                    <tr>
-                  
-                      <td>ehdclal11</td>
-                      <td>계정</td>
-                      <td>동백꽃</td>
-                      <td>ehdclal@naver.com</td>
-                      <td>20/03/25</td>
-                      <td>◎</td>
-                      
-                    </tr>
-                    <tr>
+                    <c:forEach var="b" items="${list}">
                     
-                      <td>vkrlacl</td>
-                      <td>계정</td>
-                      <td>파란이</td>
-                      <td>vkrlacl@naver.com</td>
-                      <td>20/03/25</td>
-                      <td>◎</td>
-                     
-                    </tr>
                     <tr>
+                    <td>${b.qId}</td>
+                    <td>${b.qTitle}</td>
+                    <td>${b.qWriter}</td>
+                    <td>${b.qDate}</td>
                    
-                      <td>Rkrenrl41</td>
-                      <td>계정</td>
-                      <td>신까치</td>
-                      <td>Rkrenrl@naver.com</td>
-                      <td>20/03/25</td>
-                      <td>◎</td>
-                      
-                    </tr>
-                    <tr>
-                 
-                      <td>anfdut52</td>
-                      <td>계정</td>
-                      <td>신나래</td>
-                      <td>anffut@naver.com</td>
-                      <td>20/03/25</td>
-                      <td>◎</td>
-                      
-                    </tr>
-                   
-                    
+               
+                    <c:if test="${!empty b.qnaRe.aContent }">
+                    	<td>◎</td>
+                    </c:if>
+                     <c:if test="${empty b.qnaRe.aContent }">
+                    	<td></td>
+                    </c:if>
+                     </tr>
+                    </c:forEach>
 
                   </tbody>
                 </table>
               </div>
-              <div> 	<ul class="pagination justify-content-center pagination-sm">
-                <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
-                <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
-                <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
+              <div> 
+              <ul class="pagination justify-content-center pagination-sm" id="paging">
+               
               </ul></div>
             </div>
           </div>
@@ -159,13 +126,95 @@
 
       <script>
         $(function(){
-          $("#askbody tr").click(function(){
-            var aId=$(this).find("td:eq(0)").text();
-            console.log(aId);
-
-            location.href="askread.html"
-          })
+        	pegination(1);
         });
+        
+        function pegination(currentPage){
+        	$.ajax({
+        		url:"mAskAjax.ma",
+        		type:"post",
+        		data:{currentPage:currentPage},
+        		success:function(data){
+        			var pi = data["pi"];
+        			var list = data["list"];
+        			var tb = $("#askbody");
+        			tb.empty();
+        			console.log(data);
+        			for(var i in list){
+        				var $tr = $("<tr>")
+        				var $td1 = $("<td>").text(list[i]["qId"]);
+        				var $td2 = $("<td>").text(list[i]["qTitle"]);
+        				var $td3 = $("<td>").text(list[i]["qWriter"]);
+        				var $td4 = $("<td>").text(list[i]["qDate"]);
+        				var $td5 = $("<td>");
+        				
+        				if(list[i]["qnaRe"] !=null){
+        					$td5.text('◎');
+        				}
+        				
+        				tb.append($tr.append($td1).append($td2).append($td3).append($td4).append($td5));
+        			}
+        			
+        			
+        			 $("#askbody tr").click(function(){
+		                    var qId=$(this).find("td:eq(0)").text();
+		                    console.log(qId);
+		
+		                    location.href="askread.ma?qId="+qId;
+		                  });
+        			 
+        			 $("#paging").empty();
+        			
+        			var sp= pi.startPage;
+        			var ep= pi.endPage;
+        			var mp= pi.maxPage;
+        			var cu = pi.currentPage
+        			var onepli = $('<li class="page-item ">');
+        			var onepbu = $('<button class="page-link" onclick=pegination('+1+')>').text('<<');
+        			
+        			var prevli = $('<li class="page-item ">');
+        			var prevbu = $('<button class="page-link" onclick=pegination('+(cu-1)+')>').text('<');
+        			
+        			if(cu==1){
+						onepbu.attr("disabled",true);
+						prevbu.attr("disabled",true);
+        			}
+        			
+        			$("#paging").append(onepli.append(onepbu)).append(prevli.append(prevbu));
+        			
+
+        			 for(var i = sp; i<=ep; i++){
+        				var $li = $('<li class="page-item ">');
+        				var $button = $('<button class="page-link" onclick=pegination('+i+')>').text(i);
+        				if(cu == i){
+        					$button.attr("disabled",true).css("color","tomato").addClass("cu");
+        				} 
+        				$("#paging").append($li.append($button));
+        			}
+        			 
+        			 
+        			 
+        			var nextli = $('<li class="page-item ">');
+          			var nextbu = $('<button class="page-link" onclick=pegination('+(cu+1)+')>').text('>');
+        			 
+        			var maxli = $('<li class="page-item ">');
+         			var maxbu = $('<button class="page-link" onclick=pegination('+mp+')>').text('>>');
+
+         			if(cu==1){
+         				nextbu.attr("disabled",true);
+         				maxbu.attr("disabled",true);
+         			}
+         			
+         			$("#paging").append(nextli.append(nextbu)).append(maxli.append(maxbu));
+        		}
+		               
+
+        		
+        		
+        	})
+        	
+        	
+        }
 
       </script>
 
