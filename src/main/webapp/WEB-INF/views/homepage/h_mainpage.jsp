@@ -19,17 +19,7 @@
   <style>
 
 
-    .main-menu li a:hover{
-     color: #fb105f;
-    }
 
-    .main-menu>li>a{
-      font-size: 18px;
-    }
-
-    .user-panel a:hover{
-      color: #fa296f;
-    }
     
     .card{
   height: 370px;
@@ -99,13 +89,18 @@ box-shadow: 0 0 0 0 !important;
         <div class="card " style="background-color: #f5f6f7d0; height: 350px; width: 800px; margin-top: 50px;">
           <div class="card-body">
             <h1>병원 찾기</h1>
-            <form action="">
+            <form action="searchhospital.do" method="post">
             <div class="input-groupp">
-              <input type="text" class="input_area" placeholder="주소를 입력해주세요">
+            <div class="row">
+            	<select id="searchkey" name="searchkey" class="input_area" style="width: 20%; margin-left: 80px; font-size: 17px; ">
+            	 <option value="name">이름</option>
+            	 <option value="area">지역</option>
+            </select>
+              <input id="searchval" name="searchval" type="text" class="input_area" placeholder="이름이나 주소를 입력해주세요" style="width: 60%">
+            </div>
             </div>
             <div class="button-area d-flex justify-content-center ">
-              <input type="submit" value="찾기" class="btn login_btn">			
-              			
+              <input id="search" type="submit" value="찾기" class="btn login_btn">				
             </div>
           </form>
           </div>
@@ -139,6 +134,7 @@ box-shadow: 0 0 0 0 !important;
   <script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
   
   <script src="${path }/resources/js/main.js"></script>
+  
 
 
 

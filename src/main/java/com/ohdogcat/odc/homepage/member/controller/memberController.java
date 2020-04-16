@@ -103,5 +103,10 @@ public class memberController {
 		
 		return "homepage/hm_signin";
 	}
+	
+	@RequestMapping("gomainPage.do")
+	public String gomainpage() {
+		return "homepage/h_mainpage";
+	}
 
 }
