@@ -1,31 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
-<!-- saved from url=(0061)https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
-<html lang="ko">
-
+<html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>인트라넷</title>
-
-  <!-- Custom fonts for this template-->
-
-  <style>
-    
-
-  
-  </style>
-
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-
 <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -35,7 +15,7 @@
 
     <!-- End of Sidebar -->
 
-     <!-- Content Wrapper -->
+ <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
@@ -69,37 +49,22 @@
                   <tbody>
                     <tr>
                       <th width="100px">문의번호:</th>
-                      <td><input type="text" name="nid"class ="form-control" style="width:70px;" value="123"readonly></td>
+                      <td><input type="text" name="nid"class ="form-control" style="width:70px;" value="${qna.qId }"readonly></td>
                      
                      
                     <tr>
                       <th width="100px">작성자:</th>
-                      <td><input type="text" name="nid" class ="form-control" style="width:200px;" value="123"readonly></td>
+                      <td><input type="text" name="nid" class ="form-control" style="width:200px;" value="${qna.qWriter }"readonly></td>
                      
                     </tr>
-                    <tr>
-                        <th class="tatd" >카테고리:</th>
-                        <td><select disabled>
-                            <option value="1"> 일반
-                            </option>
-                            <option value="2"> ???
-                            </option>
-                            <option value="3"> 그런가
-                            </option>
-                            <option value="4"> 뀨유
-                            </option>
-
-
-                        </select>
-                        </td>
-                    </tr>
+        
                           <tr>
                            
                               <th width="100px">제목: </th>
-                              <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control" readonly/></td>
+                              <td><input type="text" placeholder="제목을 입력하세요. " value="${qna.qTitle }" name="subject" class="form-control" readonly/></td>
                           </tr>
                               <th width="100px">내용: </th>
-                              <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="content" class="form-control "  style="resize : none;" readonly></textarea></td>
+                              <td><div style="text-align:left;">${qna.qContent }</div></td>
                           </tr>
                          
                           <tr>
@@ -111,32 +76,32 @@
                        
                   </tbody>
               </table>
+               <c:if test="${!empty qna.qnaRe}">
               답변
               <table class="table table-bordered" style="background: white;">
                 <tbody>
-                <!-- 코멘트가 있을경우 -->
+               
                 <tr>
-                    <th width="100px">관리자<br>
-                    <br>
-                    <button class="btn btn-danger">삭제</button></th>
-            
-                    <td><div>dsadsadsadasdsadas</div></td>
+                    <th width="100px">관리자</th>
+                    <td><div>${qna.qnaRe.aContent}</div></td>
                 </tr>
-                <tr></tr>
               </tbody>
               </table>
-              <!-- 코멘트가 없을경우 -->
+              </c:if>
+              
+              <c:if test="${empty qna.qnaRe.aContent}">
               <form action="" method="POST" enctype="multipart/form-data" id="comment">
               <table class="table table-bordered" style="background: white;">
                 <tr>
                   <th  width="100px"><span>관리자1</span></th>
-                  <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="content" id="comment" class="form-control "  style="resize : none;"></textarea></td>
+                  <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="content" id="commentWriter" class="form-control "  style="resize : none;"></textarea></td>
                 </tr>
               </table>
               <div class="float-right">
                       <input class="btn btn-link" style="background: #002c5f; color: white;" type="button" value="답변하기" id="recomment" class="pull-right"/>
               </div>
             </form>
+             </c:if>
               </div>
             </div>
           </div>
@@ -152,7 +117,7 @@
 
       <script>
         $(function(){
-          //공지작성
+          //답변
         
           $("#recomment").click(function(){
             $("#comment").submit();
@@ -164,9 +129,5 @@
 
       </script>
 
-
-
-
 </body>
-
 </html>

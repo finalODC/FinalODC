@@ -2,35 +2,46 @@ package com.ohdogcat.odc.qna.model.vo;
 
 import java.sql.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Qna {
 	private int qId;
 	private String qWriter;
-	private String qCategory;
 	private String qTitle;
 	private String qContent;
 	private String qFile;
 	private Date qDate;
-	private char qStatus;
-	public Qna(int qId, String qWriter, String qCategory, String qTitle, String qContent, String qFile, Date qDate,
-			char qStatus) {
+	private String qStatus;
+	private QnaReply qnaRe;
+	
+	public Qna() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Qna(String qWriter, String qTitle,String qContent, String qFile) {
+		super();
+		this.qWriter = qWriter;
+		this.qTitle = qTitle;
+		this.qContent = qContent;
+		this.qFile = qFile;
+	}
+	public Qna(int qId, String qWriter, String qTitle,String qContent, String qFile, Date qDate, String qStatus,QnaReply qnaRe) {
 		super();
 		this.qId = qId;
 		this.qWriter = qWriter;
-		this.qCategory = qCategory;
 		this.qTitle = qTitle;
 		this.qContent = qContent;
 		this.qFile = qFile;
 		this.qDate = qDate;
 		this.qStatus = qStatus;
+		this.qnaRe= qnaRe;
 	}
-	public Qna() {
-		super();
-		// TODO Auto-generated constructor stub
+	public QnaReply getQnaRe() {
+		return qnaRe;
 	}
-	@Override
-	public String toString() {
-		return "Qna [qId=" + qId + ", qWriter=" + qWriter + ", qCategory=" + qCategory + ", qTitle=" + qTitle
-				+ ", qContent=" + qContent + ", qFile=" + qFile + ", qDate=" + qDate + ", qStatus=" + qStatus + "]";
+	public void setQnaRe(QnaReply qnaRe) {
+		this.qnaRe = qnaRe;
 	}
 	public int getqId() {
 		return qId;
@@ -43,12 +54,6 @@ public class Qna {
 	}
 	public void setqWriter(String qWriter) {
 		this.qWriter = qWriter;
-	}
-	public String getqCategory() {
-		return qCategory;
-	}
-	public void setqCategory(String qCategory) {
-		this.qCategory = qCategory;
 	}
 	public String getqTitle() {
 		return qTitle;
@@ -74,13 +79,17 @@ public class Qna {
 	public void setqDate(Date qDate) {
 		this.qDate = qDate;
 	}
-	public char getqStatus() {
+	public String getqStatus() {
 		return qStatus;
 	}
-	public void setqStatus(char qStatus) {
+	public void setqStatus(String qStatus) {
 		this.qStatus = qStatus;
 	}
-	
+	@Override
+	public String toString() {
+		return "Qna [qId=" + qId + ", qWriter=" + qWriter + ", qTitle=" + qTitle + "qContent"+qContent+", qFile=" + qFile + ", qDate="
+				+ qDate + ", qStatus=" + qStatus + "qnaRe"+qnaRe+"]";
+	}
 	
 	
 }
