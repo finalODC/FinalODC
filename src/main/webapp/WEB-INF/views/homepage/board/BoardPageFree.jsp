@@ -27,7 +27,10 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/ddfd73bace.js"
 	crossorigin="anonymous"></script>
-
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 
 <style>
 .main-menu li a:hover {
@@ -199,16 +202,18 @@
 						
 							
 							<c:forEach var="fb" items="${list}" >	
-								<tr>
+								<tr class="trc">
+								
 									<td>${fb.fbId}</td>
 									<td>
-										<c:url var="FBviewDetail" value="FBviewDetail.bo">
+									${fb.fbTitle }
+										<%-- <c:url var="FBviewDetail" value="FBviewDetail.bo">
 										
 										<c:param name="fbId" value="${fb.fbTitle}"/>
 										<c:param name="currentPage" value="${pi.currentPage }"/>
 										</c:url>
 										
-										<a href="${FBviewDetail}">${fb.fbTitle}</a>
+										<a href="${FBviewDetail}">${fb.fbTitle}</a> --%>
 									</td>
 									<td>${fb.fbWriter }</td>
 									<td>${fb.fbCreatedate }</td>
@@ -218,7 +223,15 @@
 							</c:forEach>
 						</tbody>
 					</table>
-						
+					<script>
+				
+						$('.trc').click(function(){
+							var aa = $(this).find("td:eq(0)").text()
+							/* console.log(aa); */
+							location.href = 'FBviewDetail.bo?fbId='+aa; 
+						});
+				
+					</script>	
 						
 					<!---------------------- 페이징 처리  ------------------------->
 					

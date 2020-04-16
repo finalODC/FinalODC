@@ -32,7 +32,9 @@
 	FROM F_BOARD
 	WHERE FB_STATUS='Y'
 </select>
-
+<!--  ResultMap = 결과값이 객체일떄
+	  parameterType = 들어오는 값 형태
+ -->
 <select id="selectFreeList" resultMap="FreeBoardResultSet">
 	SELECT *
 	FROM F_BOARD
@@ -54,9 +56,9 @@
 	
 </select>
 
-<update id="updateCount" parameterType="FBoard">
+<update id="updateCount" parameterType="_int">
 	
-	UPDATE BOARD
+	UPDATE F_BOARD
 	SET F_BCOUNT = F_BCOUNT+1
 	WHERE FBID = #{fbId} 
 </update>
