@@ -88,7 +88,7 @@ public class Qna {
 	@Override
 	public String toString() {
 		return "Qna [qId=" + qId + ", qWriter=" + qWriter + ", qTitle=" + qTitle + "qContent"+qContent+", qFile=" + qFile + ", qDate="
-				+ qDate + ", qStatus=" + qStatus + "qnaRe"+qnaRe+"]";
+				+ qDate + ", qStatus=" + qStatus + ", qnaRe="+qnaRe+"]";
 	}
 	
 	

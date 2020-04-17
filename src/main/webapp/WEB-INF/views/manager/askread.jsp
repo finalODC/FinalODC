@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,30 +78,39 @@
                        
                   </tbody>
               </table>
+ 
+              
                <c:if test="${!empty qna.qnaRe}">
               답변
-              <table class="table table-bordered" style="background: white;">
+               <table class="table table-bordered" style="background: white;">
                 <tbody>
-               
+                <!-- 코멘트가 있을경우 -->
                 <tr>
-                    <th width="100px">관리자</th>
+                    <th width="100px">관리자<br>
+                   
+                    ${qna.qnaRe.aDate }<br> <br>
+                    <button class="btn btn-danger">삭제</button></th>
+            
                     <td><div>${qna.qnaRe.aContent}</div></td>
                 </tr>
+                <tr></tr>
               </tbody>
               </table>
               </c:if>
               
-              <c:if test="${empty qna.qnaRe.aContent}">
-              <form action="" method="POST" enctype="multipart/form-data" id="comment">
+              <c:if test="${empty qna.qnaRe}">
+                <form action="" method="POST" enctype="multipart/form-data" id="comment">
               <table class="table table-bordered" style="background: white;">
                 <tr>
-                  <th  width="100px"><span>관리자1</span></th>
-                  <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="content" id="commentWriter" class="form-control "  style="resize : none;"></textarea></td>
+                  <th  width="100px"><span>관리자1</span><br></th>
+                  				
+                  <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="aContent" id="content" class="form-control "  style="resize : none;"></textarea></td>
                 </tr>
               </table>
               <div class="float-right">
-                      <input class="btn btn-link" style="background: #002c5f; color: white;" type="button" value="답변하기" id="recomment" class="pull-right"/>
+                      <input type="button" class="btn btn-link" style="background: #002c5f; color: white;" type="button" value="답변하기" id="recomment" class="pull-right"/>
               </div>
+    
             </form>
              </c:if>
               </div>
