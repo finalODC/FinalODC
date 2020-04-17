@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Pet {
 	int pid;
+
 	String pCode;
 	String pName;
 	int ref_mid;
@@ -12,6 +13,7 @@ public class Pet {
 	String pGender;
 	String pBirth;
 	char neutralYN;
+	double pWeight;
 	String pUniqueness;
 	Date p_Create_Date;
 	Date p_Modify_Date;
@@ -19,7 +21,26 @@ public class Pet {
 	
 	public Pet() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Pet(int pid, String pCode, String pName, int ref_mid, String pSpecies, String breed, String pGender,
+			String pBirth, char neutralYN, double pWeight, String pUniqueness, Date p_Create_Date, Date p_Modify_Date,
+			String pStatus) {
+		super();
+		this.pid = pid;
+		this.pCode = pCode;
+		this.pName = pName;
+		this.ref_mid = ref_mid;
+		this.pSpecies = pSpecies;
+		this.breed = breed;
+		this.pGender = pGender;
+		this.pBirth = pBirth;
+		this.neutralYN = neutralYN;
+		this.pWeight = pWeight;
+		this.pUniqueness = pUniqueness;
+		this.p_Create_Date = p_Create_Date;
+		this.p_Modify_Date = p_Modify_Date;
+		this.pStatus = pStatus;
 	}
 
 	public Pet(int pid, String pCode, String pName, int ref_mid, String pSpecies, String breed, String pGender,
@@ -107,6 +128,13 @@ public class Pet {
 	public char getNeutralYN() {
 		return neutralYN;
 	}
+	public double getpWeight() {
+		return pWeight;
+	}
+	
+	public void setpWeight(double pWeight) {
+		this.pWeight = pWeight;
+	}
 
 	public void setNeutralYN(char neutralYN) {
 		this.neutralYN = neutralYN;
@@ -148,7 +176,7 @@ public class Pet {
 	public String toString() {
 		return "Pet [pid=" + pid + ", pCode=" + pCode + ", pName=" + pName + ", ref_mid=" + ref_mid + ", pSpecies="
 				+ pSpecies + ", breed=" + breed + ", pGender=" + pGender + ", pBirth=" + pBirth + ", neutralYN="
-				+ neutralYN + ", pUniqueness=" + pUniqueness + ", p_Create_Date=" + p_Create_Date + ", p_Modify_Date="
+				+ neutralYN + ",pWeight"+pWeight+", pUniqueness=" + pUniqueness + ", p_Create_Date=" + p_Create_Date + ", p_Modify_Date="
 				+ p_Modify_Date + ", pStatus=" + pStatus + "]";
 	}
 	
