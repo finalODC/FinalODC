@@ -34,7 +34,7 @@ public class FreeBoardController {
 	@RequestMapping("Fblist.bo")
 	public ModelAndView boardList(ModelAndView mv, 
 			 @RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
-		
+			//@RequestParam 은 페이징 처리용으로 반드시 필요한거다.
 		System.out.println(currentPage);
 		
 		int listCount = bService.getFreeListCount();
@@ -53,6 +53,9 @@ public class FreeBoardController {
 		
 		return mv;
 	}
+	
+	
+	
 	
 	/**
 	 * 게시판 작성하기 뷰
@@ -122,15 +125,21 @@ public class FreeBoardController {
 		return mv;
 	}
 	
+	
 	@RequestMapping("addFreeReply.bo")
 	@ResponseBody
 	public String addFreeReply(FreeReply fr) {
+		System.out.println(fr);
 		int result = bService.insertFreeReply(fr);
 		
-		if(result>0) {
-			return"success";
+		if(result > 0 ) {
+			return "success";
+			
 		}else {
 			return "fail";
 		}
 	}
+	
+	
+	
 }

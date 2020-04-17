@@ -43,7 +43,6 @@ public interface BoardService {
 	 * @param frId
 	 * @return
 	 */
-	ArrayList<FreeReply> FreeReplyList(int bId);
 	
 	int insertFreeReply(FreeReply fr);
 	
