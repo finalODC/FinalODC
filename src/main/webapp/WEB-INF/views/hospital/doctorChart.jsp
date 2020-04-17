@@ -37,7 +37,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - 로고 -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="mainpage.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="mainpage.do">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-home"></i>
         </div>
@@ -131,9 +131,9 @@
 						data:{hId:'${loginUser.hId}'},
 						success:function(data){
 							console.log(data)
-							for(var i in data){
+							/* for(var i in data){
 								$("#doctorlist").append($("<option>").val(data[i]["docName"]).text(data[i]["docName"]));
-							}
+							} */
 						},
 						error:function(){
 							alert("에러");
@@ -152,10 +152,7 @@
                   		/* 휴대폰 번호 입력시 등록정보 조회 */
                   		$('#phoneNumber').click(function(){
                   			var phone = $('#phone').val();
-                  			
-                  			
-                  			
-                  			
+
                   			$.ajax({
                   				url:"searchPet.do",
                   				type:"post",
@@ -181,6 +178,7 @@
                                 			type:"post",
                                 			data:{phone:phone},
                                 			success:function(data){
+                                				console.log('주인 이름 조회');
                                 				console.log(data);
                                 				$('#tb-mName').html(data["userName"]);
                                 			}
@@ -193,31 +191,103 @@
                                 			type:"post",
                                 			data:{pCode:pCode},
                                 			success:function(data){
+                                				console.log('동물정보조회');
                                 				console.log(data);
                                 				$('#tb-pName').html(data["pName"]);
                                 				$('#tb-pBreed').html(data["breed"]);
-                                				$('#tb-pNeutral').html(data["neutralYN"])
-                                				$('#tb-pBirth').html(data["pBirth"])
+                                				$('#tb-pNeutral').html(data["neutralYN"]);
+                                				$('#tb-pBirth').html(data["pBirth"]);
                                 				
-                                			
                                 			},error:function(){
                                 				alert('에러');
                                 			}
                                 			
                                 		});
                                 		
+                                		/* 특이사항 조회 */
+                               			spec(pCode,1);
+                                	
                                 	})
-                                	
-                                	
-                                	
-                                	
-                  					
+
                   				},error:function(){
                   					alert('에러');
                   				}
                   				
                   				
                   			});
+                  			
+                  			var spec=function(pCode,currentPage){
+                  				
+                  				$.ajax({
+                        			url:"searchdiag.do",
+                        			type:"post",
+                        			data:{pCode:pCode, currentPage:currentPage},
+                        			success:function(data){
+                        				console.log('특이사항조회');
+                        				console.log(data);
+                        				var list = data["list"]
+                        				var html="";
+                        			
+                        				for(var i in list){
+                        					html += "<tr>";
+                        					html += "<td>"+list[i]["dDate"]+"</td>";
+                        					html += "<td>"+list[i]["dUnique"]+"</td>";
+                        					html += "<td>"+list[i]["dWriter"]+"</td>";
+                        					html += "</tr>";
+                        				}		
+                        				
+                        				$('#uniqueTable').append(html);
+                        				
+                        				var pi = data["pi"];
+                        				
+                        				 $("#specPage").empty();
+                             			
+                             			var sp= pi.startPage;
+                             			var ep= pi.endPage;
+                             			var mp= pi.maxPage;
+                             			var cu = pi.currentPage
+                             			var onepli = $('<li class="page-item ">');
+                             			var onepbu = $('<button class="page-link" onclick=spec('+pCode+","+1+')>').text('<<');
+                             			
+                             			var prevli = $('<li class="page-item ">');
+                             			var prevbu = $('<button class="page-link" onclick=spec('+pCode+","+(cu-1)+')>').text('<');
+                             			
+                             			if(cu==1){
+                     						onepbu.attr("disabled",true);
+                     						prevbu.attr("disabled",true);
+                             			}
+                             			
+                             			$("#specPage").append(onepli.append(onepbu)).append(prevli.append(prevbu));
+                             			
+
+                             			 for(var i = sp; i<=ep; i++){
+                             				var $li = $('<li class="page-item ">');
+                             				var $button = $('<button class="page-link" onclick=spec('+pCode+","+i+')>').text(i);
+                             				if(cu == i){
+                             					$button.attr("disabled",true).css("color","tomato").addClass("cu");
+                             				} 
+                             				$("#specPage").append($li.append($button));
+                             			}
+                             			 
+                             			 
+                             			 
+                             			var nextli = $('<li class="page-item ">');
+                               			var nextbu = $('<button class="page-link" onclick=spec('+pCode+","+(cu+1)+')>').text('>');
+                             			 
+                             			var maxli = $('<li class="page-item ">');
+                              			var maxbu = $('<button class="page-link" onclick=spec('+pCode+","+mp+')>').text('>>');
+
+                              			if(cu==1){
+                              				nextbu.attr("disabled",true);
+                              				maxbu.attr("disabled",true);
+                              			}
+                              			
+                              			$("#specPage").append(nextli.append(nextbu)).append(maxli.append(maxbu));
+                        			},error:function(){
+                        				console.log('에러');
+                        			}
+                        		})
+                  			}
                   			                 			
                   		});           		
                   	
@@ -254,6 +324,8 @@
                     </div>
                   </div>
                   
+                  
+                  <!-- 동물정보 테이블 -->
                   <div class="card-body">
                     <table border="1" class="table" style="font-size:12px;">
                       <tr style="font-weight: bolder;">
@@ -287,13 +359,13 @@
 
 
 
-                <!--동물 정보! -->
+                <!-- 특이사항 테이블 -->
                 <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">특이사항</h6>
                   </div>
                   <div align="center" class="card-body">
-                    <table border="1" class="characterTable" width="100%">
+                    <table border="1" class="characterTable" width="100%" id="uniqueTable">
                       <thead>
                         <tr>
                           <th>특이사항</th>
@@ -305,32 +377,26 @@
                           <th>상세내역</th>
                           <th>의사</th>
                         </tr>
+                         </thead>
                       <tbody>
+                      
                         <tr>
-                          <td>
+                          <td id="tb-uniqueDate">
                             202003030
                           </td>
-                          <td>수술함</td>
-                          <td>나박사</td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            202003030
-                          </td>
-                          <td>수술함</td>
-                          <td>나박사</td>
+                          <td id="tb-unique">수술함</td>
+                          <td id="tb-docName">나박사</td>
                         </tr>
 
                       </tbody>
 
-                      </thead>
+                     
 
                     </table>
                     
                     <br>
                     <nav aria-label="Page navigation example">
-                      <ul class="pagination pagination-sm justify-content-center">
+                      <ul class="pagination pagination-sm justify-content-center" id="specPage">
                         <li class="page-item disabled">
                           <a class="page-link" href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
@@ -467,7 +533,7 @@
                           $div.html("dsadadadas<br> dsadsadasda<br>")
                           $td.append($div);
                           $tr.append($td);
-
+						  
                           $(this).parent("tr").after($tr);
                         })
                       });
