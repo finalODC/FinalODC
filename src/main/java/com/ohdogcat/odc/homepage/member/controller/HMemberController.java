@@ -2,6 +2,7 @@ package com.ohdogcat.odc.homepage.member.controller;
 
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ohdogcat.odc.common.email.EmailService;
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 import com.ohdogcat.odc.homepage.member.service.HMemberService;
+import com.ohdogcat.odc.hospital.model.vo.Doctor;
 
 @SessionAttributes({"loginUser","code"})
 @Controller
@@ -51,18 +53,28 @@ public class HMemberController {
 	
 	@RequestMapping("hlogin.do")
 	public ModelAndView hlogin(ModelAndView mv, HttpServletRequest request, HMember m,
-			@RequestParam(value="dName",required=false)String dName ) {
+			@RequestParam(value="dName",required=false) String dName ) {
 		String pwd = m.getUserPwd();
-		m = hmService.loginMem(m.getUserId());//여기서 같이 넘겨줄까?
-
 		
+		if(!dName.equals("")) {
+			ArrayList<Doctor> doc = new ArrayList<>();
+			Doctor doctor = new Doctor();
+			doctor.setDocName(dName);
+			doc.add(doctor);
+			m.setDoctor(doc);
+		}
+		System.out.println(m.getDoctor() == null);
+		
+		m = hmService.loginMem(m);
+		System.out.println(m);
+		//(new Doctor().setDocName(dName)
 		if(m!=null &&bCryptPasswordEncoder.matches(pwd, m.getUserPwd())) {
-			
-			if(dName == null) {
-				mv.addObject("loginUser",m);
-				mv.setViewName("hospital/doctorChart");
+			mv.addObject("loginUser",m);
+			if(dName.equals("")) {
+				mv.setViewName("hospital/hospital");
 			}else {
 				//의사 데이터 가져와서 
+				mv.setViewName("hospital/doctorChart");
 			}
 			
 		}else {

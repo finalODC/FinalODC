@@ -4,7 +4,7 @@ import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 
 public interface HMemberService {
 	
-	HMember loginMem(String userId);
+	HMember loginMem(HMember m);
 	
 	int checkBusiness(String hCode);
 
