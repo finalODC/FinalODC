@@ -89,17 +89,25 @@
                     <th width="100px">관리자<br>
                    
                     ${qna.qnaRe.aDate }<br> <br>
-                    <button class="btn btn-danger">삭제</button></th>
+                    <button class="btn btn-danger" id="delCo">삭제</button></th>
             
                     <td><div>${qna.qnaRe.aContent}</div></td>
                 </tr>
                 <tr></tr>
               </tbody>
               </table>
+              <script>
+              	$(function(){
+              		$("#delCo").click(function(){
+              			//ajax 삭제
+              		});
+              	});
+              
+              </script>
               </c:if>
               
               <c:if test="${empty qna.qnaRe}">
-                <form action="" method="POST" enctype="multipart/form-data" id="comment">
+                
               <table class="table table-bordered" style="background: white;">
                 <tr>
                   <th  width="100px"><span>관리자1</span><br></th>
@@ -110,8 +118,22 @@
               <div class="float-right">
                       <input type="button" class="btn btn-link" style="background: #002c5f; color: white;" type="button" value="답변하기" id="recomment" class="pull-right"/>
               </div>
+              
+                    <script>
+        $(function(){
+          //답변
+        
+          $("#recomment").click(function(){
+            $("#comment").submit();
+          })
+
+
+          //전체체크
+        });
+
+      </script>
+              
     
-            </form>
              </c:if>
               </div>
             </div>
@@ -126,19 +148,6 @@
 
       <!-- Bootstrap core JavaScript-->
 
-      <script>
-        $(function(){
-          //답변
-        
-          $("#recomment").click(function(){
-            $("#comment").submit();
-          })
-
-
-          //전체체크
-        });
-
-      </script>
 
 </body>
 </html>

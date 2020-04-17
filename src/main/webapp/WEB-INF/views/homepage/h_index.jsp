@@ -57,7 +57,7 @@ box-shadow: 0 0 0 0 !important;
           <div class="card">
           <div class="card-body">
             <div class="button-area d-flex justify-content-center" style="margin-top: 10%;">
-              <input id="hosbtn1" type="button" value="병원으로 로그인"  class="btn login_btn">						
+              <input id="hosbtn1" type="button" value="병원으로 로그인" onclick="javascript:location.href='hloginp.do'" class="btn login_btn">						
           </div>
           <div class="button-area d-flex justify-content-center" >
               <input type="button" id="btnsign" value="일반회원 로그인" onclick="javascript:location.href='mloginp.do'" class="btn login_btn">						

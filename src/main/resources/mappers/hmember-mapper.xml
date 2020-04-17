@@ -17,6 +17,8 @@
  	<result property="hCreateDate" column="H_CREATE_DATE"/>
  	<result property="hModifyDate" column="H_MODIFY_DATE"/>
  	<result property="hStatus" column="H_STATUS"/>
+ 	
+ 	
  	</resultMap>
  	
  	<resultMap type="Doctor" id="DoctorResultMap">
@@ -32,6 +34,7 @@
  <select id="login" resultMap="HMemberResultMap">
  	SELECT * FROM HOSPITAL
  	WHERE USERID=#{userId}
+ 	<!-- 조건필요 -->
  </select>	
  
   <select id="checkBusiness" parameterType="HMember" resultType="_int">

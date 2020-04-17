@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -49,14 +50,21 @@ public class HMemberController {
 	}
 	
 	@RequestMapping("hlogin.do")
-	public ModelAndView hlogin(ModelAndView mv, HttpServletRequest request, HMember m ) {
+	public ModelAndView hlogin(ModelAndView mv, HttpServletRequest request, HMember m,
+			@RequestParam(value="dName",required=false)String dName ) {
 		String pwd = m.getUserPwd();
-		m = hmService.loginMem(m.getUserId());
+		m = hmService.loginMem(m.getUserId());//여기서 같이 넘겨줄까?
 
 		
 		if(m!=null &&bCryptPasswordEncoder.matches(pwd, m.getUserPwd())) {
-			mv.addObject("loginUser",m);
-			mv.setViewName("hospital/doctorChart");
+			
+			if(dName == null) {
+				mv.addObject("loginUser",m);
+				mv.setViewName("hospital/doctorChart");
+			}else {
+				//의사 데이터 가져와서 
+			}
+			
 		}else {
 			mv.addObject("msg","aa");
 			mv.setViewName("homepage/h_login6");
@@ -107,7 +115,7 @@ public class HMemberController {
 	public String hInsert(HMember m,String add1, String add2, String add3, SessionStatus session) {
 		
 		
-		m.setUserPwd(bCryptPasswordEncoder.encode(m.userPwd));
+		m.setUserPwd(bCryptPasswordEncoder.encode(m.getUserPwd()));
 		if(!add1.equals("")) {
 			m.sethAddress(add1 + add2 + add3);
 		}
