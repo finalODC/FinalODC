@@ -29,115 +29,128 @@ import com.ohdogcat.odc.hospital.model.vo.hoReply;
 @Controller
 public class HospitalController2 {
 
-	@Autowired
-	private HospitalService2 hService2;
-	
-	@Autowired
-	private BCryptPasswordEncoder be;
-	
-	@RequestMapping("info.ho")
-	public String goInfo() {
-		return "hospital";
-	}
+   @Autowired
+   private HospitalService2 hService2;
+   
+   @Autowired
+   private BCryptPasswordEncoder be;
+   
+   @RequestMapping("info.ho")
+   public String goInfo() {
+      return "hospital";
+   }
 
-	@RequestMapping("hosP.ho")
-	public String goHosP() {
-		return "hosPage";
-	}
+   @RequestMapping("hosP.ho")
+   public String goHosP() {
+      return "hosPage";
+   }
 
-	
-	@RequestMapping("hupdate.ho")
-	public String insertHospital(HMember hm, HttpServletRequest request,
-			@RequestParam(name="uploadFile", required=false) MultipartFile file) {
+   
+   @RequestMapping("hupdate.ho")
+   public String insertHospital(HMember hm, HttpServletRequest request,
+         @RequestParam(name="uploadFile", required=false) MultipartFile file) {
 
-		if(!file.getOriginalFilename().equals("")) {
+      if(!file.getOriginalFilename().equals("")) {
 
-			String FileName = saveFile(file, request);
+         String FileName = saveFile(file, request);
 
-			if(FileName != null) {
-				hm.sethFile(file.getOriginalFilename());
-			}
-		}
+         if(FileName != null) {
+            hm.sethFile(file.getOriginalFilename());
+         }
+      }
 
-		int result = hService2.hupdate(hm);
+      int result = hService2.hupdate(hm);
 
-		if(result > 0) {
-			return "redirect:hosP.ho";
-		} else {
-			return "homepage/h_index.jsp";
-		}
-	}
+      if(result > 0) {
+         return "redirect:hosP.ho";
+      } else {
+         return "homepage/h_index.jsp";
+      }
+   }
 
 
 
-	public String saveFile(MultipartFile file, HttpServletRequest request) {
+   public String saveFile(MultipartFile file, HttpServletRequest request) {
 
-		String root = request.getSession().getServletContext().getRealPath("resources");
+      String root = request.getSession().getServletContext().getRealPath("resources");
 
-		String savePath = root+"\\hosImages";
+      String savePath = root+"\\hosImages";
 
-		File folder = new File(savePath);
+      File folder = new File(savePath);
 
-		if(!folder.exists()) {
-			folder.mkdirs();
-		}
+      if(!folder.exists()) {
+         folder.mkdirs();
+      }
 
-		String originFileName = file.getOriginalFilename();
+      String originFileName = file.getOriginalFilename();
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");											// 파일명 바꿔줌
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");                                 // 파일명 바꿔줌
 
-		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"." 					// 파일명 바꿔줌
-				+ originFileName.substring(originFileName.lastIndexOf(".")+1);		// 파일명 바꿔줌
+      String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"."                // 파일명 바꿔줌
+            + originFileName.substring(originFileName.lastIndexOf(".")+1);      // 파일명 바꿔줌
 
-		String renamePath = folder + "\\" + renameFileName;			// 실제 저장될 파일 경로 + 파일명
+      String renamePath = folder + "\\" + renameFileName;         // 실제 저장될 파일 경로 + 파일명
 
-		try {
-			file.transferTo(new File(renamePath));
-		} catch (Exception e) {
-			System.out.println("파일 전송 에러 : " + e.getMessage());
-		}
+      try {
+         file.transferTo(new File(renamePath));
+      } catch (Exception e) {
+         System.out.println("파일 전송 에러 : " + e.getMessage());
+      }
 
-		return renameFileName;
-	}
-	
-	@RequestMapping("hosupdate.ho")
-	public String hosupdate( HMember hm) {
+      return renameFileName;
+   }
+   
+   @RequestMapping("hosupdate.ho")
+   public String hosupdate(Model model, HMember hm, String pwd, String hPhone) {
 
-		
-		
-		
-		System.out.println(hm);
-		int result = hService2.hosupdate(hm);
-		
-		return Integer.valueOf(result).toString();
-		
-	}
+	   
+	  String encPwd = be.encode(hm.getUserPwd());
+	  
+      hm.setUserPwd(encPwd);
+      hm.sethPhone(hPhone);
+      
+      System.out.println(hm);
+      
+      int result = hService2.hosupdate(hm);
+      
+      System.out.println("result : " + result);
+      
+//      if(result > 0) {
+//    	  model.addAttribute("loginUser",hm);
+//    	  return "redirect:chart.ho";
+//      }else {
+//    	  return "redirect:info.ho";
+//      }
+      
+      return Integer.valueOf(result).toString();
+      
+   }
 
-	@RequestMapping("hrList.ho")
-	public void getReplyList(HttpServletResponse response, int hId) throws JsonIOException, IOException {
+   @RequestMapping("hrList.ho")
+   public void getReplyList(HttpServletResponse response, int hId) throws JsonIOException, IOException {
 
-		ArrayList<hoReply> hrList = hService2.selectReplyList(hId);
+      ArrayList<hoReply> hrList = hService2.selectReplyList(hId);
 
-		response.setContentType("application/json; charset=utf-8");
+      response.setContentType("application/json; charset=utf-8");
 
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+      Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-		gson.toJson(hrList, response.getWriter());
-	}
-	
-	@RequestMapping("addReply.ho")
-	@ResponseBody
-	public String addReply(hoReply hr) {
-		
-		int result = hService2.insertReply(hr);
-		
-		if(result > 0) {
-			return "success";
-		} else {
-			return "fail";
-		}
-	}
-	
-	
-	
+      gson.toJson(hrList, response.getWriter());
+   }
+   
+   @RequestMapping("addReply.ho")
+   @ResponseBody
+   public String addReply(hoReply hr) {
+      
+      int result = hService2.insertReply(hr);
+      
+      if(result > 0) {
+         return "success";
+      } else {
+         return "fail";
+      }
+   }
+   
+   
+   
 }
