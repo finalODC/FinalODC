@@ -24,9 +24,13 @@
 		SELECT *
 		FROM PET
 		WHERE REF_MID=#{mId}
-		AND P_STATUS='NORMAL'
+		AND P_STATUS='Y'
 	</select>
-
+	
+	<insert id="insertPet" parameterType="Pet">
+		INSERT INTO PET VALUES(SEQ_PID.NEXTVAL,#{pCode},#{pName},#{ref_mid},#{pSpecies},#{breed},#{pGender},
+								#{pBirth},#{neutralYN},#{pUniqueness},SYSDATE,SYSDATE,DEFAULT)
+	</insert>
 
 
 

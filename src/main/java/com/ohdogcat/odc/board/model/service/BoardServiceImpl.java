@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ohdogcat.odc.board.Dao.BoardDao;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
+import com.ohdogcat.odc.board.model.vo.FreeReply;
 
 @Service("bService")
 public class BoardServiceImpl implements BoardService{
@@ -44,6 +45,18 @@ public class BoardServiceImpl implements BoardService{
 		}else {
 			return null;
 		}
+	}
+
+	@Override
+	public ArrayList<FreeReply> FreeReplyList(int fbId) {
+		
+		return bDao.FreeReplyList(fbId);
+	}
+
+	@Override
+	public int insertFreeReply(FreeReply fr) {
+
+		return bDao.insertFreeReply(fr);
 	}
 
 	

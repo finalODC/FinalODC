@@ -5,17 +5,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
+
+<style>
+    .main-menu li a:hover{
+     color: #fb105f;
+    }
+
+    .main-menu>li>a{
+      font-size: 18px;
+    }
+
+    .user-panel a:hover{
+      color: #fa296f;
+    }
+</style>
 
 </head>
 <body>
 	<header class="header-section" style="background-color: #30627e;">
-    <a href="" class="float-left navbar-light slicknav_menu" style="color: white; font-size: 30px; margin-top: 7px;"><b>Oh!DogCat</b></a>
+    <a href="gomainPage.do" class="float-left navbar-light slicknav_menu" style="color: white; font-size: 30px; margin-top: 7px;"><b>Oh!DogCat</b></a>
     <nav class="header-nav"  >
       <div class="container" style="padding-bottom: 30px;">	
-        <a href="" class="float-left navbar-light " style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
+        <a href="gomainPage.do" class="float-left navbar-light " style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
       <ul class="main-menu">
-        <li><a href="#">병원찾기</a></li>
+        <li><a href="searchhospital.do">병원찾기</a></li>
         <li><a href="cuponcheck.html">커뮤니티</a>
           <ul class="sub-menu">
             <li><a href="about-us.html">공지사항</a></li>
@@ -26,7 +41,7 @@
           <ul class="sub-menu">
             <li><a href="mypageperson.do">정보수정</a></li>
             <li><a href="mypagepet.do">반려동물 관리</a></li>
-            <li><a href="mypageQNA.do">반려동물 관리</a></li>
+            <li><a href="mypageQNA.do">문의사항</a></li>
           </ul>
         </li>
         <!-- <li><a href="#"></a>

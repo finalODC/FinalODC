@@ -109,19 +109,30 @@
 
             <!-- Content Row -->
             <div class="row">
-			<div>
 			
-				<select id="doctorlist"></select>
+              <!-- Content Column -->
+              <div class="col-lg-6 mb-4">
+				
+                <!--동물 정보! -->
+                <div class="card shadow mb-4">
+                   <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Information</h6>
+                    <div>
+				<select id="doctorlist" >
+					<option>--진료담당자 선택--</option>
+				</select>
 			</div>
+			<br>
 			<script>
 				$(function(){
 					$.ajax({
 						url:"doctorlist.do",
 						type:"post",
-						data:{hId:${loginUser.hId}},
+						data:{hId:'${loginUser.hId}'},
 						success:function(data){
+							console.log(data)
 							for(var i in data){
-								$("#doctorlist").append($("option").value(data["dId"]).text(data["docName"]));
+								$("#doctorlist").append($("<option>").val(data[i]["docName"]).text(data[i]["docName"]));
 							}
 						},
 						error:function(){
@@ -130,18 +141,88 @@
 					})
 				});
 			</script>
-              <!-- Content Column -->
-              <div class="col-lg-6 mb-4">
-				
-                <!--동물 정보! -->
-                <div class="card shadow mb-4">
-                   <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Information</h6>
                     
-                    <input type="text" placeholder="휴대폰 번호 입력">
+                    <input id="phone" type="text" placeholder="휴대폰 번호 입력">
                     <button type="button" id="phoneNumber" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"  style="height: 30px; margin-bottom:4px;">
               		        검색
                     </button>
+                  	
+                  	<script>
+                  		
+                  		/* 휴대폰 번호 입력시 등록정보 조회 */
+                  		$('#phoneNumber').click(function(){
+                  			var phone = $('#phone').val();
+                  			
+                  			
+                  			
+                  			
+                  			$.ajax({
+                  				url:"searchPet.do",
+                  				type:"post",
+                  				data:{phone:phone},
+                  				success:function(data){
+                  					console.log('pet조회')
+                  					console.log(data);
+                  					for(var i in data){
+                  						
+                  					$("#selectPet").append($("<h4 class='pName' data-dismiss='modal'>").text(data[i]["pName"]).append($("<input type='hidden'>").val(data[i]["pCode"])))
+                  					}
+                  					
+                  					
+                  					/* 반려동물 이름 클릭 시 테이블에 내용 업데이트 */
+                  					$(".pName").click(function(){
+                                		console.log($(this).find("input").val());
+                                		
+                                		var pCode = $(this).find("input").val();
+                                		
+                                		/* 주인 이름  */
+                                		$.ajax({
+                                			url:"memberinfo.do",
+                                			type:"post",
+                                			data:{phone:phone},
+                                			success:function(data){
+                                				console.log(data);
+                                				$('#tb-mName').html(data["userName"]);
+                                			}
+                                		});
+                                		
+                                		
+                                		/* 동물 정보  */
+                                		$.ajax({
+                                			url:"petinfo.do",
+                                			type:"post",
+                                			data:{pCode:pCode},
+                                			success:function(data){
+                                				console.log(data);
+                                				$('#tb-pName').html(data["pName"]);
+                                				$('#tb-pBreed').html(data["breed"]);
+                                				$('#tb-pNeutral').html(data["neutralYN"])
+                                				$('#tb-pBirth').html(data["pBirth"])
+                                				
+                                			
+                                			},error:function(){
+                                				alert('에러');
+                                			}
+                                			
+                                		});
+                                		
+                                	})
+                                	
+                                	
+                                	
+                                	
+                  					
+                  				},error:function(){
+                  					alert('에러');
+                  				}
+                  				
+                  				
+                  			});
+                  			                 			
+                  		});           		
+                  	
+                  	
+                  	</script>
                   	
                   	
                     <!-- The Modal -->
@@ -158,11 +239,9 @@
                           <!-- Modal body -->
                           <div class="modal-body">
                             <div id="selectPet" style="text-align: center;">
-                              <h4>상두</h4>
-                              <h4>노영</h4>
+                             
                             </div>
-
-                            
+                           
                           </div>
                           
                           <!-- Modal footer -->
@@ -182,15 +261,13 @@
                         <td>종</td>
                         <td>주인</td>
                         <td>중성화</td>
-
                       </tr>
 
                       <tr>
-                        <td>복실이</td>
-                        <td>말티즈
-                        </td>
-                        <td>김복순</td>
-                        <td>O</td>
+                        <td id="tb-pName">이름</td>
+                        <td id="tb-pBreed"></td>
+                        <td id="tb-mName"></td>
+                        <td id="tb-pNeutral"></td>
                       </tr>
                       <tr>
                         <td>출생연월</td>
@@ -199,10 +276,10 @@
                         <td>몸무게(후)</td>
                       </tr>
                       <tr>
-                        <td><input type="date" value="2020-02-02" readonly></td>
-                        <td>1개월</td>	
-                        <td>5.0kg</td>
-                        <td><input type="number" style="text-align: right; width:50px;"><span>kg</span></td>
+                        <td id="tb-pBirth"></td>
+                        <td id="tb-pAge">1개월</td>	
+                        <td id="tb-beWeight">5.0kg</td>
+                        <td id="tb-afterWeight"><input type="number" style="text-align: right; width:50px;"><span>kg</span></td>
                       </tr>
                     </table>
                   </div><br>

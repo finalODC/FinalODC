@@ -17,8 +17,18 @@
  	<result property="hCreateDate" column="H_CREATE_DATE"/>
  	<result property="hModifyDate" column="H_MODIFY_DATE"/>
  	<result property="hStatus" column="H_STATUS"/>
-
  	</resultMap>
+ 	
+ 	<resultMap type="Doctor" id="DoctorResultMap">
+ 		<id property="dId" column="DOCID"/>
+ 		<result property="refHid" column="REF_H_ID"/>
+ 		<result property="docName" column="DOC_NAME"/>
+ 		<result property="docIntro" column="DOC_INTRO"/>
+ 		<result property="docFile" column="DIC_FILE"/>
+ 		<result property="docStatus" column="DOC_STATUS"/>
+ 	</resultMap>
+ 	
+ 	
  <select id="login" resultMap="HMemberResultMap">
  	SELECT * FROM HOSPITAL
  	WHERE USERID=#{userId}
@@ -49,5 +59,12 @@
  </insert>
  
 
+	<select id="doctorList" resultMap="DoctorResultMap">
+		SELECT DOC_NAME
+		FROM DOCTOR
+		WHERE REF_H_ID=#{hId}
+		
+		
+	</select>
  
  </mapper>

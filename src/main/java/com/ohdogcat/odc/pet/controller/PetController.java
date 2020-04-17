@@ -42,8 +42,10 @@ public class PetController {
 		return "p_signin";
 	}
 	@RequestMapping("inserPet.pe")
-	public String insertPet(Model m) {
-		System.out.println((String)m.getAttribute("pName"));
+	public String insertPet(Pet p) {
+		System.out.println(p);
+		int result=pService.insertPet(p);
+		System.out.println(result);
 		return "myPagePet";
 	}
 	

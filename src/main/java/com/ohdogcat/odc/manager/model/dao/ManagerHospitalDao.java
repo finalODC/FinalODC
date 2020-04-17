@@ -1,4 +1,4 @@
-package com.ohdogcat.odc.manager.model.service;
+package com.ohdogcat.odc.manager.model.dao;
 
 import java.util.ArrayList;
 
@@ -30,6 +30,11 @@ public class ManagerHospitalDao {
 		
 		
 		return (ArrayList)sqlSession.selectList("hmanagerMapper.getMemberList",sHm,rw);
+	}
+
+	public int HopitalMemberDelete(int hId) {
+		
+		return sqlSession.update("hmanagerMapper.deleteMember",hId);
 	}
 	
 }
