@@ -44,6 +44,18 @@
 		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
 		<result property="pStatus" column="P_STATUS"/>
 	</resultMap>
+	
+	<resultMap type="Member" id="memberResultSet">
+	<id property="mId" column="MID"/>
+	<result property="userId" column="USERID"/>
+	<result property="userPwd" column="USERPWD"/>
+	<result property="userName" column="USERNAME"/>
+	<result property="email" column="EMAIL"/>
+	<result property="phone" column="PHONE"/>
+	<result property="mCreateDate" column="M_CREATE_DATE"/>
+	<result property="mModifyDate" column="M_MODIFY_DATE"/>
+	<result property="mStatus" column="M_STATUS"/>
+	</resultMap>
     
     
     <select id="searchPet" resultMap="petResultMap">
@@ -52,5 +64,32 @@
     	WHERE PHONE=#{phone}
     </select>
     
+    <select id="petInfo" resultMap="petResultMap">
+    	SELECT *
+    	FROM PET
+    	WHERE P_CODE = #{pCode}
+    
+    
+    </select>
+    
+    <select id="memberInfo" resultMap="memberResultSet">
+    	SELECT USERNAME
+    	FROM MEMBER
+    	WHERE PHONE=#{phone}
+    
+    </select>
+    
     
     </mapper>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

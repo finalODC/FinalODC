@@ -52,5 +52,8 @@
  		</choose>
 	ORDER BY HID DESC
 </select>
- <update id="deleteMember">UPDATE HOSPITALSET H_STATUS = 'N'WHERE HID =#{hId} </update>
+ <update id="deleteMember">
+ 	UPDATE HOSPITAL SET 
+ 	 H_STATUS = 'N' WHERE HID =#{hId} 
+ </update>
  </mapper>

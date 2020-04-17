@@ -42,6 +42,7 @@ public class ManagerHopitalController {
 		
 		PageInfo pi = Pagination.getPageInfo(1, listCount);
 		ArrayList<HMember> list = mHService.gethMemberList(sHm,pi);
+	
 		
 		mv.addObject("list",list);
 		mv.addObject("pi", pi);
@@ -71,6 +72,7 @@ public class ManagerHopitalController {
 	@ResponseBody
 	@RequestMapping("hMdel.ma")
 	public String HopitalMemberDelete(int hId) {
+		System.out.println(hId);
 		int result = mHService.HopitalMemberDelete(hId);
 		return Integer.valueOf(result).toString();
 	}

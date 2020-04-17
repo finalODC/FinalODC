@@ -175,7 +175,7 @@
             				 alert("삭제 실패");
             			 }
             		 },error:function(){
-            			 alect("우왕")
+            			 alert("우왕")
             		 }
             	 })
                 
@@ -244,7 +244,7 @@
         	            				 alert("삭제 실패");
         	            			 }
         	            		 },error:function(){
-        	            			 alect("우왕")
+        	            			 alert("우왕")
         	            		 }
         	            	 })
         	                

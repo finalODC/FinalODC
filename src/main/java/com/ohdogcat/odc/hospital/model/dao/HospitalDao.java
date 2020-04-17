@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
+import com.ohdogcat.odc.homepage.member.model.vo.Member;
 import com.ohdogcat.odc.pet.model.vo.Pet;
 
 @Repository("hoDao")
@@ -36,6 +37,20 @@ public class HospitalDao {
 	public ArrayList<Pet> searchPet(String phone) {
 		System.out.println(phone);
 		return (ArrayList)sqlSession.selectList("chart-mapper.searchPet",phone);
+	}
+
+
+
+
+	public Pet petInfo(String pCode) {
+		return sqlSession.selectOne("chart-mapper.petInfo",pCode);
+	}
+
+
+
+
+	public Member memberInfo(String phone) {
+		return sqlSession.selectOne("chart-mapper.memberInfo",phone);
 	}
 	
 	
