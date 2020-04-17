@@ -1,21 +1,29 @@
 package com.ohdogcat.odc.homepage.member.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import com.ohdogcat.odc.hospital.model.vo.Doctor;
+import com.ohdogcat.odc.hospital.model.vo.hoReply;
 
 public class HMember {
-	public String hId;
-	public String userId;
-	public String userPwd;
-	public String hCode;
-	public String hName;
-	public String hAddress;
-	public String hPhone;
-	public String hEmail;
-	public String hComment;
-	public String hFile;
-	public Date hCreateDate;
-	public Date hModifyDate;
-	public String hStatus;
+	private String hId;
+	private String userId;
+	private String userPwd;
+	private String hCode;
+	private String hName;
+	private String hAddress;
+	private String hPhone;
+	private String hEmail;
+	private String hComment;
+	private String hFile;
+	private Date hCreateDate;
+	private Date hModifyDate;
+	private String hStatus;
+	
+	private ArrayList<hoReply> hoReply;
+	private ArrayList<Doctor> doctor;
+	
 	
 	public HMember() {
 		super();
@@ -33,8 +41,13 @@ public class HMember {
 		this.hEmail = hEmail;
 	}
 
+
+
+	
+	
 	public HMember(String hId, String userId, String userPwd, String hCode, String hName, String hAddress,
-			String hPhone,String hEmail, String hComment, String hFile, Date hCreateDate, Date hModifyDate, String hStatus) {
+			String hPhone, String hEmail, String hComment, String hFile, Date hCreateDate, Date hModifyDate,
+			String hStatus, ArrayList<hoReply> hoReply, ArrayList<Doctor> doctor) {
 		super();
 		this.hId = hId;
 		this.userId = userId;
@@ -49,10 +62,10 @@ public class HMember {
 		this.hCreateDate = hCreateDate;
 		this.hModifyDate = hModifyDate;
 		this.hStatus = hStatus;
+		this.hoReply = hoReply;
+		this.doctor = doctor;
 	}
 
-	
-	
 	public String gethId() {
 		return hId;
 	}
@@ -157,14 +170,33 @@ public class HMember {
 	public void sethStatus(String hStatus) {
 		this.hStatus = hStatus;
 	}
+	
+
+	public ArrayList<hoReply> getHoReply() {
+		return hoReply;
+	}
+
+	public void setHoReply(ArrayList<hoReply> hoReply) {
+		this.hoReply = hoReply;
+	}
+
+	public ArrayList<Doctor> getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(ArrayList<Doctor> doctor) {
+		this.doctor = doctor;
+	}
 
 	@Override
 	public String toString() {
 		return "HMember [hId=" + hId + ", userId=" + userId + ", userPwd=" + userPwd + ", hCode=" + hCode + ", hName="
-				+ hName + ", hAddress=" + hAddress + ", hPhone=" + hPhone + ", hEmail=" + hEmail + ", hComment=" + hComment + ", hFile="
-				+ hFile + ", hCreateDate=" + hCreateDate + ", hModifyDate=" + hModifyDate + ", hStatus=" + hStatus
-				+ "]";
+				+ hName + ", hAddress=" + hAddress + ", hPhone=" + hPhone + ", hEmail=" + hEmail + ", hComment="
+				+ hComment + ", hFile=" + hFile + ", hCreateDate=" + hCreateDate + ", hModifyDate=" + hModifyDate
+				+ ", hStatus=" + hStatus + ", hoReply=" + hoReply + ", doctor=" + doctor + "]";
 	}
-	
+
+
+
 	
 }
