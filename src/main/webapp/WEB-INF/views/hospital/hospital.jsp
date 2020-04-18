@@ -157,9 +157,9 @@
 								<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
 							</div>
 							<div class="card-columns" id="cccbody" style="column-count: 1;">
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								
 								<div class="card t1"
-									style="width: 200px; height: auto; display: inline-block;"
+									style="width: 200px; height: auto; display: inline-block; margin: 25px 0 0 25px;"
 									id="copy">
 									<div class="card-body text-center">
 										<img class="card-body text-center docImage" name="docImage"
@@ -295,7 +295,7 @@
 			$('.copy').click(function() {
 				/* var a = $("#copy").clone(true) */
 				$div = "<div class='card-columns' id='cccbody' style='column-count: 1; display:inline-block'>"
-				+ "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+				+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 
 				+ "<div class='card t1' style='width: 200px; height: auto; display: inline-block;'id='copy'>"
 				+ "<div class='card-body text-center'>"
 				+ "<img class='card-body text-center docImage' name='docImage' id='docImage' style='width: 90%; height: 200px;'>"

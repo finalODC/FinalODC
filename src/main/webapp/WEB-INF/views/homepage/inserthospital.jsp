@@ -30,6 +30,7 @@
 #map {
 	
 }
+.par { border: 1px solid #000; }
 </style>
 </head>
 <body>
@@ -89,24 +90,24 @@
 						<h6 class="m-0 font-weight-bold text-primary">동물 병원</h6>
 					</div>
 					<div class="sea"
-						style="width: 100%; height: 400px; padding: 1%;">
-						<div class="par" style="width: 50%; height: 400px; padding: 1%; float: left;">
+						style="width: 100%; height: 452px; padding: 41px 35px;">
+						<div class="par" style="width: 50%; height: 370px; float: left;">
 
-							<div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div>
+							<!-- <div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div> -->
 
 						</div>
-						<div class="ssa" style="width: 50%; height: 400px; padding: 1%; float: right;">
+						<div class="ssa" style="width: 50%; height: 370px;  float: right;">
 						
-							<p style="text-align: center;">oo동물병원</p>
-							<textarea
-								style="width: 100%; height: 90%; padding: 1%; border: none; resize: none; text-align: center;">병원소개</textarea>
+							<div
+								style="width: 100%; height: 370px; border: none; resize: none; text-align: center;" readonly>병원소개</div>
 
 						</div>
 
 					</div>
-					<hr>
-					<div id="map" style="width: 500px; height: 300px; padding: 1%;"></div>
-
+					<div style="width: 100%; border-top: 1px solid #ebebeb"></div>
+					<div class="two" style="width: 100%; padding: 41px 35px;">
+						<div id="map" style="width: 100%; height: 300px; margin-bottom: 20px"></div>
+					
 					<script type="text/javascript"
 						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807"></script>
 					<script>
@@ -121,6 +122,7 @@
 					<textarea
 						style="width: 90%; height: 200px; border: none; resize: none;"
 						readonly>상세주소</textarea>
+					</div>
 				</div>
 			</div>
 
@@ -130,19 +132,14 @@
 						<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
 					</div>
 					<div class="card-columns" id="cccbody" style="column-count: 1;">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<div class="card"
-							style="width: 200px; height: auto; display: inline-block;"
-							id="copy">
+						
+						<div class="card" style="width: 200px; height: auto; display: inline-block; margin: 41px 35px;" id="copy">
 							<div class="card-body text-center">
-
-								<br> <br> <input type="text"
-									style="text-align: center; width: 100px; border: none;"
-									readonly value="의사이름">
+								<img class="card-body text-center docImage" name="docImage" id="docImage" style="width: 90%; height: 200px;">
+								<br> <br> 
+								<input type="text" style="text-align: center; width: 100px; border: none;" placeholder="의사이름">
 								<hr>
-								<textarea
-									style="width: 150px; height: 200px; border: none; resize: none;"
-									readonly>의사에 대한 간단한 소개</textarea>
+								<textarea style="width: 150px; height: 200px; border: none; resize: none;" placeholder="간단한 소개"></textarea>
 							</div>
 						</div>
 					</div>
