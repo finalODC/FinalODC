@@ -13,9 +13,9 @@ public class HMemberDao {
 	private SqlSessionTemplate sqlSession;
 	
 	
-	public HMember loginMem(String userId) {
+	public HMember loginMem(HMember m) {
 		
-		return sqlSession.selectOne("hmemberMapper.login",userId);
+		return sqlSession.selectOne("hmemberMapper.login",m);
 	}
 	
 	public int checkBusiness(String hCode) {

@@ -56,6 +56,18 @@
 	<result property="mModifyDate" column="M_MODIFY_DATE"/>
 	<result property="mStatus" column="M_STATUS"/>
 	</resultMap>
+	
+	<resultMap type="Diagnosis" id="diagnosisResultMap">
+		<id property="dId" column="DID"/>
+		<result property="dWriter" column="D_WRITER"/>
+		<result property="pCode" column="REF_P_CODE"/>
+		<result property="hId" column="REF_H_ID"/>
+		<result property="docId" column="REF_DOC_ID"/>
+		<result property="dDate" column="D_DATE"/>
+		<result property="dContent" column="D_CONTENT"/>
+		<result property="dUnique" column="D_UNIQUENESS"/>
+		<result property="dStatus" column="D_STATUS"/>
+	</resultMap>
     
     
     <select id="searchPet" resultMap="petResultMap">
@@ -78,6 +90,27 @@
     	WHERE PHONE=#{phone}
     
     </select>
+    
+    
+    <select id="searchDiag" resultMap="diagnosisResultMap">
+    	SELECT *
+    	FROM DIAGNOSIS
+    	WHERE REF_P_CODE=#{pCode}
+    
+    
+    </select>
+    
+     <select id="countDiag" resultType="_int">
+    	SELECT count(*)
+    	FROM DIAGNOSIS
+    	WHERE REF_P_CODE=#{pCode}
+    
+    
+    </select>
+    
+    
+    
+    
     
     
     </mapper>

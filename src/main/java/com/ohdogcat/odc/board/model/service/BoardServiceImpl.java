@@ -48,14 +48,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public ArrayList<FreeReply> FreeReplyList(int fbId) {
-		
-		return bDao.FreeReplyList(fbId);
-	}
-
-	@Override
 	public int insertFreeReply(FreeReply fr) {
-
+		
 		return bDao.insertFreeReply(fr);
 	}
 

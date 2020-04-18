@@ -16,9 +16,11 @@
 		<typeAlias type="com.ohdogcat.odc.board.model.vo.FreeReply" alias="FReply"/>
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.hoReply" alias="hoReply"/>
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.Doctor" alias="Doctor"/>
+		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.Diagnosis" alias="Diagnosis"/>
 		<typeAlias type="com.ohdogcat.odc.pet.model.vo.Pet" alias="Pet"/>
 		<typeAlias type="com.ohdogcat.odc.qna.model.vo.Qna" alias="Qna"/>
 		<typeAlias alias="QnaReply" type="com.ohdogcat.odc.qna.model.vo.QnaReply"/>
+		
 	</typeAliases>
 	
 	<!-- mappers -->
