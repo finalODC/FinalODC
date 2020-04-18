@@ -100,6 +100,23 @@ public class HospitalController2 {
       return renameFileName;
    }
    
+   @RequestMapping("hoscomment.ho")
+   public String hoscomment(HMember hm, String hComment) {
+	   
+	   hm.sethComment(hComment);
+	   
+	   System.out.println("hComment : " + hComment);
+	   
+	   int result = hService2.hoscomment(hm);
+	   
+	   if(result > 0) {
+		   return "redirect:info.ho";
+	   }else {
+		   return "";
+	   }
+   }
+   
+   
    @RequestMapping("hosupdate.ho")
    public String hosupdate(Model model, HMember hm, String pwd, String hPhone) {
 
@@ -115,14 +132,15 @@ public class HospitalController2 {
       
       System.out.println("result : " + result);
       
-//      if(result > 0) {
+      if(result > 0) {
 //    	  model.addAttribute("loginUser",hm);
-//    	  return "redirect:chart.ho";
-//      }else {
-//    	  return "redirect:info.ho";
-//      }
+    	  return "redirect:chart.ho";
+      }else {
+    	  return "";
+      }
       
-      return Integer.valueOf(result).toString();
+
+//      return Integer.valueOf(result).toString();
       
    }
 

@@ -19,6 +19,7 @@
 	crossorigin="anonymous">
 
 <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <title>내 병원 관리</title>
 
@@ -94,9 +95,9 @@
 
 										<img class="card-body text-center" name="hImage" id="preview"
 											style="width: 100%; height: 250px;"> <label
-											class="btn btn-primary ">사진등록 <input type="file"
+											class="btn btn-primary ">사진선택 <input type="file"
 											class="img-fluid" alt="" id="getfile" style="display: none;">
-										</label> <label class="btn btn-primary">사진변경 <input
+										</label> <label class="btn btn-primary">사진등록 <input
 											type="file" class="img-fluid" style="display: none"
 											id="changfile">
 										</label>
@@ -108,26 +109,44 @@
 									<div class="card-body text-center">
 
 										<textarea
-											style="width: 90%; height: 200px; border: none; resize: none;"
-											placeholder="병원소개"></textarea>
+											style="width: 90%; height: 200px; border: none; resize: none;" id="hComment"
+											placeholder="">${ loginUser.hComment }</textarea>
 
 										<br> <br>
 
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#myModal">글 수정</button>
+										<input type="button" class="btn btn-primary" id="changecom"
+											data-toggle="modal" data-target="#myModal" value="수정하기">
 									</div>
 								</div>
 
 								<div class="card" style="width: 500px text-align=center;">
 									<div class="card-body text-center">
 
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#myModal">주소 변경</button>
+										<div class="mb-4">
+                            			<label for="country">주소</label><br>
+                            				<div class="row">
+                                				<div class="inputgroup" style="width: 80%; margin-right: 2%;">
+                                    				<input type="text" readonly class="form-control" placeholder="" id="add1" name="add1" value="${ loginUser.hAddress }">
+                                				</div><br><br>
+                                				<div class="inputgroup" style="width: 60%; margin-right: 2%;">
+                                    				<input type="text" readonly class="form-control" placeholder="" id="add2" name="add2">
+                                				</div>
+
+                                				<br><br>
+                                				<div class="inputgroup" style="width: 50%; margin-right: 2%;">
+                                    				<input type="text" class="form-control" placeholder="" id="add3" name="add3">
+                                				</div>
+                                				<div class="inputgroup" style="width: 10%; margin-right: 2%;">
+                                    				<input type="button" onclick="searchaddr();" value="주소검색" class="btn btn-primary">
+                                				</div>
+                                				
+                            				</div>
+                        				</div>
 									</div>
-								</div>
-
-
+								</div>				
+								
 							</div>
+							
 						</div>
 
 					</div>
@@ -212,6 +231,19 @@
 	</div>
 
 	<script>
+		function searchaddr(){
+      		new daum.Postcode({
+    			oncomplete: function(data) {
+    			  	console.log(data)
+         			$("#add1").val(data.zonecode);
+    				$("#add2").val(data.address);
+     			} 
+ 			}).open();
+       	}
+	
+	
+	
+	
 		// 사진 등록
 		var file = document.querySelector('#getfile');
 
@@ -230,6 +262,29 @@
 
 			};
 		};
+		
+		// 병원 설명 등록
+		$(function(){
+			$('#changecom').on('click',function(){
+				var hComment = $('#hComment').val();
+				
+				$.ajax({
+					url : "hoscomment.ho",
+					type : "get",
+					data : {
+						userId : '${loginUser.userId}',
+						hComment:hComment
+					},success:function(data){
+						if(data!=1){
+							location.href="info.ho";
+							alert("변경 성공");
+						}
+					},error:function(data){
+						alert("실패");
+					}
+				});
+			});
+		})
 	</script>
 
 	

@@ -51,6 +51,15 @@ public class HospitalServiceImpl2 implements HospitalService2{
 		return hoDao2.insertReply(hr);
 	}
 
+	/**
+	 * 병원 설명 등록
+	 */
+	@Override
+	public int hoscomment(HMember hm) {
+		
+		return hoDao2.hoscomment(hm);
+	}
+
 	
 	
 }

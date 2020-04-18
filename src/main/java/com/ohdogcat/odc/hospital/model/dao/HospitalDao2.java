@@ -57,6 +57,16 @@ public class HospitalDao2 {
 		return sqlSession.insert("hospitalMapper.insertReply", hr);
 	}
 
+	/**
+	 * 병원 설명 등록
+	 * @param hm
+	 * @return
+	 */
+	public int hoscomment(HMember hm) {
+		
+		return sqlSession.update("hospitalMapper.hoscomment",hm);
+	}
+
 	
 			
 }
