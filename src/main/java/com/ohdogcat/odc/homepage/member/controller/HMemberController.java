@@ -38,7 +38,6 @@ public class HMemberController {
 		private EmailService mailsender;
 
 	
-	
 	 
 	 @RequestMapping("hloginp.do")
 	 public String hloginp(){

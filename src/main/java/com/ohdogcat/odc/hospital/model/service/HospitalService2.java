@@ -41,6 +41,6 @@ public interface HospitalService2 {
 	 * @param hm
 	 * @return
 	 */
-	int hoscomment(HMember hm);
+	int updatehosinfo(HMember hm);
 
 }

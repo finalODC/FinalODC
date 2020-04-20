@@ -63,6 +63,8 @@
 
 			<li class="nav-item"><a class="nav-link" href="hosP.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="hosinfo.ho"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>병원상세</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
@@ -79,7 +81,7 @@
 			</div>
 			<!-- Content Row -->
 
-			<form action="hupdate.ho" method="post" enctype="multipart/form-data">
+			<form action="updatehosinfo.ho" method="post" enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-lg-11 mb-4">
 
@@ -146,7 +148,12 @@
 								</div>				
 								
 							</div>
+							<div style="text-align: center;">
+								<button type="submit" class="btn btn-primary" id="updatehosinfo" data-toggle="modal" data-target="#myModal">수정하기</button>
+								<br><br>
 							
+							</div>
+							</form>
 						</div>
 
 					</div>
@@ -223,7 +230,7 @@
 
 				</div>
 
-			</form>
+			
 		</div>
 
 
@@ -265,15 +272,22 @@
 		
 		// 병원 설명 등록
 		$(function(){
-			$('#changecom').on('click',function(){
+			$('#updatehosinfo').on('click',function(){
+				var hFile = $('#preview').val();
 				var hComment = $('#hComment').val();
-				
+				var add1 = $('#add1').val();
+				var add2 = $('#add2').val();
+				var add3 = $('#add3').val();
 				$.ajax({
-					url : "hoscomment.ho",
+					url : "updatehosinfo.ho",
 					type : "get",
 					data : {
 						userId : '${loginUser.userId}',
-						hComment:hComment
+						hFile:hFile,
+						hComment:hComment,
+						add1:add1,
+						add2:add2,
+						add3:add3
 					},success:function(data){
 						if(data!=1){
 							location.href="info.ho";

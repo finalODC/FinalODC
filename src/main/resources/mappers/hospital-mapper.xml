@@ -52,9 +52,9 @@
  	</update>
  	
  	<!-- 병원 설명 등록 -->
- 	<update id="hoscomment" parameterType="HMember">
+ 	<update id="updatehosinfo" parameterType="HMember">
  		UPDATE HOSPITAL
- 		SET H_COMMENT=#{hComment}
+ 		SET H_COMMENT=#{hComment},H_ADDRESS=#{hAddress}
  		WHERE USERID=#{userId}
  	</update>
  	

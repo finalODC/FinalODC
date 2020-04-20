@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
@@ -43,6 +44,11 @@ public class HospitalController2 {
    @RequestMapping("hosP.ho")
    public String goHosP() {
       return "hosPage";
+   }
+   
+   @RequestMapping("hosinfo.ho")
+   public String goHosInfo() {
+	   return "inserthospital2";
    }
 
    
@@ -100,17 +106,23 @@ public class HospitalController2 {
       return renameFileName;
    }
    
-   @RequestMapping("hoscomment.ho")
-   public String hoscomment(HMember hm, String hComment) {
+   @RequestMapping("updatehosinfo.ho")
+   public String updatehosinfo(HMember hm, String hComment, String add1, String add2, String add3, SessionStatus session) {
 	   
 	   hm.sethComment(hComment);
+	
 	   
-	   System.out.println("hComment : " + hComment);
+	   System.out.println("hComment : " + hComment + "add1 : " + add1 + "add2" + add2 + "add3 : " + add3);
 	   
-	   int result = hService2.hoscomment(hm);
+	   if(!add1.equals("")) {
+			hm.sethAddress(add1 + add2 + add3);
+		}
+	   
+	   int result = hService2.updatehosinfo(hm);
 	   
 	   if(result > 0) {
-		   return "redirect:info.ho";
+		   session.setComplete();
+		   return "redirect:hosP.ho";
 	   }else {
 		   return "";
 	   }

@@ -62,9 +62,9 @@ public class HospitalDao2 {
 	 * @param hm
 	 * @return
 	 */
-	public int hoscomment(HMember hm) {
+	public int updatehosinfo(HMember hm) {
 		
-		return sqlSession.update("hospitalMapper.hoscomment",hm);
+		return sqlSession.update("hospitalMapper.updatehosinfo",hm);
 	}
 
 	

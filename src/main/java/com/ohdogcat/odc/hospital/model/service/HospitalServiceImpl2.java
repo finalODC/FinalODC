@@ -55,9 +55,9 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	 * 병원 설명 등록
 	 */
 	@Override
-	public int hoscomment(HMember hm) {
+	public int updatehosinfo(HMember hm) {
 		
-		return hoDao2.hoscomment(hm);
+		return hoDao2.updatehosinfo(hm);
 	}
 
 	
