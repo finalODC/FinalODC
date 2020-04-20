@@ -14,6 +14,7 @@
 		<result property="pGender" column="P_GENDER"/>
 		<result property="pBirth" column="P_BIRTH"/>
 		<result property="neutralYN" column="NEUTRAL"/>
+		<result property="pWeight" column="P_WEIGHT"/>
 		<result property="pUniqueness" column="P_UNIQUENESS"/>
 		<result property="p_Create_Date" column="P_CREATE_DATE"/>
 		<result property="p_Modify_Date" column="P_MODIFY_DATE"/>
@@ -29,7 +30,7 @@
 	
 	<insert id="insertPet" parameterType="Pet">
 		INSERT INTO PET VALUES(SEQ_PID.NEXTVAL,#{pCode},#{pName},#{ref_mid},#{pSpecies},#{breed},#{pGender},
-								#{pBirth},#{neutralYN},#{pUniqueness},SYSDATE,SYSDATE,DEFAULT)
+								#{pBirth},#{neutralYN},#{pWeight},#{pUniqueness},SYSDATE,SYSDATE,DEFAULT)
 	</insert>
 
 

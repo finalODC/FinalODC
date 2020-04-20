@@ -69,7 +69,7 @@
 										class="btn btn-outline-primary">개인정보 변경</a></td>
 									<td width="140px"><span class="btn btn-outline-info">&nbsp;반려동물
 											정보&nbsp;</span></td>
-									<td width="140px"><a href="mypageQNA.do"
+									<td width="140px"><a href="myqnalist.qn"
 										class="btn btn-outline-primary">&nbsp;문희하러가기&nbsp;</a></td>
 								</tr>
 							</table>

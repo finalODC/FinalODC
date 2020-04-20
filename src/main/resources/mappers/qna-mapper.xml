@@ -12,6 +12,12 @@
 		<result property="qFile" column="QFILE"/>
 		<result property="qDate" column="QDATE"/>
 		<result property="qStatus" column="QSTATUS"/>
+		<association property="qnaRe" javaType="QnaReply">
+ 		<id property="refQid" column="REF_QID"/>
+ 		<result property="aDate" column="A_DATE"/>
+ 		<result property="aContent" column="A_Content"/>
+ 		<result property="aStatus" column="A_Status"/>
+ 	</association>
 	</resultMap>
 	
 	<insert id="insertQna">
@@ -23,5 +29,15 @@
 		FROM QNA
 		WHERE QWRITER=#{userId}
 		AND Q_STATUS='Y'
+		ORDER BY QID DESC 
 	</select>
+	
+	<select id="qnaList2" resultMap="qnaResultSet">
+		SELECT * FROM QNA
+		LEFT JOIN QNAANSWER ON (QID =REF_QID)
+		WHERE Q_STATUS='Y' 
+		AND QWRITER=#{userId}
+		ORDER BY QID DESC
+	</select>
+	
 </mapper>

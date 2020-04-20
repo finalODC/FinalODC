@@ -69,7 +69,7 @@
 									<td width="140px"><a href="mypagepet.do"
 										class="btn btn-outline-primary">&nbsp;반려동물 정보&nbsp;</a></td>
 										
-									<td width="140px"><a href="mypageQNA.do"
+									<td width="140px"><a href="myqnalist.qn"
 										class="btn btn-outline-primary">&nbsp;문의하러가기&nbsp;</a></td>
 
 								</tr>

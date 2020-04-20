@@ -83,18 +83,20 @@
 								style="border-bottom: 1px solid #dee2e6; background: white;">
 								<thead>
 									<tr>
-										<th>번호</th>
-										<th>제목</th>
-										<th>작성자</th>
-										<th>날짜</th>
+										<th align="">번호</th>
+										<th align="">제목</th>
+										<th align="">날짜</th>
+										<th align="">답변상태</th>
+										<th align="">파일첨부</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td>1</td>
-										<td>문의 1번입니다</td>
-										<td>${loginUser.userId }</td>
-										<td>2020-01-16</td>
+										<td align="center">1</td>
+										<td align="center">문의 1번입니다</td>
+										<td align="center">${loginUser.userId }</td>
+										<td align="center">2020-01-16</td>
+										<td align="center">답변완료</td>
 									</tr>
 								</tbody>
 							</table>
@@ -189,39 +191,155 @@
 	//EL태그로 가져온건 String은 미리 선언을 해주고 가져오는 과정이 필요함 존나 예민함 씨발련
 	
 	var userId =  "${loginUser.userId}";
-		$(function(){
+	var pageNo = ${currentPage};
+		/* $(function(){
 			alert("JQUERY 정삭작동");
 			QnaList();
+		}); */
+		$(function(){
+			alert(pageNo+","+userId);
+			getList(pageNo);
 		});
-		function QnaList(){
+		
+		function getList(pageNo){
+			
+			$.ajax({
+				url:"qlistView.qn",
+				data:{currentPage : pageNo,userId:userId},
+				dataType:"json",
+				type:"post",
+				success:function(data){
+				   console.log(data);
+				   
+				   var listText="";
+				   /* $tableBody=$("#qnaList tbody");
+					$tableBody.html("");
+					for(var i in data.list){
+					
+						var $tr=$("<tr class='qnatb'>");
+						var $qId=$("<td>").text(data.list[i].qId);
+						var $qTitle=$("<td>").text(data.list[i].qTitle);
+						var $qWriter=$("<td>").text(data.list[i].qWriter);
+						var $qDate=$("<td>").text(data.list[i].qDate);
+						var $answer=$("<td>").text("답변완료");
+						$tr.append($qId);
+						$tr.append($qTitle);
+						$tr.append($qWriter);
+						$tr.append($qDate);
+						$tr.append($answer);
+						
+						$tableBody.append($tr);
+						
+					} */
+				   for(var i in data.list){
+						listText +="<tr>";
+						listText +="<td align='left'>"+ data.list[i].qId +"</td>";
+						listText +="<td align='left'>";
+						listText += data.list[i].qTitle;
+						listText +="</td>";
+						listText +="<td align='left'>"+ data.list[i].qDate + "</td>";
+						if(data.list[i].qnaRe!=null){
+							listText +="<td align='left'>답변완료</td>";	
+						}else{
+							listText +="<td align='left'>대기중</td>";
+						}
+						;
+						listText +="<td align='left'>";
+						 if(data.list[i].qFile != null) {
+							listText +=data.list[i].qFile;	
+						}else {
+							listText +="첨부파일없음";
+						} 
+						listText +="</td>";
+						listText +="</tr>";
+				   }
+				   
+				   // 페이징 처리
+				   listText += "<tr align='center' height='20'>";
+				   listText += "<td colspan='6'>";
+				   // [이전]
+				   if(pageNo == 1){
+					   listText +=	"[이전] &nbsp;";
+				   }else{
+					   listText += "<a href='javascript:void(0);' onclick='getList("+ (pageNo - 1) +")'>[이전]</a> &nbsp;";
+				   }
+					// 페이지 
+					for(var p= data.pi.startPage; p<= data.pi.endPage; p++){
+						if(p == data.pi.currentPage){
+							listText += "<font color='red' size='4'><b>"+ [ p ] + "</b></font>";
+						}else{
+							listText +=  "<a href='javascript:void(0);' onclick='getList("+ p + ")'>" + p + "</a> &nbsp;";
+						}						
+					}
+					// [다음]
+					if(pageNo == data.pi.maxPage){
+						listText += "[다음]";
+					}else{
+						listText += "<a href='javascript:void(0);' onclick='getList("+ (pageNo+1) +")'>[다음]</a>";
+					}
+					listText +="</td>";
+					listText +="</tr>";
+				   
+				   $("#qnaList tbody").html(listText);
+				   
+				},error:function(){
+					console.log("전송실패");
+				}
+			});
+		}
+		/* function QnaList(){
 			$.ajax({
 				url:"myqnalist.qn",
 				dataType:"json",
 				data:{userId:userId},
 				success:function(data){
-					console.log(data);
+					console.log(data.length);
 					$tableBody=$("#qnaList tbody");
 					$tableBody.html("");
 					for(var i in data){
-						var $tr=$("<tr>");
+						var $tr=$("<tr class='qnatb'>");
 						var $qId=$("<td>").text(data[i].qId);
 						var $qTitle=$("<td>").text(data[i].qTitle);
 						var $qWriter=$("<td>").text(data[i].qWriter);
 						var $qDate=$("<td>").text(data[i].qDate);
+						var $answer=$("<td>").text("답변완료");
 						$tr.append($qId);
 						$tr.append($qTitle);
 						$tr.append($qWriter);
 						$tr.append($qDate);
+						$tr.append($answer);
 						
 						$tableBody.append($tr);
+						
 					}
+					$(".qnatb").on("click",function(){
+						alert($(this).find("td").first().text());
+						$
+					});
 				},error:function(){
 					alert("data전송 실패");
 				}
 			});
-		}
+		} */
+		
+		
 	</script>
 	
+	<script>
+		$(function(){
+			$("#nok").hide();
+			$("#nok2").hide();
+			$("#lee").on("click",function(){
+				if($("#nok").css("display")=="none"){
+					$("#nok").show();
+					$("#nok2").show();
+				}else{
+					$("#nok").hide();
+					$("#nok2").hide();
+				}
+			});
+		});
+	</script>
 
 </body>
 
