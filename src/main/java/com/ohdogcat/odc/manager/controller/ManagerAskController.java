@@ -70,6 +70,7 @@ public class ManagerAskController {
 	public String insertAnswer(QnaReply qr) {
 		
 		Integer result =  mAService.insertAnswer(qr);
+		System.out.println(qr);
 		
 		return result.toString();
 	}

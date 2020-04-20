@@ -67,6 +67,7 @@
                           </tr>
                               <th width="100px">내용: </th>
                               <td><div style="text-align:left;">${qna.qContent }</div></td>
+                             
                           </tr>
                          
                           <tr>
@@ -100,13 +101,21 @@
                     ${qna.qnaRe.aDate }<br> <br>
                     <button class="btn btn-danger" id="delCo">삭제</button></th>
             
-                    <td><div>${qna.qnaRe.aContent}</div></td>
+                    <td><div id="aContentFill" align="left"></div></td>
                 </tr>
                 <tr></tr>
               </tbody>
               </table>
               <script>
-              	$(function(){
+              	$(document).ready(function(){
+              		var a = "${qna.qnaRe.aContent}".split("|||");
+              		
+              		for(var i = 0; i<a.length; i++){
+              			$("#aContentFill").append(a[i]);
+              		}
+              	
+              		
+              	
               		$("#delCo").click(function(){
               			$.ajax({
               				url:"deleteQnaRe.ma",
@@ -147,13 +156,22 @@
 		 <script>
         $(document).ready(function(){
           //답변
+        	
+        
         
           $("#recomment").click(function(){
         	  console.log($("#content1").val());
-           	$.ajax({
+        	  
+        	  var arr =  $("#content1").val().split("\n");
+              for(var i = 0; i<arr.length;i++){
+            	  arr[i] = "<p>"+arr[i]+"<p>"
+              }
+        	  
+         
+            	$.ajax({
           		url:"insertQnaRe.ma",
           		type:"post",
-          		data:{aContent:$("#content1").val(),
+          		data:{aContent:arr.join("|||"),
           				refQid:"${qna.qId}"},
           		success:function(data){
           			if(data>0){
@@ -167,7 +185,7 @@
           			alert("ajax에러");
           		}
           	}) 
-          })
+          }) 
 		
         });
 
