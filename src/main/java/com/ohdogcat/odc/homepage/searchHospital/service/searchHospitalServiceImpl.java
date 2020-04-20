@@ -25,4 +25,9 @@ public class searchHospitalServiceImpl implements searchHospitalService {
 	public ArrayList<HMember> hospitalSearchList(PageInfo pi, hospitalSearchCondition hs) {
 		return shDao.hospitalSearchList(pi,hs);
 	}
+
+	@Override
+	public HMember gethospital(int hId) {
+		return shDao.gethoispital(hId);
+	}
 }

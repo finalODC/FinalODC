@@ -3,12 +3,15 @@ package com.ohdogcat.odc.hospital.model.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 import com.ohdogcat.odc.homepage.member.model.vo.Member;
+import com.ohdogcat.odc.hospital.model.vo.Diagnosis;
 import com.ohdogcat.odc.pet.model.vo.Pet;
 
 @Repository("hoDao")
@@ -52,6 +55,32 @@ public class HospitalDao {
 	public Member memberInfo(String phone) {
 		return sqlSession.selectOne("chart-mapper.memberInfo",phone);
 	}
+
+
+
+
+	public ArrayList<Diagnosis> searchDiag(String pCode, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage()-1) *pi.getBoardLimit();
+		
+		RowBounds rw = new RowBounds(offset,pi.getBoardLimit());
+		
+		
+		
+		return (ArrayList)sqlSession.selectList("chart-mapper.searchDiag",pCode,rw);
+	}
+
+
+
+
+	public int getListCount(String pCode) {
+		return sqlSession.selectOne("chart-mapper.countDiag",pCode);
+	}
+
+
+
+
+
 	
 	
 	

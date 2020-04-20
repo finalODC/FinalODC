@@ -18,6 +18,7 @@
 	rel="stylesheet">
 
 <!-- Stylesheets -->
+<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 <link rel="stylesheet" href="${ path }/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${ path }/resources/css/style.css" />
 <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
@@ -30,52 +31,13 @@
 #map {
 	
 }
+.par { border: 1px solid #000; }
 </style>
 </head>
 <body>
+  <jsp:include page="common/menubar.jsp"/>
 
-	<header class="header-section" style="background-color: #30627e;">
-		<a href="" class="float-left navbar-light slicknav_menu"
-			style="color: white; font-size: 30px; margin-top: 7px;"><b>Oh!DogCat</b></a>
-		<nav class="header-nav">
-			<div class="container" style="padding-bottom: 30px;">
-				<a href="mainpage.html" class="float-left navbar-light "
-					style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
-				<ul class="main-menu">
-					<li><a href="#">병원찾기</a></li>
-					<li><a href="cuponcheck.html">커뮤니티</a>
-						<ul class="sub-menu">
-							<li><a href="about-us.html">공지사항</a></li>
-							<li><a href="search-result.html">자유게시판</a></li>
-							<li><a href="single-property.html">TIP</a></li>
-						</ul></li>
-					<li><a href="#">마이페이지</a>
-						<ul class="sub-menu">
-							<li><a href="about-us.html">정보수정</a></li>
-							<li><a href="myPet.html">반려동물 관리</a></li>
-							<li><a href="qna.html">문의하기</a></li>
-						</ul></li>
-					<!-- <li><a href="#"></a>
-			  <ul class="sub-menu">
-				<li><a href="about-us.html">About Us</a></li>
-				<li><a href="search-result.html">Search Result</a></li>
-				<li><a href="single-property.html">Property</a></li>
-			  </ul>
-			</li>
-			<li><a href="news.html">News</a></li> -->
-					<!-- <li><a href="#">로그인</a></li> -->
-				</ul>
-				<div class="header-right">
-					<div class="user-panel">
-						<!-- <a href="login.html" class="login">로그인</a> -->
-						<a href="selectJoinCase.html" class="register">로그아웃</a>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header  class="masthead">
-
-	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
+	
 	<div class="container" style="padding-top: 150px;">
 		<div class="row">
 
@@ -89,40 +51,31 @@
 						<h6 class="m-0 font-weight-bold text-primary">동물 병원</h6>
 					</div>
 					<div class="sea"
-						style="width: 100%; height: 400px; padding: 1%;">
-						<div class="par" style="width: 50%; height: 400px; padding: 1%; float: left;">
+						style="width: 100%; height: 452px; padding: 41px 35px;">
+						<div class="par" style="width: 50%; height: 370px; float: left;">
 
-							<div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div>
+							<!-- <div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div> -->
 
 						</div>
-						<div class="ssa" style="width: 50%; height: 400px; padding: 1%; float: right;">
+						<div class="ssa" style="width: 50%; height: 370px;  float: right;">
 						
-							<p style="text-align: center;">oo동물병원</p>
-							<textarea
-								style="width: 100%; height: 90%; padding: 1%; border: none; resize: none; text-align: center;">병원소개</textarea>
+							<div
+								style="width: 100%; height: 370px; border: none; resize: none; text-align: center;" readonly>병원소개</div>
 
 						</div>
 
 					</div>
-					<hr>
-					<div id="map" style="width: 500px; height: 300px; padding: 1%;"></div>
+					<div style="width: 100%; border-top: 1px solid #ebebeb"></div>
+					<div class="two" style="width: 100%; padding: 41px 35px;">
+						<div id="map" style="width: 100%; height: 300px; margin-bottom: 20px"></div>
 
-					<script type="text/javascript"
-						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807"></script>
-					<script>
-						var container = document.getElementById('map');
-						var options = {
-							center : new kakao.maps.LatLng(33.450701, 126.570667),
-							level : 3
-						};
-
-						var map = new kakao.maps.Map(container, options);
-					</script>
 					<textarea
 						style="width: 90%; height: 200px; border: none; resize: none;"
 						readonly>상세주소</textarea>
+					</div>
 				</div>
 			</div>
+			
 
 			<div class="col-lg-12 mb-4">
 				<div class="card shadow mb-4">
@@ -130,19 +83,14 @@
 						<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
 					</div>
 					<div class="card-columns" id="cccbody" style="column-count: 1;">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<div class="card"
-							style="width: 200px; height: auto; display: inline-block;"
-							id="copy">
+						
+						<div class="card" style="width: 200px; height: auto; display: inline-block; margin: 41px 35px;" id="copy">
 							<div class="card-body text-center">
-
-								<br> <br> <input type="text"
-									style="text-align: center; width: 100px; border: none;"
-									readonly value="의사이름">
+								<img class="card-body text-center docImage" name="docImage" id="docImage" style="width: 90%; height: 200px;">
+								<br> <br> 
+								<input type="text" style="text-align: center; width: 100px; border: none;" placeholder="의사이름">
 								<hr>
-								<textarea
-									style="width: 150px; height: 200px; border: none; resize: none;"
-									readonly>의사에 대한 간단한 소개</textarea>
+								<textarea style="width: 150px; height: 200px; border: none; resize: none;" placeholder="간단한 소개"></textarea>
 							</div>
 						</div>
 					</div>
@@ -182,83 +130,7 @@
 		</div>
 
 		<!-- Footer Section -->
-		
-		<script>
-			// 댓글관련
-			$(function(){
-				
-				setInterval(function(){
-					getReplyList();
-				},3000);
-				
-			$("#hrSubmit").on("click",function(){
-				var hrContent = $("#hrContent").val();
-				var hrefBid = ${ h.hId };
-				var hrWriter = ${ m.mId};
-				
-				$.ajax({
-					url:"addReply.ho",
-					data:{hrContent:hrContent,hrefBid:hrefBid,hrWriter:hrWriter},
-					type:"post",
-					success:function(data){
-						//console.log(data);
-						if(data == "success"){
-							getReplyList();		// 등록 성공 시 다시 댓글 리스트 불러오기
-							
-							$("#hrContent").val("");
-						}
-						
-					},error:function(){
-						console.log("전송실패");
-					}
-				});
-			});
-		});
-		
-		function getReplyList(){
-			var hId = ${ h.hId };
-			
-			$.ajax({
-				url:"hrList.ho",
-				data:{hId:hId},		// 첫번쨰 bId는 controller에 있는bId, 두번째 bId는 function에 선언된 변수 bId
-				dataType:"json",
-				success:function(data){
-					$tableBody = $("#rtb tbody");
-					$tableBody.html("");
-					
-					var $tr;
-					var $hrWriter;
-					var $hrContent;
-					var $hrCreateDate;
-					
-					$("#hrCount").text("댓글(" +  data.length + ")");
-					
-					if(data.length > 0){
-						for(var i in data){
-							$tr = $("<tr>");
-							$hrWriter = $("<td width='100'>").text(data[i].hrWriter);
-							$hrContent = $("<td>").text(data[i].hrContent);
-							$hrCreateDate = $("<td width='100'>").text(data[i].hrCreateDate);
-							
-							$tr.append($hrWriter);
-							$tr.append($hrContent);
-							$tr.append($hrCreateDate);
-							$tableBody.append($tr);
-						}
-					} else {
-						$tr = $("<tr>");
-						$hrContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
-						
-						$tr.append($hrContent);
-						$tableBody.append($tr);
-					}
-					
-				},error:function(){
-					console.log("전송 실패");
-				}
-			});
-		}
-		</script>
+
 		<br>
 		<hr>
 		<br>
@@ -273,5 +145,50 @@
 
 				</div>
 		</footer>
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807&libraries=services"></script>
+				<script>
+				
+					var area="${hm.hAddress}";
+					var name="${hm.hName}";
+
+					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+					    mapOption = {
+					        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+					        level: 3 // 지도의 확대 레벨
+					    };  
+					
+					// 지도를 생성합니다    
+					var map = new kakao.maps.Map(mapContainer, mapOption); 
+					
+					// 주소-좌표 변환 객체를 생성합니다
+					var geocoder = new kakao.maps.services.Geocoder();
+					
+					// 주소로 좌표를 검색합니다
+					geocoder.addressSearch(area, function(result, status) {
+					
+					    // 정상적으로 검색이 완료됐으면 
+					     if (status === kakao.maps.services.Status.OK) {
+					
+					        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					
+					        // 결과값으로 받은 위치를 마커로 표시합니다
+					        var marker = new kakao.maps.Marker({
+					            map: map,
+					            position: coords
+					        });
+					
+					        // 인포윈도우로 장소에 대한 설명을 표시합니다
+					        var infowindow = new kakao.maps.InfoWindow({
+					            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
+					        });
+					        infowindow.open(map, marker);
+					
+					        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+					        map.setCenter(coords);
+					    } 
+					});    
+					</script>
+		
+			
 </body>
 </html>

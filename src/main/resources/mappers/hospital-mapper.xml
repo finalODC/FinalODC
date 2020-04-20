@@ -51,7 +51,12 @@
 		WHERE USERID=#{userId}
  	</update>
  	
- 	
+ 	<!-- 병원 설명 등록 -->
+ 	<update id="updatehosinfo" parameterType="HMember">
+ 		UPDATE HOSPITAL
+ 		SET H_FILE=#{hFile}, H_COMMENT=#{hComment},H_ADDRESS=#{hAddress}
+ 		WHERE USERID=#{userId}
+ 	</update>
  	
  	
  	

@@ -87,24 +87,7 @@
                   </div> --%>
                  
                   <tbody id="askbody">
-                    <c:forEach var="b" items="${list}">
-                    
-                    <tr>
-                    <td>${b.qId}</td>
-                    <td>${b.qTitle}</td>
-                    <td>${b.qWriter}</td>
-                    <td>${b.qDate}</td>
                    
-               
-                    <c:if test="${!empty b.qnaRe.aContent }">
-                    	<td>◎</td>
-                    </c:if>
-                     <c:if test="${empty b.qnaRe.aContent }">
-                    	<td></td>
-                    </c:if>
-                     </tr>
-                    </c:forEach>
-
                   </tbody>
                 </table>
               </div>
@@ -126,7 +109,7 @@
 
       <script>
         $(function(){
-        	pegination(1);
+        	pegination(${currentPage});
         });
         
         function pegination(currentPage){
@@ -154,13 +137,13 @@
         				
         				tb.append($tr.append($td1).append($td2).append($td3).append($td4).append($td5));
         			}
-        			
+        			var cu;
         			
         			 $("#askbody tr").click(function(){
 		                    var qId=$(this).find("td:eq(0)").text();
 		                    console.log(qId);
-		
-		                    location.href="askread.ma?qId="+qId;
+						
+		                    location.href="askread.ma?qId="+qId +"&currentPage="+cu;
 		                  });
         			 
         			 $("#paging").empty();
@@ -168,7 +151,7 @@
         			var sp= pi.startPage;
         			var ep= pi.endPage;
         			var mp= pi.maxPage;
-        			var cu = pi.currentPage
+        			cu = pi.currentPage
         			var onepli = $('<li class="page-item ">');
         			var onepbu = $('<button class="page-link" onclick=pegination('+1+')>').text('<<');
         			
@@ -206,6 +189,8 @@
          			}
          			
          			$("#paging").append(nextli.append(nextbu)).append(maxli.append(maxbu));
+        		},error:function(){
+        			alert("ajax에러")
         		}
 		               
 

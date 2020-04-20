@@ -60,8 +60,7 @@
                       <th width="100px">사용자</th>
                       <th width="170px">사용자 이메일</th>
                       <th width="100px">가입일</th>
-                      <th width="100px">정지기한</th>
-                      <th>정지사유</th>
+                      <th width="100px">회원상태</th>
                       <th width="200px">관리</th>
                      
                       
@@ -205,9 +204,12 @@
               			$email=$('<td>').text(value.email);
               			$mcreateDate=$('<td>').text(value.mCreateDate);
               			$a1=$('<td>');
-              			$a2=$('<td>');
+              			if(value.mStatus=='Y'){
+              				$a1.text('Y');
+              			}else{
+              				$a1.text('N');
+              			}
               			$buttontd=$('<td>');
-              			$button1=$('<button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">').html("정지");
               			$button2=$('<button class="btn btn-danger del"  style="width: 80px;">').html("삭제");
               			
               			
@@ -217,9 +219,7 @@
               			$tr.append($email);
               			$tr.append($mcreateDate);
               			$tr.append($a1);
-              			$tr.append($a2);
               			
-              			$buttontd.append($button1);
               			$buttontd.append($button2);
               			
               			$tr.append($buttontd);
@@ -238,6 +238,7 @@
                    			 data:{mid:mid},
                    			 success:function(data){
                    				 alert(data);
+                   				 getmember();
                    			 },error:function(){
                    				 alert("회원가입 삭제 ajax 실패!");
                    			 }
@@ -371,9 +372,7 @@
                    			$email=$('<td>').text(value.email);
                    			$mcreateDate=$('<td>').text(value.mCreateDate);
                    			$a1=$('<td>');
-                   			$a2=$('<td>');
                    			$buttontd=$('<td>');
-                   			$button1=$('<button class="btn btn-primary stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">').html("정지");
                    			$button2=$('<button class="btn btn-danger del"  style="width: 80px;">').html("삭제");
                    			
                    			
@@ -383,9 +382,12 @@
                    			$tr.append($email);
                    			$tr.append($mcreateDate);
                    			$tr.append($a1);
-                   			$tr.append($a2);
+                   			if(value.mStatus=='Y'){
+                  				$a1.text('Y');
+                  			}else{
+                  				$a1.text('N');
+                  			}
                    			
-                   			$buttontd.append($button1);
                    			$buttontd.append($button2);
                    			
                    			$tr.append($buttontd);
@@ -394,9 +396,22 @@
                    			
                    		});
                             $('.del').click(function(){
-                           	 var test= $(this).parents().parents().eq(0); 
-                           	 console.log(test);
-                             });
+                              	 var mid= $(this).parents().parents().children().eq(0).text(); 
+                              	 var result = confirm('회원을 삭제하겠습니까?');
+                              	 if(result){
+                              		 $.ajax({
+                              			 url:"delManageMember.do",
+                              			 type:"post",
+                              			 data:{mid:mid},
+                              			 success:function(data){
+                              				 alert(data);
+                              				searchMember();
+                              			 },error:function(){
+                              				 alert("회원가입 삭제 ajax 실패!");
+                              			 }
+                              		 });
+                              	 }
+                                });
              			
                     	
              		},error:function(data){

@@ -23,4 +23,11 @@ public interface searchHospitalService {
 	 */
 	ArrayList<HMember> hospitalSearchList(PageInfo pi,hospitalSearchCondition hs);
 
+	/**
+	 * 홈페이지 정보 가져오기
+	 * @param hId
+	 * @return
+	 */
+	HMember gethospital(int hId);
+
 }

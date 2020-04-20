@@ -29,7 +29,7 @@
  	
 	<select id = "getList" resultMap="QnaResultMap">
 	SELECT * FROM QNA
-	LEFT JOIN QNAANSWER ON (QID =REF_QID)
+	LEFT JOIN (SELECT * FROM QNAANSWER WHERE A_STATUS = 'Y') ON (QID =REF_QID)
  	WHERE Q_STATUS ='Y'
  	ORDER BY QID DESC
 	
@@ -37,9 +37,18 @@
 	<select id="getQna" resultMap="QnaResultMap">
 	
 	SELECT * FROM QNA
-	LEFT JOIN QNAANSWER ON (QID =REF_QID)
+	LEFT JOIN (SELECT * FROM QNAANSWER WHERE A_STATUS = 'Y') ON (QID =REF_QID)
  	WHERE Q_STATUS ='Y' and QID=#{qId}
 	
 	</select>
+	
+	<insert id="insertAnswer">
+	INSERT INTO QNAANSWER VALUES
+	(#{refQid},SYSDATE,#{aContent},DEFAULT)
+	</insert>
+	
+	<update id="deleteAnswer">
+	UPDATE QNAANSWER SET A_STATUS = 'N' WHERE REF_QID = #{qId}	
+	</update>
 
  </mapper>

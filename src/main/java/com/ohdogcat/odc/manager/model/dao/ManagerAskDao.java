@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.qna.model.vo.Qna;
+import com.ohdogcat.odc.qna.model.vo.QnaReply;
 
 @Repository("mADao")
 public class ManagerAskDao {
@@ -34,6 +35,16 @@ public class ManagerAskDao {
 	public Qna getQnd(int qId) {
 		
 		return sqlSession.selectOne("managerAskMapper.getQna",qId);
+	}
+
+	public Integer insertAnswer(QnaReply qr) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("managerAskMapper.insertAnswer",qr);
+	}
+
+	public Integer deleteAnswer(int qId) {
+		
+		return sqlSession.update("managerAskMapper.deleteAnswer",qId);
 	}
 
 }

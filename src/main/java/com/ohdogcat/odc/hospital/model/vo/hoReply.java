@@ -5,26 +5,30 @@ import java.sql.Date;
 public class hoReply {
 	private int rId;
 	private String rContent;
-	private int refBid;
+	private int refHid;
 	private String rWriter;
 	private Date rCreateDate;
 	private Date rModifyDate;
 	private String rStatus;
+	private int level;
 	
 	public hoReply() {
 		super();
 	}
 
-	public hoReply(int rId, String rContent, int refBid, String rWriter, Date rCreateDate, Date rModifyDate,
-			String rStatus) {
+
+
+	public hoReply(int rId, String rContent, int refHid, String rWriter, Date rCreateDate, Date rModifyDate,
+			String rStatus, int level) {
 		super();
 		this.rId = rId;
 		this.rContent = rContent;
-		this.refBid = refBid;
+		this.refHid = refHid;
 		this.rWriter = rWriter;
 		this.rCreateDate = rCreateDate;
 		this.rModifyDate = rModifyDate;
 		this.rStatus = rStatus;
+		this.level = level;
 	}
 
 	public int getrId() {
@@ -43,13 +47,15 @@ public class hoReply {
 		this.rContent = rContent;
 	}
 
-	public int getRefBid() {
-		return refBid;
+	public int getRefHid() {
+		return refHid;
 	}
 
-	public void setRefBid(int refBid) {
-		this.refBid = refBid;
+	public void setRefHid(int refHid) {
+		this.refHid = refHid;
 	}
+
+	
 
 	public String getrWriter() {
 		return rWriter;
@@ -82,10 +88,18 @@ public class hoReply {
 	public void setrStatus(String rStatus) {
 		this.rStatus = rStatus;
 	}
+	
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
 
 	@Override
 	public String toString() {
-		return "hoReply [rId=" + rId + ", rContent=" + rContent + ", refBid=" + refBid + ", rWriter=" + rWriter
-				+ ", rCreateDate=" + rCreateDate + ", rModifyDate=" + rModifyDate + ", rStatus=" + rStatus + "]";
+		return "hoReply [rId=" + rId + ", rContent=" + rContent + ", refHid=" + refHid + ", rWriter=" + rWriter
+				+ ", rCreateDate=" + rCreateDate + ", rModifyDate=" + rModifyDate + ", rStatus=" + rStatus + ", level"+level+"]";
 	}
 }

@@ -58,18 +58,25 @@ public class BoardDao {
 
 
 
-	public ArrayList<FreeReply> FreeReplyList(int frId) {
-		
-		return (ArrayList)sqlSession.selectList("boardMapper.FreeReplyList");
-	}
-
-
-
 	public int insertFreeReply(FreeReply fr) {
-
+		
 		return sqlSession.insert("boardMapper.insertFreeReply",fr);
 	}
+
+
+
+	public ArrayList<FreeReply> selectFreeReplyList(int bId) {
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeReplyList",bId);
+	}
 	
+	
+
+
+
+	
+
+
 	
 	
 }

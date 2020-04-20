@@ -33,7 +33,8 @@ public class HospitalDao2 {
 	 * @return
 	 */
 	public int hosupdate(HMember hm) {
-		
+
+		System.out.println("hmDao : " + hm);
 		return sqlSession.update("hospitalMapper.hosupdate", hm);
 	}
 
@@ -55,6 +56,18 @@ public class HospitalDao2 {
 	public int insertReply(hoReply hr) {
 		
 		return sqlSession.insert("hospitalMapper.insertReply", hr);
+	}
+
+	/**
+	 * 병원 설명 등록
+	 * @param hm
+	 * @return
+	 */
+	public int updatehosinfo(HMember hm) {
+		
+		System.out.println("hmDao : " + hm);
+		
+		return sqlSession.update("hospitalMapper.updatehosinfo",hm);
 	}
 
 	

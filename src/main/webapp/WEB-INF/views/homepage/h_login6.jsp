@@ -235,8 +235,10 @@ hr{margin-top:0; margin-bottom:0;}
             <div class="loginlogo">
 				<h1 class="loginArea">로그인</h1></div>
 		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 500px;">
+		
 			<div class="card" style="width: 600px;">
 			<div class="card-body">
+			<input type="checkbox" id ="doclogin"><label for="doclogin">의사로그인하기</label>
 				<form action="hlogin.do" method="post">
 				 <div class="inputgroup">
 					<div class="input-groupp">
@@ -248,9 +250,18 @@ hr{margin-top:0; margin-bottom:0;}
 						
 						<input name="userPwd" type="password" class="input_area" placeholder="비밀번호를 입력해주세요.">
 					</div>
+					 
+               		<div class="input-group">						
+						<input name="dName" id="dName"  style="display:none;"type="text" class="input_area" placeholder="의사 이름을 입력해주세요 ">
+					</div>
+					
+                </div>
+               		
                 </div>
                 
-             <div class="chkinfo">
+                
+                
+             <div class="chkType">
 				<div class="chkType2">
 					<input type="checkbox" id="chk1" name="saveid">
 					<label for="chk1">아이디 저장</label>
@@ -260,7 +271,7 @@ hr{margin-top:0; margin-bottom:0;}
                     </div>
                 </div>
 			</div>
-  
+  		
 
 
 					<div class="button-area d-flex justify-content-center ">
@@ -272,7 +283,7 @@ hr{margin-top:0; margin-bottom:0;}
 						<input type="button" id="btnsign" value="회원가입" onclick="location.href='hSignin.do'" class="btn login_btn" style="margin-top:10px; ">						
 				</div>
 			</div>
-		
+			
 		</div>
 	
 </div>
@@ -294,5 +305,16 @@ hr{margin-top:0; margin-bottom:0;}
 				</address>
                 </div>
             </div>
+            
+            <script>
+            	$(document).ready(function(){
+            		$("#doclogin").change(function(){
+            			$("#dName").toggle();
+            		});
+            	
+            		
+            	})
+            
+            </script>
 </body>
 </html>

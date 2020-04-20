@@ -17,8 +17,20 @@
  	<result property="hCreateDate" column="H_CREATE_DATE"/>
  	<result property="hModifyDate" column="H_MODIFY_DATE"/>
  	<result property="hStatus" column="H_STATUS"/>
+ 	
+ <!-- 	<collection property="hoReply" javaType="java.util.ArrayList" resultMap="hoReplyResultSet1"/> -->
 
  	</resultMap>
+ 	
+ 	 	<resultMap type="hoReply" id="hoReplyResultSet1">
+		<id property="hrId" column="HRID"/>
+		<result property="hrContent" column="RCONTENT"/>
+		<result property="hrefBid" column="REF_HID"/>
+		<result property="hrWriter" column="H_RWRITER"/>
+		<result property="hrCreateDate" column="HR_CREATE_DATE"/>
+		<result property="hrModifyDate" column="HR_MODIFY_DATE"/>
+		<result property="hrStatus" column="HR_STATUS"/>
+	</resultMap>
  	
  	<select id="hospitalListCount" resultType="_int">
  		SELECT COUNT(*)
@@ -42,6 +54,13 @@
  		<if test="sArea != null">
  			AND H_ADDRESS LIKE '%' || #{sArea} || '%'
  		</if>
+ 	</select>
+ 	
+ 	<select id="gethospital" resultMap="HospitalResultMap1">
+ 	 SELECT *
+ 	 FROM HOSPITAL
+ 	 WHERE H_STATUS='Y'
+ 	 AND HID=#{hId}
  	</select>
 
 </mapper>

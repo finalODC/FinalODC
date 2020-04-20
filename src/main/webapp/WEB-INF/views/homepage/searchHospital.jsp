@@ -13,27 +13,21 @@
 	
 	
 	<c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
-  <link rel="stylesheet" href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+ 	 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+ 	 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+  	<link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
+ 	 <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+ 	 <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+ 	 <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  	<link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
 	
 	<style>
-	    .main-menu li a:hover{
-     color: #fb105f;
-    }
 
-    .main-menu>li>a{
-      font-size: 18px;
-    }
-
-    .user-panel a:hover{
-      color: #fa296f;
+    .page-link{
+    padding: .5rem 1.3rem !important; 
+    font-size:18px !important; 
     }
 	</style>
 	
@@ -61,7 +55,7 @@
 		<div class="row" id="search">
 	
 		</div>
-		<div id="pagination">
+		<div id="pagination" >
 
               </div>
 	</div>
@@ -103,7 +97,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> 권�
 		
 		getList()
 		
-		
 		$('#searchtop').click(function(){
 			
 			if(typeof $('#searchval').val()=='undefined'){
@@ -120,7 +113,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> 권�
 		
 		$('#searchtop').hover(function(){
 			$(this).css('cursor','pointer');
-		})
+		});
+		
+		$('#pagination').hover(function(){
+			$(this).css('cursor','pointer');
+		});
+		
+
 		
 
  	});
@@ -149,19 +148,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> 권�
 				
 				$.each(data,function(index,value){
 					
-					
 				
-/* 					<a>
-					<div class="card" style="width:400px">
-						<img class="card-img-top" src="https://imagescdn.gettyimagesbank.com/500/14/141/351/0/510351863.jpg" alt="Card image" style="width:100%">
-						<div class="card-body">
-						  <h4 class="card-title">성모병원</h4>
-						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-						</div>
-					  </div>
-					  </a> */
-					  $div4=$('<div class="col-lg-4 col-md-4" style="margin-bottom: 10px;">');
-					  $a=$('<a>');
+					  $div4=$('<div class="col-lg-4 col-md-4 hlist" style="margin-bottom: 10px;">');
+					  $a=$('<a href="hosdetail.do?hId='+value.hId+'">');
+					  
 					  $div2=$('<div class="card" style="width:400px">');
 					  $img=$('<img class="card-img-top" alt="Card image" style="width:100%">');
 					  $img.attr('src','https://imagescdn.gettyimagesbank.com/500/14/141/351/0/510351863.jpg');
@@ -176,6 +166,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> 권�
 					  $a.append($div2);
 					  $div4.append($a);
 					  $div.append($div4);
+					  
+					  
 					
 				});
 			},error:function(data){

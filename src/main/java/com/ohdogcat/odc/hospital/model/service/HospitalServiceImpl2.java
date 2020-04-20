@@ -29,7 +29,8 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	 */
 	@Override
 	public int hosupdate(HMember hm) {
-		
+
+		System.out.println("hmImpl : " + hm);
 		return hoDao2.hosupdate(hm);
 	}
 
@@ -49,6 +50,18 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	public int insertReply(hoReply hr) {
 		
 		return hoDao2.insertReply(hr);
+	}
+
+	/**
+	 * 병원 설명 등록
+	 */
+	@Override
+	public int updatehosinfo(HMember hm) {
+		
+
+		System.out.println("hmImpl : " + hm);
+		
+		return hoDao2.updatehosinfo(hm);
 	}
 
 	
