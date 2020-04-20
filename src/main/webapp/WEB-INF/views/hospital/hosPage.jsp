@@ -174,7 +174,7 @@
                userPwd:pwd1
             },success:function(data){
                if(data!=1){
-            	alert('비밀번호가 변경되었습니다');
+            	alert('정보가 변경되었습니다');
                 location.href="chart.ho";
                }
             },error:function(data){

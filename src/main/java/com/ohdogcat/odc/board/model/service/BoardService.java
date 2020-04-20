@@ -38,12 +38,15 @@ public interface BoardService {
 	 */
 	FreeBoard selectFreeBoard(int fbId);
 	
+	
+	
 	/**
-	 * 댓글상세보기
-	 * @param frId
+	 * 댓글 입력
+	 * @param fr
 	 * @return
 	 */
-	
 	int insertFreeReply(FreeReply fr);
+	
+	ArrayList<FreeReply> selectFreeReplyList(int bId);
 	
 }

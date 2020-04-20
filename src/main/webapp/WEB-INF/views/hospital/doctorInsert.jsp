@@ -66,7 +66,7 @@
 					
 			<li class="nav-item"><a class="nav-link" href="comdoc.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>댓글 관리</span></a></li>
-	
+
 			<li class="nav-item"><a class="nav-link" href="hosP.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
 			<li class="nav-item"><a class="nav-link" href="hosinfo.ho"> <i
@@ -87,80 +87,50 @@
 			</div>
 			<!-- Content Row -->
 
-			<form action="updatehosinfo.ho" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="userId" id="userId" value="${ loginUser.userId }">
+			<!-- <form action="updatehosinfo.ho" method="post" enctype="multipart/form-data"> -->
 				<div class="row">
-					<div class="col-lg-11 mb-4">
+					
 
-						<!-- Approach -->
+					<div class="col-lg-11 mb-4">
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">내 병원</h6>
+								<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
 							</div>
-							<div class="card-columns">
-
-								<div class="card" style="width: 100%">
-									<div class="card-body text-center">
-
-										<img class="card-body text-center"  id="preview" src="${ loginUser.hFile }"
-											style="width: 100%; height: 250px;"> <label
-											class="btn btn-primary ">사진선택 <input type="file" name="hImage"
-											class="img-fluid" alt="" id="getfile" style="display: none;">
-										</label> <!-- <label class="btn btn-primary">사진등록 <input
-											type="file" class="img-fluid" style="display: none"
-											id="changfile">
-										</label> -->
-
-									</div>
-								</div>
-
-								<div class="card" style="width: 500px text-align=center;">
-									<div class="card-body text-center">
-
-										<textarea style="width: 90%; height: 200px; border: none; resize: none;" id="hComment" name="hComment"
-											>${ loginUser.hComment }</textarea>
-
-										<br> <br>
-
-										
-									</div>
-								</div>
-
-								<div class="card" style="width: 500px text-align=center;">
-									<div class="card-body text-center">
-
-										<div class="mb-4">
-                            			<label for="country">주소</label><br>
-                            				<div class="row">
-                                				<div class="inputgroup" style="width: 80%; margin-right: 2%;">
-                                    				<input type="text" readonly class="form-control" placeholder="" id="add1" name="add1" value="${ loginUser.hAddress }">
-                                				</div><br><br>
-                                				<div class="inputgroup" style="width: 60%; margin-right: 2%;">
-                                    				<input type="text" readonly class="form-control" placeholder="" id="add2" name="add2">
-                                				</div>
-
-                                				<br><br>
-                                				<div class="inputgroup" style="width: 50%; margin-right: 2%;">
-                                    				<input type="text" class="form-control" placeholder="" id="add3" name="add3">
-                                				</div>
-                                				<div class="inputgroup" style="width: 10%; margin-right: 2%;">
-                                    				<input type="button" onclick="searchaddr();" value="주소검색" class="btn btn-primary">
-                                				</div>
-                                				
-                            				</div>
-                        				</div>
-									</div>
-								</div>				
+							<div class="card-columns" id="cccbody" style="column-count: 1;">
 								
+								<div class="card t1"
+									style="width: 200px; height: auto; display: inline-block; margin: 25px 0 0 25px;"
+									id="copy">
+									<div class="card-body text-center">
+										<img class="card-body text-center docImage" name="docImage"
+											id="docImage" style="width: 90%; height: 200px;"> <label
+											class="btn btn-primary "> 사진등록 <input type="file" name="docFile"
+											class="img-fluid docGetfile" id="docGetfile" alt=""
+											style="display: none;">
+										</label> <br> <br> <input type="text"
+											style="text-align: center; width: 100px; border: none;" name="docName"
+											placeholder="의사이름">
+										<hr>
+										<textarea
+											style="width: 150px; height: 200px; border: none; resize: none;" name="docIntro"
+											placeholder="간단한 소개"></textarea>
+									</div>
+								</div>
 							</div>
+							<!-- <div style="text-align: center;">
+                            <input type="button" value="의사 등록" class="btn btn-primary">
+                        </div> -->
 							<div style="text-align: center;">
-								<button type="submit" class="btn btn-primary" id="updatehosinfo" data-toggle="modal" data-target="#myModal" value="">수정하기</button>
-								<br><br>
-							
+								<input id="ss" type='button' class='btn btn-primary copy'
+									value='추가' style="width: 50px;"> <input type="submit"
+									class="btn btn-primary" value="등록"> <input id="ss"
+									type='button' class='btn btn-primary delete' value='삭제'
+									style="width: 50px;"> <br> <br>
 							</div>
-							</form>
+
 						</div>
 					</div>
+
 
 				</div>
 
@@ -172,15 +142,7 @@
 	</div>
 
 	<script>
-		function searchaddr(){
-      		new daum.Postcode({
-    			oncomplete: function(data) {
-    			  	console.log(data)
-         			$("#add1").val(data.zonecode);
-    				$("#add2").val(data.address);
-     			} 
- 			}).open();
-       	}
+		
 	
 	
 	
@@ -205,7 +167,7 @@
 		};
 		
 		// 병원 설명 등록
-		/* $(function(){
+		$(function(){
 			$('#updatehosinfo').on('click',function(){
 				var hFile = $('#preview').val();
 				var hComment = $('#hComment').val();
@@ -214,7 +176,7 @@
 				var add3 = $('#add3').val();
 				$.ajax({
 					url : "updatehosinfo.ho",
-					type : "post",
+					type : "GET",
 					data : {
 						userId : '${loginUser.userId}',
 						hFile:hFile,
@@ -232,30 +194,7 @@
 					}
 				});
 			});
-		}) */
-		
-		/* $(function(){
-			$('#updatehosinfo').on('click',function(){
-				var formDate = new FormData('#hosImage'[0]);
-				
-				
-				$.ajax({
-					url : "updatehosinfo.ho",
-					type : "post",
-					enctype:'multipart/form-data',
-					data : formDate,
-					processData:false,
-					contentType:false,
-					cache:false,
-					success:function(result){
-						alert("변경 성공");
-					},
-					error:function(e){
-						alert("실패");
-					}
-				});
-			});
-		}) */
+		})
 	</script>
 
 	

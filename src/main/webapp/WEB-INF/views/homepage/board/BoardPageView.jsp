@@ -129,12 +129,10 @@
 		<div class="row">
 			<div id="aside" align="center" class="col-lg-2">
 				<div align="left">
-					<br>
-					<br> <br>
-					<br>
+					<br> <br> <br> <br>
 
 					<ul>
-						<A href="ohdogcat_FreeBoardPage.html">
+						<A href="../board/BoardPageFree">
 							<h4 style="height: 40px;" align="">자유 게시판</h4>
 						</A>
 						<br>
@@ -149,7 +147,7 @@
 
 						<a href="ohdogcat_DogBoardPage.html">
 							<h5>
-								<i class="fas fa-dog">&nbsp;</i>강아지
+								<i class="fas fa-dog" >&nbsp;</i>강아지
 								게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i
 									class="fas fa-paw"></i>
 							</h5>
@@ -171,13 +169,11 @@
 
 			<div id="contents" class="col-lg-6">
 
-				<br>
-				<br>
+				<br> <br>
 				<!-- 게시판 view 에요 @@@@@@@@@@@@@@@@@@@@@@@ -->
 				<h3>&nbsp;&nbsp;&nbsp;자유게시판</h3>
 				<hr>
-				<br>
-				<br>
+				<br> <br>
 				<div class="container" align="right">
 
 					<table class="table table-bordered" align="center">
@@ -187,7 +183,7 @@
 
 						</tr>
 						<tr>
-							<td align="left">닉네임 &nbsp;|&nbsp;&nbsp; ${fb.fbId }<input
+							<td align="left">닉네임 &nbsp;|&nbsp;&nbsp; ${fb.fbWriter }<input
 								type="text" style="border: 0px; width: 100px;"></td>
 							<td align="left">날짜 &nbsp;|&nbsp;&nbsp; ${fb.fbCreatedate}<input
 								type="text" style="border: 0px;" align="left"></td>
@@ -205,8 +201,7 @@
 
 
 					<!--  @@@@@@@@@@@@@@@    댓글 게시판이에오       @@@@@@@@@@@22-->
-					<br>
-					<br>
+					<br> <br>
 
 
 
@@ -231,36 +226,27 @@
 
 					<div align="left">
 
-						<table>
+						<table id="rtb">
 							<thead id="comment">
 
-								<tr style="border: 1px solid black;" id="commentView">
-									<th
-										style="width: 100px; height: 70px; background-color: steelblue;"></th>
-									<th style="width: 740px;">&nbsp;<input type="text"
-										value="내용" style="width: 700px; height: 70px; border: 0px;"
-										readonly></th>
-									<td style="width: 100px; background-color: tan;" align="right"><input
-										type="text" value="20/04/06 20:45"
-										style="width: 80px; font-size: 10px; border: 0px;">
-									<td>
-								</tr>
+								
 
 
 
 							</thead>
+							<tbody>
+								
+							</tbody>
+						</table> 
 
-						</table>
+						
+
+						<br>
+						
 					</div>
 
 
-					<br>
-					<Br>
-					<br>
-					<br>
-					<Br>
-					<Br>
-					<Br>
+					<br> <Br> <br> <br> <Br> <Br> <Br>
 				</div>
 
 
@@ -301,7 +287,16 @@
 	<script src="${path }/resources/js/main.js"></script>
 
 	<script>
+	
+	
 		$(function() {
+			
+			getFreeReplyList();
+			
+			setInterval(function(){
+				getFreeReplyList();
+			},3000);
+			
 			$("#frSubmit").on("click", function() {
 				var rContent = $("#rContent").val();
 				var refbId = "${fb.fbId}";
@@ -317,7 +312,7 @@
 					type : "post",
 					success : function(data) {
 						if (data == "success") {
-							// getFreeReplyList();     등록 성공시 다시 댓글 리스트 불러오는 값을 넣자 
+							 getFreeReplyList();      
 							$("#rContent").val("");
 						}
 					},
@@ -327,6 +322,51 @@
 				});
 			});
 		});
+		
+		
+		function getFreeReplyList(){
+			var fbId = ${fb.fbId};
+			
+			$.ajax({
+				url:"frList.bo",
+				data:{fbId:fbId},
+				dataType:"json",
+				success:function(data){
+					$tableBody = $("#rtb tbody");
+					$tableBody.html("");
+					
+					var $tr;
+					var $frWriter;
+					var $rContent;
+					var $frCreateDate;
+					
+					$("#frCount").text("댓글 ("+ data.length + ")");
+					
+					if(data.length > 0){
+						  for(var i in data){
+							  $tr = $("<tr style='border: 1px solid black;' id='commentView'>");
+							  $frWriter= $("<th style='width:100px; height:70px; background-color:steelblue;' align='center'>").text(data[i].frWriter);
+							  $rContent=$("<td style='width: 740px;'><input type='text' value='내용' style='width: 700px; height: 70px; border: 0px;'readonly>").text(data[i].rContent);
+							  $frCreateDate=$("<td style='width: 100px; background-color: tan;' align='center'><input type='text'style='width: 80px; font-size: 10px; border: 0px;'>").text(data[i].frCreateDate);
+							  
+							  $tr.append($frWriter);
+							  $tr.append($rContent);
+							  $tr.append($frCreateDate);
+							  $tableBody.append($tr);
+						  }
+					}else{
+						$tr = $("<tr>");
+						$rContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
+						
+						$tr.append($rContent);
+						$tableBody.append($tr);
+					}
+			},error:function(){
+				console.log("전송실패");
+			}
+				
+			});
+		}
 	</script>
 </body>
 

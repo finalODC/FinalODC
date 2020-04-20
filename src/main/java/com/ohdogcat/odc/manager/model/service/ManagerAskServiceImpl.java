@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.manager.model.dao.ManagerAskDao;
 import com.ohdogcat.odc.qna.model.vo.Qna;
+import com.ohdogcat.odc.qna.model.vo.QnaReply;
 
 @Service("mAService")
 public class ManagerAskServiceImpl implements ManagerAskService {
@@ -32,6 +33,18 @@ public class ManagerAskServiceImpl implements ManagerAskService {
 	public Qna getQna(int qId) {
 		
 		return mADao.getQnd(qId);
+	}
+
+	@Override
+	public Integer insertAnswer(QnaReply qr) {
+	
+		return mADao.insertAnswer(qr);
+	}
+
+	@Override
+	public Integer deleteAnswer(int qId) {
+		
+		return mADao.deleteAnswer(qId);
 	}
 
 }

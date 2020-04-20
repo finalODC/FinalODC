@@ -65,6 +65,15 @@ public class BoardDao {
 
 
 
+	public ArrayList<FreeReply> selectFreeReplyList(int bId) {
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeReplyList",bId);
+	}
+	
+	
+
+
+
 	
 
 
