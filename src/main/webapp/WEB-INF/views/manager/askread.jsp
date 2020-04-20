@@ -78,7 +78,7 @@
 					
 									</c:if> --%>
 									
-								<c:if test="${!empry qna.qFile }">
+								<c:if test="${!empty qna.qFile }">
 									파일 다운로드
 								</c:if>
                              
