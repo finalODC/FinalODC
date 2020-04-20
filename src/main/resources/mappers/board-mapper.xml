@@ -85,6 +85,13 @@
 	(SEQ_FRID.NEXTVAL,#{rContent},#{reffbId},#{frWriter},SYSDATE,SYSDATE,'Y')
 </insert>
 
-
+<select id="selectFreeReplyList" resultMap="FreeReplyResultSet" >
+	SELECT *
+	FROM F_REPLY
+	WHERE REF_FBID = #{fbId}
+	AND FR_STATUS = 'Y'
+	ORDER BY FRID ASC 
+	
+</select>
 
 </mapper>
