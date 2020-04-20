@@ -60,7 +60,7 @@ box-shadow: 0 0 0 0 !important;
               <input type="button" id="btnsign" value="일반회원 회원가입" onclick="location.href='msignin.do'" class="btn login_btn">						
           </div>
           <div class="button-area d-flex justify-content-center">
-              <input type="button" id="btnsign" value="병원 회원가입" class="btn login_btn" >						
+              <input type="button" id="btnsign" value="병원 회원가입" onclick="location.href='hSignin.do'"class="btn login_btn" >						
           </div>
 
             </div>

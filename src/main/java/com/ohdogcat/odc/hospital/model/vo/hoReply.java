@@ -5,7 +5,7 @@ import java.sql.Date;
 public class hoReply {
 	private int rId;
 	private String rContent;
-	private int refBid;
+	private int refHid;
 	private String rWriter;
 	private Date rCreateDate;
 	private Date rModifyDate;
@@ -15,12 +15,12 @@ public class hoReply {
 		super();
 	}
 
-	public hoReply(int rId, String rContent, int refBid, String rWriter, Date rCreateDate, Date rModifyDate,
+	public hoReply(int rId, String rContent, int refHid, String rWriter, Date rCreateDate, Date rModifyDate,
 			String rStatus) {
 		super();
 		this.rId = rId;
 		this.rContent = rContent;
-		this.refBid = refBid;
+		this.refHid = refHid;
 		this.rWriter = rWriter;
 		this.rCreateDate = rCreateDate;
 		this.rModifyDate = rModifyDate;
@@ -43,12 +43,12 @@ public class hoReply {
 		this.rContent = rContent;
 	}
 
-	public int getRefBid() {
-		return refBid;
+	public int getrefHid() {
+		return refHid;
 	}
 
-	public void setRefBid(int refBid) {
-		this.refBid = refBid;
+	public void setrefHid(int refHid) {
+		this.refHid = refHid;
 	}
 
 	public String getrWriter() {
@@ -85,7 +85,7 @@ public class hoReply {
 
 	@Override
 	public String toString() {
-		return "hoReply [rId=" + rId + ", rContent=" + rContent + ", refBid=" + refBid + ", rWriter=" + rWriter
+		return "hoReply [rId=" + rId + ", rContent=" + rContent + ", refHid=" + refHid + ", rWriter=" + rWriter
 				+ ", rCreateDate=" + rCreateDate + ", rModifyDate=" + rModifyDate + ", rStatus=" + rStatus + "]";
 	}
 }

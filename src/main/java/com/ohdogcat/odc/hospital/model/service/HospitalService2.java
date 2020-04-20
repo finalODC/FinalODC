@@ -36,4 +36,11 @@ public interface HospitalService2 {
 	 */
 	int insertReply(hoReply hr);
 
+	/**
+	 * 병원 설명 등록
+	 * @param hm
+	 * @return
+	 */
+	int updatehosinfo(HMember hm);
+
 }

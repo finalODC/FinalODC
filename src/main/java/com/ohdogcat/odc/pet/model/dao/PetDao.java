@@ -16,5 +16,9 @@ public class PetDao {
 	public ArrayList<Pet> selectMyPetList(int mId) {
 		return (ArrayList)sqlSession.selectList("PetMapper.selectMyPetList",mId);
 	}
+
+	public int insertPet(Pet p) {
+		return sqlSession.insert("PetMapper.insertPet",p);
+	}
 	
 }

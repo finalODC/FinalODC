@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="QnaMapper">
+	<resultMap type="Qna" id="qnaResultSet">
+		<id property="qId" column="QID"/>
+		<result property="qWriter" column="QWRITER"/>
+		<result property="qTitle" column="QTITLE"/>
+		<result property="qContent" column="QCONTENT"/>
+		<result property="qFile" column="QFILE"/>
+		<result property="qDate" column="QDATE"/>
+		<result property="qStatus" column="QSTATUS"/>
+	</resultMap>
+	
+	<insert id="insertQna">
+		INSERT INTO QNA VALUES(SEQ_QID.NEXTVAL,#{qWriter},#{qTitle},#{qContent},#{qFile},SYSDATE,DEFAULT)
+	</insert>
+	
+	<select id="qnaList" resultMap="qnaResultSet">
+		SELECT * 
+		FROM QNA
+		WHERE QWRITER=#{userId}
+		AND Q_STATUS='Y'
+	</select>
+</mapper>

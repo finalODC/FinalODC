@@ -8,16 +8,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <c:set var="path" value="${pageContext.servletContext.contextPath }"
-	scope="application" />
+   scope="application" />
     <title>내 병원 관리</title>
 
 <link href="${ path }/resources/css/manager/sb-admin-2.min.css"
-	rel="stylesheet">
+   rel="stylesheet">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-	crossorigin="anonymous">
-<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+   href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+   integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+   crossorigin="anonymous">
+<script src="${ path }/resources/js/jquery-3.2.1.min.js"></script>
 
 </head>
 
@@ -31,7 +31,7 @@
 
             <!-- Sidebar - 로고 -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="../intranet/intranet_main.html">
+                href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-home"></i>
                 </div>
@@ -51,17 +51,17 @@
 
             <!-- Nav Item - 품의 관리 -->
             <li class="nav-item">
-      			<c:url var = "chart" value="chart.ho"/>
-        		<a class="nav-link" href="${chart }">
-				<i class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
+               <c:url var = "chart" value="chart.ho"/>
+              <a class="nav-link" href="${chart }">
+            <i class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
 
-			<li class="nav-item"><a class="nav-link"
-				href="info.ho"> <i
-					class="fa fa-calendar-alt fa-2x"></i> <span>내 병원 관리</span></a></li>
-					
-			<li class="nav-item"><a class="nav-link"
-				href="hosP.ho"> <i
-					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
+         <li class="nav-item"><a class="nav-link"
+            href="info.ho"> <i
+               class="fa fa-calendar-alt fa-2x"></i> <span>내 병원 관리</span></a></li>
+               
+         <li class="nav-item"><a class="nav-link"
+            href="hosP.ho"> <i
+               class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
 
 
             <!-- Divider -->
@@ -86,12 +86,12 @@
                 <div class="col-md-8 order-md-1" id="aaa">
                     <h4 class="mb-3">개인정보 변경</h4>
                     <hr>
-						<!-- <form action="hosupdate.ho" method="post" id="joinForm"> -->
+                  <!-- <form action="hosupdate.ho" method="post" id="joinForm"> -->
 
                         <div class="mb-3">
 
                             <label for="username">아이디</label> <input type="text" class="form-control"
-                                style="width: 30%;" id="userId" placeholder="hosName" value="${ loginUser.userId }" readonly>
+                                style="width: 30%;" id="userId" value="${ loginUser.userId }" readonly>
                         </div>
                         <br>
                         <div class="mb-3">
@@ -112,7 +112,7 @@
 
                         <div class="mb-3">
                             <label>전화</label> <br> <input type="text" class="form-control" style="width: 30%;"
-                                id="phone" placeholder="-제외" maxlength="12">
+                                id="hPhone" placeholder="-제외" maxlength="12">
                         </div>
                         <br>
 
@@ -138,10 +138,10 @@
                             </div>
                         </div> -->
                         
-                        
-                    <input  class="btn btn-primary btn-lg" id="hosupdate" type="submit" value="변경하기">
+                        <!-- <button class="btn btn-primary btn-lg" id="hosupdate" type="submit">변경하기</button> -->
+                   <input  class="btn btn-primary btn-lg" id="hosupdate" type="button" value="변경하기" >
 
-                    <!-- </form> -->
+                    </form>
                 </div>
             </div>
 
@@ -152,37 +152,41 @@
     </div>
     </div>
 
-	<script>
-		$('#hosupdate').click(function() {
-			var pwd1 = $('#pwd1').val();
-			var pwd2 = $('#pwd2').val();
-			var phone = $('#phone').val();
-			console.log("aaaa");
-			console.log(pwd2)
-			if (pwd1 != pwd2) {
-				alert('비밀번호를 다시 확인해 주세요');
-				return false;
-			}
+   <script>
+ 	$(function(){
+      	$('#hosupdate').on('click',function(){
+         var pwd1 = $('#pwd1').val();
+         var pwd2 = $('#pwd2').val();
+         var hPhone = $('#hPhone').val();
+         console.log("aaaa");
+         console.log(pwd2)
+         if (pwd1 != pwd2) {
+            alert('비밀번호를 다시 확인해 주세요');
+            return false;
+         }
 
-			$.ajax({
-				url : "hosupdate.ho",
-				type : "post",
-				data : {
-					userId: '${loginUser.userId}',
-					hPhone:phone,
-					userPwd:pwd2
-				},success:function(data){
-					if(data==1){
-						alert('비밀번호가 변경되었습니다');
-						location.href="info.ho";
-					}
-				},error:function(){
-				
-				}
-			})
+         $.ajax({
+            url : "hosupdate.ho",
+            type : "post",
+            data : {
+               userId: '${loginUser.userId}',
+               hPhone:hPhone,
+               userPwd:pwd1
+            },success:function(data){
+               if(data!=1){
+            	alert('비밀번호가 변경되었습니다');
+                location.href="chart.ho";
+               }
+            },error:function(data){
+            	alert("에러발생");
+               	location.href="info.ho";
+               	
+            }
+         });
 
-		});
-	</script>
+      });
+   });
+   </script>
 
     <!-- Footer -->
     <footer class="sticky-footer bg-white">
@@ -201,9 +205,7 @@
     <!-- End of Page Wrapper -->
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="intranet/jquery.min.js"></script>
-    <script src="intranet/bootstrap.bundle.min.js"></script>
+  
 
 
 

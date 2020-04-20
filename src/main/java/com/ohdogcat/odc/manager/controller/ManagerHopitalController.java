@@ -22,7 +22,7 @@ import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.common.Pagination;
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 import com.ohdogcat.odc.manager.Membermanage.model.vo.SearchHmember;
-import com.ohdogcat.odc.manager.model.dao.ManagerHospitalService;
+import com.ohdogcat.odc.manager.model.service.ManagerHospitalService;
 
 @Controller
 public class ManagerHopitalController {
@@ -42,6 +42,7 @@ public class ManagerHopitalController {
 		
 		PageInfo pi = Pagination.getPageInfo(1, listCount);
 		ArrayList<HMember> list = mHService.gethMemberList(sHm,pi);
+	
 		
 		mv.addObject("list",list);
 		mv.addObject("pi", pi);
@@ -65,9 +66,15 @@ public class ManagerHopitalController {
 		hMap.put("list",list);		
 		hMap.put("pi",pi);
 		
-		
-		System.out.println(hMap.get("list"));
 		gson.toJson(hMap,response.getWriter());
+	}
+	
+	@ResponseBody
+	@RequestMapping("hMdel.ma")
+	public String HopitalMemberDelete(int hId) {
+		System.out.println(hId);
+		int result = mHService.HopitalMemberDelete(hId);
+		return Integer.valueOf(result).toString();
 	}
 
 }

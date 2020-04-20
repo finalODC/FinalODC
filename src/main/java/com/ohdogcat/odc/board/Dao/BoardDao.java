@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
+import com.ohdogcat.odc.board.model.vo.FreeReply;
 
 @Repository("bDao")
 public class BoardDao {
@@ -54,7 +55,19 @@ public class BoardDao {
 		
 		return sqlSession.update("boardMapper.updateCount",fbId);
 	}
+
+
+
+	public int insertFreeReply(FreeReply fr) {
+		
+		return sqlSession.insert("boardMapper.insertFreeReply",fr);
+	}
+
+
+
 	
+
+
 	
 	
 }

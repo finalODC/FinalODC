@@ -22,7 +22,7 @@
 
 <select id="getlistCount" resultType="_int">
 	SELECT COUNT(*) FROM HOSPITAL
-		WHERE H_STATUS IS NULL
+		WHERE H_STATUS ='Y'
 	<choose>
  		<when test="category ==2 and search !=null" >
  			AND H_ADDRESS LIKE '%'||#{search}||'%'
@@ -38,7 +38,7 @@
  
 <select id="getMemberList" resultMap="HMemberResultMap">
 	SELECT * FROM HOSPITAL
-	WHERE H_STATUS IS NULL
+	WHERE H_STATUS='Y'
 	<choose>
  		<when test="category ==2 and search !=null" >
  			AND H_ADDRESS LIKE '%'||#{search}||'%'
@@ -52,5 +52,8 @@
  		</choose>
 	ORDER BY HID DESC
 </select>
- 
+ <update id="deleteMember">
+ 	UPDATE HOSPITAL SET 
+ 	 H_STATUS = 'N' WHERE HID =#{hId} 
+ </update>
  </mapper>

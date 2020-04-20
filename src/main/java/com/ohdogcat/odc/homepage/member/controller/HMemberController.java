@@ -2,6 +2,7 @@ package com.ohdogcat.odc.homepage.member.controller;
 
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ohdogcat.odc.common.email.EmailService;
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 import com.ohdogcat.odc.homepage.member.service.HMemberService;
+import com.ohdogcat.odc.hospital.model.vo.Doctor;
 
 @SessionAttributes({"loginUser","code"})
 @Controller
@@ -35,7 +38,6 @@ public class HMemberController {
 		private EmailService mailsender;
 
 	
-	
 	 
 	 @RequestMapping("hloginp.do")
 	 public String hloginp(){
@@ -49,14 +51,31 @@ public class HMemberController {
 	}
 	
 	@RequestMapping("hlogin.do")
-	public ModelAndView hlogin(ModelAndView mv, HttpServletRequest request, HMember m ) {
+	public ModelAndView hlogin(ModelAndView mv, HttpServletRequest request, HMember m,
+			@RequestParam(value="dName",required=false) String dName ) {
 		String pwd = m.getUserPwd();
-		m = hmService.loginMem(m.getUserId());
-
 		
+		if(!dName.equals("")) {
+			ArrayList<Doctor> doc = new ArrayList<>();
+			Doctor doctor = new Doctor();
+			doctor.setDocName(dName);
+			doc.add(doctor);
+			m.setDoctor(doc);
+		}
+		System.out.println(m.getDoctor() == null);
+		
+		m = hmService.loginMem(m);
+		System.out.println(m);
+		//(new Doctor().setDocName(dName)
 		if(m!=null &&bCryptPasswordEncoder.matches(pwd, m.getUserPwd())) {
 			mv.addObject("loginUser",m);
-			mv.setViewName("hospital/doctorChart");
+			if(dName.equals("")) {
+				mv.setViewName("hospital/hospital");
+			}else {
+				//의사 데이터 가져와서 
+				mv.setViewName("hospital/doctorChart");
+			}
+			
 		}else {
 			mv.addObject("msg","aa");
 			mv.setViewName("homepage/h_login6");
@@ -107,7 +126,7 @@ public class HMemberController {
 	public String hInsert(HMember m,String add1, String add2, String add3, SessionStatus session) {
 		
 		
-		m.setUserPwd(bCryptPasswordEncoder.encode(m.userPwd));
+		m.setUserPwd(bCryptPasswordEncoder.encode(m.getUserPwd()));
 		if(!add1.equals("")) {
 			m.sethAddress(add1 + add2 + add3);
 		}
@@ -150,7 +169,7 @@ public class HMemberController {
 			
 		}
 		
-		
+		System.out.println(sb.toString());
 		m.addAttribute("code",sb.toString());
 		mailsender.mailSendWithUserKey(sb.toString(), email);
 		return "1";

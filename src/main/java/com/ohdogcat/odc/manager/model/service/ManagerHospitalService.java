@@ -1,4 +1,4 @@
-package com.ohdogcat.odc.manager.model.dao;
+package com.ohdogcat.odc.manager.model.service;
 
 import java.util.ArrayList;
 
@@ -11,6 +11,8 @@ public interface ManagerHospitalService {
 	int gethMListCount(SearchHmember sHm);
 	
 	ArrayList<HMember> gethMemberList(SearchHmember sHm, PageInfo pi);
+
+	int HopitalMemberDelete(int hId);
 
 	
 

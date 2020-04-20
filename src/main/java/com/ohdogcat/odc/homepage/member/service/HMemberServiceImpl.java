@@ -12,9 +12,9 @@ public class HMemberServiceImpl implements HMemberService {
 	
 
 	@Override
-	public HMember loginMem(String userId) {
+	public HMember loginMem(HMember m) {
 		
-		return hmDao.loginMem(userId);
+		return hmDao.loginMem(m);
 	}
 
 	@Override

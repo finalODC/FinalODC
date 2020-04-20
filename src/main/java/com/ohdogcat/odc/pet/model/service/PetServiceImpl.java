@@ -17,4 +17,9 @@ public class PetServiceImpl implements PetService {
 		return pDao.selectMyPetList(mid);
 	}
 
+	@Override
+	public int insertPet(Pet p) {
+		return pDao.insertPet(p);
+	}
+
 }

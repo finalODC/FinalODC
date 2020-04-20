@@ -135,7 +135,7 @@
                 <li class="page-item "><span class="page-link" >&lt;</span></li>
                   <c:forEach var ="p" begin="${pi.startPage }" end="${pi.endPage }"> 
               	<li class="page-item ">
-              	<c:if test="${pi.currentPage eq p }"><button  class="page-link" style="color:red" >${ p}</button></c:if>
+              	<c:if test="${pi.currentPage eq p }"><button  class="page-link cu" style="color:red;" >${ p}</button></c:if>
               	<c:if test="${pi.currentPage ne p }"><button class="page-link" onclick="pigo(${p})" >${ p}</button></c:if></li>
               	</c:forEach>
               
@@ -160,15 +160,30 @@
                     //삭제
 
              $(".del").click(function(){
-              var mid = $(this).parent("td").siblings("td:eq(0)").text();
-              if(confirm(mid+"를 삭제하시겠습니까?")){
-                location.href=""+mid;
-              }
+             var hId = $(this).parent("td").siblings("td:eq(0)").text();
+              if(confirm(hId+"를 삭제하시겠습니까?")){
+            	  
+            	 $.ajax({
+            		 url:"hMdel.ma",
+            		 type:"post",
+            		 data:{hId:hId},
+            		 success:function(result){
+            			 if(result>0){
+            				alert("삭제 성공");
+            			 	pigo($(".cu").text());
+            			 }else{
+            				 alert("삭제 실패");
+            			 }
+            		 },error:function(){
+            			 alert("우왕")
+            		 }
+            	 })
+                
+              } 
             })
         })
         
         function sele(){
-        	console.log(($("#sel").val()));
          	if($("#sel").val() != 1){
         		
         		$("#search").removeAttr("readonly")
@@ -213,12 +228,28 @@
         				
         			}
         			
-        			 $(".del").click(function(){
-        	              var mid = $(this).parent("td").siblings("td:eq(0)").text();
-        	              if(confirm(mid+"를 삭제하시겠습니까?")){
-        	                location.href=""+mid;
-        	              }
-        	            });
+        			$(".del").click(function(){
+        	             var hId = $(this).parent("td").siblings("td:eq(0)").text();
+        	              if(confirm(hId+"를 삭제하시겠습니까?")){
+        	            	  
+        	            	 $.ajax({
+        	            		 url:"hMdel.ma",
+        	            		 type:"post",
+        	            		 data:{hId:hId},
+        	            		 success:function(result){
+        	            			 if(result>0){
+        	            				alert("삭제 성공");
+        	            			 	pigo($(".cu").text());
+        	            			 }else{
+        	            				 alert("삭제 실패");
+        	            			 }
+        	            		 },error:function(){
+        	            			 alert("우왕")
+        	            		 }
+        	            	 })
+        	                
+        	              } 
+        	            })
         	            
         			var sp= pi.startPage;
         			var ep= pi.endPage;
@@ -242,7 +273,7 @@
         				var $li = $('<li class="page-item ">');
         				var $button = $('<button class="page-link" onclick=pigo('+i+')>').text(i);
         				if(cu == i){
-        					$button.attr("disabled",true).css("color","tomato");
+        					$button.attr("disabled",true).css("color","tomato").addClass("cu");
         				} 
         				$("#paging").append($li.append($button));
         			}
