@@ -50,10 +50,10 @@ public class ManagerHopitalController {
 		return mv;
 	}
 
+	
 	@RequestMapping(value = "hmlistAjax.ma")
-	public void HospitalMemberAjax(int currentPage, @RequestParam("category") int i,@RequestParam(value="search", required=false)String b , HttpServletResponse response) throws JsonIOException, IOException {
-		SearchHmember sHm = new SearchHmember(i, b);
-		
+	public void HospitalMemberAjax(int currentPage, SearchHmember sHm  , HttpServletResponse response) throws JsonIOException, IOException {
+	
 		int listCount = mHService.gethMListCount(sHm);
 		
 		
@@ -76,5 +76,16 @@ public class ManagerHopitalController {
 		int result = mHService.HopitalMemberDelete(hId);
 		return Integer.valueOf(result).toString();
 	}
+	
+//	@RequestMapping("getcommnet.ma")
+//	public String getHComment(HttpServletResponse response) {
+//		
+//		
+//		
+//		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+//		
+//		gson.toJson(jsonElement,response.getWriter());
+//		
+//	}
 
 }

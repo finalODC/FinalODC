@@ -81,4 +81,7 @@ public class ManagerAskController {
 		Integer result =  mAService.deleteAnswer(qId);
 		return result.toString();
 	}
+	
+	
+	/////병원 덧글용
 }
