@@ -104,15 +104,15 @@
 									<div class="card-body text-center">
 										<img class="card-body text-center docImage" name="docImage"
 											id="docImage" style="width: 90%; height: 200px;"> <label
-											class="btn btn-primary "> 사진등록 <input type="file"
+											class="btn btn-primary "> 사진등록 <input type="file" name="docFile"
 											class="img-fluid docGetfile" id="docGetfile" alt=""
 											style="display: none;">
 										</label> <br> <br> <input type="text"
-											style="text-align: center; width: 100px; border: none;"
+											style="text-align: center; width: 100px; border: none;" name="docName"
 											placeholder="의사이름">
 										<hr>
 										<textarea
-											style="width: 150px; height: 200px; border: none; resize: none;"
+											style="width: 150px; height: 200px; border: none; resize: none;" name="docIntro"
 											placeholder="간단한 소개"></textarea>
 									</div>
 								</div>

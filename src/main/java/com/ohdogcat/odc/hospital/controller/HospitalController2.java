@@ -63,41 +63,88 @@ public class HospitalController2 {
 	}
 
 
-	@RequestMapping("updatehosinfo.ho")
-	public String updatehosinfo(HMember hm, String hComment, HttpServletRequest request,
-			@RequestParam(name="hImage", required=false, value="") MultipartFile file, Model model, 
-			@RequestParam(value="add1", required=false, defaultValue="")String add1, 
-			@RequestParam(value="add2", required=false, defaultValue="" )String add2, 
-			@RequestParam(value="add3", required=false, defaultValue="" )String add3, SessionStatus session) {
+//	@RequestMapping("updatehosinfo.ho")
+//	public String updatehosinfo(HMember hm, String hComment, HttpServletRequest request, String hFile,
+//			@RequestParam(name="hImage", required=false, value="") MultipartFile file, Model model, 
+//			@RequestParam(value="add1", required=false, defaultValue="")String add1, 
+//			@RequestParam(value="add2", required=false, defaultValue="" )String add2, 
+//			@RequestParam(value="add3", required=false, defaultValue="" )String add3, SessionStatus session) {
+//
+//		hm.sethComment(hComment);
+//		
+//		System.out.println("hComment : " + hComment);
+//
+//		if(!add1.equals("") && add1 !=null) {
+//			hm.sethAddress(add1 + add2 + add3);
+//		}
+//		
+//		System.out.println(add1 + add2 + add3);
+//	
+//		if(!file.getOriginalFilename().equals("")) {
+//
+//			String renameFileName = saveFile(file, request);
+//
+//			if(renameFileName != null) {
+//				hm.sethFile(file.getOriginalFilename());
+//			}
+//		}
+//		hm.sethFile(hFile);
+//		
+//		 System.out.println("hfile : " + hFile);
+//
+//		int result = hService2.updatehosinfo(hm);
+//
+//		if(result > 0) {
+//			return "redirect:chart.ho";
+//		} else {
+//			return "homepage/h_index.jsp";
+//		}
+//	}
 
+	@RequestMapping("updatehosinfo.ho")
+	public String updatehosinfo(HMember hm, HttpServletRequest request,
+							  @RequestParam(name="hImage",required=false) MultipartFile file,
+							  String hComment,
+							  String add1, String add2, String add3) {
+		
+		if(!file.getOriginalFilename().equals("")) {
+			// 서버에 업로드
+			String renameFileName = saveFile(file, request);
+			
+			if(renameFileName != null) {		// 파일이 잘 저장된 경우
+				hm.sethFile(file.getOriginalFilename());
+				
+			}
+		}
+		
+		System.out.println("file : " + file);
+		
 		hm.sethComment(hComment);
 		
+		
 		System.out.println("hComment : " + hComment);
-
+		
 		if(!add1.equals("") && add1 !=null) {
-			hm.sethAddress(add1 + add2 + add3);
+			hm.sethAddress("주소 : " + add1 + add2 + add3);
 		}
 		
 		System.out.println(add1 + add2 + add3);
-		if(!file.getOriginalFilename().equals("")) {
-
-			String FileName = saveFile(file, request);
-
-			if(FileName != null) {
-				hm.sethFile(file.getOriginalFilename());
-			}
-		}
-
+		
 		int result = hService2.updatehosinfo(hm);
-
+		
+		System.out.println(result);
+		
 		if(result > 0) {
 			return "redirect:chart.ho";
 		} else {
-			return "homepage/h_index.jsp";
+			return "redirect:comdoc.ho";
 		}
+		
+		
 	}
-
-
+	
+	
+	
 
 	public String saveFile(MultipartFile file, HttpServletRequest request) {
 
@@ -203,7 +250,5 @@ public class HospitalController2 {
 			return "fail";
 		}
 	}
-
-
 
 }

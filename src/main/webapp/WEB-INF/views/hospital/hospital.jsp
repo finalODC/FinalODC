@@ -87,7 +87,8 @@
 			</div>
 			<!-- Content Row -->
 
-			<form action="updatehosinfo.ho" method="POST" enctype="multipart/form-data">
+			<form action="updatehosinfo.ho" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="userId" id="userId" value="${ loginUser.userId }">
 				<div class="row">
 					<div class="col-lg-11 mb-4">
 
@@ -101,9 +102,9 @@
 								<div class="card" style="width: 100%">
 									<div class="card-body text-center">
 
-										<img class="card-body text-center" name="hImage" id="preview"
+										<img class="card-body text-center"  id="preview" src="${ loginUser.hFile }"
 											style="width: 100%; height: 250px;"> <label
-											class="btn btn-primary ">사진선택 <input type="file"
+											class="btn btn-primary ">사진선택 <input type="file" name="hImage"
 											class="img-fluid" alt="" id="getfile" style="display: none;">
 										</label> <!-- <label class="btn btn-primary">사진등록 <input
 											type="file" class="img-fluid" style="display: none"
@@ -153,7 +154,7 @@
 								
 							</div>
 							<div style="text-align: center;">
-								<input type="button" class="btn btn-primary" id="updatehosinfo" data-toggle="modal" data-target="#myModal" value="수정하기">
+								<button type="submit" class="btn btn-primary" id="updatehosinfo" data-toggle="modal" data-target="#myModal" value="">수정하기</button>
 								<br><br>
 							
 							</div>
@@ -204,7 +205,7 @@
 		};
 		
 		// 병원 설명 등록
-		$(function(){
+		/* $(function(){
 			$('#updatehosinfo').on('click',function(){
 				var hFile = $('#preview').val();
 				var hComment = $('#hComment').val();
@@ -231,7 +232,30 @@
 					}
 				});
 			});
-		})
+		}) */
+		
+		/* $(function(){
+			$('#updatehosinfo').on('click',function(){
+				var formDate = new FormData('#hosImage'[0]);
+				
+				
+				$.ajax({
+					url : "updatehosinfo.ho",
+					type : "post",
+					enctype:'multipart/form-data',
+					data : formDate,
+					processData:false,
+					contentType:false,
+					cache:false,
+					success:function(result){
+						alert("변경 성공");
+					},
+					error:function(e){
+						alert("실패");
+					}
+				});
+			});
+		}) */
 	</script>
 
 	
