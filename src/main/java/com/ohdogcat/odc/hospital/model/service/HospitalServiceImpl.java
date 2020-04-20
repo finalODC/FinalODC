@@ -50,6 +50,16 @@ public class HospitalServiceImpl implements HospitalService{
 		return hoDao.getListCount(pCode);
 	}
 
+	@Override
+	public int getDiagList(String pCode) {
+		return hoDao.getDiagList(pCode);
+	}
+
+	@Override
+	public ArrayList<Diagnosis> diagList(String pCode, PageInfo pi) {
+		return hoDao.diagList(pCode,pi);
+	}
+
 
 
 	

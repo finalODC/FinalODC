@@ -24,6 +24,10 @@ public interface HospitalService {
 
 	int getListCount(String pCode);
 
+	int getDiagList(String pCode);
+
+	ArrayList<Diagnosis> diagList(String pCode, PageInfo pi);
+
 
 
 

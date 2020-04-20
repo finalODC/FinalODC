@@ -8,6 +8,7 @@ public class Diagnosis {
 	private String dWriter; //작성자
 	private String pCode;	//반려견등록번호
 	private int hId;		//병원등록번호
+	private String hName;
 	private int docId;		//의사등록번호
 	private Date dDate;		//작성일
 	private String dContent;//진단내용
@@ -19,18 +20,29 @@ public class Diagnosis {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Diagnosis(int dId, String dWriter, String pCode, int hId, int docId, Date dDate, String dContent,
-			String dUnique, String dStatus) {
+
+	public Diagnosis(int dId, String dWriter, String pCode, int hId, String hName, int docId, 
+			Date dDate, String dContent, String dUnique, String dStatus) {
 		super();
 		this.dId = dId;
 		this.dWriter = dWriter;
 		this.pCode = pCode;
 		this.hId = hId;
+		this.hName = hName;
 		this.docId = docId;
 		this.dDate = dDate;
 		this.dContent = dContent;
 		this.dUnique = dUnique;
 		this.dStatus = dStatus;
+	}
+
+
+	public String gethName() {
+		return hName;
+	}
+
+	public void sethName(String hName) {
+		this.hName = hName;
 	}
 
 	public int getdId() {
@@ -105,11 +117,22 @@ public class Diagnosis {
 		this.dStatus = dStatus;
 	}
 
+
+	
+
 	@Override
 	public String toString() {
-		return "DIAGNOSIS [dId=" + dId + ", dWriter=" + dWriter + ", pCode=" + pCode + ", hId=" + hId + ", docId="
-				+ docId + ", dDate=" + dDate + ", dContent=" + dContent + ", dUnique=" + dUnique + ", dStatus="
-				+ dStatus + "]";
+		return "Diagnosis [dId=" + dId + ", dWriter=" + dWriter + ", pCode=" + pCode + ", hId=" + hId + ", hName="
+				+ hName + ", docId=" + docId +  ", dDate=" + dDate + ", dContent=" + dContent
+				+ ", dUnique=" + dUnique + ", dStatus=" + dStatus + "]";
+	}
+
+
+
+	
+
+
+	
 	}
 	
 	
@@ -117,4 +140,4 @@ public class Diagnosis {
 	
 	
 
-}
+

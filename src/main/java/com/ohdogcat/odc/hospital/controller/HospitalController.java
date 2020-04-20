@@ -119,20 +119,34 @@ public class HospitalController {
 		
 		gson.toJson(hm,response.getWriter());
 		
-		
-		
-		
-
-		
 	}
 	
 	
+	@RequestMapping("searchdiaglist.do")
+	public void searchDiagList(@RequestParam(value="currentPage", defaultValue="1")int currentPage, String pCode,HttpServletResponse response) throws JsonIOException, IOException {
+		System.out.println(pCode);
+		int listCount = hoService.getDiagList(pCode);
+		System.out.println(listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Diagnosis> list = hoService.diagList(pCode,pi);
+		
+		Map hm = new HashMap();
+		hm.put("list", list);
+		hm.put("pi",pi);
+		
+		System.out.println(list);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		gson.toJson(hm,response.getWriter());
+		
+		
+	}
 	
-	
-	
-	
-	
-	
+
 	
 	
 	

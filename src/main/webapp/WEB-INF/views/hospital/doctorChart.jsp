@@ -101,7 +101,7 @@
         <div class="container-fluid">
           <!-- 컨텐츠 머리글 -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">진료기록 조회 / 처방</h1>
+            <h1 class="h3 mb-0 text-gray-800">${ loginUser.doctor[0].docName}</h1>
           </div>
 			
 			
@@ -118,9 +118,7 @@
                    <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Information</h6>
                     <div>
-				<select id="doctorlist" >
-					<option>--진료담당자 선택--</option>
-				</select>
+				
 			</div>
 			<br>
 			<script>
@@ -146,7 +144,7 @@
                     <button type="button" id="phoneNumber" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"  style="height: 30px; margin-bottom:4px;">
               		        검색
                     </button>
-                  	
+                  	<input type="hidden" id="hiddenPcode">
                   	<script>
                   		
                   		/* 휴대폰 번호 입력시 등록정보 조회 */
@@ -158,6 +156,7 @@
                   				type:"post",
                   				data:{phone:phone},
                   				success:function(data){
+                  					$('#selectPet').empty();
                   					console.log('pet조회')
                   					console.log(data);
                   					for(var i in data){
@@ -171,6 +170,10 @@
                                 		console.log($(this).find("input").val());
                                 		
                                 		var pCode = $(this).find("input").val();
+                                		
+                                		$("#hiddenPcode").val(pCode);
+                                		
+                                		console.log($("#hiddenPcode").val());
                                 		
                                 		/* 주인 이름  */
                                 		$.ajax({
@@ -206,7 +209,8 @@
                                 		
                                 		/* 특이사항 조회 */
                                			spec(pCode,1);
-                                	
+                                		diagList(pCode,1);
+                                		
                                 	})
 
                   				},error:function(){
@@ -216,6 +220,93 @@
                   				
                   			});
                   			
+                  			
+                  			
+                  			var diagList=function(pCode, currentPage){
+                  				
+                  				$.ajax({
+                  					url:"searchdiaglist.do",
+                  					type:"post",
+                  					data:{pCode:pCode, currentPage:currentPage},
+                  					success:function(data){
+                  						$('#diagList').empty();
+                  						console.log('진단서리스트 조회');
+                  						console.log(data);
+                  						var list = data["list"];
+                  						var diag="";
+                  						
+                  						for(var i in list){
+                  							diag += "<tr>";
+                        					diag += "<td>"+ i +"</td>";
+                        					diag += "<td>"+list[i]["dId"]+"</td>";
+                        					diag += "<td>"+list[i]["dDate"]+"</td>";
+                        					diag += "<td>"+list[i]["dContent"]+"</td>";
+                        					diag += "<td>"+list[i]["hName"]+"</td>";
+                        					diag += "<td>"+list[i]["dWriter"]+"</td>";
+                        					diag += "</tr>";
+                  							
+                  						}
+                  						
+                  						$('#diagList').append(diag);
+                  						
+
+                        				var pi = data["pi"];
+                        				
+                        				 $("#diagPage").empty();
+                             			
+                             			var sp= pi.startPage;
+                             			var ep= pi.endPage;
+                             			var mp= pi.maxPage;
+                             			var cu = pi.currentPage
+                             			var onepli = $('<li class="page-item ">');
+                             			var onepbu = $('<button class="page-link" onclick=diagList('+pCode+","+1+')>').text('<<');
+                             			
+                             			var prevli = $('<li class="page-item ">');
+                             			var prevbu = $('<button class="page-link" onclick=diagList('+pCode+","+(cu-1)+')>').text('<');
+                             			
+                             			if(cu==1){
+                     						onepbu.attr("disabled",true);
+                     						prevbu.attr("disabled",true);
+                             			}
+                             			
+                             			$("#diagPage").append(onepli.append(onepbu)).append(prevli.append(prevbu));
+                             			
+
+                             			 for(var i = sp; i<=ep; i++){
+                             				var $li = $('<li class="page-item ">');
+                             				var $button = $('<button class="page-link" onclick=diagList('+pCode+","+i+')>').text(i);
+                             				if(cu == i){
+                             					$button.attr("disabled",true).css("color","tomato").addClass("cu");
+                             				} 
+                             				$("#diagPage").append($li.append($button));
+                             			}
+                             			 
+                             			 
+                             			 
+                             			var nextli = $('<li class="page-item ">');
+                               			var nextbu = $('<button class="page-link" onclick=diagList('+pCode+","+(cu+1)+')>').text('>');
+                             			 
+                             			var maxli = $('<li class="page-item ">');
+                              			var maxbu = $('<button class="page-link" onclick=diagList('+pCode+","+mp+')>').text('>>');
+
+                              			if(cu==1){
+                              				nextbu.attr("disabled",true);
+                              				maxbu.attr("disabled",true);
+                              			}
+                              			
+                              			$("#diagPage").append(nextli.append(nextbu)).append(maxli.append(maxbu));
+                  						
+                  					},error:function(){
+                  						alert("진단서 리스트 오류");
+                  					}
+                
+                  				})
+                  				
+                  				
+                  			}
+                  			
+                  			
+                  			/* 특이사항 조회 함수 */
                   			var spec=function(pCode,currentPage){
                   				
                   				$.ajax({
@@ -223,6 +314,7 @@
                         			type:"post",
                         			data:{pCode:pCode, currentPage:currentPage},
                         			success:function(data){
+                        				$('#uniqueTable').empty();
                         				console.log('특이사항조회');
                         				console.log(data);
                         				var list = data["list"]
@@ -365,12 +457,12 @@
                     <h6 class="m-0 font-weight-bold text-primary">특이사항</h6>
                   </div>
                   <div align="center" class="card-body">
-                    <table border="1" class="characterTable" width="100%" id="uniqueTable">
+                    <table border="1" class="characterTable" width="100%" >
                       <thead>
                         <tr>
                           <th>특이사항</th>
-                          <th><input type="text" style="width:100%"></th>
-                          <th id="insertCharacter">입력</th>
+                          <th><input type="text" id="inputUnique" style="width:100%"></th>
+                          <th id="insertCharacter"></th>
                         </tr>
                         <tr>
                           <th>날짜</th>
@@ -378,7 +470,7 @@
                           <th>의사</th>
                         </tr>
                          </thead>
-                      <tbody>
+                      <tbody id="uniqueTable">
                       
                         <tr>
                           <td id="tb-uniqueDate">
@@ -389,10 +481,31 @@
                         </tr>
 
                       </tbody>
-
-                     
-
                     </table>
+                    
+                  <!--   
+                    <script>
+                    	$('#insertCharacter').click(function(){
+                    		var unique=$('inputUnique').val();
+                    		console.log(unique);
+                    		var pCode = $('hiddenPcode').val();
+                    		console.log(pCode);
+                    		
+                    		$.ajax({
+                    			url:"insertUnique.do",
+                    			type:"post",
+                    			data:{unique:unique, pCode:pCode},
+                    			success:function(data){
+                    				
+                    			},error:function(){
+                    				alert('특이사항 입력 에러');
+                    			}
+                    		})
+                    		
+                    	})
+                    
+                    
+                    </script> -->
                     
                     <br>
                     <nav aria-label="Page navigation example">
@@ -416,27 +529,9 @@
                     </nav>
                   </div><br>
                 </div>
-
-
-              </div>
-
-
-              <div class="col-lg-6 mb-4">
-
-                <h2>진단/처방</h2>
-                <form action="/action_page.php">
-                  <div class="form-group">
-                    <label for="comment">Comment:</label>
-                    <textarea class="form-control" rows="5" id="comment" name="text"></textarea>
-                  </div>
-                  <button type="submit" class="btn btn-primary">저장하기</button>
-                </form>
-
-                <br><br>
-
-
-
-                <div class="card shadow mb-4">
+					
+					
+				 <div class="card shadow mb-4">
                   <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">진료 기록</h6>
                   </div>
@@ -444,7 +539,7 @@
 
                     <div id="recode" align="center">
                       <fieldset style="border-radius: 10%; border :1px solid balck; ">
-                        <table border="1" id="fod" class="table table-hover" style="font-size: 12px;">
+                        <table border="1"  class="table table-hover" style="font-size: 12px;">
                           <thead>
                             <tr>
                               <td>번호</td>
@@ -455,39 +550,8 @@
                               <td>진료의사</td>
                             </tr>
                           </thead>
-                          <tbody id="ddd">
-                            <tr>
-                              <td>1</td>
-                              <td>0303001</td>
-                              <td>2020-03-03</td>
-                              <td>수술</td>
-                              <td>XX동물병원</td>
-                              <td>그러게</td>
-                            </tr>
-                            <tr>
-                              <td>2</td>
-                              <td>0303001</td>
-                              <td>2020-03-03</td>
-                              <td>수술</td>
-                              <td>XX동물병원</td>
-                              <td>그러게</td>
-                            </tr>
-                            <tr>
-                              <td>3</td>
-                              <td>0303001</td>
-                              <td>2020-03-03</td>
-                              <td>수술</td>
-                              <td>XX동물병원</td>
-                              <td>그러게</td>
-                            </tr>
-                            <tr>
-                              <td>4</td>
-                              <td>0303001</td>
-                              <td>2020-03-03</td>
-                              <td>수술</td>
-                              <td>XX동물병원</td>
-                              <td>그러게</td>
-                            </tr>
+                          <tbody id="diagList">
+                            
 
                           </tbody>
 
@@ -495,7 +559,7 @@
                         </table>
                       </fieldset>
                       <nav aria-label="Page navigation example">
-                        <ul class="pagination pagination-sm justify-content-center">
+                        <ul class="pagination pagination-sm justify-content-center" id="diagPage">
                           <li class="page-item disabled">
                             <a class="page-link" href="#" aria-label="Previous">
                               <span aria-hidden="true">&laquo;</span>
@@ -517,15 +581,12 @@
 
                   </div>
 
-                  <div class="col-lg-6 mb-4">
-
-                    <!-- Approach -->
-
-
                     <!-- 진료기록 클릭 스크립트 -->
+                    
                     <script>
                       $(function () {
-                        $("#ddd td").click(function () {
+                    	$("#diagList").mouseenter(function(){
+                        $("#diagList td").click(function () {
                           $(this).parent().siblings(".plus").css("display", "none");
                           var $tr = $("<tr class='plus'>");
                           var $td = $("<td colspan='6'>");
@@ -537,29 +598,90 @@
                           $(this).parent("tr").after($tr);
                         })
                       });
-
-
-                      $(function () {
-                        $("#ddd td").click(function () {
-                          $(this).parent().siblings(".plus").css("display", "none");
-                          var $tr = $("<tr class='plus'>");
-                          var $td = $("<td colspan='6'>");
-                          var $div = $("<div>");
-                          $div.html("dsadadadas<br> dsadsadasda<br>")
-                          $td.append($div);
-                          $tr.append($td);
-
-                          $(this).parent("tr").after($tr);
-                        })
                       });
-
                     </script>
 
 
 
-                  </div>
                 </div>
 
+              </div>
+
+
+              <div class="col-lg-6 mb-4">
+
+                <form action="/action_page.php">
+               	 <h2>진단</h2>
+                  <div class="form-group">
+                    <label for="comment">Comment:</label>
+                    <textarea class="form-control" rows="5" id="diagContent" name="text"></textarea>
+                    
+                  </div>
+                  
+                  
+                  <h2>처방</h2>
+                  <div class="medicine-table" >
+                 	<table border="1"  class="table table-striped" style="font-size: 12px; ">
+                          <thead style="text-align: center;">
+                            <tr>
+                              <td>처방 의약품</td>
+                              <td>1회 투약량</td>
+                              <td>1일 투여 횟수</td>
+                              <td>총 계</td>
+                              <td>용법</td>
+                            </tr>
+                          </thead>
+                          <tbody id="mediTable">	
+                             <tr>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                             </tr>
+                               <tr>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                             </tr>
+                             
+                               <tr>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                             </tr>
+                             
+                               <tr>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                             </tr>
+                             
+                               <tr>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                              <td><input type="text" style="width:100%; padding:0px" ></td>
+                             </tr>
+                             
+                             
+                              
+
+                          </tbody>
+
+
+                        </table>
+                 
+                  </div>
+                  <button type="submit" class="btn btn-primary">저장하기</button>
+                </form>
               </div>
             </div>
 

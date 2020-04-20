@@ -79,6 +79,23 @@ public class HospitalDao {
 
 
 
+	public int getDiagList(String pCode) {
+		return sqlSession.selectOne("chart-mapper.countDiag",pCode);
+	}
+
+
+
+
+	public ArrayList<Diagnosis> diagList(String pCode, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) *pi.getBoardLimit();
+		
+		RowBounds rw = new RowBounds(offset,pi.getBoardLimit());
+		 
+		return (ArrayList)sqlSession.selectList("chart-mapper.diagList",pCode,rw);
+	}
+
+	
+	
 
 
 	
