@@ -82,7 +82,7 @@
 
 <insert id="insertFreeReply" parameterType="FReply">
 	INSERT INTO F_REPLY VALUES
-	(SEQ_FRID.NEXTVAL,#{frContent},#{reffbId},#{frWriter},SYSDATE,SYSDATE,'Y')
+	(SEQ_FRID.NEXTVAL,#{rContent},#{reffbId},#{frWriter},SYSDATE,SYSDATE,'Y')
 </insert>
 
 

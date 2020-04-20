@@ -91,5 +91,14 @@ public class searchHospitalController {
 		gson.toJson(pi,response.getWriter());
 		
 	}
+	
+	@RequestMapping("hosdetail.do")
+	public ModelAndView hosdetail(ModelAndView mv,@RequestParam int hId) {
+
+		mv.addObject("hId",hId);
+		mv.setViewName("/homepage/inserthospital");
+		
+		return mv;
+	}
 
 }

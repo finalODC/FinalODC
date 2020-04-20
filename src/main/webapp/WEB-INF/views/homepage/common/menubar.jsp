@@ -31,11 +31,11 @@
         <a href="gomainPage.do" class="float-left navbar-light " style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
       <ul class="main-menu">
         <li><a href="searchhospital.do">병원찾기</a></li>
-        <li><a href="cuponcheck.html">커뮤니티</a>
+        <li><a href="community.do">커뮤니티</a>
           <ul class="sub-menu">
-            <li><a href="about-us.html">공지사항</a></li>
-            <li><a href="search-result.html">자유게시판</a></li>
-            <li><a href="single-property.html">TIP</a></li>
+            <li><a href="notice.do">공지사항</a></li>
+            <li><a href="Fblist.bo">자유게시판</a></li>
+            <li><a href="tip.do">TIP</a></li>
           </ul></li>
         <li><a href="#">마이페이지</a>
           <ul class="sub-menu">

@@ -75,10 +75,26 @@
 			</div>
 		</nav>
 	</header  class="masthead">
+	
+	
 
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 	<div class="container" style="padding-top: 150px;">
+	
+	<li class="nav-item"><c:url var="chart" value="chart.ho" /> <a
+				class="nav-link" href="${chart }"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
+
+			<li class="nav-item"><a class="nav-link" href="info.ho"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>내 병원 관리</span></a></li>
+
+			<li class="nav-item"><a class="nav-link" href="hosP.ho"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="hosinfo.ho"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>병원상세</span></a></li>
 		<div class="row">
+
+			
 
 
 			<div class="col-lg-12 mb-4">
@@ -87,19 +103,20 @@
 				
 				<div class="card shadow mb-4">
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">동물 병원${hId}</h6>
+						<h6 class="m-0 font-weight-bold text-primary">동물 병원</h6>
 					</div>
 					<div class="sea"
 						style="width: 100%; height: 452px; padding: 41px 35px;">
 						<div class="par" style="width: 50%; height: 370px; float: left;">
-
+							${ loginUser.hFile }
 							<!-- <div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div> -->
 
 						</div>
 						<div class="ssa" style="width: 50%; height: 370px;  float: right;">
 						
 							<div
-								style="width: 100%; height: 370px; border: none; resize: none; text-align: center;" readonly>병원소개</div>
+								style="width: 100%; height: 370px; border: none; resize: none; text-align: center;" readonly>병원소개 <br>
+								${ loginUser.hComment }</div>
 
 						</div>
 
@@ -121,7 +138,7 @@
 					</script>
 					<textarea
 						style="width: 90%; height: 200px; border: none; resize: none;"
-						readonly>상세주소</textarea>
+						readonly>${ loginUser.hAddress }</textarea>
 					</div>
 				</div>
 			</div>

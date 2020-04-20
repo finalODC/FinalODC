@@ -74,7 +74,7 @@ public class memberController {
 		
 		status.setComplete();
 		
-		return "homepage/h_login1";
+		return "homepage/h_index";
 		
 	}
 	

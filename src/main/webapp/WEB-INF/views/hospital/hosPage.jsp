@@ -17,7 +17,7 @@
    href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
    crossorigin="anonymous">
-<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+<script src="${ path }/resources/js/jquery-3.2.1.min.js"></script>
 
 </head>
 
@@ -31,7 +31,7 @@
 
             <!-- Sidebar - 로고 -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="../intranet/intranet_main.html">
+                href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-home"></i>
                 </div>
@@ -138,10 +138,10 @@
                             </div>
                         </div> -->
                         
-                        
-                    <input  class="btn btn-primary btn-lg" id="hosupdate" type="button" value="변경하기" >
+                        <!-- <button class="btn btn-primary btn-lg" id="hosupdate" type="submit">변경하기</button> -->
+                   <input  class="btn btn-primary btn-lg" id="hosupdate" type="button" value="변경하기" >
 
-                    <!-- </form> -->
+                    </form>
                 </div>
             </div>
 
@@ -153,7 +153,8 @@
     </div>
 
    <script>
-      	$('#hosupdate').click(function() {
+ 	$(function(){
+      	$('#hosupdate').on('click',function(){
          var pwd1 = $('#pwd1').val();
          var pwd2 = $('#pwd2').val();
          var hPhone = $('#hPhone').val();
@@ -172,17 +173,19 @@
                hPhone:hPhone,
                userPwd:pwd1
             },success:function(data){
-               if(data==1){
-            	   alert("에러발생");
-               		location.href="info.ho";
-               }
-            },error:function(){
+               if(data!=1){
             	alert('비밀번호가 변경되었습니다');
                 location.href="chart.ho";
+               }
+            },error:function(data){
+            	alert("에러발생");
+               	location.href="info.ho";
+               	
             }
-         })
+         });
 
       });
+   });
    </script>
 
     <!-- Footer -->
@@ -202,9 +205,7 @@
     <!-- End of Page Wrapper -->
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="intranet/jquery.min.js"></script>
-    <script src="intranet/bootstrap.bundle.min.js"></script>
+  
 
 
 
