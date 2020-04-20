@@ -72,6 +72,15 @@
                           <tr>
                               <th width="100px">첨부파일: </th>
                               <td>
+                              
+        						<%--<c:if test="${ !empty qna.originalFileName }">
+									<a href="${ contextPath }/resources//${ qna.renameFileName }" download="${ qna.originalFileName }">${ qna.originalFileName }</a>
+					
+									</c:if> --%>
+									
+								<c:if test="${!empry qna.qFile }">
+									파일 다운로드
+								</c:if>
                              
                               </td>
                           </tr>
@@ -99,42 +108,87 @@
               <script>
               	$(function(){
               		$("#delCo").click(function(){
-              			//ajax 삭제
+              			$.ajax({
+              				url:"deleteQnaRe.ma",
+              				type:"post",
+              				data:{qId:"${qna.qId}"},
+              				success:function(data){
+              					if(data>0){
+              						alert("삭제완료");
+              	          			location.href="askread.ma?qId=${qna.qId}&currentPage=${currentPage}";
+              					}else{
+              						alert("삭제실패");
+              					}
+              				},error:function(){
+              					alert("ajax에러");
+              				}
+              			
+              			})
               		});
               	});
               
               </script>
               </c:if>
-              
+             
               <c:if test="${empty qna.qnaRe}">
                 
               <table class="table table-bordered" style="background: white;">
                 <tr>
-                  <th  width="100px"><span>관리자1</span><br></th>
+                  <th  width="100px"><span>관리자</span><br></th>
                   				
-                  <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="aContent" id="content" class="form-control "  style="resize : none;"></textarea></td>
+                  <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " id="content1" class="form-control "  style="resize : none;"></textarea></td>
                 </tr>
               </table>
-              <div class="float-right">
-                      <input type="button" class="btn btn-link" style="background: #002c5f; color: white;" type="button" value="답변하기" id="recomment" class="pull-right"/>
-              </div>
+
               
-                    <script>
-        $(function(){
+              <div class="float-left">
+                      <input type="button" class="btn btn-link" style="background: #002c5f; color: white;" type="button" value="답변하기" id="recomment" class="pull-right"/></div>&nbsp;
+          
+		 <script>
+        $(document).ready(function(){
           //답변
         
           $("#recomment").click(function(){
-            $("#comment").submit();
+        	  console.log($("#content1").val());
+           	$.ajax({
+          		url:"insertQnaRe.ma",
+          		type:"post",
+          		data:{aContent:$("#content1").val(),
+          				refQid:"${qna.qId}"},
+          		success:function(data){
+          			if(data>0){
+          				alert("답변작성 성공");
+              			location.href="askread.ma?qId=${qna.qId}&currentPage=${currentPage}";
+          			}else{
+          				alert("답변작성 실패");
+          			}
+          			
+          		},error:function(){
+          			alert("ajax에러");
+          		}
+          	}) 
           })
-
-
-          //전체체크
+		
         });
 
       </script>
               
     
              </c:if>
+             	<div class="float-right"> <input type="button" class="btn btn-link" style="background: #002c5f; color: white;" type="button" value="목록으로" id="goaskmain" class="pull-right"/>
+              </div>
+              <script>
+              $(document).ready(function(){
+            	  $("#goaskmain").click(function(){
+            			if(confirm("목록으로 가겠습니까?")){
+            				location.href="mAsk.ma?currentPage=${currentPage}";
+            			}
+              })
+             
+      			 
+      		 });
+                //전체체크
+              </script>
               </div>
             </div>
           </div>
