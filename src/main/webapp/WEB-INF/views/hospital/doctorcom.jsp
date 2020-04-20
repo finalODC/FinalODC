@@ -100,29 +100,35 @@
 					<div class="commentArea" style="width: 100%; height: 100%; text-align: left;">
 
                                 <div class="commentList"><span>user1 : ooo맛있어요 </span> &nbsp;&nbsp; <span
-                                        class="report-comment" style="color:red;">삭제하기</span> </div>
+                                        class="report-comment" style="color:red;"></span></div>
                                 <div class="commentList"><span>user2 : ooo는 별로 </span> &nbsp;&nbsp; <span
                                         class="report-comment" style="color:red;">삭제하기</span> </div>
                                 <div class="commentList"><span>user3 : ooo?? </span> &nbsp;&nbsp; <span
                                         class="report-comment" style="color:red;">삭제하기</span> </div>
                                 <div class="commentList"><span>user4 : ooo!!!!! </span> &nbsp;&nbsp; <span
                                         class="report-comment" style="color:red;">삭제하기</span> </div>
-                                <br>
-
+                                
                                 <!-- 일반사용자 전용  -->
                                 <!-- <span>아이디 : </span> &nbsp; <input type="text" style="width: 70%;" placeholder="댓글을 입력해주세요"> &nbsp; <input type="button" value="등록"> -->
 
                             </div>
-					<table align="center" width="510" border="1" cellspacing="0">
-						<tr>
-							<td>
-								<textarea rows="3" cols="55" id="hrContent" style="resize: none; border:0;"></textarea>
-							</td>
-							<td>
-								<button id="hrSubmit">등록하기</button>
-							</td>
-						</tr>
-					</table>
+                            <br>
+                            <script>
+                            	$(document).ready(function(){
+                            		$.ajax({
+                            			url:"getcommnet.ma",
+                            			type:"post",
+                            			success:function(data){
+                            				console.log(data)
+                            				
+                            			},error:function(){
+                            				alert("에러")
+                            			}
+                            		}}
+                            	})
+                            
+                            </script>
+                            
 					
 					<table align="center" width="510" border="0" cellspacing="0" id="rtb">
 						<thead>
