@@ -27,10 +27,9 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/ddfd73bace.js"
 	crossorigin="anonymous"></script>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 
 <style>
 .main-menu li a:hover {
@@ -199,15 +198,13 @@
 							</tr>
 						</thead>
 						<tbody>
-						
-							
-							<c:forEach var="fb" items="${list}" >	
+
+
+							<c:forEach var="fb" items="${list}">
 								<tr class="trc">
-								
+
 									<td>${fb.fbId}</td>
-									<td>
-									${fb.fbTitle }
-										<%-- <c:url var="FBviewDetail" value="FBviewDetail.bo">
+									<td>${fb.fbTitle } <%-- <c:url var="FBviewDetail" value="FBviewDetail.bo">
 										
 										<c:param name="fbId" value="${fb.fbTitle}"/>
 										<c:param name="currentPage" value="${pi.currentPage }"/>
@@ -218,7 +215,7 @@
 									<td>${fb.fbWriter }</td>
 									<td>${fb.fbCreatedate }</td>
 									<td>${fb.fbCount }</td>
-									
+
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -231,57 +228,69 @@
 							location.href = 'FBviewDetail.bo?fbId='+aa; 
 						});
 				
-					</script>	
-						
+					</script>
+
 					<!---------------------- 페이징 처리  ------------------------->
-					
+
 					<div class="btn-toolbar d-flex justify-content-center">
-					
+
 						<!-- 이전버튼 -->
 						<div class="btn-group">
+						
 							<c:if test="${pi.currentPage eq 1 }">
-								<button class="btn btn-secondary">[이전]</button>
+								<input type="button" value="[이전]" class="btn btn-secondary" />
 							</c:if>
-							
+
 							<c:if test="${pi.currentPage ne 1 }">
 								<c:url var="before" value="Fblist.bo">
-									<c:param name="currentPage" value="${ pi.currentPage -1 }"/>
+									<c:param name="currentPage" value="${ pi.currentPage -1 }" />
 								</c:url>
-								<button class="btn btn-secondary" href="${befor}">[이전]</button>
+								<input type="button" class="btn btn-secondary" value="[이전]"
+									href="${befor}" />
 							</c:if>
 						</div>
-						
-						
-						
+
+
+
 						<!-- 페이지 숫자버튼 -->
 						<c:forEach var="p" begin="${ pi.startPage }" end="${pi.endPage }">
-					
-						<div class="btn-group" align="center">
-							<c:if test="${ p ne pi.currentPage }">
-								<c:url var="pagination" value="Fblist.bo">
-									<c:param name="currentPage" value="${ p }"/>
-								</c:url>
-								<button class="btn btn-secondary" href="${ pagination }">${ p }</button>
-							</c:if>
-						</div>
-						
+
+							<div class="btn-group" align="center">
+
+								<c:if test="${ p eq pi.currentPage }">
+									<button class="btn btn-secondary" href="${ pagination }">${ p }</button>
+								</c:if>
+								
+								
+								<c:if test="${ p ne pi.currentPage }">
+									<c:url var="pagination" value="Fblist.bo">
+										<c:param name="currentPage" value="${ p }" />
+									</c:url>
+									<button class="btn btn-secondary" href="${ pagination }">${ p }</button>
+								</c:if>
+							</div>
+
 						</c:forEach>
-						
-						
+
+
 						<!-- 다음으로 가는 버튼  -->
 						<div class="btn-group">
 							<c:if test="${pi.currentPage eq pi.maxPage }">
-								<button class="btn btn-secondary">[다음]</button>
+								<input type="button" class="btn btn-secondary" value="다음" />
 							</c:if>
 							<c:if test="${ pi.currentPage ne pi.maxPage }">
 								<c:url var="after" value="Fblist.bo">
-									<c:param name="currentPage" value="${pi.currentPage +1 }"/>	
+									<c:param name="currentPage" value="${pi.currentPage +1 }" />
 								</c:url>
-								<button href="${ after }" class="btn btn-secondary">[다음]</button>
+								<input value="[다음]" type="button" href="${ after }"
+									class="btn btn-secondary" />
 							</c:if>
 						</div>
 					</div>
 
+
+
+					<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    검색 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 					<br>
 
 					<div align="center" id="SearchDiv">
@@ -304,9 +313,9 @@
 
 					</div>
 					<br> <br>
-					
+
 					<%-- <c:if test="${!empty sessionScope.loginUser }"> --%>
-						<button onclick="location.href='FBinsertView.bo'" align="right">글쓰기</button>
+					<button onclick="location.href='FBinsertView.bo'" align="right">글쓰기</button>
 					<%-- </c:if> --%>
 				</div>
 
@@ -343,7 +352,7 @@
 	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
 
 	<script src="${path }/resources/js/main.js"></script>
-	
+
 	<script>
 	
 
