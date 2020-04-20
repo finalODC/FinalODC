@@ -35,7 +35,7 @@
 
     <!-- End of Sidebar -->
 
-    <!-- Content Wrapper -->
+    <!-- Content Wrapper -->	
     <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
@@ -68,78 +68,20 @@
         
                   <thead>
                     <tr>
-                      <th><input type="checkbox" id="checkall">전체</th>
                       <th>번호</th>
-                      <th>분류</th>
                       <th>제목</th>
-                      <th>작성자</th>
                       <th>작성날짜</th>
-                      <th>관리</th>
+                      <th>상태</th>
 
-                      
                     </tr>
                   </thead>
                  
                   <tbody id="tbody1">
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>게시글번호</td>
-                      <td>분류</td>
-                      <td>장나물</td>
-                      <td>rlacl123@naver.com</td>
-                      <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                     
-                      
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>ehdclal11</td>
-                      <td>분류</td>
-                      <td>동백꽃</td>
-                      <td>ehdclal@naver.com</td>
-                      <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>vkrlacl</td>
-                      <td>분류</td>
-                      <td>파란이</td>
-                      <td>vkrlacl@naver.com</td>
-                      <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                     
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>Rkrenrl41</td>
-                      <td>분류</td>
-                      <td>신까치</td>
-                      <td>Rkrenrl@naver.com</td>
-                      <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>anfdut52</td>
-                      <td>분류</td>
-                      <td>신나래</td>
-                      <td>anffut@naver.com</td>
-                      <td>20/03/25</td>
-                      <td><button class="btn btn-primary view" style="width: 80px;">보기</button> &nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
-                   
-                    
 
                   </tbody>
                 </table>
                 <div>
                 <button id="write" style="float: right;" class="btn btn-primary">글쓰기</button>
-                <button id="alldel" class="btn btn-danger">체크삭제</button>
          
               
               </div>
@@ -165,20 +107,14 @@
       <!-- Bootstrap core JavaScript-->
 
       <script>
+      
+      	var page=1;
+      
         $(function(){
           //공지작성
           $("#write").click(function(){
-                location.href="noticewrite.html"
-            })
-            
-         //보기
-          //삭제
-          $(".del").click(function(){
-              var bid = $(this).parent("td").siblings("td:eq(1)").text();
-              if(confirm(bid+"를 삭제하시겠습니까?")){
-                location.href=""+bid;
-              }
-            })
+                location.href="gonoticewrtie.do"
+            });
 
           //읽기
           $("#tbody1 td").click(function(){  
@@ -188,49 +124,48 @@
               location.href="noticeRead.html"
               console.log(id)
              } 
-          })
-
-          //체크용 arr
-          var checkarr = [];
-          //하나 체크
-          $(".check1").on("change",function(){
-             if(!$(this).prop("checked")&& $("#checkall").prop("checked")){
-               $("#checkall").prop("checked","")
-             }
-            if($(this).prop("checked")=="false"){
-              $(this).prop("checked","ture")
-            }else if($(this).prop("checked") =="true"){
-              $(this).prop("checked","")
-            }
-            var nid = $(this).parent("td").next().text();
-            var a = checkarr.indexOf(nid);
-             a==-1&& checkarr.push(nid)||checkarr.splice(a,1);
-  
-              console.log(checkarr);
-             
-
-          }
-          );
-
-          //전체체크
-
-          $("#checkall").click(function(){
-           var trf = $(this).prop("checked");
-           checkarr=[]
-           console.log(typeof(trf))
-           
-            if(trf==true){
-              $(".check1").prop("checked","false");
-              $(".check1").change();
-             
-              
-            }else {
-              $(".check1").prop("checked",false );
-              console.log(checkarr)
-            }
-           
           });
+
+          getList();
         });
+        
+        function getList(){
+        	$.ajax({
+        		url:"getNoticeList.do",
+        		type:"post",
+        		data:{
+        			currentPage:page
+        		},success:function(data){
+         			$tbody=$('#tbody1');
+        			$tbody.html(""); 
+        			
+        			$.each(data,function(index,value){
+        				
+        				$tr=$('<tr>');
+        				$td1=$('<td>').text(value.nId);
+        				$td2=$('<td>').text(value.nTitle);
+        				$td3=$('<td>').text(value.nCreateDate);
+        				$td4=$('<td>').text(value.nStatus);
+        				
+        				$tr.append($td1);
+        				$tr.append($td2);
+        				$tr.append($td3);
+        				$tr.append($td4);
+        				$tbody.append($tr);
+        				
+/*                         <th>번호</th>
+                        <th>제목</th>
+                        <th>작성날짜</th>
+                        <th>상태</th> */
+        			});
+        			
+        			console.log(data);
+        			
+        		},error:function(data){
+        			
+        		}
+        	});
+        }
       </script>
 
 

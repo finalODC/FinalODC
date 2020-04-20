@@ -148,17 +148,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> 권�
 				
 				$.each(data,function(index,value){
 					
-					
 				
-/* 					<a>
-					<div class="card" style="width:400px">
-						<img class="card-img-top" src="https://imagescdn.gettyimagesbank.com/500/14/141/351/0/510351863.jpg" alt="Card image" style="width:100%">
-						<div class="card-body">
-						  <h4 class="card-title">성모병원</h4>
-						  <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-						</div>
-					  </div>
-					  </a> */
 					  $div4=$('<div class="col-lg-4 col-md-4 hlist" style="margin-bottom: 10px;">');
 					  $a=$('<a href="hosdetail.do?hId='+value.hId+'">');
 					  

@@ -27,4 +27,8 @@ public class searchHospitalDao {
 		return (ArrayList)sqlSession.selectList("hospitalsearchMapper.hospitalList",hs,rowBounds);
 	}
 
+	public HMember gethoispital(int hId) {
+		return sqlSession.selectOne("hospitalsearchMapper.gethospital",hId);
+	}
+
 }

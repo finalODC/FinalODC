@@ -20,6 +20,7 @@
 		<typeAlias type="com.ohdogcat.odc.pet.model.vo.Pet" alias="Pet"/>
 		<typeAlias type="com.ohdogcat.odc.qna.model.vo.Qna" alias="Qna"/>
 		<typeAlias alias="QnaReply" type="com.ohdogcat.odc.qna.model.vo.QnaReply"/>
+		<typeAlias type="com.ohdogcat.odc.manager.Notice.model.vo.Notice" alias="Notice"/>
 		
 	</typeAliases>
 	
@@ -38,6 +39,7 @@
 		<mapper resource="mappers/qna-mapper.xml"/>
 		<mapper resource="mappers/hospitalsearch-mapper.xml"/>
 		<mapper resource="mappers/managerAsk-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
 	</mappers>
 	
 	

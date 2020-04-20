@@ -55,5 +55,12 @@
  			AND H_ADDRESS LIKE '%' || #{sArea} || '%'
  		</if>
  	</select>
+ 	
+ 	<select id="gethospital" resultMap="HospitalResultMap1">
+ 	 SELECT *
+ 	 FROM HOSPITAL
+ 	 WHERE H_STATUS='Y'
+ 	 AND HID=#{hId}
+ 	</select>
 
 </mapper>

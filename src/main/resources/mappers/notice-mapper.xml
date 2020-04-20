@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="NoticeMapper">
+	<resultMap type="Notice" id="NoticeResultMap">
+		<id property="nId" column="NID"/>
+		<result property="nTitle" column="NTITLE"/>
+		<result property="nContent" column="NCONTENT"/>
+		<result property="nCreateDate" column="N_CREATE_DATE"/>
+		<result property="nModifyDate" column="N_MODIFY_DATE"/>
+		<result property="nStatus" column="N_STATUS"/>
+	</resultMap>
+	
+	<insert id="writenotice" parameterType="Notice">
+		INSERT INTO NOTICE
+		VALUES(SEQ_NID.NEXTVAL,#{nTitle},#{nContent},SYSDATE,SYSDATE,'Y')
+	</insert>
+	
+	<select id="NoticeListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE
+		WHERE N_STATUS='Y'
+	</select>
+	
+	<select id="getNoticeList" resultMap="NoticeResultMap">
+		SELECT *
+		FROM NOTICE
+		WHERE N_STATUS='Y'
+		ORDER BY NID DESC
+	</select>
+
+</mapper>

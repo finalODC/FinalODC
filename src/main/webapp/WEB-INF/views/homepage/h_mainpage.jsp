@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	
 
 <head>
 <c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
@@ -56,7 +59,7 @@ background-color: white;
   background: url("https://s3.amazonaws.com/codecademy-content/projects/adoptly/bg.jpg")
     no-repeat center center;
   background-size: cover;
-  height: 789px;
+  height: 780px;
   text-align: center;
   margin-top: 105px;
   margin-bottom: 0;
@@ -68,6 +71,8 @@ outline: 0 0 0 0  !important;
 box-shadow: 0 0 0 0 !important;
 
 }
+
+
 
   </style>
 </head>
@@ -109,21 +114,8 @@ box-shadow: 0 0 0 0 !important;
     </div>
   </div>
   
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2">
-          <div class="copy">© Adoptly</div>
-        </div>
-        <div class="col-md-10">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  <jsp:include page="common/footer.jsp"/>
+
   
   <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
   

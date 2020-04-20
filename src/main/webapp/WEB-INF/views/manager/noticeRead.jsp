@@ -51,26 +51,12 @@
                       <th class="tatd">공지번호:</th>
                       <td><input type="text" class ="form-control" style="width:70px;" name="nid" value="123"readonly></td>
                     </tr>
-                    <tr>
-                        <th class="tatd">카테고리:</th>
-                        <td><select disabled>
-                            <option value="1"> 일반
-                            </option>
-                            <option value="2"> ???
-                            </option>
-                            <option value="3"> 그런가
-                            </option>
-                            <option value="4"> 뀨유
-                            </option>
 
-
-                        </select>
-                        </td>
-                    </tr>
                           <tr>
                               <th class="tatd" width="100px" >제목: </th>
                               <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"readonly/></td>
                           </tr>
+                          
                               <th class="tatd">내용: </th>
                               <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="content" class="form-control "  style="resize : none;" readonly></textarea></td>
                           </tr>

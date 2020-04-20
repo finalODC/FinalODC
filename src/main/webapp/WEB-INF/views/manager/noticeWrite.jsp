@@ -65,33 +65,16 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <form action="" method="POST" enctype="multipart/form-data" id="noticew">
-                
+                <form action="writenotice.do" method="POST" id="noticew">
                 <table class="table table-bordered" style="background: white;">
                   <tbody>
-                    <tr>
-                        <th class="tatd" width="100px">카테고리:</th>
-                        <td ><select style="float:left;">
-                            <option value="1"> 일반
-                            </option>
-                            <option value="2"> ???
-                            </option>
-                            <option value="3"> 그런가
-                            </option>
-                            <option value="4"> 뀨유
-                            </option>
-
-
-                        </select>
-                        </td>
-                    </tr>
                           <tr>
                               <th width="100px" class="tatd">제목: </th>
-                              <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
+                              <td><input type="text" placeholder="제목을 입력하세요." name="nTitle" class="form-control"/></td>
                           </tr>
                           <tr>
                               <th class="tatd">내용: </th>
-                              <td><textarea name="ir1" id="ir1" rows="10" cols="200"></textarea>
+                              <td><textarea name="nContent" id="ir1" rows="10" cols="200"></textarea>
        
                               </td>
                           </tr>
@@ -107,6 +90,7 @@
               </table>
               <div class="float-right">
                       <input class="btn btn-link" style="background: #002c5f; color: white;" type="button" value="공지작성" id="writeno" class="pull-right"/>
+                      
                       <input class="btn btn-link" style="background: #002c5f; color: white;" type="button" value="취소" id="cancle" class="pull-right"/>
               </div>
             </form>

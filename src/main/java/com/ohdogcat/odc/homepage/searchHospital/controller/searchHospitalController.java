@@ -95,7 +95,9 @@ public class searchHospitalController {
 	@RequestMapping("hosdetail.do")
 	public ModelAndView hosdetail(ModelAndView mv,@RequestParam int hId) {
 
-		mv.addObject("hId",hId);
+		HMember hm = shService.gethospital(hId);
+		
+		mv.addObject("hm",hm);
 		mv.setViewName("/homepage/inserthospital");
 		
 		return mv;

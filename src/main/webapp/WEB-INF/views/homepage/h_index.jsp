@@ -47,7 +47,7 @@ box-shadow: 0 0 0 0 !important;
 
 <body>
 
-  <div class="jumbotron" style="height: 889px; margin: 0px;">
+  <div class="jumbotron" style="height: 969px; margin: 0px;">
     <div class="container">
         <br><br><br><br><br><br><br><br><br><br><br>
       <h1>주변 동물병원을 찾아보세요!</h1>
@@ -74,23 +74,7 @@ box-shadow: 0 0 0 0 !important;
 
     </div>
   </div>
-
-  <div class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-2">
-          <div class="copy">© Adoptly</div>
-        </div>
-        <div class="col-md-10">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">관리자로그인</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+	
   <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
   
   <script src="${path }/resources/js/bootstrap.min.js"></script>
