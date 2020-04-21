@@ -48,7 +48,7 @@
 	</insert>
 	
 	<update id="deleteAnswer">
-	UPDATE QNAANSWER SET A_STATUS = 'N' WHERE REF_QID = #{qId}	
+	UPDATE QNAANSWER SET A_STATUS = 'N' WHERE REF_QID = #{qId}	AND A_STATUS = 'Y'
 	</update>
 
  </mapper>

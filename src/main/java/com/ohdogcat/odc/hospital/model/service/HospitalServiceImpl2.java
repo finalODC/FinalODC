@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 import com.ohdogcat.odc.hospital.model.dao.HospitalDao2;
+import com.ohdogcat.odc.hospital.model.vo.Doctor;
 import com.ohdogcat.odc.hospital.model.vo.hoReply;
 
 @Service("hoService2")
@@ -30,7 +31,6 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	@Override
 	public int hosupdate(HMember hm) {
 
-		System.out.println("hmImpl : " + hm);
 		return hoDao2.hosupdate(hm);
 	}
 
@@ -57,11 +57,18 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	 */
 	@Override
 	public int updatehosinfo(HMember hm) {
-		
 
-		System.out.println("hmImpl : " + hm);
 		
 		return hoDao2.updatehosinfo(hm);
+	}
+
+	/**
+	 * 의사 등록
+	 */
+	@Override
+	public int indoc(Doctor doc) {
+		
+		return hoDao2.indoc(doc);
 	}
 
 	

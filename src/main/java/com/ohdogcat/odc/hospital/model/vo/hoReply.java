@@ -6,6 +6,7 @@ public class hoReply {
 	private int rId;
 	private String rContent;
 	private int refHid;
+	private String parentHrid;
 	private String rWriter;
 	private Date rCreateDate;
 	private Date rModifyDate;
@@ -16,14 +17,13 @@ public class hoReply {
 		super();
 	}
 
-
-
-	public hoReply(int rId, String rContent, int refHid, String rWriter, Date rCreateDate, Date rModifyDate,
-			String rStatus, int level) {
+	public hoReply(int rId, String rContent, int refHid, String parentHrid, String rWriter, Date rCreateDate,
+			Date rModifyDate, String rStatus, int level) {
 		super();
 		this.rId = rId;
 		this.rContent = rContent;
 		this.refHid = refHid;
+		this.parentHrid = parentHrid;
 		this.rWriter = rWriter;
 		this.rCreateDate = rCreateDate;
 		this.rModifyDate = rModifyDate;
@@ -55,7 +55,13 @@ public class hoReply {
 		this.refHid = refHid;
 	}
 
-	
+	public String getParentHrid() {
+		return parentHrid;
+	}
+
+	public void setParentHrid(String parentHrid) {
+		this.parentHrid = parentHrid;
+	}
 
 	public String getrWriter() {
 		return rWriter;
@@ -88,7 +94,7 @@ public class hoReply {
 	public void setrStatus(String rStatus) {
 		this.rStatus = rStatus;
 	}
-	
+
 	public int getLevel() {
 		return level;
 	}
@@ -99,7 +105,12 @@ public class hoReply {
 
 	@Override
 	public String toString() {
-		return "hoReply [rId=" + rId + ", rContent=" + rContent + ", refHid=" + refHid + ", rWriter=" + rWriter
-				+ ", rCreateDate=" + rCreateDate + ", rModifyDate=" + rModifyDate + ", rStatus=" + rStatus + ", level"+level+"]";
+		return "hoReply [rId=" + rId + ", rContent=" + rContent + ", refHid=" + refHid + ", parentHrid=" + parentHrid
+				+ ", rWriter=" + rWriter + ", rCreateDate=" + rCreateDate + ", rModifyDate=" + rModifyDate
+				+ ", rStatus=" + rStatus + ", level=" + level + "]";
 	}
+
+	
+
+
 }

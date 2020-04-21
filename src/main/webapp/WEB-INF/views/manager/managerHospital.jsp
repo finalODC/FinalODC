@@ -286,7 +286,7 @@
         			var maxli = $('<li class="page-item ">');
          			var maxbu = $('<button class="page-link" onclick=pigo('+mp+')>').text('>>');
 
-         			if(cu==1){
+         			if(cu==mp){
          				nextbu.attr("disabled",true);
          				maxbu.attr("disabled",true);
          			}

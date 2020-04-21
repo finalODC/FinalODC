@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="hospitalRe">
+ 	<resultMap type="hoReply" id="hospitalReplyResultMap">
+ 	
+ 		<id property = "rId" column="HRID"/>
+ 		<result property="rContent" column="RCONTENT"/>
+ 		<result property="refHid" column="REF_HID"/>
+ 		<result property="parentHrid" column="PARENT_HRID"/>
+ 		<result property="rWriter" column="H_RWRITER"/>
+ 		<result property="rCreateDate" column="HR_CREATE_DATE"/>
+ 		<result property="rModifyDate" column="HR_MODIFY_DATE"/>
+ 		<result property="rStatus" column="HR_STATUS"/>
+ 		<result property="level" column="LEVEL"/>
+
+ 	</resultMap>
+ 	<select id="getListCount" resultType="_int">
+ 		select count(*) from h_reply
+ 		where REF_HID = #{hId} and HR_Status ='Y'
+ 	
+ 	</select>
+ 	
+ 	<select id="getReply" resultMap="hospitalReplyResultMap">
+ 		SELECT LEVEL, H.*
+    	FROM H_REPLY H
+    	WHERE REF_HID = #{hId} AND HR_Status ='Y'
+   		 START WITH PARENT_HRID IS NULL 
+    	CONNECT BY PRIOR HRID = PARENT_HRID
+ 	
+ 	</select>
+ 	
+ 	<update id="delHReply">
+ 	UPDATE H_REPLY
+ 	SET HR_STATUS = 'N' WHERE HRID = #{rId}
+ 	
+ 	</update>
+ 	
+ 	<insert id="insertRe">
+ 	INSERT INTO H_REPLY
+ 	VALUES (SEQ_HRID.NEXTVAL,#{rContent},#{refHid},#{parentHrid},#{rWriter},SYSDATE,SYSDATE,DEFAULT)
+ 	</insert>
+ 
+
+ 
+ </mapper>

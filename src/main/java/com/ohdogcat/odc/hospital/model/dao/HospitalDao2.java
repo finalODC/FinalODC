@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
+import com.ohdogcat.odc.hospital.model.vo.Doctor;
 import com.ohdogcat.odc.hospital.model.vo.hoReply;
 
 
@@ -34,7 +35,6 @@ public class HospitalDao2 {
 	 */
 	public int hosupdate(HMember hm) {
 
-		System.out.println("hmDao : " + hm);
 		return sqlSession.update("hospitalMapper.hosupdate", hm);
 	}
 
@@ -65,9 +65,17 @@ public class HospitalDao2 {
 	 */
 	public int updatehosinfo(HMember hm) {
 		
-		System.out.println("hmDao : " + hm);
-		
 		return sqlSession.update("hospitalMapper.updatehosinfo",hm);
+	}
+
+	/**
+	 * 의사 등록
+	 * @param hm
+	 * @return
+	 */
+	public int indoc(Doctor doc) {
+		
+		return sqlSession.insert("hospitalMapper.indoc", doc);
 	}
 
 	

@@ -30,5 +30,24 @@
 		WHERE N_STATUS='Y'
 		ORDER BY NID DESC
 	</select>
+	
+	<select id="NoticeDetail" resultMap="NoticeResultMap">
+		SELECT *
+		FROM NOTICE
+		WHERE N_STATUS = 'Y'
+		AND NID=#{nId}
+	</select>
+	
+	<update id="deleteNotice" parameterType="_int">
+		UPDATE NOTICE
+		SET N_STATUS='N'
+		WHERE NID=#{nId}
+	</update>
+	
+	<update id="NoticeUpdate" parameterType="Notice">
+		UPDATE NOTICE
+		SET NTITLE=#{nTitle},NCONTENT=#{nContent},N_MODIFY_DATE=SYSDATE
+		WHERE NID=#{nId}
+	</update>
 
 </mapper>

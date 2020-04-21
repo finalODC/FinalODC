@@ -19,8 +19,10 @@
   <!-- Custom fonts for this template-->
 
   <style>
-    
 
+	td{
+		max-width: 10px !important;
+	}
   
   </style>
 
@@ -61,7 +63,7 @@
           <div class="card shadow mb-4">
             <div class="card-header py-3">
             </div>
-            <div class="card-body">
+            <div class="card-body" style="min-height: 380px">
               <div class="table-responsive">
                 
                 <table class="table table-bordered table-hover" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
@@ -85,19 +87,17 @@
          
               
               </div>
-              <div> 	<ul class="pagination justify-content-center pagination-sm">
-                <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
-                <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
-                <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
-              </ul></div>
+				<div id="pagination" >
+
+              </div>
               </div>
             </div>
           </div>
 
         </div>
+        </div>
+        </div>
+        
         <!-- End of Content Wrapper -->
 
       </div>
@@ -117,14 +117,7 @@
             });
 
           //읽기
-          $("#tbody1 td").click(function(){  
-            console.log($(this))
-             if(!$(this).prop("cellIndex")==0){
-              var id = $(this).parent("tr").find("td").eq("1").text();
-              location.href="noticeRead.html"
-              console.log(id)
-             } 
-          });
+
 
           getList();
         });
@@ -138,6 +131,8 @@
         		},success:function(data){
          			$tbody=$('#tbody1');
         			$tbody.html(""); 
+        			
+        			pageInfo();
         			
         			$.each(data,function(index,value){
         				
@@ -161,11 +156,106 @@
         			
         			console.log(data);
         			
+        	          $("#tbody1 td").click(function(){  
+        	               if(!$(this).prop("cellIndex")==0){
+        	                var id = $(this).parent("tr").find("td").eq("0").text();
+        	                location.href="NoticeDetail.do?nId="+id;
+        	               } 
+        	            });
+        			
         		},error:function(data){
         			
         		}
         	});
         }
+        
+        function pageInfo() {
+    		$.ajax({
+    			url:"npageInfo.do",
+    			type:"post",
+    			data:{
+    				  currentPage:page
+    			},success:function(data){
+    				 $page = $('#pagination');
+        			 $page.html("");
+        			 
+        			 
+        			 $ui = $('<ul class="pagination justify-content-center pagination-sm">');
+        			 
+        			 if(data.currentPage != data.startPage){
+        				 $ui.append('<li class="goFirstPage"><a  class="page-link"><<</a></li>');
+        				 $ui.append('<li class="goBackPage"><a  class="page-link"><</a></li>');
+
+        			 }else{
+        				 $ui.append('<li class="goFirstPage"><a  class="page-link"><<</a></li>');
+        				 $ui.append('<li class="goBackPage"><a  class="page-link"><</a></li>');
+        			 }
+        			 
+        			 
+        			 
+        			for(var i = data.startPage; i<=data.endPage;i++){
+        				if(data.currentPage==i){
+            				$ui.append('<li class="goPage page-item" data-page='+i+' ><a class="page-link" style="background-color:lightgray">'+i+'</a></li>');
+        				}else{
+        					
+        					$ui.append('<li class="goPage page-item" data-page='+i+'><a class="page-link">'+i+'</a></li>');
+        				}
+        			}
+        			
+        			if(data.currentPage != data.endPage || data.endPage!=0){
+        				$ui.append('<li class="goFrontPage"><a  class="page-link">></a></li>');
+        				$ui.append('<li class="goLastPage"><a  class="page-link">>></a></li>');
+        			}else{
+        				$ui.append('<li class="goLastPage"><a  class="page-link">>></a></li>');
+        			}
+        			
+
+        			 $page.append($ui);
+        			 
+        			 
+        			 $('.goFirstPage').click(function(){
+        				page=data.startPage;
+        				getList();
+        			 });
+        			 
+        			 $('.goBackPage').click(function(){
+        				 if(data.currentPage==data.startPage){
+        					 page=data.currentPage;
+        				 }else{
+        					 page=(data.currentPage-1);	 
+        				 }
+        				 getList();
+        			 })
+        			 
+        	         $('.goPage').click(function(){
+        	        	  page=$(this).attr("data-page");
+        	        	  getList();
+        	          });
+        	         
+        			 $('.goFrontPage').click(function(){
+        				 if(data.currentPage==data.endPage||data.endPage==0){
+        					 page=data.currentPage;
+        				 }else{    					 
+        				 	page=(data.currentPage+1);
+        				 }
+        				 getList();
+        			 });
+        			 
+        	         $('.goLastPage').click(function(){
+        	        	if(data.endPage==0){
+        	        		page=data.currentPage;
+        	        	}else{
+        	        	 page=data.endPage;
+        	        	}
+        	        	 getList();
+        	         });
+    			},error:function(data){
+    				alert("페이지 갯수 ajax 작동실패!")
+    			}
+    		});
+
+    	}
+       
       </script>
 
 
