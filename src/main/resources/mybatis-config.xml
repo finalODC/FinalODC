@@ -12,8 +12,11 @@
 	<typeAliases>
 		<typeAlias type="com.ohdogcat.odc.homepage.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.ohdogcat.odc.homepage.member.model.vo.HMember" alias="HMember"/>
+		
 		<typeAlias type="com.ohdogcat.odc.board.model.vo.FreeBoard" alias="FBoard"/>
 		<typeAlias type="com.ohdogcat.odc.board.model.vo.FreeReply" alias="FReply"/>
+		<typeAlias type="com.ohdogcat.odc.board.model.vo.TipBoard" alias="TBoard"/>
+		
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.hoReply" alias="hoReply"/>
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.Doctor" alias="Doctor"/>
 		<typeAlias type="com.ohdogcat.odc.hospital.model.vo.Diagnosis" alias="Diagnosis"/>
@@ -40,6 +43,7 @@
 		<mapper resource="mappers/hospitalsearch-mapper.xml"/>
 		<mapper resource="mappers/managerAsk-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/Tipboard-mapper.xml"/>
 		<mapper resource="mappers/hospital-Reply.xml"/>
 	</mappers>
 	

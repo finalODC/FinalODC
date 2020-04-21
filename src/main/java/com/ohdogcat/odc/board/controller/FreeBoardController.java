@@ -17,10 +17,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.board.model.service.BoardService;
+import com.ohdogcat.odc.board.model.vo.BoardSearch;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
+import com.ohdogcat.odc.board.model.vo.TipBoard;
 import com.ohdogcat.odc.common.Pagination;
+import com.ohdogcat.odc.homepage.searchHospital.model.vo.hPagination;
 
 
 
@@ -161,4 +164,53 @@ public class FreeBoardController {
 	}
 	
 	
+	@RequestMapping("boardSearch.bo")
+	public ModelAndView boardSearch(@RequestParam(required=false) String boardSearhkey,
+									@RequestParam(required=false) String baordSearhval,
+									ModelAndView mv) {
+		
+		mv.addObject("boardSearchkey",boardSearhkey);
+		mv.addObject("boardSearchval",baordSearhval);
+		mv.setViewName("board/BoardPageFree");
+		
+		return mv;
+	
+	
+		
+	
+}
+	
+	@RequestMapping("boardSearchList.bo")
+	public void boardSearchList(HttpServletResponse response,
+								@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage,
+								@RequestParam String boardSearchkey,
+								@RequestParam String boardSearchval) throws JsonIOException, IOException {
+		
+		BoardSearch bs = new BoardSearch();
+		
+		if(boardSearchkey.equals("name")) {
+			bs.setBoardWriter(boardSearchval);
+		}else if(boardSearchkey.equals("title")) {
+			bs.setBoardtitle(boardSearchval);
+		}
+		
+		int listCount = bService.boardSearchListCount(bs);
+		
+		PageInfo pi = hPagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<FreeBoard> list =  bService.bordSearchList(pi,bs);
+		
+		response.setContentType("apllication/json; charset=utf-8");
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		gson.toJson(list,response.getWriter());
+	}
+	
+	//---------------------------------------- 여기서부터 DOGBOARDPAGE -----------------------------------------------------
+	
+	
+	
+	
+			
 }

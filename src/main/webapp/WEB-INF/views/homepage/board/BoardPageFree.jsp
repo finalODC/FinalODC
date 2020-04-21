@@ -197,10 +197,10 @@
 								<th>조회수</th>
 							</tr>
 						</thead>
-						<tbody>
-
-
+						<tbody id="tableArea">
 							<c:forEach var="fb" items="${list}">
+
+
 								<tr class="trc">
 
 									<td>${fb.fbId}</td>
@@ -296,16 +296,26 @@
 					<div align="center" id="SearchDiv">
 						<table border="1">
 							<tr>
-								<td><select style="border: 0px;">
-										<option value="제목">제목</option>
-										<option value="작성자">작성자</option>
-										<option value="내용">내용</option>
-								</select></td>
-								<td><input id="Search" type="text" style="border: 0px;"
-									placeholder="검색어를 입력하세요"></td>
+								<td>
+								
+								<select style="border: 0px;" id="boardSearchkey">
+										<option value="boardtitle">제목</option>
+										<option value="boardWriter">작성자</option>
+										
+								</select>
+								
+								</td>
+								
+								<td>
+								
+								<input id="boardSearchval" type="text" style="border: 0px;" placeholder="검색어를 입력하세요">
+								
+								</td>
+								
 								<td>
 									<button id="searchBtn" style="border: 0px; background: white;">
 										&nbsp;<i class="fas fa-search"></i>
+										
 									</button>
 								</td>
 							</tr>
@@ -355,6 +365,84 @@
 
 	<script>
 	
+	var key="${boardSearchkey}";
+	var val="${boardSearchval}";
+	
+	var page = 1;
+	
+	$(function(){
+		
+		getList()
+		
+		$('#searchBtn').click(function(){
+			
+			if(typeof $('#searchval').val() == 'undefined'){
+				key="${boardSearchkey}";
+				val="${boardSearchval}";
+			}else{
+				key="${boardSearchkey}";
+				val="${boardSearchval}";
+				page=1;
+			}
+			
+			getList();
+		});
+	});
+	
+	function getList(){
+		
+		
+		
+		$.ajax({
+			url:"boardSearchList.bo",
+			type:"post",
+			data:{boardSearchkey:key,
+				boardSearchval:val,
+				currentPage:page},
+				success:function(data){
+					
+					var $tbody = $('#tableArea');
+					$tbody.html("");
+					
+					pageInfo();
+					
+					$.each(data,function(index,value){
+						
+						
+<%-- 						$
+						<tbody id="tableArea">
+						<c:forEach var="fb" items="${list}">
+
+
+							<tr class="trc">
+
+								<td>${fb.fbId}</td>
+								<td>${fb.fbTitle } <c:url var="FBviewDetail" value="FBviewDetail.bo">
+									
+									<c:param name="fbId" value="${fb.fbTitle}"/>
+									<c:param name="currentPage" value="${pi.currentPage }"/>
+									</c:url>
+									
+									<a href="${FBviewDetail}">${fb.fbTitle}</a>
+								</td>
+								<td>${fb.fbWriter }</td>
+								<td>${fb.fbCreatedate }</td>
+								<td>${fb.fbCount }</td>
+
+							</tr>
+						</c:forEach>
+					</tbody> --%>
+						$tr = $("<tr class='trc'>");
+						$td1 = $("<td>${fb.fbId}");
+						$td2 = $("")
+						
+						
+					});
+				}
+		
+		});
+		
+	}
 
 	</script>
 </body>

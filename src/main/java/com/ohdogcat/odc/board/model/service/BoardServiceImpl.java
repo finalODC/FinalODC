@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ohdogcat.odc.board.Dao.BoardDao;
+import com.ohdogcat.odc.board.model.vo.BoardSearch;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
+import com.ohdogcat.odc.board.model.vo.TipBoard;
 
 @Service("bService")
 public class BoardServiceImpl implements BoardService{
@@ -57,6 +59,38 @@ public class BoardServiceImpl implements BoardService{
 	public ArrayList<FreeReply> selectFreeReplyList(int bId) {
 		
 		return bDao.selectFreeReplyList(bId);
+	}
+
+	@Override
+	public int boardSearchListCount(BoardSearch bs) {
+		
+		return bDao.boardSearchListCount(bs);
+	}
+
+	@Override
+	public ArrayList<FreeBoard> bordSearchList(PageInfo pi, BoardSearch bs) {
+		
+		return bDao.boardSearchList(pi,bs);
+	}
+
+	//----------------------------------------------- 여기서 부터 dogboard 페이지 -------------------------------------------------
+	
+	@Override
+	public int DogBoardCount() {
+		
+		return bDao.DogBoardCount();
+	}
+
+	@Override
+	public ArrayList<TipBoard> DogBoardList(PageInfo pi) {
+		// TODO Auto-generated method stub
+		return bDao.DogBoardList(pi);
+	}
+
+	@Override
+	public int DogBoardWriter(TipBoard tb) {
+		// TODO Auto-generated method stub
+		return bDao.DogBoardWriter(tb);
 	}
 
 	

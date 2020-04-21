@@ -28,6 +28,10 @@
 <script src="https://kit.fontawesome.com/ddfd73bace.js"
 	crossorigin="anonymous"></script>
 
+<script type="text/javascript"
+	src="${path}/resources/se2/js/service/HuskyEZCreator.js"
+	charset="utf-8"></script>
+
 
 <style>
 .main-menu li a:hover {
@@ -43,7 +47,7 @@
 }
 
 .footer {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	bottom: 0;
 	width: 100%;
@@ -75,14 +79,7 @@
 	font-size: 16px;
 	width: 325px;
 	padding: 10px;
-	height: 30px;
-	border: 1px solid black;
-}
-
-#SearchBtn {
-	width: 50px;
 	border: 0px;
-	background-color: white;
 }
 </style>
 </head>
@@ -133,19 +130,16 @@
 	</header class="masthead">
 
 	<!--     @@@@@@@@@@@@@@@@@@@@@ 가운데 내용 @@@@@@@@@@@@@@@@@@@@@-->
+	
 	<div class="">
 
 		<div class="row">
 			<div id="aside" align="center" class="col-lg-2">
 				<div align="left">
-					<br>
-					<br> <br>
-					<br>
+					<br> <br> <br> <br>
 
 					<ul>
-						<A href="Fblist.bo">
-						<!-- Fblist.bo로 매핑된 메소드를 호출하여 값을 불러오고 페이지로 이동한다. -->
-						
+						<A href="ohdogcat_FreeBoardPage.html">
 							<h4 style="height: 40px;" align="">자유 게시판</h4>
 						</A>
 						<br>
@@ -154,17 +148,23 @@
 						<a>
 							<h4>정보 공유 게시판</h4>
 						</a>
-						<hr style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;" align="left">
+						<hr
+							style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;"
+							align="left">
 
 						<a href="ohdogcat_DogBoardPage.html">
 							<h5>
-								<i class="fas fa-dog">&nbsp;</i>강아지 게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-paw"></i>
+								<i class="fas fa-dog">&nbsp;</i>강아지
+								게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i
+									class="fas fa-paw"></i>
 							</h5>
 						</a>
 						<br>
 						<a href="ohdogcat_CatBoardPage.html">
 							<h5>
-								<i class="fas fa-cat">&nbsp;</i>고양이 게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-bell"></i>
+								<i class="fas fa-cat">&nbsp;</i>고양이
+								게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i
+									class="fas fa-bell"></i>
 							</h5>
 						</a>
 						<br>
@@ -172,105 +172,55 @@
 
 				</div>
 			</div>
-
+			<!-- ===================== 글작성 ========================== -->
 
 			<div id="contents" class="col-lg-6">
 
-				<br>
-				<br>
+				<br> <br>
+				<form action="DogBoardWriter.bo" method="post" entype="multipart/form-data" id="DoginsertView">
+				<h2>&nbsp;&nbsp;&nbsp;글쓰기</h2>
 
-				<h2>
-					&nbsp;&nbsp;&nbsp;Dog board &nbsp; <i class="fas fa-paw"></i>
-				</h2>
-
-				<br>
-				<br>
-
-				<div align="right" style="width: 750px; margin-left: 80px;">
-					<table class="table table-hover" align="center">
+				<br> <br>
+				<div class="container" align="right">
 					
-						<thead>
-							<tr>
-								<th>no.</th>
-								<th>제목</th>
-								<th>글쓴이</th>
-								<th>날짜</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
-						
+					<table class="table table-bordered" align="center">
+
+
 						<tbody>
-							<c:forEach var="db" items="${list}">
-								<tr class="trc">
-									<td>${db.tbId }</td>
-									<td>${db.tbTitle }</td>
-									<td>${db.tbWriter }</td>
-									<td>${db.tbCreateDate }</td>
-									<td>${db.tbCount }</td>
-									
-								</tr>
-							</c:forEach>
-						</tbody>
-						
-						
-					</table>
-					
-					<!-- 클릭 이벤트시 게시판 디테일로 가는 스크립트 -->
-					<script>
-						$('.trc').click(function(){
-							var aa= $(this).find("td:eq(0)").text()
-							location.href='DBviewDetail.bo?tbId'+aa;
-						});
-					</script>
-					
-					<div class="btn-toolbar d-flex justify-content-center">
-
-						<div class="btn-group">
-							<button type="button" class="btn btn-secondary"><<</button>
-						</div>
-
-						<div class="btn-group" align="center">
-							<button type="button" class="btn btn-secondary">1</button>
-							<button type="button" class="btn btn-secondary">2</button>
-							<button type="button" class="btn btn-secondary">3</button>
-							<button type="button" class="btn btn-secondary">4</button>
-							<button type="button" class="btn btn-secondary">5</button>
-							<button type="button" class="btn btn-secondary">6</button>
-							<button type="button" class="btn btn-secondary">7</button>
-							<button type="button" class="btn btn-secondary">8</button>
-							<button type="button" class="btn btn-secondary">9</button>
-						</div>
-
-						<div class="btn-group">
-							<button type="button" class="btn btn-secondary">>></button>
-						</div>
-					</div>
-
-					<br>
-
-					<div align="center" id="SearchDiv">
-						<table border="1">
 							<tr>
-								<td><select style="border: 0px;">
-										<option value="제목">제목</option>
-										<option value="작성자">작성자</option>
-										<option value="내용">내용</option>
-								</select></td>
-								<td><input id="Search" type="text" style="border: 0px;"
-									placeholder="검색어를 입력하세요"></td>
-								<td>
-									<button id="searchBtn" style="border: 0px; background: white;">
-										&nbsp;<i class="fas fa-search"></i>
-									</button>
-								</td>
+								<th style="width: 100px;">제목</th>
+								<td><input type="text" style="border: 0px; width: 400px;"
+									placeholder="제목을 입력하세요" name="tbTitle" ></td>
 							</tr>
-						</table>
+							<tr>
+								<th>아이디</th>
+								<!-- <td><input type="text" readonly name="bWriter" value="${ loginUser.id }"></td> 
+										이쪽 로그인 아이디 로 바꿔줍시다.-->
+								<td><input type="text" style="border: 0px;" value="tlqkrus"
+									readonly name="tbWriter"></td>
+							</tr>
+							<tr>
+								<th style="width: 100px; height: 500px;">내용</th>
+								<td><textarea id="editer" rows="25" cols="100" name="tbContent"></textarea></td>
 
-					</div>
-					<br>
-					<br>
-					<button onclick="location.href='insertDogBoard.bo'" align="right">글쓰기</button>
+							</tr>
+							<tr>
+								<th>첨부파일</th>
+								<td style="width: 100px;"><input type="file"
+									name="FileName"></td>
+
+							</tr>
+						</tbody>
+					</table>
+					<input type="button" id="DogboardEnter" value="확인" href="DBlist.bo">&nbsp;
+					<button type="button" onclick="gotoback()">취소</button>
+
+
+
+					<br> <Br> <br> <br> <Br> <Br> <Br>
 				</div>
+				</form>
+
 
 			</div>
 
@@ -305,6 +255,42 @@
 	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
 
 	<script src="${path }/resources/js/main.js"></script>
+
+	<script type="text/javascript">
+		var oEditors = [];
+		nhn.husky.EZCreator.createInIFrame({
+		 oAppRef: oEditors,
+		 elPlaceHolder: "editer",
+		 sSkinURI: "${path}/resources/se2/SmartEditor2Skin.html",
+		 fCreator: "createSEditor2"
+		});
+	</script>
+	
+	  <script>
+     
+        $(function(){
+          //공지작성
+        
+          $("#DogboardEnter").click(function(){
+        	  oEditors.getById["editer"].exec("UPDATE_CONTENTS_FIELD", []);
+        	  console.log($("#editer").val());
+        	  $("#DoginsertView").submit()
+  
+          });
+
+
+        });
+        
+        function gotoback(){
+        	
+        	location.href="cencleW.bo";
+        }
+ 
+
+      </script>
+      
+     
+
 </body>
 
 
