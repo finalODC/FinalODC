@@ -21,6 +21,7 @@ import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.common.Pagination;
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
+import com.ohdogcat.odc.hospital.model.vo.hoReply;
 import com.ohdogcat.odc.manager.Membermanage.model.vo.SearchHmember;
 import com.ohdogcat.odc.manager.model.service.ManagerHospitalService;
 
@@ -77,15 +78,5 @@ public class ManagerHopitalController {
 		return Integer.valueOf(result).toString();
 	}
 	
-//	@RequestMapping("getcommnet.ma")
-//	public String getHComment(HttpServletResponse response) {
-//		
-//		
-//		
-//		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-//		
-//		gson.toJson(jsonElement,response.getWriter());
-//		
-//	}
 
 }

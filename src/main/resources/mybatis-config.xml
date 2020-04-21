@@ -40,6 +40,7 @@
 		<mapper resource="mappers/hospitalsearch-mapper.xml"/>
 		<mapper resource="mappers/managerAsk-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
+		<mapper resource="mappers/hospital-Reply.xml"/>
 	</mappers>
 	
 	
