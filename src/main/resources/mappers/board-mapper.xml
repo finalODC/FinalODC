@@ -94,4 +94,39 @@
 	
 </select>
 
+<select id="boardSearchListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM F_BOARD
+	WHERE FR_STATUS='Y'
+	
+	<if test="boardWriter != null">
+		AND F_BWRITER LIKE '%' || #{fbWriter} || '%'
+	</if>
+	
+	
+	<if test="boardtitle != null">
+		AND F_BTITLE LIKE '%' || #{fbTitle} || '%'
+	</if>
+</select>
+
+<select id="boardSearchList" resultMap="FreeBoardResultSet">
+	SELECT *
+	FROM F_BOARD
+	WHERE FR_STATUS='Y'
+	
+	<if test="boardWriter != null">
+		AND F_BWRITER LIKE '%' || #{fbWriter} || '%'
+	</if>
+	
+	
+	<if test="boardtitle != null">
+		AND F_BTITLE LIKE '%' || #{fbTitle} || '%'
+	</if>
+
+</select>
+
+	<!--                             @@@@@@@@@@여기서부터 Dog Board 페이지 @@@@@@@                                       -->
+	
+
+	
 </mapper>

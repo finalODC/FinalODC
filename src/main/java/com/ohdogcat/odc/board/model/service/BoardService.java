@@ -2,9 +2,11 @@ package com.ohdogcat.odc.board.model.service;
 
 import java.util.ArrayList;
 
+import com.ohdogcat.odc.board.model.vo.BoardSearch;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
-import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.board.model.vo.FreeReply;
+import com.ohdogcat.odc.board.model.vo.PageInfo;
+import com.ohdogcat.odc.board.model.vo.TipBoard;
 
 public interface BoardService {
 
@@ -47,6 +49,30 @@ public interface BoardService {
 	 */
 	int insertFreeReply(FreeReply fr);
 	
+	/**
+	 * 댓글 리스트 불러오기
+	 * @param bId
+	 * @return
+	 */
 	ArrayList<FreeReply> selectFreeReplyList(int bId);
 	
+	/**
+	 * 검색 리스트 불러오기
+	 * @param bs
+	 * @return
+	 */
+	int boardSearchListCount(BoardSearch bs);
+	
+	ArrayList<FreeBoard> bordSearchList(PageInfo pi,BoardSearch bs);
+	
+	
+	
+	//-------------------------------------------- 여기서부터 멍멍이 게시판 -----------------------------------------------
+	
+	
+	int DogBoardCount();
+	
+	ArrayList<TipBoard> DogBoardList(PageInfo pi);
+	
+	int DogBoardWriter(TipBoard tb);
 }

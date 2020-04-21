@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TipboardMapper">
+
+<resultMap id="TipBoardResultSet" type="TBoard">
+	<id property="tbId" column="TBID"/>
+	<result property="tbTitle" column="T_BTITLE"/>
+	<result property="tbWriter" column="T_BWRITER"/>
+	<result property="tbContent" column="T_BCONTENT"/>
+	<result property="tbCount" column="T_BCOUNT"/>
+	<result property="tbCreateDate" column="TB_CREATE_DATE"/>
+	<result property="tbModifyDate" column="TB_MODIFY_DATE"/>
+	<result property="tbType" column="TB_TYPE"/>
+	<result property="tbCategory" column="CATEGORY"/>
+	<result property="tbStatus" column="TB_STATUS"/>
+	<result property="tbComplain" column="COMPLAIN"/>
+	
+</resultMap>
+
+	<select id="DogBoardCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM T_BOARD
+		WHERE TB_STATUS = 'Y'
+		AND TB_TYPE = 'DOG'
+	</select>
+	
+	<select id="DogBoardList" resultMap="TipBoardResultSet">
+		SELECT *
+		FROM T_BOARD
+		WHERE TB_STATUS = 'Y'
+		AND TB_TYPE= 'DOG'
+		ORDER BY TBID DESC
+	</select>
+	
+	
+	
+	<insert id="DogBoardWriter" parameterType="TBoard">
+		INSERT INTO T_BOARD 
+		VALUES(SEQ_TBID.NEXTVAL,#{tbTitle},#{tbWriter},#{tbContent},0,SYSDATE,SYSDATE,'DOG',#{tbCategory},'Y',0)
+	</insert>
+	
+</mapper>

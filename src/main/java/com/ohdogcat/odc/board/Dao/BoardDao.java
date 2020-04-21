@@ -7,8 +7,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ohdogcat.odc.board.model.vo.BoardSearch;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
+import com.ohdogcat.odc.board.model.vo.TipBoard;
 import com.ohdogcat.odc.board.model.vo.FreeReply;
 
 @Repository("bDao")
@@ -68,6 +70,50 @@ public class BoardDao {
 	public ArrayList<FreeReply> selectFreeReplyList(int bId) {
 		
 		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeReplyList",bId);
+	}
+
+
+
+	public int boardSearchListCount(BoardSearch bs) {
+		
+		return sqlSession.selectOne("boardMapper.boardSearchListCount",bs);
+	}
+
+
+
+	public ArrayList<FreeBoard> boardSearchList(PageInfo pi, BoardSearch bs) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		
+		
+		return (ArrayList)sqlSession.selectList("boardMapper.boardSearchList",bs,rowBounds);
+	}
+
+	//------------------------------------- 여기서 부터 dogBoard 페이지-------------------------------------
+
+	public int DogBoardCount() {
+		
+		return sqlSession.selectOne("TipboardMapper.DogBoardCount");
+	}
+
+
+
+	public ArrayList<TipBoard> DogBoardList(PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("TipboardMapper.DogBoardList",pi);
+	}
+
+
+
+	public int DogBoardWriter(TipBoard tb) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("TipboardMapper.DogBoardWriter",tb);
 	}
 	
 	

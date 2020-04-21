@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class SearchHmember {
 	private int category;
 	private String search;
+	
 	public SearchHmember() {
 		super();
 		// TODO Auto-generated constructor stub
