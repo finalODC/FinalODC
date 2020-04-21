@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,11 +27,15 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
 import com.ohdogcat.odc.hospital.model.service.HospitalService2;
+import com.ohdogcat.odc.hospital.model.vo.Doctor;
 import com.ohdogcat.odc.hospital.model.vo.hoReply;
 
 @Controller
+@SessionAttributes("hospital")
 public class HospitalController2 {
-
+	
+	
+	private HMember hm1;
 	@Autowired
 	private HospitalService2 hService2;
 
@@ -38,7 +43,11 @@ public class HospitalController2 {
 	private BCryptPasswordEncoder be;
 
 	@RequestMapping("info.ho")
-	public String goInfo() {
+	public String goInfo(Model m, HttpSession session) {
+		hm1 = (HMember)session.getAttribute("loginUser");
+		System.out.println("들어오자 마자"+hm1);
+		m.addAttribute("hospital", hm1);
+		
 		return "hospital";
 	}
 
@@ -102,17 +111,19 @@ public class HospitalController2 {
 //	}
 
 	@RequestMapping("updatehosinfo.ho")
-	public String updatehosinfo(HMember hm, HttpServletRequest request,
+	public String updatehosinfo(HMember hm, HttpServletRequest request, Model model,
 							  @RequestParam(name="hImage",required=false) MultipartFile file,
 							  String hComment,
 							  String add1, String add2, String add3) {
 		
+		String renameFileName = saveHos(file, request);
+		
 		if(!file.getOriginalFilename().equals("")) {
 			// 서버에 업로드
-			String renameFileName = saveFile(file, request);
-			
+	
 			if(renameFileName != null) {		// 파일이 잘 저장된 경우
-				hm.sethFile(file.getOriginalFilename());
+				hm.sethFile(renameFileName);
+				hm1.sethFile(renameFileName);
 				
 			}
 		}
@@ -120,12 +131,13 @@ public class HospitalController2 {
 		System.out.println("file : " + file);
 		
 		hm.sethComment(hComment);
-		
+		hm1.sethComment(hComment);
 		
 		System.out.println("hComment : " + hComment);
 		
 		if(!add1.equals("") && add1 !=null) {
-			hm.sethAddress("주소 : " + add1 + add2 + add3);
+			hm.sethAddress(add1 + add2 + add3);
+			hm1.sethAddress(add1 + add2 + add3);
 		}
 		
 		System.out.println(add1 + add2 + add3);
@@ -134,23 +146,86 @@ public class HospitalController2 {
 		
 		System.out.println(result);
 		
+		
+		
+		
+//		model.addAttribute("imgs",hComment);
+//		model.addAttribute("imgs",hm.gethAddress());
+		
+		if(result > 0) {
+			model.addAttribute("hospital",hm1);
+			System.out.println(hm1);
+			return "redirect:chart.ho";
+		} else {
+			return "redirect:comdoc.ho";
+		}
+		
+	}
+	
+	@RequestMapping("indoc.ho")
+	public String indoc(Doctor doc, HttpServletRequest request, Model model,
+			  @RequestParam(name="docFile",required=false) MultipartFile file) {
+		
+		String renameFileName = saveDoc(file, request);
+		
+		if(!file.getOriginalFilename().equals("")) {
+			// 서버에 업로드
+	
+			if(renameFileName != null) {		// 파일이 잘 저장된 경우
+				doc.setDocFile(renameFileName);
+				
+			}
+		}
+		
+		int result = hService2.indoc(doc);
+		
 		if(result > 0) {
 			return "redirect:chart.ho";
 		} else {
 			return "redirect:comdoc.ho";
 		}
 		
-		
 	}
 	
 	
 	
 
-	public String saveFile(MultipartFile file, HttpServletRequest request) {
+	public String saveHos(MultipartFile file, HttpServletRequest request) {
 
 		String root = request.getSession().getServletContext().getRealPath("resources");
 
 		String savePath = root+"\\hosImages";
+
+		File folder = new File(savePath);
+
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+
+		String originFileName = file.getOriginalFilename();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");                                 // 파일명 바꿔줌
+
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"."                // 파일명 바꿔줌
+				+ originFileName.substring(originFileName.lastIndexOf(".")+1);      // 파일명 바꿔줌
+
+		String renamePath = folder + "\\" + renameFileName;         // 실제 저장될 파일 경로 + 파일명
+
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (Exception e) {
+			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+
+		return renameFileName;
+	}
+	
+	
+	public String saveDoc(MultipartFile file, HttpServletRequest request) {
+
+		String root = request.getSession().getServletContext().getRealPath("resources");
+
+		String savePath = root+"\\docImages";
 
 		File folder = new File(savePath);
 

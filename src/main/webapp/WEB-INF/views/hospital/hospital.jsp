@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.ohdogcat.odc.homepage.member.model.vo.*"%>
+	pageEncoding="UTF-8" import="com.ohdogcat.odc.homepage.member.model.vo.*" 
+	import="com.ohdogcat.odc.hospital.model.vo.Doctor"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!-- saved from url=(0061)https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
@@ -101,8 +102,10 @@
 
 								<div class="card" style="width: 100%">
 									<div class="card-body text-center">
-
-										<img class="card-body text-center"  id="preview" src="${ loginUser.hFile }"
+									<div>
+									</div>
+									
+										<img class="card-body text-center"  id="preview" src="/odc/resources/hosImages/${hospital.hFile }"
 											style="width: 100%; height: 250px;"> <label
 											class="btn btn-primary ">사진선택 <input type="file" name="hImage"
 											class="img-fluid" alt="" id="getfile" style="display: none;">

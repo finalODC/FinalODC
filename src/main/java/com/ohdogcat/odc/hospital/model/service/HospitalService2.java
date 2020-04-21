@@ -3,6 +3,7 @@ package com.ohdogcat.odc.hospital.model.service;
 import java.util.ArrayList;
 
 import com.ohdogcat.odc.homepage.member.model.vo.HMember;
+import com.ohdogcat.odc.hospital.model.vo.Doctor;
 import com.ohdogcat.odc.hospital.model.vo.hoReply;
 
 
@@ -44,4 +45,11 @@ public interface HospitalService2 {
 	 * @return
 	 */
 	int updatehosinfo(HMember hm);
+
+	/**
+	 * 의사 등록
+	 * @param hm
+	 * @return
+	 */
+	int indoc(Doctor doc);
 }

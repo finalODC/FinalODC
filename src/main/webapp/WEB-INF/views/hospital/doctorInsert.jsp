@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.ohdogcat.odc.homepage.member.model.vo.*"%>
+	pageEncoding="UTF-8" import="com.ohdogcat.odc.hospital.model.vo.*" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!-- saved from url=(0061)https://blackrockdigital.github.io/startbootstrap-sb-admin-2/ -->
@@ -86,10 +86,11 @@
 				class="d-sm-flex align-items-center justify-content-between mb-4">
 			</div>
 			<!-- Content Row -->
-
+			
+			<form action="indoc.ho" method="post" enctype="multipart/form-data">
 			<!-- <form action="updatehosinfo.ho" method="post" enctype="multipart/form-data"> -->
 				<div class="row">
-					
+					<input type="text" name="refHid" id="userId" value="1">
 
 					<div class="col-lg-11 mb-4">
 						<div class="card shadow mb-4">
@@ -122,10 +123,10 @@
                         </div> -->
 							<div style="text-align: center;">
 								<input id="ss" type='button' class='btn btn-primary copy'
-									value='추가' style="width: 50px;"> <input type="submit"
-									class="btn btn-primary" value="등록"> <input id="ss"
-									type='button' class='btn btn-primary delete' value='삭제'
-									style="width: 50px;"> <br> <br>
+									value='의사추가' style="width: 100px;"> <input id="ss"
+									type='button' class='btn btn-primary delete' value='의사삭제'
+									style="width: 100px;">
+									 <button type="submit"class="btn btn-primary" value="">등록</button> <br> <br>
 							</div>
 
 						</div>
@@ -133,7 +134,7 @@
 
 
 				</div>
-
+				</form>
 			
 		</div>
 
