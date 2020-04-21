@@ -121,7 +121,7 @@
 									<div class="card-body text-center">
 
 										<textarea style="width: 90%; height: 200px; border: none; resize: none;" id="hComment" name="hComment"
-											>${ loginUser.hComment }</textarea>
+											>${ hospital.hComment }</textarea>
 
 										<br> <br>
 
@@ -136,10 +136,10 @@
                             			<label for="country">주소</label><br>
                             				<div class="row">
                                 				<div class="inputgroup" style="width: 80%; margin-right: 2%;">
-                                    				<input type="text" readonly class="form-control" placeholder="" id="add1" name="add1" value="${ loginUser.hAddress }">
+                                    				<input type="text" readonly class="form-control" placeholder="" id="add1" name="add1">
                                 				</div><br><br>
                                 				<div class="inputgroup" style="width: 60%; margin-right: 2%;">
-                                    				<input type="text" readonly class="form-control" placeholder="" id="add2" name="add2">
+                                    				<input type="text" readonly class="form-control" placeholder="" id="add2" name="add2" >
                                 				</div>
 
                                 				<br><br>
@@ -175,6 +175,12 @@
 	</div>
 
 	<script>
+	$(document).ready(function(){
+	var aaa = "${hospital.hAddress}".split(",");
+	$("#add1").val(aaa[0]);
+	$("#add2").val(aaa[1]);
+	$("#add3").val(aaa[2]);
+	});
 		function searchaddr(){
       		new daum.Postcode({
     			oncomplete: function(data) {

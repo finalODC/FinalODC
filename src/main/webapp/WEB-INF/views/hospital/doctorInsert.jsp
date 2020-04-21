@@ -87,54 +87,67 @@
 			</div>
 			<!-- Content Row -->
 			
-			<form action="indoc.ho" method="post" enctype="multipart/form-data">
-			<!-- <form action="updatehosinfo.ho" method="post" enctype="multipart/form-data"> -->
+			<!-- <form action="indoc.ho" method="post" enctype="multipart/form-data"> -->
+			<div>
+			${hospital }
+			${hospital.doctor[0]!=null }
+			</div>
 				<div class="row">
-					<input type="text" name="refHid" id="userId" value="1">
+					<input type="text" name="refHid" id="refHid" value="${ hospital.hId }">
+					<input type="hidden" name="dId" id="dId" value="">
 
 					<div class="col-lg-11 mb-4">
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
 								<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
 							</div>
-							<div class="card-columns" id="cccbody" style="column-count: 1;">
 								
+							<div class="card-columns" id="cccbody" style="column-count: 1;">
+								<c:if test="${hospital.doctor[0]!=null }">
+								<c:forEach var="b" items="${hospital.doctor }">
 								<div class="card t1"
 									style="width: 200px; height: auto; display: inline-block; margin: 25px 0 0 25px;"
 									id="copy">
+									
+									
 									<div class="card-body text-center">
-										<img class="card-body text-center docImage" name="docImage"
-											id="docImage" style="width: 90%; height: 200px;"> <label
+										<img class="card-body text-center docImage" name="docFile" src="/odc/resources/docImages/${b.docFile }"
+											id="docFile" style="width: 90%; height: 200px;"> <label
 											class="btn btn-primary "> 사진등록 <input type="file" name="docFile"
 											class="img-fluid docGetfile" id="docGetfile" alt=""
 											style="display: none;">
 										</label> <br> <br> <input type="text"
-											style="text-align: center; width: 100px; border: none;" name="docName"
-											placeholder="의사이름">
+											style="text-align: center; width: 100px; border: none;" name="docName" id="docName"
+											value="${b.docName }">
 										<hr>
 										<textarea
-											style="width: 150px; height: 200px; border: none; resize: none;" name="docIntro"
-											placeholder="간단한 소개"></textarea>
+											style="width: 150px; height: 200px; border: none; resize: none;" name="docIntro" id="docIntro"
+											placeholder="간단한 소개">${ b.docIntro }</textarea>
 									</div>
 								</div>
+							
 							</div>
+								</c:forEach>
+							</c:if>
 							<!-- <div style="text-align: center;">
                             <input type="button" value="의사 등록" class="btn btn-primary">
                         </div> -->
+                       
 							<div style="text-align: center;">
 								<input id="ss" type='button' class='btn btn-primary copy'
 									value='의사추가' style="width: 100px;"> <input id="ss"
 									type='button' class='btn btn-primary delete' value='의사삭제'
 									style="width: 100px;">
-									 <button type="submit"class="btn btn-primary" value="">등록</button> <br> <br>
+									 <input type="button"class="btn btn-primary" id="indoc" value="등록">
+									<br> <br>
 							</div>
-
-						</div>
+						 </div>
+						
 					</div>
 
 
 				</div>
-				</form>
+				<!-- </form> -->
 			
 		</div>
 
@@ -143,59 +156,11 @@
 	</div>
 
 	<script>
+	
 		
-	
-	
-	
-	
-		// 사진 등록
-		var file = document.querySelector('#getfile');
-
-		file.onchange = function() {
-			var fileList = file.files;
-
-			var reader = new FileReader();
-			reader.readAsDataURL(fileList[0]);
-
-			reader.onload = function() {
-
-				document.querySelector('#preview').src = reader.result;
-
-				var tempImage = new Image();
-				tempImage.src = reader.result;
-
-			};
-		};
 		
 		// 병원 설명 등록
-		$(function(){
-			$('#updatehosinfo').on('click',function(){
-				var hFile = $('#preview').val();
-				var hComment = $('#hComment').val();
-				var add1 = $('#add1').val();
-				var add2 = $('#add2').val();
-				var add3 = $('#add3').val();
-				$.ajax({
-					url : "updatehosinfo.ho",
-					type : "GET",
-					data : {
-						userId : '${loginUser.userId}',
-						hFile:hFile,
-						hComment:hComment,
-						add1:add1,
-						add2:add2,
-						add3:add3
-					},success:function(data){
-						if(data!=1){
-							location.href="chart.ho";
-							alert("변경 성공");
-						}
-					},error:function(data){
-						alert("실패");
-					}
-				});
-			});
-		})
+		
 	</script>
 
 	
@@ -209,15 +174,15 @@
 				+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 
 				+ "<div class='card t1' style='width: 200px; height: auto; display: inline-block;'id='copy'>"
 				+ "<div class='card-body text-center'>"
-				+ "<img class='card-body text-center docImage' name='docImage' id='docImage' style='width: 90%; height: 200px;'>"
+				+ "<img class='card-body text-center docImage' name='docFile' id='docFile' style='width: 90%; height: 200px;'src='/odc/resources/docImages/${b.docFile }'>"
 				+ "<label class='btn btn-primary'>"
 				+ "사진등록"
 				+ "<input type='file' class='img-fluid docGetfile'  alt='' style='display: none;'>"
 				+ "</label>"
 				+ "<br> <br>"
-				+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름'>"
+				+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름' id='docName'>"
 				+ "<hr>"
-				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' placeholder='간단한 소개'>"
+				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' placeholder='간단한 소개'>"
 				+ "</textarea>"
 				+ "</div>"
 				+ "</div>"
@@ -264,9 +229,34 @@
 			});
 		});
 		
-		$("adsadsa").click(function(){
-			$("#").submit()
-		})
+		$(function(){
+			$('#indoc').click(function(){
+				var docFile = $('#docGetfile').val();
+				var docIntro = $('#docIntro').val();
+				var docName = $('#docName').val();
+				console.log('docIntro : ' + docIntro);
+				console.log('docIntro : ' + docFile);
+				console.log('docIntro : ' + docName);
+				console.log('asfasf');
+				$.ajax({
+					url : "indoc.ho",
+					type : "post",
+					data : {
+						refHid:$("#refHid").val(),
+						docFile:docFile,
+						docIntro:docIntro,
+						docName:docName,
+					},success:function(data){
+						if(data!=1){
+							location.href="chart.ho";
+							alert("변경 성공");
+						}
+					},error:function(data){
+						alert("실패");
+					}
+				});
+			});
+		});
 	</script>
 
 	<!-- Footer -->

@@ -124,17 +124,55 @@
 					<div style="width: 100%; border-top: 1px solid #ebebeb"></div>
 					<div class="two" style="width: 100%; padding: 41px 35px;">
 						<div id="map" style="width: 100%; height: 300px; margin-bottom: 20px"></div>
-					
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807&libraries=services">
+						
+						
+						</script>
 					<script type="text/javascript"
-						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807"></script>
-					<script>
-						var container = document.getElementById('map');
-						var options = {
-							center : new kakao.maps.LatLng(33.450701, 126.570667),
-							level : 3
-						};
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807">
+					
+					
+					</script>
+						
+					<script >
+					
+					var mapContainer = document.getElementById('map'), 
+				    mapOption = {
+				        center: new kakao.maps.LatLng(33.450701, 126.570667), 
+				        level: 3 
+				    };  
 
-						var map = new kakao.maps.Map(container, options);
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+				// 주소-좌표 변환 객체
+				 var geocoder= new kakao.maps.services.Geocoder();
+				var aaa = "${hospital.hAddress}".split(",");
+				console.log(aaa);
+				geocoder.addressSearch(aaa[1], function(result, status) {
+
+				
+				     if (status === kakao.maps.services.Status.OK) {
+
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+				      
+				        var marker = new kakao.maps.Marker({
+				            map: map,
+				            position: coords
+				        });
+
+				     
+				        var infowindow = new kakao.maps.InfoWindow({
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+"으음"+'</div>'
+				        });
+				        infowindow.open(map, marker);
+
+				        map.setCenter(coords);
+				    } 
+				});    
+					
+						
+					
 					</script>
 					<textarea
 						style="width: 90%; height: 200px; border: none; resize: none;"
@@ -199,7 +237,7 @@
 		
 		<script>
 			// 댓글관련
-			$(function(){
+			/* $(function(){
 				
 				setInterval(function(){
 					getReplyList();
@@ -271,7 +309,7 @@
 					console.log("전송 실패");
 				}
 			});
-		}
+		} */
 		</script>
 		<br>
 		<hr>
