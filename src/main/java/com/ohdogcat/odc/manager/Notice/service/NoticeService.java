@@ -21,10 +21,32 @@ public interface NoticeService {
 	int NoticeListCount();
 
 	/**
-	 * 게시글 가져오기
+	 * 게시글 리스트 가져오기
 	 * @param pi
 	 * @return
 	 */
 	ArrayList<Notice> getNoticeList(PageInfo pi);
+
+	/**
+	 * 공지글 가져오기
+	 * @param nId
+	 * @return
+	 */
+	Notice NoticeDetail(int nId);
+
+	/**
+	 * 공지글 삭제하기
+	 * @param nId
+	 * @return
+	 */
+	int deleteNotice(int nId);
+
+	/**
+	 * 공지글 수정하기
+	 * @param n
+	 * @return
+	 */
+	int NoticeUpdate(Notice n);
+
 
 }
