@@ -93,6 +93,18 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.DogBoardWriter(tb);
 	}
 
+	@Override
+	public TipBoard DogBoardView(int tbId) {
+
+		int result = bDao.DogupdateCount(tbId);
+		System.out.println(result);
+		if(result > 0) {
+			return bDao.DogBoardView(tbId);
+		}
+		
+		return null;
+	}
+
 	
 
 	

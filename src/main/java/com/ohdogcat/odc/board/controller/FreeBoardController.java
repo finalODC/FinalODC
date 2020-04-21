@@ -118,6 +118,7 @@ public class FreeBoardController {
 	@RequestMapping("FBviewDetail.bo")
 	public ModelAndView FreeBoardViewDetail(ModelAndView mv,int fbId,
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
 		FreeBoard fb = bService.selectFreeBoard(fbId);
 		
 		System.out.println("게시글 상세조회 : " +fb);
@@ -137,7 +138,7 @@ public class FreeBoardController {
 	@RequestMapping("addFreeReply.bo")
 	@ResponseBody
 	public String addFreeReply(FreeReply fr) {
-		System.out.println(fr);
+		System.out.println("fr :"+fr);
 		int result = bService.insertFreeReply(fr);
 		
 		if(result > 0 ) {

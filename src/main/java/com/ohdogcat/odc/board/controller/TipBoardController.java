@@ -2,8 +2,6 @@ package com.ohdogcat.odc.board.controller;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ohdogcat.odc.board.model.service.BoardService;
-import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.board.model.vo.TipBoard;
 import com.ohdogcat.odc.common.Pagination;
@@ -72,6 +69,22 @@ public class TipBoardController {
 		}else {
 			return "";
 		}
+	}
+	
+	@RequestMapping("DogBoardView.bo")
+	public ModelAndView DogBoardView(ModelAndView mv,int tbId,
+					@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		System.out.println(tbId);
+		TipBoard tb = bService.DogBoardView(tbId);
+		
+		if(tb != null) {
+			mv.addObject("tb",tb);
+			mv.addObject("currentPage",currentPage);
+			mv.setViewName("BoardPageView");
+		}else {
+			
+		}
+		return mv;
 	}
 
 	

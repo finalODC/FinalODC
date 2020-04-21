@@ -75,4 +75,6 @@ public interface BoardService {
 	ArrayList<TipBoard> DogBoardList(PageInfo pi);
 	
 	int DogBoardWriter(TipBoard tb);
+	
+	TipBoard DogBoardView(int tbId);
 }

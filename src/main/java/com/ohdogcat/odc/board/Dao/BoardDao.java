@@ -61,6 +61,7 @@ public class BoardDao {
 
 
 	public int insertFreeReply(FreeReply fr) {
+		System.out.println(fr);
 		
 		return sqlSession.insert("boardMapper.insertFreeReply",fr);
 	}
@@ -114,6 +115,20 @@ public class BoardDao {
 	public int DogBoardWriter(TipBoard tb) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("TipboardMapper.DogBoardWriter",tb);
+	}
+
+
+
+	public TipBoard DogBoardView(int tbId) {
+		
+		return sqlSession.selectOne("TipboardMapper.DogBoardView",tbId);
+	}
+
+
+
+	public int DogupdateCount(int tbId) {
+		
+		return sqlSession.update("TipboardMapper.DogupdateCount",tbId);
 	}
 	
 	

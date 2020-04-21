@@ -145,7 +145,9 @@
 					<br>
 
 					<ul>
-						<A href="ohdogcat_FreeBoardPage.html">
+						<A href="Fblist.bo">
+						<!-- Fblist.bo로 매핑된 메소드를 호출하여 값을 불러오고 페이지로 이동한다. -->
+						
 							<h4 style="height: 40px;" align="">자유 게시판</h4>
 						</A>
 						<br>
@@ -154,11 +156,9 @@
 						<a>
 							<h4>정보 공유 게시판</h4>
 						</a>
-						<hr
-							style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;"
-							align="left">
+						<hr style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;" align="left">
 
-						<a href="ohdogcat_DogBoardPage.html">
+						<a href="DBlist.bo">
 							<h5>
 								<i class="fas fa-dog">&nbsp;</i>강아지
 								게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i

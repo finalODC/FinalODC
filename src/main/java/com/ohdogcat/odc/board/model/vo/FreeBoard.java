@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class FreeBoard {
 
 	
-	private String fbId;
+	private int fbId;
 	private String fbTitle;
 	private String fbWriter;
 	private String fbContent;
@@ -25,7 +25,7 @@ public class FreeBoard {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FreeBoard(String fbId, String fbTitle, String fbWriter, String fbContent, int fbCount, Date fbCreatedate,
+	public FreeBoard(int fbId, String fbTitle, String fbWriter, String fbContent, int fbCount, Date fbCreatedate,
 			Date fbModifydate, String fbType, String fbStatus, String category, int complain) {
 		super();
 		this.fbId = fbId;
@@ -41,11 +41,11 @@ public class FreeBoard {
 		Complain = complain;
 	}
 
-	public String getFbId() {
+	public int getFbId() {
 		return fbId;
 	}
 
-	public void setFbId(String fbId) {
+	public void setFbId(int fbId) {
 		this.fbId = fbId;
 	}
 

@@ -27,6 +27,11 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/ddfd73bace.js"
 	crossorigin="anonymous"></script>
+	<!--  제이 쿼리 -->
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+	
 
 
 <style>
@@ -156,7 +161,7 @@
 						</a>
 						<hr style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;" align="left">
 
-						<a href="ohdogcat_DogBoardPage.html">
+						<a href="DBlist.bo">
 							<h5>
 								<i class="fas fa-dog">&nbsp;</i>강아지 게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fas fa-paw"></i>
 							</h5>
@@ -201,7 +206,7 @@
 						
 						<tbody>
 							<c:forEach var="db" items="${list}">
-								<tr class="trc">
+								<tr class="DogTr">
 									<td>${db.tbId }</td>
 									<td>${db.tbTitle }</td>
 									<td>${db.tbWriter }</td>
@@ -217,9 +222,10 @@
 					
 					<!-- 클릭 이벤트시 게시판 디테일로 가는 스크립트 -->
 					<script>
-						$('.trc').click(function(){
-							var aa= $(this).find("td:eq(0)").text()
-							location.href='DBviewDetail.bo?tbId'+aa;
+						$('.DogTr').click(function(){
+							var bb= $(this).find("td:eq(0)").text()
+							
+							location.href='DogBoardView.bo?tbId='+bb;
 						});
 					</script>
 					
