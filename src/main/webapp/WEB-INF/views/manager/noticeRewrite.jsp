@@ -63,37 +63,21 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <form action="" method="POST" enctype="multipart/form-data" id="noticerw">
+                <form action="noticeUpdate.do" method="POST" id="noticerw">
                 
                 <table class="table table-bordered " style="background: white;">
                   <tbody>
                     <tr>
                       <th class="tatd" width="100px">공지번호:</th>
-                      <td><input type="text" class ="form-control" style="width:70px;" name="nid" value="123"readonly></td>
-                    </tr>
-                    <tr>
-                        <th class="tatd">카테고리:</th>
-                        <td><select style="float:left;">
-                            <option value="1"> 일반
-                            </option>
-                            <option value="2"> ???
-                            </option>
-                            <option value="3"> 그런가
-                            </option>
-                            <option value="4"> 뀨유
-                            </option>
-
-
-                        </select>
-                        </td>
+                      <td><input type="text" class ="form-control" style="width:70px;" id="nId" name="nId" value="123"readonly></td>
                     </tr>
                           <tr>
                               <th class="tatd">제목: </th>
-                              <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"/></td>
+                              <td><input type="text" placeholder="제목을 입력하세요. " id="nTitle" name="nTitle" class="form-control"/></td>
                           </tr>
                           <tr>
                               <th class="tatd">내용: </th>
-                               <td><textarea name="ir1" id="ir1" rows="10" cols="200"></textarea>
+                               <td><textarea name="nContent" id="nContent" rows="10" cols="200"></textarea>
        
                               </td>
                           </tr>
@@ -128,7 +112,7 @@
 		var oEditors = [];
 		nhn.husky.EZCreator.createInIFrame({
 		 oAppRef: oEditors,
-		 elPlaceHolder: "ir1",
+		 elPlaceHolder: "nContent",
 		 sSkinURI: "<%=request.getContextPath()%>/resources/se2/SmartEditor2Skin.html",
 		 fCreator: "createSEditor2"
 		});
@@ -137,10 +121,18 @@
      
         $(function(){
           //공지작성
+          
+            var nId= ${n.nId};
+        	var nTitle = '${n.nTitle}';
+        	var nContent = '${n.nContent}';
+        	
+
+        	$('#nId').val(nId);
+        	$('#nTitle').val(nTitle);
+        	$('#nContent').html(nContent);
         
           $("#rewriteno").click(function(){
-        	  oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);
-        	  console.log($("#ir1").val());
+        	  oEditors.getById["nContent"].exec("UPDATE_CONTENTS_FIELD", []);
         	  $("#noticerw").submit()
   
           });

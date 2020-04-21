@@ -30,4 +30,21 @@ public class NoticeServiceImpl implements NoticeService {
 		return nDao.getNoticeList(pi);
 	}
 
+	@Override
+	public Notice NoticeDetail(int nId) {
+		return nDao.NoticeDetail(nId);
+	}
+
+	@Override
+	public int deleteNotice(int nId) {
+		return nDao.deleteNotice(nId);
+	}
+
+	@Override
+	public int NoticeUpdate(Notice n) {
+		return nDao.NoticeUpdate(n);
+	}
+
+
+
 }

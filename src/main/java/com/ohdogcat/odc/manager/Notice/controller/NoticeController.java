@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,8 +27,7 @@ public class NoticeController {
 	
 	@RequestMapping("writenotice.do")
 	public String writenotice(Notice n) {
-		
-		System.out.println(n);
+
 		nService.writenotice(n);
 		
 		return "manager/managerNotice";
@@ -39,20 +39,24 @@ public class NoticeController {
 		return "manager/noticeWrite";
 	}
 	
+	@RequestMapping("gonoticelist.do")
+	public String gonoticelist() {
+		
+		return "manager/managerNotice";
+	}
+	
 	@RequestMapping("getNoticeList.do")
 	public void getNoticeList(HttpServletResponse response,
 			 @RequestParam(value="currentPage", required=false,defaultValue ="1") int currentPage) throws JsonIOException, IOException {
 		
 		
 		int listCount = nService.NoticeListCount();
-		System.out.println(listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		ArrayList<Notice> list = nService.getNoticeList(pi);
 		
-		System.out.println(list);
-		
+	
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
@@ -61,5 +65,85 @@ public class NoticeController {
 		gson.toJson(list,response.getWriter());
 		
 	}
+	
+	@RequestMapping("npageInfo")
+	public void npageInfo(HttpServletResponse response,
+			@RequestParam(value="currentPage", required=false,defaultValue ="1") int currentPage) throws JsonIOException, IOException {
+		
+		int listCount = nService.NoticeListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
+		gson.toJson(pi,response.getWriter());
+		
+	}
+	
+	@RequestMapping("NoticeDetail.do")
+	public ModelAndView NoticeDetail(ModelAndView mv ,@RequestParam int nId) {
+		
+		Notice n = nService.NoticeDetail(nId);
+		
+		mv.addObject("n", n);
+		mv.setViewName("manager/noticeRead");
+		return mv;
+		
+	}
+	
+	@RequestMapping("deletenotice.do")
+	public String deleteNotice(@RequestParam int nId) {
+		
+		int result = nService.deleteNotice(nId);
+		
+		return "manager/managerNotice";
+	}
+	
+	@RequestMapping("gonoticeupdate.do")
+	public ModelAndView goNoticeUpdate(ModelAndView mv ,@RequestParam int nId) {
+		Notice n = nService.NoticeDetail(nId);
+		mv.addObject("n", n);
+		mv.setViewName("manager/noticeRewrite");
+		return mv;
+	}
+	
+	@RequestMapping("noticeUpdate.do")
+	public ModelAndView NoticeUpdate(ModelAndView mv,Notice n) {
+		
+		int result=nService.NoticeUpdate(n);
+		
+		Notice updateN = nService.NoticeDetail(n.getnId());
+		
+		mv.addObject("n", updateN);
+		mv.setViewName("manager/noticeRead");
+		return mv;
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

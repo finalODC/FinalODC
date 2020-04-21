@@ -70,7 +70,7 @@ public class HMemberController {
 		if(m!=null &&bCryptPasswordEncoder.matches(pwd, m.getUserPwd())) {
 			mv.addObject("loginUser",m);
 			if(dName.equals("")) {
-				mv.setViewName("hospital/hospital");
+				mv.setViewName("redirect:info.ho");
 			}else {
 				//의사 데이터 가져와서 
 				mv.setViewName("hospital/doctorChart");
