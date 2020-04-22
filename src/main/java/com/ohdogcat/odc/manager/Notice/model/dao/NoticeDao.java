@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.manager.Notice.model.vo.Notice;
+import com.ohdogcat.odc.manager.Notice.model.vo.NoticeSearchCondition;
 
 @Repository("nDao")
 public class NoticeDao {
@@ -42,6 +43,17 @@ public class NoticeDao {
 
 	public int NoticeUpdate(Notice n) {
 		return sqlSession.update("NoticeMapper.NoticeUpdate",n);
+	}
+
+	public int homeNoticeListCount(NoticeSearchCondition ns) {
+		return sqlSession.selectOne("NoticeMapper.homeNoticeListCount",ns);
+	}
+
+	public ArrayList<Notice> homeNoticeList(PageInfo pi, NoticeSearchCondition ns) {
+		int offset = (pi.getCurrentPage() -1 ) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+
+		return (ArrayList)sqlSession.selectList("NoticeMapper.homeNoticeList",ns,rowBounds);
 	}
 
 }

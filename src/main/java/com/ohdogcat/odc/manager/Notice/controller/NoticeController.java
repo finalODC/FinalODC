@@ -17,6 +17,7 @@ import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.common.Pagination;
 import com.ohdogcat.odc.manager.Notice.model.vo.Notice;
+import com.ohdogcat.odc.manager.Notice.model.vo.NoticeSearchCondition;
 import com.ohdogcat.odc.manager.Notice.service.NoticeService;
 
 @Controller
@@ -43,6 +44,11 @@ public class NoticeController {
 	public String gonoticelist() {
 		
 		return "manager/managerNotice";
+	}
+	
+	@RequestMapping("hgonoticelist.do")
+	public String hgonoticelist() {
+		return "homepage/h_notice";
 	}
 	
 	@RequestMapping("getNoticeList.do")
@@ -119,6 +125,80 @@ public class NoticeController {
 		mv.addObject("n", updateN);
 		mv.setViewName("manager/noticeRead");
 		return mv;
+	}
+	
+	@RequestMapping("homenoticedetail.do")
+	public ModelAndView homenoticedetail(ModelAndView mv ,@RequestParam int nId) {
+		
+		
+		Notice n = nService.NoticeDetail(nId);
+		System.out.println(n);
+		mv.addObject("n", n);
+		mv.setViewName("homepage/h_noticeRead");
+		return mv;
+		
+	}
+	
+	@RequestMapping("homebacknotice.do")
+	public String homebacknotice() {
+		
+		return "homepage/h_notice";
+	}
+	
+	@RequestMapping("homegetNoticeList.do")
+	public void homegetNoticeList(HttpServletResponse response,
+			 @RequestParam(value="currentPage", required=false,defaultValue ="1") int currentPage,
+			 @RequestParam String searchkey,
+			 @RequestParam String searchval) throws JsonIOException, IOException {
+		
+		
+		NoticeSearchCondition ns = new NoticeSearchCondition();
+		
+		if(searchkey.contentEquals("title")) {
+			ns.setsTitle(searchval);
+		}else if(searchkey.equals("content")) {
+			ns.setsContent(searchval);
+		}
+		
+		int listCount = nService.homeNoticeListCount(ns);
+
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Notice> list = nService.homeNoticeList(pi,ns);
+	
+		
+		response.setContentType("application/json; charset=utf-8");
+		  
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		 
+		gson.toJson(list,response.getWriter());
+
+	}
+	
+	@RequestMapping("searchPageInfo.do")
+	public void searchPageInfo(
+			HttpServletResponse response,
+			 @RequestParam(value="currentPage", required=false,defaultValue ="1") int currentPage,
+			 @RequestParam String searchkey,
+			 @RequestParam String searchval) throws JsonIOException, IOException {
+		
+		NoticeSearchCondition ns = new NoticeSearchCondition();
+		
+		if(searchkey.contentEquals("title")) {
+			ns.setsTitle(searchval);
+		}else if(searchkey.equals("content")) {
+			ns.setsContent(searchval);
+		}
+		
+		int listCount = nService.homeNoticeListCount(ns);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		response.setContentType("application/json; charset=utf-8");
+		  
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		 
+		gson.toJson(pi,response.getWriter());
 	}
 
 }

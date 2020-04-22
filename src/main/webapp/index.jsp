@@ -9,6 +9,6 @@
 <body>
 	<!-- <button id="visual-btn" onclick="location.href='info.ho';">병원</button> -->
 
-	<jsp:forward page="DBlist.bo"/>
+	<jsp:forward page="WEB-INF/views/homepage/h_index.jsp"/>
 </body>
 </html>

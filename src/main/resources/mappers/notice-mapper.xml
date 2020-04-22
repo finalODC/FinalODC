@@ -49,5 +49,30 @@
 		SET NTITLE=#{nTitle},NCONTENT=#{nContent},N_MODIFY_DATE=SYSDATE
 		WHERE NID=#{nId}
 	</update>
+	
+	<select id="homeNoticeListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE
+		WHERE N_STATUS='Y'
+		<if test="sTitle !=null">
+			AND NTITLE LIKE '%' || #{sTitle} || '%'
+		</if>
+		<if test="sContent !=null">
+			AND NCONTENT LIKE '%' || #{sContent} || '%'
+		</if>
+	</select>
+	
+	<select id="homeNoticeList" resultMap="NoticeResultMap">
+		SELECT *
+		FROM NOTICE
+		WHERE N_STATUS='Y'
+		<if test="sTitle !=null">
+			AND NTITLE LIKE '%' || #{sTitle} || '%'
+		</if>
+		<if test="sContent !=null">
+			AND NCONTENT LIKE '%' || #{sContent} || '%'
+		</if>
+		ORDER BY NID DESC
+	</select>
 
 </mapper>
