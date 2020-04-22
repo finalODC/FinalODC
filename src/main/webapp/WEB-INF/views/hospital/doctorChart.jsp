@@ -200,7 +200,21 @@
                                 				$('#tb-pBreed').html(data["breed"]);
                                 				$('#tb-pNeutral').html(data["neutralYN"]);
                                 				$('#tb-pBirth').html(data["pBirth"]);
+                                				$('#tb-beWeight').html(data["pWeight"])
                                 				
+                                				var birth = data["pBirth"].split("/");
+                                				var today = new Date();
+                                				var arr = "20"+birth[0];
+                                				console.log(arr);
+                                				var birthday = new Date("20"+birth[0],birth[1],birth[2] );
+                                				var inva = today-birthday;
+                                				console.log(inva);
+                                				
+                                				var cMonth = Math.ceil(inva / (30*  24 * 60 * 60 * 1000));
+                                				console.log(cMonth);
+                                				
+                                				
+                                				 $('#tb-pAge').html(cMonth+"개월");
                                 			},error:function(){
                                 				alert('에러');
                                 			}
@@ -222,166 +236,170 @@
                   			
                   			
                   			
-                  			var diagList=function(pCode, currentPage){
-                  				
-                  				$.ajax({
-                  					url:"searchdiaglist.do",
-                  					type:"post",
-                  					data:{pCode:pCode, currentPage:currentPage},
-                  					success:function(data){
-                  						$('#diagList').empty();
-                  						console.log('진단서리스트 조회');
-                  						console.log(data);
-                  						var list = data["list"];
-                  						var diag="";
-                  						
-                  						for(var i in list){
-                  							diag += "<tr>";
-                        					diag += "<td>"+ i +"</td>";
-                        					diag += "<td>"+list[i]["dId"]+"</td>";
-                        					diag += "<td>"+list[i]["dDate"]+"</td>";
-                        					diag += "<td>"+list[i]["dContent"]+"</td>";
-                        					diag += "<td>"+list[i]["hName"]+"</td>";
-                        					diag += "<td>"+list[i]["dWriter"]+"</td>";
-                        					diag += "</tr>";
-                  							
-                  						}
-                  						
-                  						$('#diagList').append(diag);
-                  						
-
-                        				var pi = data["pi"];
-                        				
-                        				 $("#diagPage").empty();
-                             			
-                             			var sp= pi.startPage;
-                             			var ep= pi.endPage;
-                             			var mp= pi.maxPage;
-                             			var cu = pi.currentPage
-                             			var onepli = $('<li class="page-item ">');
-                             			var onepbu = $('<button class="page-link" onclick=diagList('+pCode+","+1+')>').text('<<');
-                             			
-                             			var prevli = $('<li class="page-item ">');
-                             			var prevbu = $('<button class="page-link" onclick=diagList('+pCode+","+(cu-1)+')>').text('<');
-                             			
-                             			if(cu==1){
-                     						onepbu.attr("disabled",true);
-                     						prevbu.attr("disabled",true);
-                             			}
-                             			
-                             			$("#diagPage").append(onepli.append(onepbu)).append(prevli.append(prevbu));
-                             			
-
-                             			 for(var i = sp; i<=ep; i++){
-                             				var $li = $('<li class="page-item ">');
-                             				var $button = $('<button class="page-link" onclick=diagList('+pCode+","+i+')>').text(i);
-                             				if(cu == i){
-                             					$button.attr("disabled",true).css("color","tomato").addClass("cu");
-                             				} 
-                             				$("#diagPage").append($li.append($button));
-                             			}
-                             			 
-                             			 
-                             			 
-                             			var nextli = $('<li class="page-item ">');
-                               			var nextbu = $('<button class="page-link" onclick=diagList('+pCode+","+(cu+1)+')>').text('>');
-                             			 
-                             			var maxli = $('<li class="page-item ">');
-                              			var maxbu = $('<button class="page-link" onclick=diagList('+pCode+","+mp+')>').text('>>');
-
-                              			if(cu==1){
-                              				nextbu.attr("disabled",true);
-                              				maxbu.attr("disabled",true);
-                              			}
-                              			
-                              			$("#diagPage").append(nextli.append(nextbu)).append(maxli.append(maxbu));
-                  						
-                  					},error:function(){
-                  						alert("진단서 리스트 오류");
-                  					}
-                
-                  				})
-                  				
-                  				
-                  			}
                   			
                   			
-                  			/* 특이사항 조회 함수 */
-                  			var spec=function(pCode,currentPage){
-                  				
-                  				$.ajax({
-                        			url:"searchdiag.do",
-                        			type:"post",
-                        			data:{pCode:pCode, currentPage:currentPage},
-                        			success:function(data){
-                        				$('#uniqueTable').empty();
-                        				console.log('특이사항조회');
-                        				console.log(data);
-                        				var list = data["list"]
-                        				var html="";
-                        			
-                        				for(var i in list){
-                        					html += "<tr>";
-                        					html += "<td>"+list[i]["dDate"]+"</td>";
-                        					html += "<td>"+list[i]["dUnique"]+"</td>";
-                        					html += "<td>"+list[i]["dWriter"]+"</td>";
-                        					html += "</tr>";
-                        				}		
-                        				
-                        				$('#uniqueTable').append(html);
-                        				
-                        				var pi = data["pi"];
-                        				
-                        				 $("#specPage").empty();
-                             			
-                             			var sp= pi.startPage;
-                             			var ep= pi.endPage;
-                             			var mp= pi.maxPage;
-                             			var cu = pi.currentPage
-                             			var onepli = $('<li class="page-item ">');
-                             			var onepbu = $('<button class="page-link" onclick=spec('+pCode+","+1+')>').text('<<');
-                             			
-                             			var prevli = $('<li class="page-item ">');
-                             			var prevbu = $('<button class="page-link" onclick=spec('+pCode+","+(cu-1)+')>').text('<');
-                             			
-                             			if(cu==1){
-                     						onepbu.attr("disabled",true);
-                     						prevbu.attr("disabled",true);
-                             			}
-                             			
-                             			$("#specPage").append(onepli.append(onepbu)).append(prevli.append(prevbu));
-                             			
-
-                             			 for(var i = sp; i<=ep; i++){
-                             				var $li = $('<li class="page-item ">');
-                             				var $button = $('<button class="page-link" onclick=spec('+pCode+","+i+')>').text(i);
-                             				if(cu == i){
-                             					$button.attr("disabled",true).css("color","tomato").addClass("cu");
-                             				} 
-                             				$("#specPage").append($li.append($button));
-                             			}
-                             			 
-                             			 
-                             			 
-                             			var nextli = $('<li class="page-item ">');
-                               			var nextbu = $('<button class="page-link" onclick=spec('+pCode+","+(cu+1)+')>').text('>');
-                             			 
-                             			var maxli = $('<li class="page-item ">');
-                              			var maxbu = $('<button class="page-link" onclick=spec('+pCode+","+mp+')>').text('>>');
-
-                              			if(cu==1){
-                              				nextbu.attr("disabled",true);
-                              				maxbu.attr("disabled",true);
-                              			}
-                              			
-                              			$("#specPage").append(nextli.append(nextbu)).append(maxli.append(maxbu));
-                        			},error:function(){
-                        				console.log('에러');
-                        			}
-                        		})
-                  			}
+                  			
+                  			
                   			                 			
-                  		});           		
+                  		});     
+                  		
+                  		function diagList(pCode, currentPage){
+              				
+              				$.ajax({
+              					url:"searchdiaglist.do",
+              					type:"post",
+              					data:{pCode:pCode, currentPage:currentPage},
+              					success:function(data){
+              						$('#diagList').empty();
+              						console.log('진단서리스트 조회');
+              						console.log(data);
+              						var list = data["list"];
+              						var diag="";
+              						
+              						for(var i in list){
+              							diag += "<tr>";
+                    					diag += "<td>"+ (parseInt(i)+1) +"</td>";
+                    					diag += "<td>"+list[i]["dId"]+"</td>";
+                    					diag += "<td>"+list[i]["dDate"]+"</td>";
+                    					diag += "<td>"+list[i]["dContent"]+"</td>";
+                    					diag += "<td>"+list[i]["hName"]+"</td>";
+                    					diag += "<td>"+list[i]["dWriter"]+"</td>";
+                    					diag += "</tr>";
+              							
+              						}
+              						
+              						$('#diagList').append(diag);
+              						
+
+                    				var pi = data["pi"];
+                    				
+                    				 $("#diagPage").empty();
+                         			
+                         			var sp= pi.startPage;
+                         			var ep= pi.endPage;
+                         			var mp= pi.maxPage;
+                         			var cu = pi.currentPage
+                         			var onepli = $('<li class="page-item ">');
+                         			var onepbu = $('<button class="page-link" onclick=diagList('+pCode+","+1+')>').text('<<');
+                         			
+                         			var prevli = $('<li class="page-item ">');
+                         			var prevbu = $('<button class="page-link" onclick=diagList('+pCode+","+(cu-1)+')>').text('<');
+                         			
+                         			if(cu==1){
+                 						onepbu.attr("disabled",true);
+                 						prevbu.attr("disabled",true);
+                         			}
+                         			
+                         			$("#diagPage").append(onepli.append(onepbu)).append(prevli.append(prevbu));
+                         			
+
+                         			 for(var i = sp; i<=ep; i++){
+                         				var $li = $('<li class="page-item ">');
+                         				var $button = $('<button class="page-link" onclick="diagList('+pCode+","+i+')">').text(i);
+                         				if(cu == i){
+                         					$button.attr("disabled",true).css("color","tomato").addClass("cu");
+                         				} 
+                         				$("#diagPage").append($li.append($button));
+                         			}
+                         			 
+                         			 
+                         			 
+                         			var nextli = $('<li class="page-item ">');
+                           			var nextbu = $('<button class="page-link" onclick=diagList('+pCode+","+(cu+1)+')>').text('>');
+                         			 
+                         			var maxli = $('<li class="page-item ">');
+                          			var maxbu = $('<button class="page-link" onclick=diagList('+pCode+","+mp+')>').text('>>');
+
+                          			if(cu==mp){
+                          				nextbu.attr("disabled",true);
+                          				maxbu.attr("disabled",true);
+                          			}
+                          			
+                          			$("#diagPage").append(nextli.append(nextbu)).append(maxli.append(maxbu));
+              						
+              					},error:function(){
+              						alert("진단서 리스트 오류");
+              					}
+            
+              				})
+              				
+              				
+              			}
+                  		
+                  		/* 특이사항 조회 함수 */
+              			function spec(pCode,currentPage){
+              				
+              				$.ajax({
+                    			url:"searchdiag.do",
+                    			type:"post",
+                    			data:{pCode:pCode, currentPage:currentPage},
+                    			success:function(data){
+                    				$('#uniqueTable').empty();
+                    				console.log('특이사항조회');
+                    				console.log(data);
+                    				var list = data["list"]
+                    				var html="";
+                    			
+                    				for(var i in list){
+                    					html += "<tr>";
+                    					html += "<td>"+list[i]["dDate"]+"</td>";
+                    					html += "<td>"+list[i]["dUnique"]+"</td>";
+                    					html += "<td>"+list[i]["dWriter"]+"</td>";
+                    					html += "</tr>";
+                    				}		
+                    				
+                    				$('#uniqueTable').append(html);
+                    				
+                    				var pi = data["pi"];
+                    				
+                    				 $("#specPage").empty();
+                         			
+                         			var sp= pi.startPage;
+                         			var ep= pi.endPage;
+                         			var mp= pi.maxPage;
+                         			var cu = pi.currentPage
+                         			var onepli = $('<li class="page-item ">');
+                         			var onepbu = $('<button class="page-link" onclick=spec('+pCode+","+1+')>').text('<<');
+                         			
+                         			var prevli = $('<li class="page-item ">');
+                         			var prevbu = $('<button class="page-link" onclick=spec('+pCode+","+(cu-1)+')>').text('<');
+                         			
+                         			if(cu==1){
+                 						onepbu.attr("disabled",true);
+                 						prevbu.attr("disabled",true);
+                         			}
+                         			
+                         			$("#specPage").append(onepli.append(onepbu)).append(prevli.append(prevbu));
+                         			
+
+                         			 for(var i = sp; i<=ep; i++){
+                         				var $li = $('<li class="page-item ">');
+                         				var $button = $('<button class="page-link" onclick=spec('+pCode+","+i+')>').text(i);
+                         				if(cu == i){
+                         					$button.attr("disabled",true).css("color","tomato").addClass("cu");
+                         				} 
+                         				$("#specPage").append($li.append($button));
+                         			}
+                         			 
+                         			 
+                         			 
+                         			var nextli = $('<li class="page-item ">');
+                           			var nextbu = $('<button class="page-link" onclick=spec('+pCode+","+(cu+1)+')>').text('>');
+                         			 
+                         			var maxli = $('<li class="page-item ">');
+                          			var maxbu = $('<button class="page-link" onclick=spec('+pCode+","+mp+')>').text('>>');
+
+                          			if(cu==mp){
+                          				nextbu.attr("disabled",true);
+                          				maxbu.attr("disabled",true);
+                          			}
+                          			
+                          			$("#specPage").append(nextli.append(nextbu)).append(maxli.append(maxbu));
+                    			},error:function(){
+                    				console.log('에러');
+                    			}
+                    		})
+              			}
                   	
                   	
                   	</script>
@@ -428,7 +446,7 @@
                       </tr>
 
                       <tr>
-                        <td id="tb-pName">이름</td>
+                        <td id="tb-pName"></td>
                         <td id="tb-pBreed"></td>
                         <td id="tb-mName"></td>
                         <td id="tb-pNeutral"></td>
@@ -441,8 +459,8 @@
                       </tr>
                       <tr>
                         <td id="tb-pBirth"></td>
-                        <td id="tb-pAge">1개월</td>	
-                        <td id="tb-beWeight">5.0kg</td>
+                        <td id="tb-pAge"></td>	
+                        <td id="tb-beWeight"></td>
                         <td id="tb-afterWeight"><input type="number" style="text-align: right; width:50px;"><span>kg</span></td>
                       </tr>
                     </table>
@@ -670,12 +688,8 @@
                               <td><input type="text" style="width:100%; padding:0px" ></td>
                               <td><input type="text" style="width:100%; padding:0px" ></td>
                              </tr>
-                             
-                             
-                              
 
                           </tbody>
-
 
                         </table>
                  
@@ -684,11 +698,6 @@
                 </form>
               </div>
             </div>
-
-
-
-
-
      
           <!-- /.container-fluid -->
 
