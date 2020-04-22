@@ -56,9 +56,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public ArrayList<FreeReply> selectFreeReplyList(int bId) {
+	public ArrayList<FreeReply> selectFreeReplyList(int fbId) {
 		
-		return bDao.selectFreeReplyList(bId);
+		return bDao.selectFreeReplyList(fbId);
 	}
 
 	@Override
@@ -71,6 +71,28 @@ public class BoardServiceImpl implements BoardService{
 	public ArrayList<FreeBoard> bordSearchList(PageInfo pi, BoardSearch bs) {
 		
 		return bDao.boardSearchList(pi,bs);
+	}
+
+
+	
+	@Override
+	public FreeBoard FreeBoardUpdateView(int fbId) {
+
+			System.out.println("fbid : "+  fbId);
+		return bDao.FreeBoardUpdateView(fbId);
+	}
+	
+	
+	@Override
+	public int FreeBoardDelete(int fbId) {
+		// TODO Auto-generated method stub
+		return bDao.FreeBoardDelete(fbId);
+	}
+	
+	@Override
+	public int FreeBoardUpdate(FreeBoard fb) {
+
+		return bDao.FreeBoardUpdate(fb);
 	}
 
 	//----------------------------------------------- 여기서 부터 dogboard 페이지 -------------------------------------------------
@@ -104,6 +126,12 @@ public class BoardServiceImpl implements BoardService{
 		
 		return null;
 	}
+
+
+
+
+
+
 
 	
 
