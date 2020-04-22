@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.manager.Notice.model.vo.Notice;
+import com.ohdogcat.odc.manager.Notice.model.vo.NoticeSearchCondition;
 
 public interface NoticeService {
 
@@ -47,6 +48,21 @@ public interface NoticeService {
 	 * @return
 	 */
 	int NoticeUpdate(Notice n);
+
+	/**
+	 * 홈페이지 게시글 리스트 카운트
+	 * @param ns
+	 * @return
+	 */
+	int homeNoticeListCount(NoticeSearchCondition ns);
+
+	/**
+	 * 홈페이지 공지글 리스트가져오기
+	 * @param pi
+	 * @param ns
+	 * @return
+	 */
+	ArrayList<Notice> homeNoticeList(PageInfo pi, NoticeSearchCondition ns);
 
 
 }

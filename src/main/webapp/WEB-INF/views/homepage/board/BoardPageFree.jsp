@@ -394,7 +394,7 @@
 		
 		
 		
-		$.ajax({
+<%-- 		$.ajax({
 			url:"boardSearchList.bo",
 			type:"post",
 			data:{boardSearchkey:key,
@@ -410,7 +410,7 @@
 					$.each(data,function(index,value){
 						
 						
-<%-- 						$
+						$
 						<tbody id="tableArea">
 						<c:forEach var="fb" items="${list}">
 
@@ -432,7 +432,7 @@
 
 							</tr>
 						</c:forEach>
-					</tbody> --%>
+					</tbody>
 						$tr = $("<tr class='trc'>");
 						$td1 = $("<td>${fb.fbId}");
 						$td2 = $("")
@@ -441,7 +441,7 @@
 					});
 				}
 		
-		});
+		}); --%>
 		
 	}
 

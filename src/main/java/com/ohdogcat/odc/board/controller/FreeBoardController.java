@@ -32,7 +32,7 @@ public class FreeBoardController {
 
 	@Autowired
 	private BoardService bService;
-	
+
 	/**
 	 * 게시판 리스트 불러오기
 	 * @param mv
@@ -41,30 +41,30 @@ public class FreeBoardController {
 	 */
 	@RequestMapping("Fblist.bo")
 	public ModelAndView boardList(ModelAndView mv, 
-			 @RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
-			//@RequestParam 은 페이징 처리용으로 반드시 필요한거다.
+			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
+		//@RequestParam 은 페이징 처리용으로 반드시 필요한거다.
 		System.out.println(currentPage);
-		
+
 		int listCount = bService.getFreeListCount();
-		
+
 		System.out.println("listCount : " + listCount);
-		
+
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
-		
+
 		ArrayList<FreeBoard> FBlist = bService.selectFreeList(pi);
-		
+
 		System.out.println("FBlist : " +  FBlist);
-		
+
 		mv.addObject("list",FBlist);
 		mv.addObject("pi",pi);
 		mv.setViewName("BoardPageFree");
-		
+
 		return mv;
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * 게시판 작성하기 뷰
 	 * @return
@@ -73,8 +73,8 @@ public class FreeBoardController {
 	public String FreeBoardView() {
 		return "BoardPageWriter";
 	}
-	
-	
+
+
 	/**
 	 * 게시판 글쓰기 작성
 	 * @param fb
@@ -84,7 +84,7 @@ public class FreeBoardController {
 	@RequestMapping("FBinsert.bo")
 	public String FreeBoardInsert(FreeBoard fb,HttpServletRequest request) {
 		int result = bService.FreeBoardInsert(fb);
-		
+
 		System.out.println("인설트 값 : " + fb);
 		if(result > 0) {
 			return "redirect:Fblist.bo";
@@ -92,7 +92,7 @@ public class FreeBoardController {
 			return "";
 		}
 	}
-	
+
 	/**
 	 * 게시판 글쓰기 취소 버튼
 	 * @return
@@ -103,115 +103,148 @@ public class FreeBoardController {
 		System.out.println(">>");
 		return "redirect:Fblist.bo";
 	}
-	
+
 	/**
 	 * 게시판 상세보기  페이지 이동
 	 * @return
 	 */
-	
+
 	/*
 	 * @RequestMapping("FBview.bo") public String FboardView() {
 	 * return"BoardPageView"; }
 	 */
-	 
-	
+
+
 	@RequestMapping("FBviewDetail.bo")
 	public ModelAndView FreeBoardViewDetail(ModelAndView mv,int fbId,
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
-		
+
 		FreeBoard fb = bService.selectFreeBoard(fbId);
-		
+
 		System.out.println("게시글 상세조회 : " +fb);
 		System.out.println("mv : " + mv);
 		System.out.println("currentPage : " + currentPage);
 		if(fb != null) {
 			mv.addObject("fb",fb)
-			  .addObject("currentPage",currentPage)
-			  .setViewName("BoardPageView");
+			.addObject("currentPage",currentPage)
+			.setViewName("BoardPageView");
 		}else {
-			
+
 		}
 		return mv;
 	}
-	
-	
+
+
 	@RequestMapping("addFreeReply.bo")
 	@ResponseBody
 	public String addFreeReply(FreeReply fr) {
 		System.out.println("fr :"+fr);
 		int result = bService.insertFreeReply(fr);
-		
+
 		if(result > 0 ) {
 			return "success";
-			
+
 		}else {
 			return "fail";
 		}
 	}
-	
+
 	@RequestMapping("frList.bo")
 	public void getFreeReplyList(HttpServletResponse response,int fbId) throws JsonIOException, IOException {
 		;
-		
+
 		ArrayList<FreeReply> frList = bService.selectFreeReplyList(fbId);
-		
+
 		response.setContentType("application/json; charset=utf-8");
-		
+
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		
-		
-		
+
+
+
 		gson.toJson(frList,response.getWriter());
 	}
-	
-	
+
+
 	@RequestMapping("boardSearch.bo")
 	public ModelAndView boardSearch(@RequestParam(required=false) String boardSearhkey,
-									@RequestParam(required=false) String baordSearhval,
-									ModelAndView mv) {
-		
+			@RequestParam(required=false) String baordSearhval,
+			ModelAndView mv) {
+
 		mv.addObject("boardSearchkey",boardSearhkey);
 		mv.addObject("boardSearchval",baordSearhval);
 		mv.setViewName("board/BoardPageFree");
-		
+
 		return mv;
-	
-	
-		
-	
-}
-	
+
+
+
+
+	}
+
 	@RequestMapping("boardSearchList.bo")
 	public void boardSearchList(HttpServletResponse response,
-								@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage,
-								@RequestParam String boardSearchkey,
-								@RequestParam String boardSearchval) throws JsonIOException, IOException {
-		
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage,
+			@RequestParam String boardSearchkey,
+			@RequestParam String boardSearchval) throws JsonIOException, IOException {
+
 		BoardSearch bs = new BoardSearch();
-		
+
 		if(boardSearchkey.equals("name")) {
 			bs.setBoardWriter(boardSearchval);
 		}else if(boardSearchkey.equals("title")) {
 			bs.setBoardtitle(boardSearchval);
 		}
-		
+
 		int listCount = bService.boardSearchListCount(bs);
-		
+
 		PageInfo pi = hPagination.getPageInfo(currentPage, listCount);
-		
+
 		ArrayList<FreeBoard> list =  bService.bordSearchList(pi,bs);
-		
+
 		response.setContentType("apllication/json; charset=utf-8");
-		
+
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		
+
 		gson.toJson(list,response.getWriter());
 	}
 	
+	
+	@RequestMapping("FBupdateView.bo")
+	public ModelAndView FreeBoardUpdateView(ModelAndView mv,int fbId) {
+		mv.addObject("fb",bService.FreeBoardUpdateView(fbId)).setViewName("BoardPageFreeUpdate");
+		
+		return mv;
+	}
+
+	@RequestMapping("FBdelete.bo")
+	public String FreeBoardDelete(int fbId,HttpServletRequest request) {
+		int result = bService.FreeBoardDelete(fbId);
+		
+		System.out.println("deleteResult : " + result);
+		if(result > 0) {
+			return "redirect:Fblist.bo";
+		}else {
+			return "";
+		}
+	}
+	
+	@RequestMapping("FBupdate.bo")
+	public ModelAndView FreeBoardUpdate(ModelAndView mv,FreeBoard fb) {
+		
+		 System.out.println("fb: " + fb);
+		
+		  int result = bService.FreeBoardUpdate(fb);
+		  if(result > 0) {
+		  mv.addObject("fb",fb.getFbId()).setViewName("redirect:Fblist.bo"); 
+		  
+		  }
+		 
+		return mv;
+	}
+	
 	//---------------------------------------- 여기서부터 DOGBOARDPAGE -----------------------------------------------------
-	
-	
-	
-	
-			
+
+
+
+
 }

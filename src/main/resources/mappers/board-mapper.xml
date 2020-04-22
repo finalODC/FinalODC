@@ -97,7 +97,7 @@
 <select id="boardSearchListCount" resultType="_int">
 	SELECT COUNT(*)
 	FROM F_BOARD
-	WHERE FR_STATUS='Y'
+	WHERE FB_STATUS='Y'
 	
 	<if test="boardWriter != null">
 		AND F_BWRITER LIKE '%' || #{fbWriter} || '%'
@@ -112,7 +112,7 @@
 <select id="boardSearchList" resultMap="FreeBoardResultSet">
 	SELECT *
 	FROM F_BOARD
-	WHERE FR_STATUS='Y'
+	WHERE FB_STATUS='Y'
 	
 	<if test="boardWriter != null">
 		AND F_BWRITER LIKE '%' || #{fbWriter} || '%'
@@ -125,8 +125,24 @@
 
 </select>
 
-	<!--                             @@@@@@@@@@여기서부터 Dog Board 페이지 @@@@@@@                                       -->
-	
 
+<select id="FreeBoardUpdateView" resultMap="FreeBoardResultSet">
+	SELECT *
+	FROM F_BOARD
+	WHERE FBID=#{fbId}
+	AND FB_STATUS='Y'
+</select>
+
+<update id="FreeBoardDelete" parameterType="_int">
+	UPDATE F_BOARD 
+	SET FB_STATUS='N'
+	WHERE FBID=#{fbId}
+</update>
+
+<update id="FreeBoardUpdate" parameterType="FBoard">
+	UPDATE F_BOARD
+	SET F_BTITLE=#{fbTitle},F_BCONTENT=#{fbContent},FB_MODIFY_DATE=#{fbModifydate}
+	WHERE FBID=#{fbId}
+</update>
 	
 </mapper>

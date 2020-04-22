@@ -68,9 +68,9 @@ public class BoardDao {
 
 
 
-	public ArrayList<FreeReply> selectFreeReplyList(int bId) {
+	public ArrayList<FreeReply> selectFreeReplyList(int fbId) {
 		
-		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeReplyList",bId);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeReplyList",fbId);
 	}
 
 
@@ -93,6 +93,26 @@ public class BoardDao {
 		return (ArrayList)sqlSession.selectList("boardMapper.boardSearchList",bs,rowBounds);
 	}
 
+
+	public FreeBoard FreeBoardUpdateView(int fbId) {
+		
+		System.out.println("Daofbid : " + fbId);
+		return sqlSession.selectOne("boardMapper.FreeBoardUpdateView",fbId);
+	}
+	
+	
+	public int FreeBoardDelete(int fbId) {
+
+		return sqlSession.update("boardMapper.FreeBoardDelete",fbId);
+	}
+	
+	public int FreeBoardUpdate(FreeBoard fb) {
+		
+		return sqlSession.update("boardMapper.FreeBoardUpdate",fb);
+	}
+	
+	
+	
 	//------------------------------------- 여기서 부터 dogBoard 페이지-------------------------------------
 
 	public int DogBoardCount() {
@@ -130,6 +150,21 @@ public class BoardDao {
 		
 		return sqlSession.update("TipboardMapper.DogupdateCount",tbId);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
 	
 	
 
