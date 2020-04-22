@@ -49,8 +49,8 @@
 	</select>
 	
 	<update id="DogupdateCount">
-	UPDATE T_BOARD
-	SET T_BCOUNT = T_BCOUNT+1
-	WHERE TBID = #{tbId}
-</update>
+		UPDATE T_BOARD
+		SET T_BCOUNT = T_BCOUNT+1
+		WHERE TBID = #{tbId}
+	</update>
 </mapper>

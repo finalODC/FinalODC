@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.manager.Notice.model.dao.NoticeDao;
 import com.ohdogcat.odc.manager.Notice.model.vo.Notice;
+import com.ohdogcat.odc.manager.Notice.model.vo.NoticeSearchCondition;
 
 @Service("nService")
 public class NoticeServiceImpl implements NoticeService {
@@ -43,6 +44,16 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public int NoticeUpdate(Notice n) {
 		return nDao.NoticeUpdate(n);
+	}
+
+	@Override
+	public int homeNoticeListCount(NoticeSearchCondition ns) {
+		return nDao.homeNoticeListCount(ns);
+	}
+
+	@Override
+	public ArrayList<Notice> homeNoticeList(PageInfo pi, NoticeSearchCondition ns) {
+		return nDao.homeNoticeList(pi,ns);
 	}
 
 
