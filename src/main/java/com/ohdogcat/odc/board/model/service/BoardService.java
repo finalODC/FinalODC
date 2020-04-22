@@ -54,7 +54,7 @@ public interface BoardService {
 	 * @param bId
 	 * @return
 	 */
-	ArrayList<FreeReply> selectFreeReplyList(int bId);
+	ArrayList<FreeReply> selectFreeReplyList(int fbId);
 	
 	/**
 	 * 검색 리스트 불러오기
@@ -65,8 +65,23 @@ public interface BoardService {
 	
 	ArrayList<FreeBoard> bordSearchList(PageInfo pi,BoardSearch bs);
 	
+	/**
+	 * 
+	 * 게시판 수정 페이지 가기
+	 * @param fbId
+	 * @return
+	 */
+	FreeBoard FreeBoardUpdateView(int fbId);
+	
+	int FreeBoardUpdate(FreeBoard fb);
 	
 	
+	/**
+	 * 게시판 삭제
+	 * @param fbId
+	 * @return
+	 */
+	int FreeBoardDelete(int fbId);
 	//-------------------------------------------- 여기서부터 멍멍이 게시판 -----------------------------------------------
 	
 	
@@ -77,4 +92,6 @@ public interface BoardService {
 	int DogBoardWriter(TipBoard tb);
 	
 	TipBoard DogBoardView(int tbId);
+	
+	
 }
