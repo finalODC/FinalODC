@@ -79,7 +79,7 @@
 							<h4 class="mb-3">내 문의 현황</h4>
 							<hr>
 
-							<table id="qnaList" class="table table-hover"
+							<table id="qnaList" class="table"
 								style="border-bottom: 1px solid #dee2e6; background: white;">
 								<thead>
 									<tr>
@@ -101,7 +101,54 @@
 								</tbody>
 							</table>
 
-							<br> <br>
+							 
+							<HR>
+							<table align="center" id="detail" class="table">
+								<tr align="center" valign="middle">
+									<td colspan="5"><h4>존나게어렵네진짜</h4><hr></td>
+								</tr>
+								<tr align="right" style="border: 1px solid #444444;">
+									<th colspan="2" style="text-align:right;">작성날짜</td>
+									<td colspan="3" style="border: 1px solid #444444; text-align: left;">2020-04-20</td>
+								</tr>
+								<tr style="border: 1px solid #444444;">
+									<th colspan="2" style="text-align:right;">작성날짜</td>
+									<td colspan="3" style="border: 1px solid #444444; text-align: left;">2020-04-20</td>
+								</tr>
+								
+								<tr>
+								
+									<td colspan="4" style="border: 1px solid #444444;">
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+									</td>
+								</tr>
+								<%-- <tr>
+									<td colspan="2" align="center">
+										
+										<c:url var="bupview" value="bupView.bo">
+											<c:param name="bId" value=""/>
+										</c:url>
+										<c:url var="bdelete" value="bdelete.bo">
+											<c:param name="bId" value=""/>
+										</c:url>
+										<c:url var="blist" value="blist.bo">
+											<c:param name="currentPage" value=""/>
+										</c:url>
+										
+										
+											<a href="#">수정하기</a> &nbsp;
+											<a href="#">삭제하기</a> &nbsp;
+									</td>
+								</tr> --%>
+							</table>
 							<hr>
 							<h4 id="lee" class="mb-3">문의 작성하기 &nbsp;&nbsp;</h4>
 							<hr>
