@@ -84,4 +84,17 @@ public class QnaController {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(hmap,response.getWriter());
 	}
+	
+	/*
+	 * @RequestMapping("qdetail.qn") public void qDetail(HttpServletResponse
+	 * response,@RequestParam int qId) throws JsonIOException, IOException {
+	 * System.out.println(qId); Qna q=qService.selectQna(qId);
+	 * System.out.println(q);
+	 * response.setContentType("application/json; charset=utf-8");
+	 * 
+	 * Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+	 * gson.toJson(q,response.getWriter());
+	 * 
+	 * }
+	 */
 }
