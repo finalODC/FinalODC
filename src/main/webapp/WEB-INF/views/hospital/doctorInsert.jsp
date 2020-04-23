@@ -91,11 +91,10 @@
 			 <div>
 			${hospital.doctor }
 			${hospital.doctor[0]!=null }
-			</div> 
+			</div>  
 				<div class="row">
 					
-					
-
+	
 					<div class="col-lg-11 mb-4">
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
@@ -114,18 +113,19 @@
 									<div class="card-body text-center">
 										<img class="card-body text-center" name="docFile" src="/odc/resources/docImages/${b.docFile }"
 											id="docFile" style="width: 90%; height: 200px;"> <label
-											class="btn btn-primary "> 사진등록 ${b.docFile }<input type="file" name="docImage" id="docImage"
+											class="btn btn-primary docImage"> 사진등록<input type="file" name="docImage" 
 											class="img-fluid docGetfile" alt=""
 											style="display: none;">
 										</label> <br> <br> <input type="text"
-											style="text-align: center; width: 100px; border: none;" name="docName" id="docName"
+											style="text-align: center; width: 100px; border: none;" name="docName" class="docName"
 											value="${b.docName }">
 										<hr>
 										<textarea
-											style="width: 150px; height: 200px; border: none; resize: none;" name="docIntro" id="docIntro"
+											style="width: 150px; height: 200px; border: none; resize: none;" name="docIntro" class="docIntro"
 											placeholder="간단한 소개">${ b.docIntro }</textarea>
-											
-									 <button type="submit"class="btn btn-primary" id="indoc" value="">삭제</button>
+									 <input type="hidden" class="dId" name="dId" value="${b.dId }">
+									 <input type="button"class="btn btn-primary deleteDoc" name="deleteDoc" value="삭제">
+									 <input type="button"class="btn btn-primary updateDoc" name="updateDoc" value="수정">
 									</div>
 			
 								</div>
@@ -140,9 +140,7 @@
                        
 							<div style="text-align: center;">
 								<input id="ss" type='button' class='btn btn-primary copy'
-									value='의사추가' style="width: 100px;"> <input id="ss"
-									type='button' class='btn btn-primary delete' value='의사삭제'
-									style="width: 100px;">
+									value='의사추가' style="width: 100px;">
 									<br> <br>
 							</div>
 						 </div>
@@ -160,9 +158,60 @@
 
 	<script>
 	
+	$(function(){
+		$('.deleteDoc').click(function(){
+			var dId = $(this).prev('.dId').val();
+			console.log(dId);
+			 $.ajax({
+				url : "deleteDoc.ho",
+				type : "post",
+				data : {
+					dId:dId
+					
+					
+				},success:function(data){
+					console.log("data : " + data);
+					 if(data!=1){
+						location.href="insertdoc.ho";
+						alert("삭제되었습니다.");
+					} 
+				},error:function(result){
+					alert("실패");
+				}
+			}); 
+		});
+	});
+ 
+	
+	$(function(){
+		$('.updateDoc').click(function(){
+			var dId = $(this).siblings('.dId').val();
+			var docImage = $(this).siblings('.docFile').val();
+			var docIntro =$(this).siblings('.docIntro').val();
+			var docName = $(this).siblings('.docName').val();
+			$.ajax({
+				url : "updateDoc.ho",
+				type : "post",
+				data : {
+					dId:dId,
+					docImage:docImage,
+					docIntro:docIntro,
+					docName:docName
+					
+				},success:function(data){
+					console.log(data);
+					 if(data!=1){
+						location.href="insertdoc.ho";
+						alert("수정되었습니다.");
+					} 
+				},error:function(result){
+					alert("실패");
+				}
+			});
+		});
+	});
 		
 		
-		// 병원 설명 등록
 		
 	</script>
 
@@ -173,9 +222,9 @@
 		$(function() {
 			$('.copy').click(function() {
 				/* var a = $("#copy").clone(true) */
-				$div = "<form action='indoc.ho' method='post' enctype='multipart/form-data'>"
+				$div = "<form action='indoc.ho' method='post' enctype='multipart/form-data'style='display:inline-block;'>"
 				+ "<input type='hidden' name='refHid' id='refHid' value='${ hospital.hId }'>"
-				+	"<div class='card-columns' id='cccbody' style='column-count: 1; display:inline-block'>"
+				+ "<div class='card-columns' id='cccbody' style='column-count: 1; display:inline-block'>"
 				+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 
 				+ "<div class='card t1' style='width: 200px; height: auto; display: inline-block;'id='copy'>"
 				+ "<div class='card-body text-center'>"
@@ -199,14 +248,7 @@
 
 			var checkTag = $('div#cccbody');
 			console.log(checkTag);
-
-			$('.delete').click(function() {
-				if ($('.t1').length == 1) {
-					alert('삭제할수 없습니다.');
-				} else {
-					$(".card-columns").eq($('.card-columns').length - 1).detach();
-						}
-				});
+			
 			});
 		// 의료진 사진 등록
 		$("#cccbody").mouseenter(function() {
@@ -237,36 +279,34 @@
 		});
 		
 		
-		 $(function(){
-			$('#indoc').click(function(){
-				
-				var docImage = $('#docFile').val();
-				var docIntro = $('#docIntro').val();
-				var docName = $('#docName').val();
-				console.log('docImage : ' + docImage + 'docIntro' + docIntro + 'docName : ' + docName);
-				$.ajax({
-					url : "indoc.ho",
-					type : "post",
-					data : {
-						refHid:$("#refHid").val(),
-						docImage:docImage,
-						docIntro:docIntro
+			 $(function(){
+					$('#indoc').click(function(){
 						
-					},success:function(data){
-						console.log(data);
-						 if(data!=1){
-							location.href="insertdoc.ho";
-							alert("등록되었습니다.");
-						} 
-					},error:function(result){
-						alert("실패");
-					}
-				});
-			});
-		}); 
+						var docImage = $('#docFile').val();
+						var docIntro = $('#docIntro').val();
+						var docName = $('#docName').val();
+						$.ajax({
+							url : "indoc.ho",
+							type : "post",
+							data : {
+								refHid:$("#refHid").val(),
+								docImage:docImage,
+								docIntro:docIntro
+								
+							},success:function(data){
+								console.log(data);
+								 if(data!=1){
+									location.href="insertdoc.ho";
+									alert("등록되었습니다.");
+								} 
+							},error:function(result){
+								alert("실패");
+							}
+						});
+					});
+				}); 
+		 
 
-		
-		
 	</script>
 
 	<!-- Footer -->

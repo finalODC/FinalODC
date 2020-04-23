@@ -9,12 +9,6 @@ import com.ohdogcat.odc.hospital.model.vo.hoReply;
 
 public interface HospitalService2 {
 
-	/**
-	 * 병원 정보 입력
-	 * @param hm
-	 * @return
-	 */
-	int hupdate(HMember hm);
 
 	/**
 	 * 병원 계정 정보 변경
@@ -22,22 +16,6 @@ public interface HospitalService2 {
 	 * @return
 	 */
 	int hosupdate(HMember hm);
-
-	/**
-	 * 댓글 리스트
-	 * @param hId
-	 * @return
-	 */
-	ArrayList<hoReply> selectReplyList(int hId);
-
-	/**
-	 * 댓글 등록
-	 * @param hr
-	 * @return
-	 */
-	int insertReply(hoReply hr);
-
-	
 
 	/**
 	 * 병원 설명 등록
@@ -52,4 +30,13 @@ public interface HospitalService2 {
 	 * @return
 	 */
 	int indoc(Doctor doc);
+
+	/**
+	 * 의사 삭제
+	 * @param dId
+	 * @return
+	 */
+	int deleteDoc(int dId);
+
+	int updateDoc(Doctor doc);
 }
