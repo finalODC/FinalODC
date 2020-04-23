@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ohdogcat.odc.board.Dao.BoardDao;
-import com.ohdogcat.odc.board.model.vo.BoardSearch;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.board.model.vo.TipBoard;
+import com.ohdogcat.odc.board.model.vo.TipReply;
 
 @Service("bService")
 public class BoardServiceImpl implements BoardService{
@@ -98,35 +98,56 @@ public class BoardServiceImpl implements BoardService{
 	}
 	//----------------------------------------------- 여기서 부터 dogboard 페이지 -------------------------------------------------
 	
-	@Override
-	public int DogBoardCount() {
-		
-		return bDao.DogBoardCount();
-	}
+//	// 리스트 카운터
+//	@Override
+//	public int DogBoardCount() {
+//		
+//		return bDao.DogBoardCount();
+//	}
+//	
+//	//리스트 불러오기
+//	@Override
+//	public ArrayList<TipBoard> DogBoardList(PageInfo pi) {
+//		// TODO Auto-generated method stub
+//		return bDao.DogBoardList(pi);
+//	}
+//	
+//	//글쓰기
+//	@Override
+//	public int DogBoardWriter(TipBoard tb) {
+//		// TODO Auto-generated method stub
+//		return bDao.DogBoardWriter(tb);
+//	}
+//
+//	
+//	
+//	
+//	// 상세보기
+//	@Override
+//	public TipBoard DogBoardView(int tbId) {
+//		
+//		int result = bDao.DogBoardViewCount(tbId);
+//		
+//		if(result > 0) {
+//			return bDao.DogBoardView(tbId);
+//		}else {
+//			return null;
+//		}
+//			
+//	}
+//		
+//	
+//	
+//
+//	@Override
+//	public int DogBoardReply(TipReply tr) {
+//		
+//		
+//		
+//		return bDao.DogBoardReply(tr);
+//	}
 
-	@Override
-	public ArrayList<TipBoard> DogBoardList(PageInfo pi) {
-		// TODO Auto-generated method stub
-		return bDao.DogBoardList(pi);
-	}
 
-	@Override
-	public int DogBoardWriter(TipBoard tb) {
-		// TODO Auto-generated method stub
-		return bDao.DogBoardWriter(tb);
-	}
-
-	@Override
-	public TipBoard DogBoardView(int tbId) {
-
-		int result = bDao.DogupdateCount(tbId);
-		System.out.println(result);
-		if(result > 0) {
-			return bDao.DogBoardView(tbId);
-		}
-		
-		return null;
-	}
 
 
 

@@ -143,9 +143,8 @@
 					<br> <br> <br> <br>
 
 					<ul>
-						<A href="Fblist.bo">
-						<!-- Fblist.bo로 매핑된 메소드를 호출하여 값을 불러오고 페이지로 이동한다. -->
-						
+						<A href="Fblist.bo"> <!-- Fblist.bo로 매핑된 메소드를 호출하여 값을 불러오고 페이지로 이동한다. -->
+
 							<h4 style="height: 40px;" align="">자유 게시판</h4>
 						</A>
 						<br>
@@ -154,7 +153,9 @@
 						<a>
 							<h4>정보 공유 게시판</h4>
 						</a>
-						<hr style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;" align="left">
+						<hr
+							style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;"
+							align="left">
 
 						<a href="DBlist.bo">
 							<h5>
@@ -204,14 +205,7 @@
 								<tr class="trc">
 
 									<td>${fb.fbId}</td>
-									<td>${fb.fbTitle } <%-- <c:url var="FBviewDetail" value="FBviewDetail.bo">
-										
-										<c:param name="fbId" value="${fb.fbTitle}"/>
-										<c:param name="currentPage" value="${pi.currentPage }"/>
-										</c:url>
-										
-										<a href="${FBviewDetail}">${fb.fbTitle}</a> --%>
-									</td>
+									<td>${fb.fbTitle }</td>
 									<td>${fb.fbWriter }</td>
 									<td>${fb.fbCreatedate }</td>
 									<td>${fb.fbCount }</td>
@@ -236,7 +230,7 @@
 
 						<!-- 이전버튼 -->
 						<div class="btn-group">
-						
+
 							<c:if test="${pi.currentPage eq 1 }">
 								<input type="button" value="[이전]" class="btn btn-secondary" />
 							</c:if>
@@ -258,10 +252,10 @@
 							<div class="btn-group" align="center">
 
 								<c:if test="${ p eq pi.currentPage }">
-									<button class="btn btn-secondary" >${ p }</button>
+									<button class="btn btn-secondary">${ p }</button>
 								</c:if>
-								
-								
+
+
 								<c:if test="${ p ne pi.currentPage }">
 									<c:url var="pagination" value="Fblist.bo">
 										<c:param name="currentPage" value="${ p }" />
@@ -279,8 +273,9 @@
 								<input type="button" class="btn btn-secondary" value="다음" />
 							</c:if>
 							<c:if test="${ pi.currentPage ne pi.maxPage }">
-								
-								<input value="[다음]" type="button" onclick="getList(${pi.currentPage+1});"
+
+								<input value="[다음]" type="button"
+									onclick="getList(${pi.currentPage+1});"
 									class="btn btn-secondary" />
 							</c:if>
 						</div>
@@ -294,47 +289,35 @@
 					<div align="center" id="SearchDiv">
 						<table border="1">
 							<tr>
-							<c:if test="${searchkey!=null and search !=null }">
-								<td>
-								
-								<select style="border: 0px;" id="boardSearchkey">
-										<option value="title">제목</option>
-										<option value="writer">작성자</option>
-										
-								</select>
-								
-								</td>
-								
-								<td>
-								
-								<input id="boardSearchval" type="text" style="border: 0px;" value="${ search}" placeholder="검색어를 입력하세요">
-								
-								</td>
-								<script>
+								<c:if test="${searchkey!=null and search !=null }">
+									<td><select style="border: 0px;" id="boardSearchkey">
+											<option value="title">제목</option>
+											<option value="writer">작성자</option>
+
+									</select></td>
+
+									<td><input id="boardSearchval" type="text"
+										style="border: 0px;" value="${ search}"
+										placeholder="검색어를 입력하세요"></td>
+									<script>
 								$("#boardSearchkey").val("${searchkey}");
 								</script>
 								</c:if>
 								<c:if test="${searchkey==null or search ==null }">
-								<td>
-								
-								<select style="border: 0px;" id="boardSearchkey">
-										<option value="title">제목</option>
-										<option value="Writer">작성자</option>
-										
-								</select>
-								
-								</td>
-								
-								<td>
-								
-								<input id="boardSearchval" type="text" style="border: 0px;" placeholder="검색어를 입력하세요">
-								
-								</td>
+									<td><select style="border: 0px;" id="boardSearchkey">
+											<option value="title">제목</option>
+											<option value="Writer">작성자</option>
+
+									</select></td>
+
+									<td><input id="boardSearchval" type="text"
+										style="border: 0px;" placeholder="검색어를 입력하세요"></td>
 								</c:if>
 								<td>
-									<button id="searchBtn" style="border: 0px; background: white;" onclick="getList(1)">
+									<button id="searchBtn" style="border: 0px; background: white;"
+										onclick="getList(1)">
 										&nbsp;<i class="fas fa-search"></i>
-										
+
 									</button>
 								</td>
 							</tr>
@@ -343,9 +326,9 @@
 					</div>
 					<br> <br>
 
-					 <%-- <c:if test="${!empty loginUser.userId }"> --%> 
-						<button onclick="location.href='FBinsertView.bo'" align="right">글쓰기</button>
-					 <%-- </c:if>  --%>
+					<%-- <c:if test="${!empty loginUser.userId }"> --%>
+					<button onclick="location.href='FBinsertView.bo'" align="right">글쓰기</button>
+					<%-- </c:if>  --%>
 				</div>
 
 			</div>
@@ -372,7 +355,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
 	<script src="${path }/resources/js/bootstrap.min.js"></script>
@@ -401,54 +384,7 @@
 				
 		
 		
-<%-- 		$.ajax({
-			url:"boardSearchList.bo",
-			type:"post",
-			data:{boardSearchkey:key,
-				boardSearchval:val,
-				currentPage:page},
-				success:function(data){
-					
-					var $tbody = $('#tableArea');
-					$tbody.html("");
-					
-					pageInfo();
-					
-					$.each(data,function(index,value){
-						
-						
-						$
-						<tbody id="tableArea">
-						<c:forEach var="fb" items="${list}">
 
-
-							<tr class="trc">
-
-								<td>${fb.fbId}</td>
-								<td>${fb.fbTitle } <c:url var="FBviewDetail" value="FBviewDetail.bo">
-									
-									<c:param name="fbId" value="${fb.fbTitle}"/>
-									<c:param name="currentPage" value="${pi.currentPage }"/>
-									</c:url>
-									
-									<a href="${FBviewDetail}">${fb.fbTitle}</a>
-								</td>
-								<td>${fb.fbWriter }</td>
-								<td>${fb.fbCreatedate }</td>
-								<td>${fb.fbCount }</td>
-
-							</tr>
-						</c:forEach>
-					</tbody>
-						$tr = $("<tr class='trc'>");
-						$td1 = $("<td>${fb.fbId}");
-						$td2 = $("")
-						
-						
-					});
-				}
-		
-		}); --%>
 		
 	}
 

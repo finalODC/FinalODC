@@ -27,12 +27,6 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/ddfd73bace.js"
 	crossorigin="anonymous"></script>
-<!--  제이 쿼리 -->
-<script src="https://code.jquery.com/jquery-3.4.1.js"
-	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-	crossorigin="anonymous"></script>
-
-
 
 <style>
 .main-menu li a:hover {
@@ -48,7 +42,7 @@
 }
 
 .footer {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	bottom: 0;
 	width: 100%;
@@ -76,18 +70,8 @@
 	height: 100px;
 }
 
-#Search {
-	font-size: 16px;
-	width: 325px;
-	padding: 10px;
-	height: 30px;
-	border: 1px solid black;
-}
-
-#SearchBtn {
-	width: 50px;
-	border: 0px;
-	background-color: white;
+#comment {
+	
 }
 </style>
 </head>
@@ -95,6 +79,8 @@
 
 
 <body>
+
+
 	<!--@@@@@@@@@@@@@@@@@@@@@@@@@ 헤더 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 	<header class="header_section" style="background-color: #30627e;">
 		<a href="" class="float-left navbar-light slicknav_menu"
@@ -117,7 +103,7 @@
 							<li><a href="search-result.html">반려동물 관리</a></li>
 							<li><a href="single-property.html"></a></li>
 						</ul></li>
-
+			
 				</ul>
 				<div class="header-right">
 					<div class="user-panel">
@@ -177,154 +163,98 @@
 			<div id="contents" class="col-lg-6">
 
 				<br> <br>
-
-				<h2>
-					&nbsp;&nbsp;&nbsp;Dog board &nbsp; <i class="fas fa-paw"></i>
-				</h2>
-
+				<!-- 게시판 view 에요 @@@@@@@@@@@@@@@@@@@@@@@ -->
+				<h3>&nbsp;&nbsp;&nbsp;자유게시판</h3>
+				<hr>
 				<br> <br>
+				<div class="container" align="right">
 
-				<div align="right" style="width: 750px; margin-left: 80px;">
-					<table class="table table-hover" align="center">
+					<table class="table table-bordered" align="center">
+						<tr>
+							<th colspan="3" align="left">&nbsp;&nbsp;${db.tbTitle }<input
+								type="text" style="border: 0px;"></th>
 
-						<thead>
-							<tr>
-								<th>no.</th>
-								<th>제목</th>
-								<th>글쓴이</th>
-								<th>날짜</th>
-								<th>조회수</th>
-							</tr>
-						</thead>
+						</tr>
+						<tr>
+							<td align="left">닉네임 &nbsp;|&nbsp;&nbsp; ${db.tbWriter }<input
+								type="text" style="border: 0px; width: 100px;"></td>
+							<td align="left">날짜 &nbsp;|&nbsp;&nbsp; ${db.tbCreateDate}<input
+								type="text" style="border: 0px;" align="left"></td>
+							<td>조회수 &nbsp;|&nbsp;&nbsp; ${db.tbCount }<input type="text"
+								style="border: 0px; width: 20px;" align="left"></td>
+						</tr>
 
-						<tbody id="tableArea">
-							<c:forEach var="db" items="${list}">
-
-								<tr class="Dtrc">
-								
-									<td>${db.tbId }</td>
-									<td>${db.tbTitle }</td>
-									<td>${db.tbWriter }</td>
-									<td>${db.tbCreateDate }</td>
-									<td>${db.tbCount }</td>
-
-								</tr>
-							</c:forEach>
-						</tbody>
+						<tr>
+							<td colspan="3">${db.tbContent }<input type="text"
+								style="height: 500px; width: 920px; border: 0px;" readonly></td>
+						</tr>
+					</table>
+					<input type="button" value="목록으로" onclick="location.href='DBlist.bo'" align="left">
 
 
+					<!-- fbId 값은 위의 fb에 전부 담겨있기 때문에 fb.fbId를 써서 값을 받아와서 넘겨주자 -->
+					<c:if test="${loginUser.userId eq db.tbWriter }">
+						<button onclick="location.href='FBupdateView.bo?fbId=${db.tbId}'">수정하기</button>
+						<button onclick="location.href='FBdelete.bo?fbId=${db.tbId}'" > 삭제하기</button>
+						
+					</c:if>
+
+					<script>
+						
+						
+					</script>
+
+
+					<!--  @@@@@@@@@@@@@@@    댓글 게시판이에오       @@@@@@@@@@@22-->
+					<br> <br>
+
+
+
+					<table border="1">
+						<tr id="comment">
+
+							<th
+								style="width: 100px; height: 70px; background-color: steelblue;"
+								id="trWriter">${db.tbWriter }</th>
+
+							<th style="width: 740px;">&nbsp;<input type="text"
+								style="width: 700px; height: 70px; border: 0px;" id="trContent"></th>
+
+							<td style="width: 100px; background-color: white" align="right"
+								align="center"><input type="button" value="등록하기"
+								style="width: 100px; border: 0px;" id="drSubmit">
+							<td>
+						</tr>
 					</table>
 
-					<!-- 클릭 이벤트시 게시판 디테일로 가는 스크립트 -->
-					<script>
-						$('.Dtrc').click(function(){
-							var bb= $(this).find("td:eq(0)").text()
-							
-							location.href='DogBoardView.bo?tbId='+bb;
-						});
-					</script>
-					<!--  @@@@@@@@@@@@@@@@@@@@검색 @@@@@@@@@@@@@@@@@@@@ -->
+					<hr style="border: 2px solid black;">
 
-					<div class="btn-toolbar d-flex justify-content-center">
+					<div align="left">
 
-						<!-- 이전버튼 -->
-						<div class="btn-group">
-
-							<c:if test="${pi.currentPage eq 1 }">
-								<input type="button" value="[이전]" class="btn btn-secondary" />
-							</c:if>
-
-							<c:if test="${pi.currentPage ne 1 }">
-								<c:url var="before" value="TBlist.bo">
-									<c:param name="currentPage" value="${ pi.currentPage -1 }" />
-								</c:url>
-								<input type="button" class="btn btn-secondary" value="[이전]"
-									onclick="getList(${pi.currentPage-1});" />
-							</c:if>
-						</div>
+						<table id="rtb">
+							<thead id="comment">
 
 
 
-						<!-- 페이지 숫자버튼 -->
-						<c:forEach var="p" begin="${ pi.startPage }" end="${pi.endPage }">
-
-							<div class="btn-group" align="center">
-
-								<c:if test="${ p eq pi.currentPage }">
-									<button class="btn btn-secondary">${ p }</button>
-								</c:if>
 
 
-								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagination" value="TBlist.bo">
-										<c:param name="currentPage" value="${ p }" />
-									</c:url>
-									<button class="btn btn-secondary" onclick="getList(${p});">${ p }</button>
-								</c:if>
-							</div>
+							</thead>
+							<tbody>
 
-						</c:forEach>
-
-
-						<!-- 다음으로 가는 버튼  -->
-						<div class="btn-group">
-							<c:if test="${pi.currentPage eq pi.maxPage }">
-								<input type="button" class="btn btn-secondary" value="다음" />
-							</c:if>
-							<c:if test="${ pi.currentPage ne pi.maxPage }">
-
-								<input value="[다음]" type="button"
-									onclick="getList(${pi.currentPage+1});"
-									class="btn btn-secondary" />
-							</c:if>
-						</div>
-					</div>
-
-
-					<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    검색 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-					<br>
-
-					<div align="center" id="SearchDiv">
-						<table border="1">
-							<tr>
-								<c:if test="${dsearchkey!=null and dsearch !=null }">
-									<td><select style="border: 0px;" id="DogboardSearchkey">
-											<option value="title">제목</option>
-											<option value="writer">작성자</option>
-
-									</select></td>
-
-									<td><input id="DogboardSearchval" type="text"
-										style="border: 0px;" value="${ search}"
-										placeholder="검색어를 입력하세요"></td>
-									<script>
-								$("#DogboardSearchkey").val("${dsearchkey}");
-								</script>
-								</c:if>
-								<c:if test="${dsearchkey==null or dsearch ==null }">
-									<td><select style="border: 0px;" id="DogboardSearchkey">
-											<option value="title">제목</option>
-											<option value="Writer">작성자</option>
-
-									</select></td>
-
-									<td><input id="DogboardSearchval" type="text"
-										style="border: 0px;" placeholder="검색어를 입력하세요"></td>
-								</c:if>
-								<td>
-									<button id="searchBtn" style="border: 0px; background: white;"
-										onclick="getList(1)">
-										&nbsp;<i class="fas fa-search"></i>
-
-									</button>
-								</td>
-							</tr>
+							</tbody>
 						</table>
 
+
+
+						<br>
+
 					</div>
-					<br> <br>
-					<button onclick="location.href='DogBoardWriter.bo'" align="right">글쓰기</button>
+
+
+					<br> <Br> <br> <br> <Br> <Br> <Br>
 				</div>
+
+
 
 			</div>
 
@@ -350,6 +280,7 @@
 			</div>
 		</div>
 	</div>
+
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
 	<script src="${path }/resources/js/bootstrap.min.js"></script>
@@ -359,17 +290,13 @@
 	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
 
 	<script src="${path }/resources/js/main.js"></script>
-	
-	<script>
-	function getList(currentPage){
 
-		var dsearchkey = $("#DogboardSearchkey").val();
-		var dsearch = $("#DogboardSearchval").val();
+	<script>
+	
+	
 		
-		location.href="?currentPage=" + currentPage+"&dsearchkey=" + dsearchkey +"&dsearch="+dsearch ;
-	}
 	</script>
 </body>
-	
+
 
 </html>
