@@ -41,6 +41,11 @@ public class HospitalServiceImpl3 implements HospitalService3{
 		return hoDao3.insertRe(ho);
 	}
 
+	@Override
+	public Integer updateRe(hoReply ho) {
+		return hoDao3.updateRe(ho);
+	}
+
 	
 	
 	

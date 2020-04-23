@@ -253,7 +253,7 @@ hr{margin-top:0; margin-bottom:0;}
                     </div>
                     <h5>사업자번호</h5>
 					<div class="inputgroup">
-						<input type="text" id="hCode" name="hCode" class="input_area" placeholder="'-'를 제외한 사업자번호를 입력해주세요.">
+						<input type="text" id="hCode" name="hCode" class="input_area" placeholder="사업자번호를 입력해주세요.('-'제외)">
                     </div>
                     <span><input type="button" value="사업자번호 확인" class="btn check_btn" id="checkbusiness"></span>
                     <h5>아이디</h5><span id="idview"></span>
@@ -342,6 +342,12 @@ hr{margin-top:0; margin-bottom:0;}
             
            $("#checkbusiness").click(function(){
             		var hCode = $("#hCode").val();
+            		var regnum = /^[0-9]$/
+            		if(!regnum.test(hCode)){
+            			alert("숫자만 넣어주세요");
+    					$("#hCode").select();
+            			return false;
+            		}
             		if( hCode != "" &&  $("#hName").val()!=""){
             		$.ajax({
             			url:"hBusiness.do",
@@ -372,7 +378,6 @@ hr{margin-top:0; margin-bottom:0;}
                $("#userId").on("propertychange change keyup paste input",function(){
             	   var id= $(this).val();
             	   idCh =false;
-            	   console.log(idCh)
             	    var regid  =/^[a-z0-9]+$/;
             	   if(id.length >0 && id.length <6){
             		   $("#idview").text("아이디가 짧습니다.").css("color","tomato");

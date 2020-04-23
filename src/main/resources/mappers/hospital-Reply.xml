@@ -25,7 +25,7 @@
  	<select id="getReply" resultMap="hospitalReplyResultMap">
  		SELECT LEVEL, H.*
     	FROM H_REPLY H
-    	WHERE REF_HID = #{hId} AND HR_Status ='Y'
+    	WHERE REF_HID = #{hId}
    		 START WITH PARENT_HRID IS NULL 
     	CONNECT BY PRIOR HRID = PARENT_HRID
  	
@@ -41,7 +41,13 @@
  	INSERT INTO H_REPLY
  	VALUES (SEQ_HRID.NEXTVAL,#{rContent},#{refHid},#{parentHrid},#{rWriter},SYSDATE,SYSDATE,DEFAULT)
  	</insert>
- 
+ 	<update id="updateRe">
+ 	UPDATE H_REPLY
+ 	SET RCONTENT=#{rContent},HR_MODIFY_DATE = SYSDATE
+ 	WHERE HRID = #{rId}
+ 	
+ 	
+ 	</update>
 
  
  </mapper>
