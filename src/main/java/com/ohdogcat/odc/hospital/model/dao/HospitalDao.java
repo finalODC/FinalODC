@@ -94,6 +94,20 @@ public class HospitalDao {
 		return (ArrayList)sqlSession.selectList("chart-mapper.diagList",pCode,rw);
 	}
 
+
+
+
+	public int updateWeight(Pet p) {
+		return sqlSession.update("chart-mapper.updateWeight", p);
+	}
+
+
+
+
+	public int updateDiag(Diagnosis diag) {
+		return sqlSession.insert("chart-mapper.insertDiag",diag);
+	}
+
 	
 	
 

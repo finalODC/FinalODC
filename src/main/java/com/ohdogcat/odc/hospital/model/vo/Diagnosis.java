@@ -14,6 +14,7 @@ public class Diagnosis {
 	private String dContent;//진단내용
 	private String dUnique;	//특이사항
 	private String dStatus;	//진단서 상태
+	private String dMedicine; //처방약
 	
 	public Diagnosis() {
 		super();
@@ -21,8 +22,8 @@ public class Diagnosis {
 	}
 
 
-	public Diagnosis(int dId, String dWriter, String pCode, int hId, String hName, int docId, 
-			Date dDate, String dContent, String dUnique, String dStatus) {
+	public Diagnosis(int dId, String dWriter, String pCode, int hId, String hName, int docId, Date dDate,
+			String dContent, String dUnique, String dStatus, String dMedicine) {
 		super();
 		this.dId = dId;
 		this.dWriter = dWriter;
@@ -34,7 +35,9 @@ public class Diagnosis {
 		this.dContent = dContent;
 		this.dUnique = dUnique;
 		this.dStatus = dStatus;
+		this.dMedicine = dMedicine;
 	}
+
 
 
 	public String gethName() {
@@ -117,15 +120,30 @@ public class Diagnosis {
 		this.dStatus = dStatus;
 	}
 
+	public String getdMedicine() {
+		return dMedicine;
+	}
 
-	
+
+	public void setdMedicine(String dMedicine) {
+		this.dMedicine = dMedicine;
+	}
 
 	@Override
 	public String toString() {
 		return "Diagnosis [dId=" + dId + ", dWriter=" + dWriter + ", pCode=" + pCode + ", hId=" + hId + ", hName="
-				+ hName + ", docId=" + docId +  ", dDate=" + dDate + ", dContent=" + dContent
-				+ ", dUnique=" + dUnique + ", dStatus=" + dStatus + "]";
+				+ hName + ", docId=" + docId + ", dDate=" + dDate + ", dContent=" + dContent + ", dUnique=" + dUnique
+				+ ", dStatus=" + dStatus + ", dMedicine=" + dMedicine + ", gethName()=" + gethName() + ", getdId()="
+				+ getdId() + ", getdWriter()=" + getdWriter() + ", getpCode()=" + getpCode() + ", gethId()=" + gethId()
+				+ ", getDocId()=" + getDocId() + ", getdDate()=" + getdDate() + ", getdContent()=" + getdContent()
+				+ ", getdUnique()=" + getdUnique() + ", getdStatus()=" + getdStatus() + ", getdMedicine()="
+				+ getdMedicine() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
+
+
+	
+
 
 
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -146,8 +147,69 @@ public class HospitalController {
 		
 	}
 	
-
+	
+	@ResponseBody
+	@RequestMapping("updateWeight.do")
+	public String updateWeight(String pCode, double pWeight) {
+		
+		Pet p = new Pet();
+		
+		p.setpCode(pCode);
+		p.setpWeight(pWeight);
+		System.out.println(p);
+		int result = hoService.updateWeight(p);
+		System.out.println(result);
+		return Integer.valueOf(result).toString();
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("updateDiag.do")
+	public String updateDiag(Diagnosis diag) {
+		
+		System.out.println(diag);
+		
+		int result = hoService.updateDiag(diag);
+		System.out.println(result);
+		return Integer.valueOf(result).toString();
+				
+	}
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

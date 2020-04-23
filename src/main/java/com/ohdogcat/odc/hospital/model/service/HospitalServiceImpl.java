@@ -60,6 +60,16 @@ public class HospitalServiceImpl implements HospitalService{
 		return hoDao.diagList(pCode,pi);
 	}
 
+	@Override
+	public int updateWeight(Pet p) {
+		return hoDao.updateWeight(p);
+	}
+
+	@Override
+	public int updateDiag(Diagnosis diag) {
+		return hoDao.updateDiag(diag);
+	}
+
 
 
 	
