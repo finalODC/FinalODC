@@ -140,6 +140,7 @@
 				});
 			</script>
                     
+                 
                     <input id="phone" type="text" placeholder="휴대폰 번호 입력">
                     <button type="button" id="phoneNumber" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal"  style="height: 30px; margin-bottom:4px;">
               		        검색
@@ -403,7 +404,7 @@
                   	
                   	
                   	</script>
-                  	
+                  
                   	
                     <!-- The Modal -->
                     <div class="modal fade" id="myModal">
@@ -461,7 +462,7 @@
                         <td id="tb-pBirth"></td>
                         <td id="tb-pAge"></td>	
                         <td id="tb-beWeight"></td>
-                        <td id="tb-afterWeight"><input type="number" style="text-align: right; width:50px;"><span>kg</span></td>
+                        <td ><input type="number" id="tb-afterWeight" style="text-align: right; width:50px;"><span>kg</span></td>
                       </tr>
                     </table>
                   </div><br>
@@ -492,10 +493,9 @@
                       
                         <tr>
                           <td id="tb-uniqueDate">
-                            202003030
                           </td>
-                          <td id="tb-unique">수술함</td>
-                          <td id="tb-docName">나박사</td>
+                          <td id="tb-unique"></td>
+                          <td id="tb-docName"></td>
                         </tr>
 
                       </tbody>
@@ -602,7 +602,7 @@
                     <!-- 진료기록 클릭 스크립트 -->
                     
                     <script>
-                      $(function () {
+                   /*    $(function () {
                     	$("#diagList").mouseenter(function(){
                         $("#diagList td").click(function () {
                           $(this).parent().siblings(".plus").css("display", "none");
@@ -616,7 +616,7 @@
                           $(this).parent("tr").after($tr);
                         })
                       });
-                      });
+                      }); */
                     </script>
 
 
@@ -628,7 +628,7 @@
 
               <div class="col-lg-6 mb-4">
 
-                <form action="/action_page.php">
+                
                	 <h2>진단</h2>
                   <div class="form-group">
                     <label for="comment">Comment:</label>
@@ -638,7 +638,11 @@
                   
                   
                   <h2>처방</h2>
+                 
                   <div class="medicine-table" >
+                  	<button type="button" class="btn btn-secondary" onclick="addRow();">항목 추가</button>
+                  	<button type="button" class="btn btn-secondary" onclick="deleteRow();">항목 삭제</button>
+                  	<br><br>
                  	<table border="1"  class="table table-striped" style="font-size: 12px; ">
                           <thead style="text-align: center;">
                             <tr>
@@ -657,47 +661,124 @@
                               <td><input type="text" style="width:100%; padding:0px" ></td>
                               <td><input type="text" style="width:100%; padding:0px" ></td>
                              </tr>
-                               <tr>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                             </tr>
                              
-                               <tr>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                             </tr>
-                             
-                               <tr>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                             </tr>
-                             
-                               <tr>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                              <td><input type="text" style="width:100%; padding:0px" ></td>
-                             </tr>
 
                           </tbody>
 
                         </table>
                  
                   </div>
-                  <button type="submit" class="btn btn-primary">저장하기</button>
-                </form>
+                  <button type="button" class="btn btn-primary" id="submitButton">저장하기</button>
               </div>
             </div>
+           
+           <script>
+           	
+           function addRow(){
+        	   var length = $('#mediTable tr').length;
+        	   
+        	   if(length<11){
+        		   var html = "";
+        		   html += '<tr>';
+        		   html += '<td><input type="text" style="width:100%; padding:0px" ></td>';
+        		   html += '<td><input type="text" style="width:100%; padding:0px" ></td>';
+        		   html += '<td><input type="text" style="width:100%; padding:0px" ></td>';
+        		   html += '<td><input type="text" style="width:100%; padding:0px" ></td>';
+        		   html += '<td><input type="text" style="width:100%; padding:0px" ></td>';
+        		   html += '</tr>';
+        		   
+        		   
+        		   $('#mediTable:last').append(html);
+        	   }else{
+        		   alert("최대 10개까지 가능합니다");
+        		   return false;
+        	   }
+        	   
+        	   
+        	   
+        	   
+           }
+           
+           function deleteRow(){
+        	   var length = $('#mediTable tr').length;
+        	   
+        	   if(length>1){
+        		   $('#mediTable:last > tr:last').remove();
+        	   }else{
+        		   	return false;
+        	   }
+           }
+           
+           
+           
+           
+           
+           	$('#submitButton').click(function(){
+           		
+           		if(confirm('진단서를 저장하시겠습니까')){
+           			
+           		 $.ajax({
+           			url:"updateWeight.do",
+           			type:"post",
+           			data:{pCode:$('#hiddenPcode').val(), pWeight:$('#tb-afterWeight').val()},
+           			success:function(data){
+           				console.log(data);
+           				if(data==0){
+           					alert('몸무게 업데이트 실패');
+           				}else{
+           					console.log('몸무게 업데이트 성공');
+           				}
+           				
+           			},error:function(){
+           				
+           			}
+           			
+           		}); 
+           		
+           		
+           		var hId = ${loginUser.hId};
+           		var dId = ${loginUser.doctor[0].dId};
+           		var arr = [];
+           		
+           		$('#mediTable tr').each(function(){
+           			var len = $(this).find("td").length;
+           			var str ="";
+           			
+           			for(var i=0;i<len;i++){
+           				str += $(this).find("td:eq("+i+")").children("input").val()+",";
+           				
+           			}
+           			arr.push(str);
+           		})
+           		
+           		var medi = arr.join("//");
+           		
+           		console.log(medi);
+           		 $.ajax({
+           			url:"updateDiag.do",
+           			type:"post",
+           			data:{dMedicine:medi, hId:hId, dId:dId, pCode:$('#hiddenPcode').val(), dUnique:$('#inputUnique').val(), dContent:$('#diagContent').val()},
+           			success:function(data){
+           				console.log(data);
+           				if(data==0){
+           					console.log('진단서 업데이트 실패');
+           				}else{
+           					console.log('진단서 업데이트 성공');
+           					location.href="chart.ho";
+           				}
+           				
+           			},error:function(){
+           				console.log('진단서 에러');
+           			} 
+           		});
+           		
+           		
+           		}
+           	});
+           
+           
+           </script>
+           
      
           <!-- /.container-fluid -->
 

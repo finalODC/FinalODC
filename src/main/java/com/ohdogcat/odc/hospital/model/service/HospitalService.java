@@ -28,6 +28,10 @@ public interface HospitalService {
 
 	ArrayList<Diagnosis> diagList(String pCode, PageInfo pi);
 
+	int updateWeight(Pet p);
+
+	int updateDiag(Diagnosis diag);
+
 
 
 
