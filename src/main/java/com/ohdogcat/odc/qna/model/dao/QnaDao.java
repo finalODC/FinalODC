@@ -35,4 +35,8 @@ public class QnaDao {
 		return (ArrayList)sqlSession.selectList("QnaMapper.qRlist",qId);
 	}
 
+	public Qna selectQna(int qId) {
+		return (Qna)sqlSession.selectList("QnaMapper.qDetail",qId);
+	}
+
 }
