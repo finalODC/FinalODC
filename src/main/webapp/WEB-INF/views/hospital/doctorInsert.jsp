@@ -87,11 +87,11 @@
 			</div>
 			<!-- Content Row -->
 			
-			<!-- <form action="indoc.ho" method="post" enctype="multipart/form-data"> -->
-			<div>
+			<form action="indoc.ho" method="post" enctype="multipart/form-data">
+			<%-- <div>
 			${hospital }
 			${hospital.doctor[0]!=null }
-			</div>
+			</div> --%>
 				<div class="row">
 					<input type="text" name="refHid" id="refHid" value="${ hospital.hId }">
 					<input type="hidden" name="dId" id="dId" value="">
@@ -113,8 +113,8 @@
 									<div class="card-body text-center">
 										<img class="card-body text-center docImage" name="docFile" src="/odc/resources/docImages/${b.docFile }"
 											id="docFile" style="width: 90%; height: 200px;"> <label
-											class="btn btn-primary "> 사진등록 <input type="file" name="docFile"
-											class="img-fluid docGetfile" id="docGetfile" alt=""
+											class="btn btn-primary "> 사진등록 <input type="file" name="docImage" id="docImage"
+											class="img-fluid docGetfile" alt=""
 											style="display: none;">
 										</label> <br> <br> <input type="text"
 											style="text-align: center; width: 100px; border: none;" name="docName" id="docName"
@@ -147,7 +147,7 @@
 
 
 				</div>
-				<!-- </form> -->
+				</form>
 			
 		</div>
 
@@ -177,12 +177,12 @@
 				+ "<img class='card-body text-center docImage' name='docFile' id='docFile' style='width: 90%; height: 200px;'src='/odc/resources/docImages/${b.docFile }'>"
 				+ "<label class='btn btn-primary'>"
 				+ "사진등록"
-				+ "<input type='file' class='img-fluid docGetfile'  alt='' style='display: none;'>"
+				+ "<input type='file' class='img-fluid docGetfile'  alt='' style='display: none;' name='docImage'>"
 				+ "</label>"
 				+ "<br> <br>"
-				+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름' id='docName'>"
+				+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름' id='docName' name='docName' value='${b.docName }'>"
 				+ "<hr>"
-				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' placeholder='간단한 소개'>"
+				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' name='docIntro' placeholder='간단한 소개'>${ b.docIntro }"
 				+ "</textarea>"
 				+ "</div>"
 				+ "</div>"
@@ -231,26 +231,36 @@
 		
 		$(function(){
 			$('#indoc').click(function(){
-				var docFile = $('#docGetfile').val();
+				
+				var docImage = $('#docFile').val();
 				var docIntro = $('#docIntro').val();
 				var docName = $('#docName').val();
-				console.log('docIntro : ' + docIntro);
-				console.log('docIntro : ' + docFile);
-				console.log('docIntro : ' + docName);
-				console.log('asfasf');
+				/* var doctor = [docImage,docIntro,docName]; */
+				/* console.log(doctor); */
+				
+				  var list = new Array();
+				   $("input[name=docName]").each(function(index, item){
+					   list.push($(item).val());
+				   });
+				
+				   console.log(list);   
+		 		
 				$.ajax({
 					url : "indoc.ho",
 					type : "post",
+					traditional:true,
 					data : {
 						refHid:$("#refHid").val(),
-						docFile:docFile,
-						docIntro:docIntro,
-						docName:docName,
+						//docImage:docImage,
+						//docIntro:docIntro,
+						docName1:list,
+						
 					},success:function(data){
-						if(data!=1){
+						console.log(data);
+						/* if(data!=1){
 							location.href="chart.ho";
-							alert("변경 성공");
-						}
+							alert("등록되었습니다.");
+						} */
 					},error:function(data){
 						alert("실패");
 					}
@@ -272,8 +282,6 @@
 
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="intranet/jquery.min.js"></script>
-	<script src="intranet/bootstrap.bundle.min.js"></script>
 
 
 

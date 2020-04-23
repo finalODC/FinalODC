@@ -1,6 +1,7 @@
 package com.ohdogcat.odc.board.Dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -22,19 +23,19 @@ public class BoardDao {
 	
 	
 
-	public int FreeListCount() {
+	public int FreeListCount(Map<String, String> map) {
 		
-		return sqlSession.selectOne("boardMapper.FreeListCount");
+		return sqlSession.selectOne("boardMapper.FreeListCount",map);
 	}
 	
 	
 
-	public ArrayList<FreeBoard> selectFreeList(PageInfo pi) {
+	public ArrayList<FreeBoard> selectFreeList(Map<String,String> map, PageInfo pi) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		RowBounds rowBounds =new RowBounds(offset,pi.getBoardLimit());
-		
-		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeList",null,rowBounds);
+		System.out.println(map);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeList",map,rowBounds);
 	}
 
 
@@ -68,31 +69,40 @@ public class BoardDao {
 
 
 
-	public ArrayList<FreeReply> selectFreeReplyList(int bId) {
+	public ArrayList<FreeReply> selectFreeReplyList(int fbId) {
 		
-		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeReplyList",bId);
+		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeReplyList",fbId);
 	}
 
 
 
-	public int boardSearchListCount(BoardSearch bs) {
+	
+
+
+	public FreeBoard FreeBoardUpdateView(int fbId) {
 		
-		return sqlSession.selectOne("boardMapper.boardSearchListCount",bs);
+		System.out.println("Daofbid : " + fbId);
+		return sqlSession.selectOne("boardMapper.FreeBoardUpdateView",fbId);
 	}
+	
+	
+	public int FreeBoardDelete(int fbId) {
 
-
-
-	public ArrayList<FreeBoard> boardSearchList(PageInfo pi, BoardSearch bs) {
-		
-		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-		
-		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-		
-		
-		
-		return (ArrayList)sqlSession.selectList("boardMapper.boardSearchList",bs,rowBounds);
+		return sqlSession.update("boardMapper.FreeBoardDelete",fbId);
 	}
-
+	
+	public int FreeBoardUpdate(FreeBoard fb) {
+		
+		return sqlSession.update("boardMapper.FreeBoardUpdate",fb);
+	}
+	
+	
+	public int FreeBoardSearchCount(int fbId) {
+		
+		return sqlSession.selectOne("boardMapper.FreeBoardSearchCount",fbId);
+	}
+	
+	
 	//------------------------------------- 여기서 부터 dogBoard 페이지-------------------------------------
 
 	public int DogBoardCount() {
@@ -130,6 +140,23 @@ public class BoardDao {
 		
 		return sqlSession.update("TipboardMapper.DogupdateCount",tbId);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
 	
 	
 

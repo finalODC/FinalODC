@@ -1,6 +1,7 @@
 package com.ohdogcat.odc.board.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,16 +20,22 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDao bDao;
 
 	@Override
-	public int getFreeListCount() {
+	public int getFreeListCount(Map<String, String> map) {
 		
-		return bDao.FreeListCount();
+		return bDao.FreeListCount(map);
 	}
 
 	@Override
-	public ArrayList<FreeBoard> selectFreeList(PageInfo pi) {
+	public ArrayList<FreeBoard> selectFreeList(Map<String,String> map,PageInfo pi) {
 		
-		return bDao.selectFreeList(pi);
+		return bDao.selectFreeList(map,pi);
 	}
+	
+//	@Override
+//	public ArrayList<FreeBoard> selectFreeList(PageInfo pi) {
+//		
+//		return bDao.selectFreeList(pi);
+//	}
 
 	@Override
 	public int FreeBoardInsert(FreeBoard fb) {
@@ -56,23 +63,39 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public ArrayList<FreeReply> selectFreeReplyList(int bId) {
+	public ArrayList<FreeReply> selectFreeReplyList(int fbId) {
 		
-		return bDao.selectFreeReplyList(bId);
+		return bDao.selectFreeReplyList(fbId);
+	}
+
+	
+
+	
+	@Override
+	public FreeBoard FreeBoardUpdateView(int fbId) {
+
+			System.out.println("fbid : "+  fbId);
+		return bDao.FreeBoardUpdateView(fbId);
+	}
+	
+	
+	@Override
+	public int FreeBoardDelete(int fbId) {
+		// TODO Auto-generated method stub
+		return bDao.FreeBoardDelete(fbId);
+	}
+	
+	@Override
+	public int FreeBoardUpdate(FreeBoard fb) {
+
+		return bDao.FreeBoardUpdate(fb);
 	}
 
 	@Override
-	public int boardSearchListCount(BoardSearch bs) {
-		
-		return bDao.boardSearchListCount(bs);
-	}
+	public int FreeBoardSearchCount(int fbId) {
 
-	@Override
-	public ArrayList<FreeBoard> bordSearchList(PageInfo pi, BoardSearch bs) {
-		
-		return bDao.boardSearchList(pi,bs);
+		return bDao.FreeBoardSearchCount(fbId);
 	}
-
 	//----------------------------------------------- 여기서 부터 dogboard 페이지 -------------------------------------------------
 	
 	@Override
@@ -104,6 +127,13 @@ public class BoardServiceImpl implements BoardService{
 		
 		return null;
 	}
+
+
+
+
+
+
+
 
 	
 

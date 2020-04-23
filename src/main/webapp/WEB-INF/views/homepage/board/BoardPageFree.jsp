@@ -246,7 +246,7 @@
 									<c:param name="currentPage" value="${ pi.currentPage -1 }" />
 								</c:url>
 								<input type="button" class="btn btn-secondary" value="[이전]"
-									href="${befor}" />
+									onclick="getList(${pi.currentPage-1});" />
 							</c:if>
 						</div>
 
@@ -258,7 +258,7 @@
 							<div class="btn-group" align="center">
 
 								<c:if test="${ p eq pi.currentPage }">
-									<button class="btn btn-secondary" href="${ pagination }">${ p }</button>
+									<button class="btn btn-secondary" >${ p }</button>
 								</c:if>
 								
 								
@@ -266,7 +266,7 @@
 									<c:url var="pagination" value="Fblist.bo">
 										<c:param name="currentPage" value="${ p }" />
 									</c:url>
-									<button class="btn btn-secondary" href="${ pagination }">${ p }</button>
+									<button class="btn btn-secondary" onclick="getList(${p});">${ p }</button>
 								</c:if>
 							</div>
 
@@ -279,10 +279,8 @@
 								<input type="button" class="btn btn-secondary" value="다음" />
 							</c:if>
 							<c:if test="${ pi.currentPage ne pi.maxPage }">
-								<c:url var="after" value="Fblist.bo">
-									<c:param name="currentPage" value="${pi.currentPage +1 }" />
-								</c:url>
-								<input value="[다음]" type="button" href="${ after }"
+								
+								<input value="[다음]" type="button" onclick="getList(${pi.currentPage+1});"
 									class="btn btn-secondary" />
 							</c:if>
 						</div>
@@ -296,11 +294,32 @@
 					<div align="center" id="SearchDiv">
 						<table border="1">
 							<tr>
+							<c:if test="${searchkey!=null and search !=null }">
 								<td>
 								
 								<select style="border: 0px;" id="boardSearchkey">
-										<option value="boardtitle">제목</option>
-										<option value="boardWriter">작성자</option>
+										<option value="title">제목</option>
+										<option value="writer">작성자</option>
+										
+								</select>
+								
+								</td>
+								
+								<td>
+								
+								<input id="boardSearchval" type="text" style="border: 0px;" value="${ search}" placeholder="검색어를 입력하세요">
+								
+								</td>
+								<script>
+								$("#boardSearchkey").val("${searchkey}");
+								</script>
+								</c:if>
+								<c:if test="${searchkey==null or search ==null }">
+								<td>
+								
+								<select style="border: 0px;" id="boardSearchkey">
+										<option value="title">제목</option>
+										<option value="Writer">작성자</option>
 										
 								</select>
 								
@@ -311,9 +330,9 @@
 								<input id="boardSearchval" type="text" style="border: 0px;" placeholder="검색어를 입력하세요">
 								
 								</td>
-								
+								</c:if>
 								<td>
-									<button id="searchBtn" style="border: 0px; background: white;">
+									<button id="searchBtn" style="border: 0px; background: white;" onclick="getList(1)">
 										&nbsp;<i class="fas fa-search"></i>
 										
 									</button>
@@ -366,35 +385,23 @@
 
 	<script>
 	
-	var key="${boardSearchkey}";
-	var val="${boardSearchval}";
 	
-	var page = 1;
 	
-	$(function(){
-		
-		getList()
-		
-		$('#searchBtn').click(function(){
-			
-			if(typeof $('#searchval').val() == 'undefined'){
-				key="${boardSearchkey}";
-				val="${boardSearchval}";
-			}else{
-				key="${boardSearchkey}";
-				val="${boardSearchval}";
-				page=1;
-			}
-			
-			getList();
-		});
-	});
 	
-	function getList(){
 		
 		
 		
-		$.ajax({
+	
+	function getList(currentPage){
+
+		var searchkey = $("#boardSearchkey").val();
+		var search = $("#boardSearchval").val();
+		
+		location.href="?currentPage=" + currentPage+"&searchkey=" + searchkey +"&search="+search;
+				
+		
+		
+<%-- 		$.ajax({
 			url:"boardSearchList.bo",
 			type:"post",
 			data:{boardSearchkey:key,
@@ -410,7 +417,7 @@
 					$.each(data,function(index,value){
 						
 						
-<%-- 						$
+						$
 						<tbody id="tableArea">
 						<c:forEach var="fb" items="${list}">
 
@@ -432,7 +439,7 @@
 
 							</tr>
 						</c:forEach>
-					</tbody> --%>
+					</tbody>
 						$tr = $("<tr class='trc'>");
 						$td1 = $("<td>${fb.fbId}");
 						$td2 = $("")
@@ -441,7 +448,7 @@
 					});
 				}
 		
-		});
+		}); --%>
 		
 	}
 

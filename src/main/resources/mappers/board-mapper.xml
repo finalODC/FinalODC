@@ -40,15 +40,32 @@
 	SELECT COUNT(*)
 	FROM F_BOARD
 	WHERE FB_STATUS='Y'
+	<if test ="searchkey !=null and search != null">
+		<if test ="searchkey == 'title'">
+			AND F_BTITLE LIKE '%'||#{search}||'%'
+		</if>
+		<if test ="searchkey == 'writer'">
+			AND F_BWRITER LIKE '%'||#{search}||'%'
+		</if>
+	</if>
 </select>
 
 <!--  ResultMap = 결과값이 객체일떄
 	  parameterType = 들어오는 값 형태
  -->
-<select id="selectFreeList" resultMap="FreeBoardResultSet">
+<select id="selectFreeList" parameterType="map" resultMap="FreeBoardResultSet">
 	SELECT *
 	FROM F_BOARD
 	WHERE FB_STATUS='Y'
+	<if test ="searchkey !=null and search != null">
+		<if test ="searchkey == 'title'">
+			AND F_BTITLE LIKE '%'||#{search}||'%'
+		</if>
+		<if test ="searchkey == 'writer'">
+			AND F_BWRITER LIKE '%'||#{search}||'%'
+		</if>
+	</if>
+	
 	ORDER BY FBID DESC
 </select>
 
@@ -97,7 +114,7 @@
 <select id="boardSearchListCount" resultType="_int">
 	SELECT COUNT(*)
 	FROM F_BOARD
-	WHERE FR_STATUS='Y'
+	WHERE FB_STATUS='Y'
 	
 	<if test="boardWriter != null">
 		AND F_BWRITER LIKE '%' || #{fbWriter} || '%'
@@ -112,7 +129,7 @@
 <select id="boardSearchList" resultMap="FreeBoardResultSet">
 	SELECT *
 	FROM F_BOARD
-	WHERE FR_STATUS='Y'
+	WHERE FB_STATUS='Y'
 	
 	<if test="boardWriter != null">
 		AND F_BWRITER LIKE '%' || #{fbWriter} || '%'
@@ -125,8 +142,24 @@
 
 </select>
 
-	<!--                             @@@@@@@@@@여기서부터 Dog Board 페이지 @@@@@@@                                       -->
-	
 
+<select id="FreeBoardUpdateView" resultMap="FreeBoardResultSet">
+	SELECT *
+	FROM F_BOARD
+	WHERE FBID=#{fbId}
+	AND FB_STATUS='Y'
+</select>
+
+<update id="FreeBoardDelete" parameterType="_int">
+	UPDATE F_BOARD 
+	SET FB_STATUS='N'
+	WHERE FBID=#{fbId}
+</update>
+
+<update id="FreeBoardUpdate" parameterType="FBoard">
+	UPDATE F_BOARD
+	SET F_BTITLE=#{fbTitle},F_BCONTENT=#{fbContent},FB_MODIFY_DATE=#{fbModifydate}
+	WHERE FBID=#{fbId}
+</update>
 	
 </mapper>

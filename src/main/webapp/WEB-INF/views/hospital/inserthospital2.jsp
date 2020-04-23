@@ -108,7 +108,8 @@
 					<div class="sea"
 						style="width: 100%; height: 452px; padding: 41px 35px;">
 						<div class="par" style="width: 50%; height: 370px; float: left;">
-							${ loginUser.hFile }
+							<img class="card-body text-center"  id="preview" src="/odc/resources/hosImages/${hospital.hFile }"
+											style="width: 100%; height: 250px;">
 							<!-- <div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div> -->
 
 						</div>
@@ -146,9 +147,10 @@
 
 				// 주소-좌표 변환 객체
 				 var geocoder= new kakao.maps.services.Geocoder();
-				var aaa = "${hospital.hAddress}".split(",");
-				console.log(aaa);
-				geocoder.addressSearch(aaa[1], function(result, status) {
+				var addr = "${hospital.hAddress}".split("//");
+				var hname ="${hospital.hName}"
+				console.log(addr);
+				geocoder.addressSearch(addr[1], function(result, status) {
 
 				
 				     if (status === kakao.maps.services.Status.OK) {
@@ -163,7 +165,7 @@
 
 				     
 				        var infowindow = new kakao.maps.InfoWindow({
-				            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+"으음"+'</div>'
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+hname+'</div>'
 				        });
 				        infowindow.open(map, marker);
 
@@ -175,11 +177,17 @@
 					
 					</script>
 					<textarea
-						style="width: 90%; height: 200px; border: none; resize: none;"
-						readonly>${ loginUser.hAddress }</textarea>
+						style="width: 90%; height: 200px; border: none; resize: none;" id="add1"
+						readonly></textarea>
 					</div>
 				</div>
 			</div>
+			<script>
+			$(document).ready(function(){
+				var aaa = "${hospital.hAddress}".split("//");
+				$("#add1").val(aaa);
+				});
+			</script>
 
 			<div class="col-lg-12 mb-4">
 				<div class="card shadow mb-4">
