@@ -2,6 +2,8 @@ package com.ohdogcat.odc.board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,13 +19,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.board.model.service.BoardService;
-import com.ohdogcat.odc.board.model.vo.BoardSearch;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
-import com.ohdogcat.odc.board.model.vo.TipBoard;
 import com.ohdogcat.odc.common.Pagination;
-import com.ohdogcat.odc.homepage.searchHospital.model.vo.hPagination;
 
 
 
@@ -39,29 +38,59 @@ public class FreeBoardController {
 	 * @param currentPage
 	 * @return
 	 */
+//	@RequestMapping("Fblist.bo")
+//	public ModelAndView boardList(ModelAndView mv, 
+//			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
+//		//@RequestParam 은 페이징 처리용으로 반드시 필요한거다.
+//		System.out.println(currentPage);
+//
+//		int listCount = bService.getFreeListCount();
+//
+//		System.out.println("listCount : " + listCount);
+//
+//		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
+//
+//		ArrayList<FreeBoard> FBlist = bService.selectFreeList(pi);
+//
+//		System.out.println("FBlist : " +  FBlist);
+//
+//		mv.addObject("list",FBlist);
+//		mv.addObject("pi",pi);
+//		mv.setViewName("BoardPageFree");
+//
+//		return mv;
+//	}
+
+	
 	@RequestMapping("Fblist.bo")
 	public ModelAndView boardList(ModelAndView mv, 
-			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
+			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage,
+			@RequestParam(value="searchkey", required=false)String searchkey, @RequestParam(value="search", required=false)String search) {
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("searchkey", searchkey);
+			map.put("search", search);
 		//@RequestParam 은 페이징 처리용으로 반드시 필요한거다.
 		System.out.println(currentPage);
 
-		int listCount = bService.getFreeListCount();
+		int listCount = bService.getFreeListCount(map);
 
 		System.out.println("listCount : " + listCount);
 
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
 
-		ArrayList<FreeBoard> FBlist = bService.selectFreeList(pi);
+		ArrayList<FreeBoard> FBlist = bService.selectFreeList(map,pi);
 
 		System.out.println("FBlist : " +  FBlist);
-
+		System.out.println(searchkey);
+		System.out.println(search);
+		mv.addObject("searchkey",searchkey);
+		mv.addObject("search",search);
 		mv.addObject("list",FBlist);
 		mv.addObject("pi",pi);
 		mv.setViewName("BoardPageFree");
 
 		return mv;
 	}
-
 
 
 
@@ -119,6 +148,8 @@ public class FreeBoardController {
 	public ModelAndView FreeBoardViewDetail(ModelAndView mv,int fbId,
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
 
+	
+		
 		FreeBoard fb = bService.selectFreeBoard(fbId);
 
 		System.out.println("게시글 상세조회 : " +fb);
@@ -165,48 +196,7 @@ public class FreeBoardController {
 	}
 
 
-	@RequestMapping("boardSearch.bo")
-	public ModelAndView boardSearch(@RequestParam(required=false) String boardSearhkey,
-			@RequestParam(required=false) String baordSearhval,
-			ModelAndView mv) {
-
-		mv.addObject("boardSearchkey",boardSearhkey);
-		mv.addObject("boardSearchval",baordSearhval);
-		mv.setViewName("board/BoardPageFree");
-
-		return mv;
-
-
-
-
-	}
-
-	@RequestMapping("boardSearchList.bo")
-	public void boardSearchList(HttpServletResponse response,
-			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage,
-			@RequestParam String boardSearchkey,
-			@RequestParam String boardSearchval) throws JsonIOException, IOException {
-
-		BoardSearch bs = new BoardSearch();
-
-		if(boardSearchkey.equals("name")) {
-			bs.setBoardWriter(boardSearchval);
-		}else if(boardSearchkey.equals("title")) {
-			bs.setBoardtitle(boardSearchval);
-		}
-
-		int listCount = bService.boardSearchListCount(bs);
-
-		PageInfo pi = hPagination.getPageInfo(currentPage, listCount);
-
-		ArrayList<FreeBoard> list =  bService.bordSearchList(pi,bs);
-
-		response.setContentType("apllication/json; charset=utf-8");
-
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-
-		gson.toJson(list,response.getWriter());
-	}
+	
 	
 	
 	@RequestMapping("FBupdateView.bo")
@@ -241,6 +231,7 @@ public class FreeBoardController {
 		 
 		return mv;
 	}
+
 	
 	//---------------------------------------- 여기서부터 DOGBOARDPAGE -----------------------------------------------------
 

@@ -128,7 +128,7 @@ public class HMemberController {
 		
 		m.setUserPwd(bCryptPasswordEncoder.encode(m.getUserPwd()));
 		if(!add1.equals("")) {
-			m.sethAddress(add1 + add2 + add3);
+			m.sethAddress(add1 +"//"+ add2+"//" + add3);
 		}
 		
 		System.out.println(m);

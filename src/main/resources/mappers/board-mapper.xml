@@ -40,15 +40,32 @@
 	SELECT COUNT(*)
 	FROM F_BOARD
 	WHERE FB_STATUS='Y'
+	<if test ="searchkey !=null and search != null">
+		<if test ="searchkey == 'title'">
+			AND F_BTITLE LIKE '%'||#{search}||'%'
+		</if>
+		<if test ="searchkey == 'writer'">
+			AND F_BWRITER LIKE '%'||#{search}||'%'
+		</if>
+	</if>
 </select>
 
 <!--  ResultMap = 결과값이 객체일떄
 	  parameterType = 들어오는 값 형태
  -->
-<select id="selectFreeList" resultMap="FreeBoardResultSet">
+<select id="selectFreeList" parameterType="map" resultMap="FreeBoardResultSet">
 	SELECT *
 	FROM F_BOARD
 	WHERE FB_STATUS='Y'
+	<if test ="searchkey !=null and search != null">
+		<if test ="searchkey == 'title'">
+			AND F_BTITLE LIKE '%'||#{search}||'%'
+		</if>
+		<if test ="searchkey == 'writer'">
+			AND F_BWRITER LIKE '%'||#{search}||'%'
+		</if>
+	</if>
+	
 	ORDER BY FBID DESC
 </select>
 

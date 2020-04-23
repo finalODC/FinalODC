@@ -65,6 +65,16 @@ public class HospitalController3 {
 		Integer result = hService3.insertRe(ho);
 		return result.toString();
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping("updateRe.ho")
+	public String updateRe(hoReply ho) {
+		Integer result = hService3.updateRe(ho);
+		return result.toString();
+	}
+	
+	
 
 	
 

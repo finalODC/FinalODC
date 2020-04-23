@@ -97,19 +97,10 @@
 						<h6 class="m-0 font-weight-bold text-primary">댓글</h6>
 					</div>
 					
-					<div class="commentArea" style="width: 100%; height: 100%; text-align: left;">
-						<table border="1">
-							<tbody id="reply"></tbody>
+					<div class="commentArea" width="100%" height="100%" cellspacing="0">
+						<table border="1" class="table table-bordered" width="100%" cellspacing="0">
+							<tbody id="reply" ></tbody>
 						</table>
-
-<!--                                 <div class="commentList"><span>user1 : ooo맛있어요 </span> &nbsp;&nbsp; <span
-                                        class="report-comment" style="color:red;"></span></div>
-                                <div class="commentList"><span>user2 : ooo는 별로 </span> &nbsp;&nbsp; <span
-                                        class="report-comment" style="color:red;">삭제하기</span> </div>
-                                <div class="commentList"><span>user3 : ooo?? </span> &nbsp;&nbsp; <span
-                                        class="report-comment" style="color:red;">삭제하기</span> </div>
-                                <div class="commentList"><span>user4 : ooo!!!!! </span> &nbsp;&nbsp; <span
-                                        class="report-comment" style="color:red;">삭제하기</span> </div> -->
                                 
                                 <!-- 일반사용자 전용  -->
                                 <!-- <span>아이디 : </span> &nbsp; <input type="text" style="width: 70%;" placeholder="댓글을 입력해주세요"> &nbsp; <input type="button" value="등록"> -->
@@ -123,7 +114,7 @@
                             </div>
                             <script>
                             	$(document).ready(function(){
-                            		pigo(1,1);
+                            		pigo("${loginUser.hId}",1);
                             	})
                             	
                             	function pigo(hId, currentPage){
@@ -132,33 +123,52 @@
                             			type:"post",
                             			data:{hId:hId, currentPage:currentPage},
                             			success:function(data){
+                            				
                             				$("#reply").empty();
                             				var list = data["list"];
                             				var pi = data["pi"];
+                            				console.log(list);
                             				var listCount 
                             				for(var i in list){
                             					var $tr = $("<tr>");
-                            					var $td0 = $("<td>")
-                            					var $td1= $("<td width='70px'>").text(list[i].rId);
-                            					var $div = $("<div height='150px'>").html(list[i].rContent.split("|||"));
+                            					var $td0 = $("<td width='3%' height='9%'> ")
+                            					var $td1= $("<td width='3%'>").text(list[i].rId);
+                            					var $div = $("<div height='100%' width='100%'>").html(list[i].rContent);
+                            					var $td2= $("<td  width='67%'>").append($div);
+                            					var $td3= $("<td width='8%'>").text(list[i].rWriter);
+                            					var $td4= $("<td width='8%'>").text(list[i].rCreateDate);
+                            					var $td5= $("<td width='10%'>");
                             					
-                            					var $td2= $("<td height='70px' width='300px'>").append($div);
-                            					var $td3= $("<td>").text(list[i].rCreateDate);
-                            					var $td4= $("<td>");
-                            					var $td5= $("<td>");
                             					
-                            					$tr.append($td1).append($td2).append($td3).append($td4).append($td5);
+                            					
+                            					$tr.append($td1).append($td2).append($td3).append($td4).append($td5)//.append($td6);
                             					if(list[i].level ==2){
-                            						$tr.prepend($td0).css("background","lightgray");
                             						
-                            						$td4.append("<button class='del'>삭제</button>");
+                            						$tr.prepend($td0.html('<svg class="bi bi-arrow-return-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
+                            								  '<path fill-rule="evenodd" d="M10.146 5.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 9l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>'
+                            								+' <path fill-rule="evenodd" d="M3 2.5a.5.5 0 00-.5.5v4A2.5 2.5 0 005 9.5h8.5a.5.5 0 000-1H5A1.5 1.5 0 013.5 7V3a.5.5 0 00-.5-.5z" clip-rule="evenodd"/>' 
+                            								  +'</svg>'
+
+                              			        )).css("background","lightgray");
+                            					
+                            						$td5.append("<button class='del btn btn-danger'>삭제</button><br> <button class='update btn btn-default'>수정</button>");
+                            						/* if(list[i].rStatus =='N'){
+                            							$tr.empty();
+                            						} */
                             						
                             					}else{
                             						/* $td1.after($td0); */
                             						$td2.attr("colspan","2")
-                            						$td4.append("<button class='addRe'>댓글달기</button>");
-                            						$td5.append("<button>신고하기</button>");
+                            						$td5.append("<button class='addRe btn btn-primary'>댓글달기</button>");
+                            						//$td6.append("<button>신고하기</button>");
+                            						
                             					}
+                            					
+                            					if(list[i].rStatus =='N'){
+                        							$div.text("삭제된 댓글입니다.")
+                        						}
+                            					
+           
                             					
                             					$td0.css("background","white");
                             					
@@ -168,11 +178,37 @@
                             				$(".addRe").click(function(){
                             					var ParentHrid = $(this).parents("td").siblings(":eq(0)").text();
                             				//$(".writeComment").css("display","none");
+         									
                             					$(".writeComment").remove();
                             					$tr = $("<tr class='writeComment'>");
-                            					$td1= $("<td>").text("답글")
-                            					$td2 =$("<td colspan='2'>").append("<textarea id='recommentT' cols='50', rows ='4'>");
-                            					$button = $("<button onclick ='recomment("+hId+","+ParentHrid+");'>");
+                            					$td1= $("<td>").html('<svg class="bi bi-chevron-compact-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
+                      								  '<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 01.671.223l3 6a.5.5 0 010 .448l-3 6a.5.5 0 11-.894-.448L9.44 8 6.553 2.224a.5.5 0 01.223-.671z" clip-rule="evenodd"/>'
+                  									  +'</svg>')
+                            					$td2 =$("<td colspan='4'>").append("<textarea id='recommentT' cols='120', rows ='4'>");
+                            					$button = $("<button class='btn btn-primary'onclick ='recomment("+hId+","+ParentHrid+");'>").text("입력");
+                            					$td3 =$("<td>").append($button);
+                            					//$td2 =$("<td>").append()
+                            					
+                            					//console.log(hId);
+                            					$(this).parents("tr").after($tr.append($td1).append($td2).append($td3))
+                            					
+                            				});
+                            				
+                            				$(".update").click(function(){
+                            					var rid = $(this).parents("td").siblings(":eq(1)").text();
+                            				//$(".writeComment").css("display","none");
+         										var text = $(this).parents("td").siblings(":eq(2)").children("div").html();
+         										text=text.replace(/<br>/g, '\n');
+                            					console.log(text)
+                            					$(".writeComment").remove();
+                            					$tr = $("<tr class='writeComment'>");
+                            					$td1= $("<td>").html('<svg class="bi bi-chevron-compact-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
+                      								  '<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 01.671.223l3 6a.5.5 0 010 .448l-3 6a.5.5 0 11-.894-.448L9.44 8 6.553 2.224a.5.5 0 01.223-.671z" clip-rule="evenodd"/>'
+                  									  +'</svg>')
+                            					$td2 =$("<td colspan='4'>").html("<textarea id='recommentT' cols='120', rows ='4'>"+text+"</textarea>");
+                            					
+                            					console.log($("#recommentT"));
+                            					$button = $("<button class='btn btn-primary'onclick ='update("+rid+")'>").text("수정");
                             					$td3 =$("<td>").append($button);
                             					//$td2 =$("<td>").append()
                             					
@@ -261,20 +297,43 @@
                             			return false;
                             		}
                             		var arr = $("#recommentT").val().split("\n");
-                            		for(var i = 0; i<arr.length; i++){
-                            			arr[i] = arr[i]+"<br>"
-                            		}
+                            
                             		
                             		$.ajax({
                             			url:"insertRe.ho",
                             			type:"post",
                             			data:{refHid:hId,
                             				parentHrid:parentHrId,
-                            				rContent:arr.join("|||"),
-                            				rWriter:"작성자"},
+                            				rContent:arr.join("<br>"),
+                            				rWriter:"${loginUser.hName}"},
                             			success:function(data){
                             				if(data>0){
                             					pigo(hId,$(".cu").text());
+                            				}
+                            			}
+                            		})
+                            		
+                        			
+                        		}
+                            	
+                            	function update(rId){
+                            		console.log($("#recommentT").val());
+                            		if($("#recommentT").val()==""){
+                            			alert("댓글내용이 비어있습니다.")
+                            			return false;
+                            		}
+                            		var arr = $("#recommentT").val().split("\n");
+                            
+                            		
+                            		$.ajax({
+                            			url:"updateRe.ho",
+                            			type:"post",
+                            			data:{rId:rId,
+                            				rContent:arr.join("<br>")
+                            				},
+                            			success:function(data){
+                            				if(data>0){
+                            					pigo("${loginUser.hId}",$(".cu").text());
                             				}
                             			}
                             		})
@@ -327,8 +386,6 @@
 
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="intranet/jquery.min.js"></script>
-	<script src="intranet/bootstrap.bundle.min.js"></script>
 
 
 

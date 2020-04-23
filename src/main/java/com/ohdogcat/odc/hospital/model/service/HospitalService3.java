@@ -16,5 +16,7 @@ public interface HospitalService3 {
 
 	Integer insertRe(hoReply ho);
 
+	Integer updateRe(hoReply ho);
+
 	
 }
