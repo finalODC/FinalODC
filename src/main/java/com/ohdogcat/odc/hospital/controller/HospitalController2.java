@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,7 +36,6 @@ import com.ohdogcat.odc.hospital.model.vo.hoReply;
 @SessionAttributes("hospital")
 public class HospitalController2 {
 	
-	
 	private HMember hm1;
 	@Autowired
 	private HospitalService2 hService2;
@@ -45,7 +46,7 @@ public class HospitalController2 {
 	@RequestMapping("info.ho")
 	public String goInfo(Model m, HttpSession session) {
 		hm1 = (HMember)session.getAttribute("loginUser");
-//		System.out.println("들어오자 마자"+hm1);
+		System.out.println("들어오자 마자"+hm1);
 		m.addAttribute("hospital", hm1);
 		
 		return "hospital";
@@ -162,77 +163,104 @@ public class HospitalController2 {
 		
 	}
 	
+	@RequestMapping("indoc.ho")
+	public String indoc(Doctor doc, HttpServletRequest request, Model model,
+			  @RequestParam(name="docImage",required=false) MultipartFile file,
+			  @RequestParam(name="docIntro",required=false) String docIntro, 
+			  @RequestParam(name="docName",required=false) String docName) {
+		
+
+		ArrayList<Doctor> doc1 = hm1.getDoctor();
+	
+		
+		String renameImageName = saveDoc(file, request);
+		
+		if(!file.getOriginalFilename().equals("")) {
+			// 서버에 업로드
+	
+			if(renameImageName != null) {		// 파일이 잘 저장된 경우
+				doc.setDocFile(renameImageName);
+				
+			}
+		}
+		
+		//new 객체 rset
+		
+		doc.setDocIntro(docIntro);
+		
+		doc.setDocName(docName);
+		
+		System.out.println("intro , name : " + docIntro + docName);
+		
+		System.out.println("doc : " + doc);
+		
+		int result = hService2.indoc(doc);
+		
+		
+		if(result > 0) {
+			
+			doc1.add(doc);
+			hm1.setDoctor(doc1);
+			model.addAttribute("hospital",hm1);
+			return "redirect:insertdoc.ho";
+		} else {
+			return "redirect:comdoc.ho";
+		}
+		
+	}
+	
+	
+	
 //	@RequestMapping("indoc.ho")
-//	public String indoc(Doctor doc, HttpServletRequest request, Model model,
-//			  @RequestParam(name="docImage",required=false) MultipartFile file,
-//			  String docIntro, String docName) {
+//	@ResponseBody
+//	public String indoc(Doctor doc,HttpServletRequest request, Model model,
+//			@RequestParam(name="docImage",required=false) MultipartFile file,
+//			@RequestParam(name="docName",required=false)String docName, 
+//			@RequestParam(name="docIntro",required=false)String docIntro) {
 //		
-//
-//		ArrayList<Doctor> doc1 = hm1.getDoctor();
 //		
-//		String renameImageName = saveDoc(file, request);
 //		
-//		if(!file.getOriginalFilename().equals("")) {
-//			// 서버에 업로드
+//		String[] docImage = request.getParameterValues("docImage");
+//		
+//		
+//		
+//		String renameFileName = saveHos(file, request);
+//		
+//			if(!file.getOriginalFilename().equals("")) {
+//				// 서버에 업로드
 //	
-//			if(renameImageName != null) {		// 파일이 잘 저장된 경우
-//				doc.setDocFile(renameImageName);
+//				if(renameFileName != null) {		// 파일이 잘 저장된 경우
+//					doc.setDocFile(renameFileName);
 //				
+//				}
 //			}
-//		}
+//		
+//		
+//		doc.setDocName(docName);
 //		
 //		doc.setDocIntro(docIntro);
 //		
-//		doc.setDocName(docName);
+//		System.out.println("ajaxMsg : " + docImage);
 //		
+//		
+//
+//
+//	
 //		System.out.println("intro , name : " + docIntro + docName);
-//		
+//	
 //		System.out.println("doc : " + doc);
-//		
+//	
 //		int result = hService2.indoc(doc);
-//		
-//		
+//	
+//		System.out.println("result : :  " + result);
+//	
 //		if(result > 0) {
-//			doc1.add(doc);
-//			hm1.setDoctor(doc1);
 //			model.addAttribute("hospital",hm1);
 //			return "redirect:chart.ho";
 //		} else {
 //			return "redirect:comdoc.ho";
 //		}
-//		
 //	}
-	
-	@RequestMapping("indoc.ho")
-	@ResponseBody
-	public String indoc(HttpServletRequest request, Model model,
-			
-			  @RequestParam(name="docImage",required=false) MultipartFile file) {
-		//ArrayList<Doctor> doc1 = hm1.getDoctor();
-		String[] ajaxMsg = request.getParameterValues("docName1");
-		System.out.println("ajaxMsg : " + ajaxMsg[0]);
-		//doc.setDocIntro(docIntro);
-		
-//		doc.setDocName(docName);
-//		
-//		System.out.println("intro , name : " + docIntro + docName);
-//		
-//		System.out.println("doc : " + doc);
-//		
-//		int result = hService2.indoc(doc);
-//		
-//		
-//		if(result > 0) {
-//			doc1.add(doc);
-//			hm1.setDoctor(doc1);
-//			model.addAttribute("hospital",hm1);
-//			return "redirect:chart.ho";
-//		} else {
-//			return "redirect:comdoc.ho";
-//		}
-		
-		return "1";
-	}
 	
 	
 	
