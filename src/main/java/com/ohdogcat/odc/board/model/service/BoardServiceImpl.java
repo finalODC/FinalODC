@@ -1,6 +1,7 @@
 package com.ohdogcat.odc.board.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,16 +20,22 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDao bDao;
 
 	@Override
-	public int getFreeListCount() {
+	public int getFreeListCount(Map<String, String> map) {
 		
-		return bDao.FreeListCount();
+		return bDao.FreeListCount(map);
 	}
 
 	@Override
-	public ArrayList<FreeBoard> selectFreeList(PageInfo pi) {
+	public ArrayList<FreeBoard> selectFreeList(Map<String,String> map,PageInfo pi) {
 		
-		return bDao.selectFreeList(pi);
+		return bDao.selectFreeList(map,pi);
 	}
+	
+//	@Override
+//	public ArrayList<FreeBoard> selectFreeList(PageInfo pi) {
+//		
+//		return bDao.selectFreeList(pi);
+//	}
 
 	@Override
 	public int FreeBoardInsert(FreeBoard fb) {
@@ -61,18 +68,7 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.selectFreeReplyList(fbId);
 	}
 
-	@Override
-	public int boardSearchListCount(BoardSearch bs) {
-		
-		return bDao.boardSearchListCount(bs);
-	}
-
-	@Override
-	public ArrayList<FreeBoard> bordSearchList(PageInfo pi, BoardSearch bs) {
-		
-		return bDao.boardSearchList(pi,bs);
-	}
-
+	
 
 	
 	@Override
@@ -95,6 +91,11 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.FreeBoardUpdate(fb);
 	}
 
+	@Override
+	public int FreeBoardSearchCount(int fbId) {
+
+		return bDao.FreeBoardSearchCount(fbId);
+	}
 	//----------------------------------------------- 여기서 부터 dogboard 페이지 -------------------------------------------------
 	
 	@Override
@@ -126,6 +127,7 @@ public class BoardServiceImpl implements BoardService{
 		
 		return null;
 	}
+
 
 
 
