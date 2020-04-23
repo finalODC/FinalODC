@@ -35,4 +35,9 @@ public class QnaServiceImpl implements QnaService{
 		
 		return qDao.selectQrList(qId);
 	}
+
+	@Override
+	public Qna selectQna(int qId) {
+		return qDao.selectQna(qId);
+	}
 }

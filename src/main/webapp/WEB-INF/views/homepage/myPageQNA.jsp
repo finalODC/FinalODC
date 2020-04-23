@@ -40,9 +40,11 @@
 	margin-left: 10%;
 }
 
-#lee:hover {
-	background: greend;
+.a hover{
+	background:lightgray;
 }
+
+
 </style>
 
 
@@ -91,13 +93,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td align="center">1</td>
-										<td align="center">문의 1번입니다</td>
-										<td align="center">${loginUser.userId }</td>
-										<td align="center">2020-01-16</td>
-										<td align="center">답변완료</td>
-									</tr>
+									
 								</tbody>
 							</table>
 
@@ -105,31 +101,40 @@
 							<HR>
 							<table align="center" id="detail" class="table">
 								<tr align="center" valign="middle">
-									<td colspan="5"><h4>존나게어렵네진짜</h4><hr></td>
+									<td colspan="4"><h4 id="detailTitle">존나게어렵네진짜</h4><hr></td>
 								</tr>
-								<tr align="right" style="border: 1px solid #444444;">
-									<th colspan="2" style="text-align:right;">작성날짜</td>
-									<td colspan="3" style="border: 1px solid #444444; text-align: left;">2020-04-20</td>
+								<tr align="right" style="">
+									<th colspan="" style="text-align:right;"></td>
+									<td colspan="" style="text-align: left;"></td>
+									<th colspan="" style="text-align:right;">작성날짜</td>
+									<td id="detailDate" colspan="" style="text-align: left;">2020-04-20</td>
 								</tr>
 								<tr style="border: 1px solid #444444;">
-									<th colspan="2" style="text-align:right;">작성날짜</td>
-									<td colspan="3" style="border: 1px solid #444444; text-align: left;">2020-04-20</td>
+									<th colspan="" style="text-align:right;"></td>
+									<td colspan="" style="text-align: left;"></td>
+									<th colspan="" style="text-align:right;">첨부파일</td>
+									<td id="detailFile" colspan="" style="text-align: left;">2020-04-20</td>
 								</tr>
-								
 								<tr>
-								
-									<td colspan="4" style="border: 1px solid #444444;">
+									<td id="detailContent" colspan="4" style="">
 										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxssssssssxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 									</td>
 								</tr>
+								<tr>
+									<td style="color:red;" colspan="1">관리자 답변</td>
+								</tr>
+								<tr>
+									<td id="answer" colspan="4">관리자답변입니다.</td>
+								</tr>
+								
 								<%-- <tr>
 									<td colspan="2" align="center">
 										
@@ -246,7 +251,15 @@
 		$(function(){
 			alert(pageNo+","+userId);
 			getList(pageNo);
+			
 		});
+		$(function(){
+			alert($(".a"));
+			console.log($(".a"));
+			
+		});
+		
+		
 		
 		function getList(pageNo){
 			
@@ -279,7 +292,7 @@
 						
 					} */
 				   for(var i in data.list){
-						listText +="<tr>";
+						listText +="<tr class='a'>";
 						listText +="<td align='left'>"+ data.list[i].qId +"</td>";
 						listText +="<td align='left'>";
 						listText += data.list[i].qTitle;
@@ -290,15 +303,19 @@
 						}else{
 							listText +="<td align='left'>대기중</td>";
 						}
-						;
+						
 						listText +="<td align='left'>";
 						 if(data.list[i].qFile != null) {
 							listText +=data.list[i].qFile;	
 						}else {
 							listText +="첨부파일없음";
-						} 
+						}
+						
 						listText +="</td>";
 						listText +="</tr>";
+						
+						
+						
 				   }
 				   
 				   // 페이징 처리
@@ -328,12 +345,50 @@
 					listText +="</tr>";
 				   
 				   $("#qnaList tbody").html(listText);
-				   
+				   $(".a").click(function(){
+						console.log($(this).find("td").first().text());
+						var qId=$(this).find("td").first().text();
+						alert(qId);
+						for(var i=0;i<data.list.length;i++){
+							if(data.list[i].qId==qId){
+								var qna=data.list[i];
+							}
+						}
+						console.log(qna);
+						$("#detailTitle").text(qna.qTitle);
+						$("#detailDate").text(qna.qDate);
+						if(qna.qFile!=null){
+							$("#detailFile").text(qna.qFile);
+						}else{
+							$("#detailFile").text("첨부파일없음");
+						}
+						$("#detailContent").text(qna.qContent);
+						if(qna.qnaRe!=null){
+							$("#answer").text(qna.qnaRe.aContent);
+						}else{
+							$("#answer").text("답변대기중입니다.");
+							$("#answer").css("color","red");
+						}
+						
+					});
 				},error:function(){
 					console.log("전송실패");
 				}
 			});
 		}
+		/* function getDetail(qId){
+			$.ajax({
+				url:"qdetail.qn",
+				data:{qId:qId},
+				dataType:"json",
+				type:"post",
+				success:function(data){
+					console.log(data);
+				},error:function(){
+					alert("실패");
+				}
+			});
+		} */
 		/* function QnaList(){
 			$.ajax({
 				url:"myqnalist.qn",

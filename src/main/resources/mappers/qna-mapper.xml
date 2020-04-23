@@ -39,5 +39,10 @@
 		AND QWRITER=#{userId}
 		ORDER BY QID DESC
 	</select>
-	
+	<select id="qDetail" resultMap="qnaResultSet">
+		SELECT * FROM QNA
+		JOIN QNAANSWER ON (QID =REF_QID)
+		WHERE Q_STATUS='Y'
+		AND QID=#{qId}
+	</select>
 </mapper>

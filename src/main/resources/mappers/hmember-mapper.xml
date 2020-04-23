@@ -55,17 +55,14 @@
  	Left JOIN DOCTOR on( HID = REF_H_ID)
  	<choose>
  		<when test="doctor != null">
- 			WHERE USERID=#{userId} and H_STATUS = 'Y' AND DOC_NAME =#{doctor[0].docName}
+ 			WHERE USERID=#{userId} and H_STATUS = 'Y' AND DOC_NAME =#{doctor[0].docName} and DOC_STATUS ='Y'
  		</when>
  		<when test="doctor == null">
  		Left JOIN H_REPLY on(HID= REF_HID) 
- 			WHERE USERID=#{userId} and H_STATUS = 'Y'
+ 			WHERE USERID=#{userId} and H_STATUS = 'Y' and DOC_STATUS ='Y'
  		</when>
  
  	</choose>
- 	<if test="doctor != null">
- 	
- 	</if>
  </select>	
  
   <select id="checkBusiness" parameterType="HMember" resultType="_int">

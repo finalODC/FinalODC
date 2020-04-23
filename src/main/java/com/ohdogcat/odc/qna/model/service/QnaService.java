@@ -15,4 +15,6 @@ public interface QnaService {
 	ArrayList<Qna> selectQnaList(PageInfo pi,String userId);
 	
 	ArrayList<QnaReply> selectQrList(int qId);
+
+	Qna selectQna(int qId);
 }
