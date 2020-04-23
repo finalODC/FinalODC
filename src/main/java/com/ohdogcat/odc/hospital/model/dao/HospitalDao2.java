@@ -70,6 +70,12 @@ public class HospitalDao2 {
 		return sqlSession.update("hospitalMapper.updateDoc", doc);
 	}
 
+
+	public ArrayList<Doctor> docList(String hId) {
+		
+		return (ArrayList)sqlSession.selectList("hospitalMapper.doclist", hId);
+	}
+
 	
 			
 }

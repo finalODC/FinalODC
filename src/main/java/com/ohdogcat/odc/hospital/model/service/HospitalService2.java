@@ -39,4 +39,6 @@ public interface HospitalService2 {
 	int deleteDoc(int dId);
 
 	int updateDoc(Doctor doc);
+
+	ArrayList<Doctor> docList(String hId);
 }

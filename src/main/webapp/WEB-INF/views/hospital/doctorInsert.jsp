@@ -167,13 +167,13 @@
 				type : "post",
 				data : {
 					dId:dId
-					
-					
+
 				},success:function(data){
 					console.log("data : " + data);
-					 if(data!=1){
-						location.href="insertdoc.ho";
+					 if(data==1){
 						alert("삭제되었습니다.");
+						location.href="insertdoc.ho";
+						
 					} 
 				},error:function(result){
 					alert("실패");
@@ -200,9 +200,10 @@
 					
 				},success:function(data){
 					console.log(data);
-					 if(data!=1){
-						location.href="insertdoc.ho";
+					 if(data==1){
+						
 						alert("수정되었습니다.");
+						location.href="insertdoc.ho";
 					} 
 				},error:function(result){
 					alert("실패");
@@ -234,16 +235,18 @@
 				+ "<input type='file' class='img-fluid docGetfile'  alt='' style='display: none;' name='docImage'>"
 				+ "</label>"
 				+ "<br> <br>"
-				+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름' id='docName' name='docName' value='${b.docName }'>"
+				+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름' class='docName' name='docName' value='${b.docName }'>"
 				+ "<hr>"
-				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' name='docIntro' placeholder='간단한 소개'>${ b.docIntro }"
+				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' class='docIntro' name='docIntro' placeholder='간단한 소개'>${ b.docIntro }"
 				+ "</textarea>"
-				+ "<button type='submit'class='btn btn-primary' id='indoc' value=''>등록</button>"
+				+ "<button type='submit'class='btn btn-primary indoc' id='indoc' value=''>등록</button>"
 				+ "</div>"
 				+ "</div>"
 				+ "</div>"
 				+ "</form>"
 				$("#cccbody").append($div);
+				
+			
 			});
 
 			var checkTag = $('div#cccbody');
