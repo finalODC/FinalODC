@@ -42,7 +42,13 @@ public class HospitalDao3 {
 
 	public Integer insertRe(hoReply ho) {
 		// TODO Auto-generated method stub
-		return sqlSession.update("hospitalRe.insertRe",ho);
+		return sqlSession.insert("hospitalRe.insertRe",ho);
+	}
+
+
+	public Integer updateRe(hoReply ho) {
+		
+		return sqlSession.update("hospitalRe.updateRe",ho);
 	}
 
 	

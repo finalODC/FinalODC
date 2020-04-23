@@ -1,8 +1,8 @@
 package com.ohdogcat.odc.board.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
-import com.ohdogcat.odc.board.model.vo.BoardSearch;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
@@ -13,17 +13,21 @@ public interface BoardService {
 	/**
 	 * 1-1
 	 * 프리보드 게시판 수 가져오기
+	 * @param map 
 	 * @return
 	 */
-	int getFreeListCount();
+	int getFreeListCount(Map<String, String> map);
 	
 	/**
 	 * 1-2
 	 * 프리보드 게시판 리스트 조회
+	 * @param map 
 	 * @param pi
 	 * @return
 	 */
-	ArrayList<FreeBoard> selectFreeList(PageInfo pi);
+	 ArrayList<FreeBoard> selectFreeList(Map<String,String> map, PageInfo pi); 
+	
+//	ArrayList<FreeBoard> selectFreeList( PageInfo pi);
 	
 	/**
 	 * 게시판 작성
@@ -61,9 +65,7 @@ public interface BoardService {
 	 * @param bs
 	 * @return
 	 */
-	int boardSearchListCount(BoardSearch bs);
 	
-	ArrayList<FreeBoard> bordSearchList(PageInfo pi,BoardSearch bs);
 	
 	/**
 	 * 
@@ -82,6 +84,8 @@ public interface BoardService {
 	 * @return
 	 */
 	int FreeBoardDelete(int fbId);
+	
+	int FreeBoardSearchCount(int fbId);
 	//-------------------------------------------- 여기서부터 멍멍이 게시판 -----------------------------------------------
 	
 	

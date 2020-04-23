@@ -87,14 +87,14 @@
 			</div>
 			<!-- Content Row -->
 			
-			<!-- <form action="indoc.ho" method="post" enctype="multipart/form-data"> -->
-			<div>
-			${hospital }
+			
+			 <div>
+			${hospital.doctor }
 			${hospital.doctor[0]!=null }
-			</div>
+			</div> 
 				<div class="row">
-					<input type="text" name="refHid" id="refHid" value="${ hospital.hId }">
-					<input type="hidden" name="dId" id="dId" value="">
+					
+					
 
 					<div class="col-lg-11 mb-4">
 						<div class="card shadow mb-4">
@@ -105,16 +105,17 @@
 							<div class="card-columns" id="cccbody" style="column-count: 1;">
 								<c:if test="${hospital.doctor[0]!=null }">
 								<c:forEach var="b" items="${hospital.doctor }">
+							
 								<div class="card t1"
 									style="width: 200px; height: auto; display: inline-block; margin: 25px 0 0 25px;"
 									id="copy">
 									
 									
 									<div class="card-body text-center">
-										<img class="card-body text-center docImage" name="docFile" src="/odc/resources/docImages/${b.docFile }"
+										<img class="card-body text-center" name="docFile" src="/odc/resources/docImages/${b.docFile }"
 											id="docFile" style="width: 90%; height: 200px;"> <label
-											class="btn btn-primary "> 사진등록 <input type="file" name="docFile"
-											class="img-fluid docGetfile" id="docGetfile" alt=""
+											class="btn btn-primary "> 사진등록 ${b.docFile }<input type="file" name="docImage" id="docImage"
+											class="img-fluid docGetfile" alt=""
 											style="display: none;">
 										</label> <br> <br> <input type="text"
 											style="text-align: center; width: 100px; border: none;" name="docName" id="docName"
@@ -123,12 +124,16 @@
 										<textarea
 											style="width: 150px; height: 200px; border: none; resize: none;" name="docIntro" id="docIntro"
 											placeholder="간단한 소개">${ b.docIntro }</textarea>
+											
+									 <button type="submit"class="btn btn-primary" id="indoc" value="">삭제</button>
 									</div>
+			
 								</div>
 							
+									</c:forEach>
+								</c:if>
+							
 							</div>
-								</c:forEach>
-							</c:if>
 							<!-- <div style="text-align: center;">
                             <input type="button" value="의사 등록" class="btn btn-primary">
                         </div> -->
@@ -138,7 +143,6 @@
 									value='의사추가' style="width: 100px;"> <input id="ss"
 									type='button' class='btn btn-primary delete' value='의사삭제'
 									style="width: 100px;">
-									 <input type="button"class="btn btn-primary" id="indoc" value="등록">
 									<br> <br>
 							</div>
 						 </div>
@@ -147,7 +151,6 @@
 
 
 				</div>
-				<!-- </form> -->
 			
 		</div>
 
@@ -170,23 +173,27 @@
 		$(function() {
 			$('.copy').click(function() {
 				/* var a = $("#copy").clone(true) */
-				$div = "<div class='card-columns' id='cccbody' style='column-count: 1; display:inline-block'>"
+				$div = "<form action='indoc.ho' method='post' enctype='multipart/form-data'>"
+				+ "<input type='hidden' name='refHid' id='refHid' value='${ hospital.hId }'>"
+				+	"<div class='card-columns' id='cccbody' style='column-count: 1; display:inline-block'>"
 				+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 
 				+ "<div class='card t1' style='width: 200px; height: auto; display: inline-block;'id='copy'>"
 				+ "<div class='card-body text-center'>"
-				+ "<img class='card-body text-center docImage' name='docFile' id='docFile' style='width: 90%; height: 200px;'src='/odc/resources/docImages/${b.docFile }'>"
+				+ "<img class='card-body text-center ImageDoc' name='docFile' id='docFile' style='width: 90%; height: 200px;'src='/odc/resources/docImages/${b.docFile }'>"
 				+ "<label class='btn btn-primary'>"
 				+ "사진등록"
-				+ "<input type='file' class='img-fluid docGetfile'  alt='' style='display: none;'>"
+				+ "<input type='file' class='img-fluid docGetfile'  alt='' style='display: none;' name='docImage'>"
 				+ "</label>"
 				+ "<br> <br>"
-				+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름' id='docName'>"
+				+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름' id='docName' name='docName' value='${b.docName }'>"
 				+ "<hr>"
-				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' placeholder='간단한 소개'>"
+				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' name='docIntro' placeholder='간단한 소개'>${ b.docIntro }"
 				+ "</textarea>"
+				+ "<button type='submit'class='btn btn-primary' id='indoc' value=''>등록</button>"
 				+ "</div>"
 				+ "</div>"
 				+ "</div>"
+				+ "</form>"
 				$("#cccbody").append($div);
 			});
 
@@ -223,40 +230,43 @@
 						var tempImage = new Image();
 						tempImage.src = reader.result;
 
-						image2.parent().siblings(".docImage").prop("src", reader.result);
+						image2.parent().siblings(".ImageDoc").prop("src", reader.result);
 					};
 				};
 			});
 		});
 		
-		$(function(){
+		
+		 $(function(){
 			$('#indoc').click(function(){
-				var docFile = $('#docGetfile').val();
+				
+				var docImage = $('#docFile').val();
 				var docIntro = $('#docIntro').val();
 				var docName = $('#docName').val();
-				console.log('docIntro : ' + docIntro);
-				console.log('docIntro : ' + docFile);
-				console.log('docIntro : ' + docName);
-				console.log('asfasf');
+				console.log('docImage : ' + docImage + 'docIntro' + docIntro + 'docName : ' + docName);
 				$.ajax({
 					url : "indoc.ho",
 					type : "post",
 					data : {
 						refHid:$("#refHid").val(),
-						docFile:docFile,
-						docIntro:docIntro,
-						docName:docName,
+						docImage:docImage,
+						docIntro:docIntro
+						
 					},success:function(data){
-						if(data!=1){
-							location.href="chart.ho";
-							alert("변경 성공");
-						}
-					},error:function(data){
+						console.log(data);
+						 if(data!=1){
+							location.href="insertdoc.ho";
+							alert("등록되었습니다.");
+						} 
+					},error:function(result){
 						alert("실패");
 					}
 				});
 			});
-		});
+		}); 
+
+		
+		
 	</script>
 
 	<!-- Footer -->
@@ -272,8 +282,6 @@
 
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="intranet/jquery.min.js"></script>
-	<script src="intranet/bootstrap.bundle.min.js"></script>
 
 
 

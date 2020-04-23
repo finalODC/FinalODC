@@ -45,7 +45,7 @@
  		<result property="refHid" column="REF_H_ID"/>
  		<result property="docName" column="DOC_NAME"/>
  		<result property="docIntro" column="DOC_INTRO"/>
- 		<result property="docFile" column="DIC_FILE"/>
+ 		<result property="docFile" column="DOC_FILE"/>
  		<result property="docStatus" column="DOC_STATUS"/>
  	</resultMap>
  	

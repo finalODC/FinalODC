@@ -176,7 +176,7 @@
 
 	<script>
 	$(document).ready(function(){
-	var aaa = "${hospital.hAddress}".split(",");
+	var aaa = "${hospital.hAddress}".split("//");
 	$("#add1").val(aaa[0]);
 	$("#add2").val(aaa[1]);
 	$("#add3").val(aaa[2]);
