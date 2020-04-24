@@ -101,7 +101,7 @@
 								<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
 							</div>
 								
-							<div class="card-columns" id="cccbody" style="column-count: 1;">
+							<div class="card-columns " id="cccbody" style="column-count: 1;">
 								<c:if test="${hospital.doctor[0]!=null }">
 								<c:forEach var="b" items="${hospital.doctor }">
 							
@@ -225,10 +225,10 @@
 				/* var a = $("#copy").clone(true) */
 				$div = "<form action='indoc.ho' method='post' enctype='multipart/form-data'style='display:inline-block;'>"
 				+ "<input type='hidden' name='refHid' id='refHid' value='${ hospital.hId }'>"
-				+ "<div class='card-columns' id='cccbody' style='column-count: 1; display:inline-block'>"
+				+ "<div class='card-columns cccbody' id='cccbody' style='column-count: 1; display:inline-block'>"
 				+ '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' 
-				+ "<div class='card t1' style='width: 200px; height: auto; display: inline-block;'id='copy'>"
-				+ "<div class='card-body text-center'>"
+				+ "<div class='card t2 ' style='width: 200px; height: auto; display: inline-block;'id='copy'>"
+				+ "<div class='card-body text-center '>"
 				+ "<img class='card-body text-center ImageDoc' name='docFile' id='docFile' style='width: 90%; height: 200px;'src='/odc/resources/docImages/${b.docFile }'>"
 				+ "<label class='btn btn-primary'>"
 				+ "사진등록"
@@ -240,6 +240,8 @@
 				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' class='docIntro' name='docIntro' placeholder='간단한 소개'>${ b.docIntro }"
 				+ "</textarea>"
 				+ "<button type='submit'class='btn btn-primary indoc' id='indoc' value=''>등록</button>"
+				+ "&nbsp"
+				+ "<input type='button' class='btn btn-primary deldoc' id='deldoc' value='삭제'>"
 				+ "</div>"
 				+ "</div>"
 				+ "</div>"
@@ -249,14 +251,13 @@
 			
 			});
 
-			var checkTag = $('div#cccbody');
+			var checkTag = $('div.cccbody');
 			console.log(checkTag);
 			
 			});
 		// 의료진 사진 등록
 		$("#cccbody").mouseenter(function() {
 			$(".docGetfile").click(	function() {
-				//var image = document.querySelector(".docGetfile")
 				var image = $(this)[0];
 				var image2 = $(this);
 
@@ -267,10 +268,6 @@
 					var reader = new FileReader();
 					reader.readAsDataURL(fileList[0]);
 					reader.onload = function() {
-
-						/* document.querySelector('#docImage').src = reader.result; */
-
-						/* document.querySelector('.docImage').src = reader.result; */
 
 						var tempImage = new Image();
 						tempImage.src = reader.result;
@@ -283,7 +280,7 @@
 		
 		
 			 $(function(){
-					$('#indoc').click(function(){
+					$('.indoc').click(function(){
 						
 						var docImage = $('#docFile').val();
 						var docIntro = $('#docIntro').val();
@@ -297,8 +294,8 @@
 								docIntro:docIntro
 								
 							},success:function(data){
-								console.log(data);
-								 if(data!=1){
+								
+								 if(data==1){
 									location.href="insertdoc.ho";
 									alert("등록되었습니다.");
 								} 
@@ -307,9 +304,42 @@
 							}
 						});
 					});
+					
+					
 				}); 
+			 
+			 
+			 
 		 
+			 /* $('.deldoc').click(function() {
+					if ($('.t1').length == 1) {
+						alert('삭제할수 없습니다.');
+					} else {
+						$(".card-columns t1").detach();
+							}
+					}); */
+					
+					
+	
 
+		$("#cccbody").mouseenter(function() {
+			$('.deldoc').click(function() {
+				
+				if ($('.t2').length == 1) {
+					alert('삭제할수 없습니다.');
+					
+				} else {
+					$(".card-columns ").eq($('.cccbody').length - 1).detach();
+					//alert('삭제할수 없습니다.');
+				}
+			});
+		});
+
+					
+		/* console.log($('.t2').length());
+		
+		 */
+		
 	</script>
 
 	<!-- Footer -->

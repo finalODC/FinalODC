@@ -80,18 +80,10 @@
 
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 	<div class="container" style="padding-top: 150px;">
-	
-	<li class="nav-item"><c:url var="chart" value="chart.ho" /> <a
-				class="nav-link" href="${chart }"> <i
-					class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
 
 			<li class="nav-item"><a class="nav-link" href="info.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>내 병원 관리</span></a></li>
 
-			<li class="nav-item"><a class="nav-link" href="hosP.ho"> <i
-					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="hosinfo.ho"> <i
-					class="fa fa-calendar-alt fa-2x"></i> <span>병원상세</span></a></li>
 		<div class="row">
 
 			
@@ -117,7 +109,7 @@
 						
 							<div
 								style="width: 100%; height: 370px; border: none; resize: none; text-align: center;" readonly>병원소개 <br>
-								${ loginUser.hComment }</div>
+								${ loginUser.hComment }<br>연락처 :  ${loginUser.hPhone }</div>
 
 						</div>
 
