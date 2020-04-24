@@ -101,35 +101,27 @@
 							<HR>
 							<table align="center" id="detail" class="table">
 								<tr align="center" valign="middle">
-									<td colspan="4"><h4 id="detailTitle">존나게어렵네진짜</h4><hr></td>
+									<td colspan="4"><h4 id="detailTitle"></h4><hr></td>
 								</tr>
 								<tr align="right" style="">
 									<th colspan="" style="text-align:right;"></td>
 									<td colspan="" style="text-align: left;"></td>
 									<th colspan="" style="text-align:right;">작성날짜</td>
-									<td id="detailDate" colspan="" style="text-align: left;">2020-04-20</td>
+									<td id="detailDate" colspan="" style="text-align: left;"></td>
 								</tr>
 								<tr style="border: 1px solid #444444;">
 									<th colspan="" style="text-align:right;"></td>
 									<td colspan="" style="text-align: left;"></td>
 									<th colspan="" style="text-align:right;">첨부파일</td>
-									<td id="detailFile" colspan="" style="text-align: left;">2020-04-20</td>
+									<td id="detailFile" colspan="" style="text-align: left;"></td>
 								</tr>
 								<tr>
 									<td id="detailContent" colspan="4" style="">
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxssssssssxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+									
 									</td>
 								</tr>
 								<tr>
-									<td style="color:red;" colspan="1">관리자 답변</td>
+									<td style="color:red;" colspan="">관리자 답변</td>
 								</tr>
 								<tr>
 									<td id="answer" colspan="4">관리자답변입니다.</td>
@@ -369,6 +361,9 @@
 							$("#answer").text("답변대기중입니다.");
 							$("#answer").css("color","red");
 						}
+						if($("#detail").css("display")=="none"){
+							$("#detail").show();
+						}
 						
 					});
 				},error:function(){
@@ -431,6 +426,8 @@
 		$(function(){
 			$("#nok").hide();
 			$("#nok2").hide();
+			$("#detail").hide();
+			
 			$("#lee").on("click",function(){
 				if($("#nok").css("display")=="none"){
 					$("#nok").show();
