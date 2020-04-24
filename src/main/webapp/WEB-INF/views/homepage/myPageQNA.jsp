@@ -124,7 +124,7 @@
 									<td style="color:red;" colspan="">관리자 답변</td>
 								</tr>
 								<tr>
-									<td id="answer" colspan="4">관리자답변입니다.</td>
+									<td  colspan="4"><div id="answer">관리자답변입니다.</div></td>
 								</tr>
 								
 								<%-- <tr>
@@ -149,7 +149,7 @@
 							<hr>
 							<h4 id="lee" class="mb-3">문의 작성하기 &nbsp;&nbsp;</h4>
 							<hr>
-							<form action="insertQNA.qn" method="GET">
+							<form action="insertQNA.qn" method="POST" onsubmit="return add();">
 								<input type="hidden" name="qWriter" value="${loginUser.userId }">
 								<table id="nok" class="table table-bordered"
 									style="background: white;">
@@ -171,7 +171,7 @@
 										</tr>
 										<th class="tatd">내용:</th>
 										<td><textarea cols="10" rows="10"
-												placeholder="내용을 입력하세요. " name="qContent"
+												placeholder="내용을 입력하세요. " name="qContent" id="qContent"
 												class="form-control " style="resize: none;"></textarea></td>
 										</tr>
 
@@ -194,6 +194,18 @@
 
 					</div>
 				</section>
+				<script>
+					
+					function add(){
+						var arr = $("#qContent").val().split("\n");
+						for(var i = 0; i<arr.length;i++){
+							arr[i] = arr[i]+"<br>";
+						}
+						$("#qContent").val(arr.join(""));
+						
+					}
+				
+				</script>
 			</div>
 		</div>
 	</div>
@@ -354,9 +366,9 @@
 						}else{
 							$("#detailFile").text("첨부파일없음");
 						}
-						$("#detailContent").text(qna.qContent);
+						$("#detailContent").html(qna.qContent);
 						if(qna.qnaRe!=null){
-							$("#answer").text(qna.qnaRe.aContent);
+							$("#answer").html(qna.qnaRe.aContent);
 						}else{
 							$("#answer").text("답변대기중입니다.");
 							$("#answer").css("color","red");
