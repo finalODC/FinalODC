@@ -8,7 +8,7 @@
  		<id property = "rId" column="HRID"/>
  		<result property="rContent" column="RCONTENT"/>
  		<result property="refHid" column="REF_HID"/>
- 		<result property="parentHrid" column="PARENT_HRID"/>
+ 		<result property="parentHrid" column="REF_HRID"/>
  		<result property="rWriter" column="H_RWRITER"/>
  		<result property="rCreateDate" column="HR_CREATE_DATE"/>
  		<result property="rModifyDate" column="HR_MODIFY_DATE"/>
@@ -26,8 +26,8 @@
  		SELECT LEVEL, H.*
     	FROM H_REPLY H
     	WHERE REF_HID = #{hId}
-   		 START WITH PARENT_HRID IS NULL 
-    	CONNECT BY PRIOR HRID = PARENT_HRID
+   		 START WITH ref_HRID IS NULL 
+    	CONNECT BY PRIOR HRID = ref_HRID
  	
  	</select>
  	
