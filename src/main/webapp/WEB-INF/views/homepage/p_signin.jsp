@@ -299,7 +299,7 @@ body {
 
 
 	
-	<form action="inserPet.pe" method="get">
+	<form action="inserPet.pe" method="POST" onsubmit="return add();">
 	<div class='signup-container' style="margin-top: 109px;">
 		<div class='left-container'>
 			<h1>
@@ -436,6 +436,13 @@ body {
 		$(function(){
 			alert("${species}");
 		});
+		function add(){
+			var arr = $("#spc").val().split("\n");
+			for(var i = 0; i<arr.length;i++){
+				arr[i] = arr[i]+"<br>";
+			}
+			$("#spc").val(arr.join(""));
+		}
 	</script>
 </body>
 
