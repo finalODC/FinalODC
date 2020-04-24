@@ -27,12 +27,12 @@ public class QnaController {
 	private QnaService qService;
 
 	@RequestMapping("insertQNA.qn")
-	public ModelAndView insertQNA(ModelAndView mv,Qna q) {
+	public String insertQNA(Qna q) {
 		System.out.println(q);
 		int result=qService.insertQna(q);
 		
-		mv=qnaPage(mv,1);
-		return mv;
+		
+		return "redirect:myqnalist.qn";
 	}
 
 	/*

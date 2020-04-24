@@ -101,38 +101,30 @@
 							<HR>
 							<table align="center" id="detail" class="table">
 								<tr align="center" valign="middle">
-									<td colspan="4"><h4 id="detailTitle">존나게어렵네진짜</h4><hr></td>
+									<td colspan="4"><h4 id="detailTitle"></h4><hr></td>
 								</tr>
 								<tr align="right" style="">
 									<th colspan="" style="text-align:right;"></td>
 									<td colspan="" style="text-align: left;"></td>
 									<th colspan="" style="text-align:right;">작성날짜</td>
-									<td id="detailDate" colspan="" style="text-align: left;">2020-04-20</td>
+									<td id="detailDate" colspan="" style="text-align: left;"></td>
 								</tr>
 								<tr style="border: 1px solid #444444;">
 									<th colspan="" style="text-align:right;"></td>
 									<td colspan="" style="text-align: left;"></td>
 									<th colspan="" style="text-align:right;">첨부파일</td>
-									<td id="detailFile" colspan="" style="text-align: left;">2020-04-20</td>
+									<td id="detailFile" colspan="" style="text-align: left;"></td>
 								</tr>
 								<tr>
 									<td id="detailContent" colspan="4" style="">
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxssssssssxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-										xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+									
 									</td>
 								</tr>
 								<tr>
-									<td style="color:red;" colspan="1">관리자 답변</td>
+									<td style="color:red;" colspan="">관리자 답변</td>
 								</tr>
 								<tr>
-									<td id="answer" colspan="4">관리자답변입니다.</td>
+									<td  colspan="4"><div id="answer">관리자답변입니다.</div></td>
 								</tr>
 								
 								<%-- <tr>
@@ -157,7 +149,7 @@
 							<hr>
 							<h4 id="lee" class="mb-3">문의 작성하기 &nbsp;&nbsp;</h4>
 							<hr>
-							<form action="insertQNA.qn" method="GET">
+							<form action="insertQNA.qn" method="POST" onsubmit="return add();">
 								<input type="hidden" name="qWriter" value="${loginUser.userId }">
 								<table id="nok" class="table table-bordered"
 									style="background: white;">
@@ -179,7 +171,7 @@
 										</tr>
 										<th class="tatd">내용:</th>
 										<td><textarea cols="10" rows="10"
-												placeholder="내용을 입력하세요. " name="qContent"
+												placeholder="내용을 입력하세요. " name="qContent" id="qContent"
 												class="form-control " style="resize: none;"></textarea></td>
 										</tr>
 
@@ -202,6 +194,18 @@
 
 					</div>
 				</section>
+				<script>
+					
+					function add(){
+						var arr = $("#qContent").val().split("\n");
+						for(var i = 0; i<arr.length;i++){
+							arr[i] = arr[i]+"<br>";
+						}
+						$("#qContent").val(arr.join(""));
+						
+					}
+				
+				</script>
 			</div>
 		</div>
 	</div>
@@ -362,12 +366,15 @@
 						}else{
 							$("#detailFile").text("첨부파일없음");
 						}
-						$("#detailContent").text(qna.qContent);
+						$("#detailContent").html(qna.qContent);
 						if(qna.qnaRe!=null){
-							$("#answer").text(qna.qnaRe.aContent);
+							$("#answer").html(qna.qnaRe.aContent);
 						}else{
 							$("#answer").text("답변대기중입니다.");
 							$("#answer").css("color","red");
+						}
+						if($("#detail").css("display")=="none"){
+							$("#detail").show();
 						}
 						
 					});
@@ -431,6 +438,8 @@
 		$(function(){
 			$("#nok").hide();
 			$("#nok2").hide();
+			$("#detail").hide();
+			
 			$("#lee").on("click",function(){
 				if($("#nok").css("display")=="none"){
 					$("#nok").show();
