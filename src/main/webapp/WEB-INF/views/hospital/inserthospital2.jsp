@@ -80,49 +80,70 @@
 
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 	<div class="container" style="padding-top: 150px;">
-	
-	<li class="nav-item"><c:url var="chart" value="chart.ho" /> <a
-				class="nav-link" href="${chart }"> <i
-					class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
 
 			<li class="nav-item"><a class="nav-link" href="info.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>내 병원 관리</span></a></li>
 
-			<li class="nav-item"><a class="nav-link" href="hosP.ho"> <i
-					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="hosinfo.ho"> <i
-					class="fa fa-calendar-alt fa-2x"></i> <span>병원상세</span></a></li>
 		<div class="row">
+			<h1 style="text-align: left; background-color: width: 100%; height: 120px; padding: 41px 35px;">${ hospital.hName }</h1>
+			<hr>
 
-			
 
 
 			<div class="col-lg-12 mb-4">
 
 				<!-- Approach -->
 				
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">동물 병원</h6>
-					</div>
+				<div class="" style="border: none;">
+					
 					<div class="sea"
-						style="width: 100%; height: 452px; padding: 41px 35px;">
-						<div class="par" style="width: 50%; height: 370px; float: left;">
-							<img class="card-body text-center"  id="preview" src="/odc/resources/hosImages/${hospital.hFile }"
-											style="width: 100%; height: 250px;">
+						style="width: 100%; height: 452px; padding: 41px 35px; border: none;">
+						<div class="par" style="width: 50%; height: 370px; float: left; border: none;">
+							<img class=""  id="preview" src="/odc/resources/hosImages/${hospital.hFile }"
+											style="width: 100%; height: 100%;">
 							<!-- <div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div> -->
 
 						</div>
 						<div class="ssa" style="width: 50%; height: 370px;  float: right;">
 						
-							<div
+							<div 
 								style="width: 100%; height: 370px; border: none; resize: none; text-align: center;" readonly>병원소개 <br>
-								${ loginUser.hComment }</div>
-
+								
+								<%-- <table>
+									<tr>
+										<td>병원이름</td>
+										<td>${ loginUser.hName}</td>
+										
+									</tr>
+									<tr>
+										<td>병원소개</td>
+										<td>${ loginUser.hComment }</td>
+										
+									</tr>
+									<tr>
+										<td>병원번호</td>
+										<td>${ loginUser.hPhone }</td>
+									</tr>
+								</table> --%>
+									<textarea style="width: 90%;  border: none; resize: none;"
+									readonly>병원이름  ${ loginUser.hName}</textarea>						
+									<textarea style="width:90%; height:60%;  border:none; resize:none;" readonly>${ loginUser.hComment }</textarea>
+									<textarea style="width:90%;  border:none; resize:none;" readonly>전화번호 ${loginUser.hPhone }
+									</textarea>
+									</div>
 						</div>
 
 					</div>
-					<div style="width: 100%; border-top: 1px solid #ebebeb"></div>
+					<script>
+					$(document).ready(function(){
+						var bbb = "주소      " +  "${hospital.hComment}";
+						
+						$('.intro').val(bbb);
+					});
+					</script>
+					
+					<h4 style="text-align: center;">찾아가는길</h4>
+					<div style="width: 100%;"></div>
 					<div class="two" style="width: 100%; padding: 41px 35px;">
 						<div id="map" style="width: 100%; height: 300px; margin-bottom: 20px"></div>
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807&libraries=services">
@@ -147,7 +168,7 @@
 
 				// 주소-좌표 변환 객체
 				 var geocoder= new kakao.maps.services.Geocoder();
-				var addr = "${hospital.hAddress}".split("//");
+				var addr ="${hospital.hAddress}".split("//");
 				var hname ="${hospital.hName}"
 				console.log(addr);
 				geocoder.addressSearch(addr[1], function(result, status) {
@@ -177,43 +198,56 @@
 					
 					</script>
 					<textarea
-						style="width: 90%; height: 200px; border: none; resize: none;" id="add1"
+						style="width: 90%; height: 200px; border: none; resize: none;" id="add1" 
 						readonly></textarea>
 					</div>
+					
+					<h4 style="text-align: center;">의료진</h4>
 				</div>
 			</div>
 			<script>
 			$(document).ready(function(){
-				var aaa = "${hospital.hAddress}".split("//");
+				var aaa = "상세주소      " +  "${hospital.hAddress}".split("//");
 				$("#add1").val(aaa);
 				});
 			</script>
 
-			<div class="col-lg-12 mb-4">
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
-					</div>
-					<div class="card-columns" id="cccbody" style="column-count: 1;">
-						
-						<div class="card" style="width: 200px; height: auto; display: inline-block; margin: 41px 35px;" id="copy">
-							<div class="card-body text-center">
-								<img class="card-body text-center docImage" name="docImage" id="docImage" style="width: 90%; height: 200px;">
-								<br> <br> 
-								<input type="text" style="text-align: center; width: 100px; border: none;" placeholder="의사이름">
-								<hr>
-								<textarea style="width: 150px; height: 200px; border: none; resize: none;" placeholder="간단한 소개"></textarea>
-							</div>
-						</div>
+				<div class="sea"
+						style="width: 100%; height: 452px; padding: 41px 35px;"">
+			<div class="">
+					
+					<div class="" id="cccbody" style="column-count: 1;">
+						<c:if test="${hospital.doctor[0]!=null }">
+								<c:forEach var="b" items="${hospital.doctor }">
+							
+								<div class=""
+									style="width: 200px; height: auto; display: inline-block; margin: 25px 0 0 25px;"
+									id="copy">
+									
+									
+									<div class="" style="text-align: center;">
+										<img class="" name="docFile" src="/odc/resources/docImages/${b.docFile }"
+											id="docFile" style="width: 90%; height: 200px;"> 
+										 <br><br> <input type="text"
+											style="text-align: center; width: 100px; border: none;" name="docName" class="docName"
+											value="${b.docName }">
+										<br><br>
+										<textarea
+											style=" text-align:center; width: 150px; height: 200px; border: none; resize: none;" name="docIntro" class="docIntro"
+											placeholder="간단한 소개">${ b.docIntro }</textarea>
+									</div>
+			
+								</div>
+							
+									</c:forEach>
+								</c:if>
 					</div>
 				</div>
 			</div>
 
 			<div class="col-lg-12 mb-4">
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">댓글</h6>
-					</div>
+				<div class="">
+					
 					
 					<table align="center" width="510" border="1" cellspacing="0">
 						<tr>

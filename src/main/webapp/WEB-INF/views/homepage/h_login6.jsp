@@ -214,16 +214,11 @@ hr{margin-top:0; margin-bottom:0;}
 
 <body>
 
-	<c:if test="${!empty loginUser.userId }">
-	<div>
-		${loginUser.userId }
-	</div>
-	
-	</c:if>
- 	<c:if test="${!empty requestScope.msg}">
+
+ 	<c:if test="${!empty msg}">
 	<script>
 	$(function(){
-		alert("아이디 또는 비밀번호를 확인해주세요");
+		alert("${msg}");
 	})
 		
 	</script>
@@ -239,6 +234,10 @@ hr{margin-top:0; margin-bottom:0;}
 			<div class="card" style="width: 600px;">
 			<div class="card-body">
 			<input type="checkbox" id ="doclogin"><label for="doclogin">의사로그인하기</label>
+			<div style="float:right;">
+						<a  id="idFind" href="login1.html" style="color: black;">아이디 찾기</a>
+						<a  id="pwdFind" href="login2.html" style="color: black;">비밀번호 찾기</a>
+             </div>
 				<form action="hlogin.do" method="post">
 				 <div class="inputgroup">
 					<div class="input-groupp">
@@ -261,19 +260,16 @@ hr{margin-top:0; margin-bottom:0;}
                 
                 
                 
-             <div class="chkType">
+        <!--      <div class="chkType">
 				<div class="chkType2">
 					<input type="checkbox" id="chk1" name="saveid">
 					<label for="chk1">아이디 저장</label>
-					<div class="linkBtn">
-						<a  id="idFind" href="login1.html" style="color: black;">아이디 찾기</a>
-						<a  id="pwdFind" href="login2.html" style="color: black;">비밀번호 찾기</a>
-                    </div>
+					
                 </div>
-			</div>
+			</div> -->
   		
 
-
+					<br>
 					<div class="button-area d-flex justify-content-center ">
 						<input type="submit" value="로그인" class="btn login_btn">						
 					</div>

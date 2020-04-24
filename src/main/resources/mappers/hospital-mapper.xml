@@ -66,6 +66,7 @@
 	<update id="updateDoc">
 		UPDATE DOCTOR
 		SET DOC_NAME=#{docName},DOC_INTRO=#{docIntro},DOC_FILE=#{docFile}
+		
 		WHERE DOCID=#{dId}
 	</update>
 	

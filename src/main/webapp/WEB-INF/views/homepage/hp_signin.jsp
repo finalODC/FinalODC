@@ -342,7 +342,7 @@ hr{margin-top:0; margin-bottom:0;}
             
            $("#checkbusiness").click(function(){
             		var hCode = $("#hCode").val();
-            		var regnum = /^[0-9]$/
+            		var regnum = /^[0-9]+$/
             		if(!regnum.test(hCode)){
             			alert("숫자만 넣어주세요");
     					$("#hCode").select();

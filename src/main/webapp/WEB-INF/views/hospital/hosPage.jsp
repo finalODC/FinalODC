@@ -31,7 +31,7 @@
 
             <!-- Sidebar - 로고 -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="#">
+                href="mainpage.do">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-home"></i>
                 </div>
@@ -63,6 +63,8 @@
             href="hosP.ho"> <i
                class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
 
+		<li class="nav-item"><a class="nav-link" href="hlogout.do"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>로그아웃</span></a></li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
