@@ -39,7 +39,7 @@
 			<!-- Sidebar - 로고 -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="../intranet/intranet_main.html">
+				href="mainpage.do">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-home"></i>
 				</div>
@@ -70,6 +70,10 @@
 	
 			<li class="nav-item"><a class="nav-link" href="hosP.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
+					
+			<li class="nav-item"><a class="nav-link" href="hlogout.do"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>로그아웃</span></a></li>
+					
 			<li class="nav-item"><a class="nav-link" href="hosinfo.ho"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>병원상세</span></a></li>
 
@@ -119,7 +123,20 @@
 
 								<div class="card" style="width: 500px text-align=center;">
 									<div class="card-body text-center">
+									
+									
+										<%-- <table style="width: 90%; height: 200px; border: none;" >
+											<tr>
+												<td>병원시간</td>
+												<td><input type="text" id="hComment" name="hComment" value="${ hospital.hComment }"></td>
+											</tr>
+											<tr>
+												<td>진료동물</td>
+												<td><input type="text" id="hComment" name="hComment" value="${ hospital.hComment }"></td>
+											</tr>
+										</table> --%>
 
+	
 										<textarea style="width: 90%; height: 200px; border: none; resize: none;" id="hComment" name="hComment"
 											>${ hospital.hComment }</textarea>
 
