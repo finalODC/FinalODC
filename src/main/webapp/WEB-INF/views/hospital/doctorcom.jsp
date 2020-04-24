@@ -112,6 +112,57 @@
                             
                             </ul>
                             </div>
+                            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807&libraries=services">
+						
+						
+						</script>
+					<script type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807">
+					
+					
+					</script>
+						
+					<script >
+					
+					var mapContainer = document.getElementById('map'), 
+				    mapOption = {
+				        center: new kakao.maps.LatLng(33.450701, 126.570667), 
+				        level: 3 
+				    };  
+
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+				// 주소-좌표 변환 객체
+				 var geocoder= new kakao.maps.services.Geocoder();
+				var addr = "${hospital.hAddress}".split("//");
+				var hname ="${hospital.hName}"
+				console.log(addr);
+				geocoder.addressSearch(addr[1], function(result, status) {
+
+				
+				     if (status === kakao.maps.services.Status.OK) {
+
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+				      
+				        var marker = new kakao.maps.Marker({
+				            map: map,
+				            position: coords
+				        });
+
+				     
+				        var infowindow = new kakao.maps.InfoWindow({
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+hname+'</div>'
+				        });
+				        infowindow.open(map, marker);
+
+				        map.setCenter(coords);
+				    } 
+				});    
+					
+						
+					
+					</script>
                             <script>
                             	$(document).ready(function(){
                             		pigo("${loginUser.hId}",1);
