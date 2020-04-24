@@ -17,15 +17,6 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	private HospitalDao2 hoDao2;
 
 	/**
-	 * 병원 정보 입력
-	 */
-	@Override
-	public int hupdate(HMember hm) {
-		
-		return hoDao2.hupdate(hm);
-	}
-
-	/**
 	 * 병원 계정 정보 변경
 	 */
 	@Override
@@ -34,23 +25,6 @@ public class HospitalServiceImpl2 implements HospitalService2{
 		return hoDao2.hosupdate(hm);
 	}
 
-	/**
-	 * 댓글 리스트 
-	 */
-	@Override
-	public ArrayList<hoReply> selectReplyList(int hId) {
-		
-		return hoDao2.selectReplyList(hId);
-	}
-
-	/**
-	 * 댓글 등록
-	 */
-	@Override
-	public int insertReply(hoReply hr) {
-		
-		return hoDao2.insertReply(hr);
-	}
 
 	/**
 	 * 병원 설명 등록
@@ -70,6 +44,34 @@ public class HospitalServiceImpl2 implements HospitalService2{
 		
 		return hoDao2.indoc(doc);
 	}
+
+	/**
+	 * 의사 삭제
+	 */
+	@Override
+	public int deleteDoc(int dId) {
+		
+		return hoDao2.deleteDoc(dId);
+	}
+
+
+	/**
+	 * 의사 수정
+	 */
+	@Override
+	public int updateDoc(Doctor doc) {
+		
+		return hoDao2.updateDoc(doc);
+	}
+
+
+	@Override
+	public ArrayList<Doctor> docList(String hId) {
+		
+		return hoDao2.docList(hId);
+	}
+
+
 
 	
 	

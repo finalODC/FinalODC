@@ -19,16 +19,6 @@ public class HospitalDao2 {
 	SqlSessionTemplate sqlSession;
 
 	/**
-	 * 병원 정보 입력
-	 * @param hm
-	 * @return
-	 */
-	public int hupdate(HMember hm) {
-		
-		return sqlSession.update("hospitalMapper.hupdate", hm);
-	}
-
-	/**
 	 * 병원 계정 정보 변경
 	 * @param hm
 	 * @return
@@ -38,25 +28,6 @@ public class HospitalDao2 {
 		return sqlSession.update("hospitalMapper.hosupdate", hm);
 	}
 
-	/**
-	 * 댓글 리스트
-	 * @param hId
-	 * @return
-	 */
-	public ArrayList<hoReply> selectReplyList(int hId) {
-		
-		return (ArrayList)sqlSession.selectList("hospitalMapper.selectReplyList", hId);
-	}
-
-	/**
-	 * 댓글 등록
-	 * @param hr
-	 * @return
-	 */
-	public int insertReply(hoReply hr) {
-		
-		return sqlSession.insert("hospitalMapper.insertReply", hr);
-	}
 
 	/**
 	 * 병원 설명 등록
@@ -76,6 +47,33 @@ public class HospitalDao2 {
 	public int indoc(Doctor doc) {
 		
 		return sqlSession.insert("hospitalMapper.indoc", doc);
+	}
+
+	/**
+	 * 의사 삭제
+	 * @param dId
+	 * @return
+	 */
+	public int deleteDoc(int dId) {
+		
+		return sqlSession.update("hospitalMapper.deleteDoc", dId);
+	}
+
+
+	/**
+	 * 의사 등록 
+	 * @param doc
+	 * @return
+	 */
+	public int updateDoc(Doctor doc) {
+		
+		return sqlSession.update("hospitalMapper.updateDoc", doc);
+	}
+
+
+	public ArrayList<Doctor> docList(String hId) {
+		
+		return (ArrayList)sqlSession.selectList("hospitalMapper.doclist", hId);
 	}
 
 	

@@ -21,7 +21,7 @@ public class HMember {
 	private Date hModifyDate;
 	private String hStatus;
 	
-	private ArrayList<hoReply> hoReply;
+	//private ArrayList<hoReply> hoReply;
 	private ArrayList<Doctor> doctor;
 	
 	
@@ -47,7 +47,7 @@ public class HMember {
 	
 	public HMember(String hId, String userId, String userPwd, String hCode, String hName, String hAddress,
 			String hPhone, String hEmail, String hComment, String hFile, Date hCreateDate, Date hModifyDate,
-			String hStatus, ArrayList<hoReply> hoReply, ArrayList<Doctor> doctor) {
+			String hStatus,  ArrayList<Doctor> doctor) {  //ArrayList<hoReply> hoReply,
 		super();
 		this.hId = hId;
 		this.userId = userId;
@@ -62,7 +62,7 @@ public class HMember {
 		this.hCreateDate = hCreateDate;
 		this.hModifyDate = hModifyDate;
 		this.hStatus = hStatus;
-		this.hoReply = hoReply;
+		//this.hoReply = hoReply;
 		this.doctor = doctor;
 	}
 
@@ -172,13 +172,13 @@ public class HMember {
 	}
 	
 
-	public ArrayList<hoReply> getHoReply() {
-		return hoReply;
-	}
-
-	public void setHoReply(ArrayList<hoReply> hoReply) {
-		this.hoReply = hoReply;
-	}
+//	public ArrayList<hoReply> getHoReply() {
+//		return hoReply;
+//	}
+//
+//	public void setHoReply(ArrayList<hoReply> hoReply) {
+//		this.hoReply = hoReply;
+//	}
 
 	public ArrayList<Doctor> getDoctor() {
 		return doctor;
@@ -193,7 +193,7 @@ public class HMember {
 		return "HMember [hId=" + hId + ", userId=" + userId + ", userPwd=" + userPwd + ", hCode=" + hCode + ", hName="
 				+ hName + ", hAddress=" + hAddress + ", hPhone=" + hPhone + ", hEmail=" + hEmail + ", hComment="
 				+ hComment + ", hFile=" + hFile + ", hCreateDate=" + hCreateDate + ", hModifyDate=" + hModifyDate
-				+ ", hStatus=" + hStatus + ", hoReply=" + hoReply + ", doctor=" + doctor + "]";
+				+ ", hStatus=" + hStatus + ", hoReply=" +", doctor=" + doctor + "]";   //hoReply + 
 	}
 
 

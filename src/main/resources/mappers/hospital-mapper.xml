@@ -21,16 +21,6 @@
 
  	</resultMap>
  
- 	<resultMap type="hoReply" id="hoReplyResultSet">
-		<id property="hrId" column="HRID"/>
-		<result property="hrContent" column="RCONTENT"/>
-		<result property="hrefBid" column="REF_HID"/>
-		<result property="hrWriter" column="H_RWRITER"/>
-		<result property="hrCreateDate" column="HR_CREATE_DATE"/>
-		<result property="hrModifyDate" column="HR_MODIFY_DATE"/>
-		<result property="hrStatus" column="HR_STATUS"/>
-	</resultMap>
- 
  	<resultMap type="Doctor" id="doctorResultSet">
  		<id property="dId" column="DOCID"/>
  		<result property="refHid" column="REF_H_ID"/>
@@ -65,20 +55,24 @@
  		VALUES(SEQ_DOCID.NEXTVAL,#{refHid},#{docName},#{docIntro},#{docFile},'Y')
  	</insert>
  	
- 	
- 	<!-- 댓글 리스트 불러오기 -->
- 	<select id="selectReplyList" resultMap="hoReplyResultSet">
-		SELECT *
-		FROM H_REPLY
-		WHERE REF_HID=#{hId}
-		AND HR_STATUS='Y'
-		ORDER BY RID DESC
+ 	<!-- 의사 삭제 -->
+ 	<update id="deleteDoc" >
+ 		UPDATE DOCTOR
+ 		SET DOC_STATUS='N'
+ 		WHERE DOCID=#{dId}
+ 	</update>
+ 
+	<!-- 의사 수정 -->
+	<update id="updateDoc">
+		UPDATE DOCTOR
+		SET DOC_NAME=#{docName},DOC_INTRO=#{docIntro},DOC_FILE=#{docFile}
+		WHERE DOCID=#{dId}
+	</update>
+	
+	<select id="doclist" resultMap="doctorResultSet">
+		SELECT * FROM DOCTOR
+		WHERE DOC_STATUS = 'Y' AND REF_H_ID = #{hId}
+	
 	</select>
-	
-	<insert id="insertReply" parameterType="hoReply">
-		INSERT INTO H_REPLY
-		VALUES(SEQ_HRID.NEXTVAL,#{hrContent},#{hrefBid},#{hrWriter},SYSDATE,SYSDATE,NORMAL)
-	</insert>
-	
  
  </mapper>

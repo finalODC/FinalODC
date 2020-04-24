@@ -46,7 +46,7 @@ public class HospitalController2 {
 	@RequestMapping("info.ho")
 	public String goInfo(Model m, HttpSession session) {
 		hm1 = (HMember)session.getAttribute("loginUser");
-		System.out.println("들어오자 마자"+hm1);
+//		System.out.println("들어오자 마자"+hm1);
 		m.addAttribute("hospital", hm1);
 		
 		return "hospital";
@@ -71,45 +71,7 @@ public class HospitalController2 {
 	public String goCom() {
 		return "doctorcom";
 	}
-
-
-//	@RequestMapping("updatehosinfo.ho")
-//	public String updatehosinfo(HMember hm, String hComment, HttpServletRequest request, String hFile,
-//			@RequestParam(name="hImage", required=false, value="") MultipartFile file, Model model, 
-//			@RequestParam(value="add1", required=false, defaultValue="")String add1, 
-//			@RequestParam(value="add2", required=false, defaultValue="" )String add2, 
-//			@RequestParam(value="add3", required=false, defaultValue="" )String add3, SessionStatus session) {
-//
-//		hm.sethComment(hComment);
-//		
-//		System.out.println("hComment : " + hComment);
-//
-//		if(!add1.equals("") && add1 !=null) {
-//			hm.sethAddress(add1 + add2 + add3);
-//		}
-//		
-//		System.out.println(add1 + add2 + add3);
-//	
-//		if(!file.getOriginalFilename().equals("")) {
-//
-//			String renameFileName = saveFile(file, request);
-//
-//			if(renameFileName != null) {
-//				hm.sethFile(file.getOriginalFilename());
-//			}
-//		}
-//		hm.sethFile(hFile);
-//		
-//		 System.out.println("hfile : " + hFile);
-//
-//		int result = hService2.updatehosinfo(hm);
-//
-//		if(result > 0) {
-//			return "redirect:chart.ho";
-//		} else {
-//			return "homepage/h_index.jsp";
-//		}
-//	}
+	
 
 	@RequestMapping("updatehosinfo.ho")
 	public String updatehosinfo(HMember hm, HttpServletRequest request, Model model,
@@ -146,13 +108,7 @@ public class HospitalController2 {
 		int result = hService2.updatehosinfo(hm);
 		
 		System.out.println(result);
-		
-		
-		
-		
-//		model.addAttribute("imgs",hComment);
-//		model.addAttribute("imgs",hm.gethAddress());
-		
+	
 		if(result > 0) {
 			model.addAttribute("hospital",hm1);
 			System.out.println(hm1);
@@ -170,8 +126,6 @@ public class HospitalController2 {
 			  @RequestParam(name="docName",required=false) String docName) {
 		
 
-		ArrayList<Doctor> doc1 = hm1.getDoctor();
-	
 		
 		String renameImageName = saveDoc(file, request);
 		
@@ -184,7 +138,6 @@ public class HospitalController2 {
 			}
 		}
 		
-		//new 객체 rset
 		
 		doc.setDocIntro(docIntro);
 		
@@ -199,74 +152,16 @@ public class HospitalController2 {
 		
 		if(result > 0) {
 			
-			doc1.add(doc);
+			ArrayList<Doctor> doc1 = hService2.docList(hm1.gethId());
 			hm1.setDoctor(doc1);
 			model.addAttribute("hospital",hm1);
+		
 			return "redirect:insertdoc.ho";
 		} else {
 			return "redirect:comdoc.ho";
 		}
 		
 	}
-	
-	
-	
-//	@RequestMapping("indoc.ho")
-//	@ResponseBody
-//	public String indoc(Doctor doc,HttpServletRequest request, Model model,
-//			@RequestParam(name="docImage",required=false) MultipartFile file,
-//			@RequestParam(name="docName",required=false)String docName, 
-//			@RequestParam(name="docIntro",required=false)String docIntro) {
-//		
-//		
-//		
-//		String[] docImage = request.getParameterValues("docImage");
-//		
-//		
-//		
-//		String renameFileName = saveHos(file, request);
-//		
-//			if(!file.getOriginalFilename().equals("")) {
-//				// 서버에 업로드
-//	
-//				if(renameFileName != null) {		// 파일이 잘 저장된 경우
-//					doc.setDocFile(renameFileName);
-//				
-//				}
-//			}
-//		
-//		
-//		doc.setDocName(docName);
-//		
-//		doc.setDocIntro(docIntro);
-//		
-//		System.out.println("ajaxMsg : " + docImage);
-//		
-//		
-//
-//
-//	
-//		System.out.println("intro , name : " + docIntro + docName);
-//	
-//		System.out.println("doc : " + doc);
-//	
-//		int result = hService2.indoc(doc);
-//	
-//		System.out.println("result : :  " + result);
-//	
-//		if(result > 0) {
-//			model.addAttribute("hospital",hm1);
-//			return "redirect:chart.ho";
-//		} else {
-//			return "redirect:comdoc.ho";
-//		}
-//	}
-	
-	
-	
-	
-	
-	
 
 	public String saveHos(MultipartFile file, HttpServletRequest request) {
 
@@ -330,30 +225,53 @@ public class HospitalController2 {
 
 		return renameImageName;
 	}
+	@ResponseBody
+	@RequestMapping("deleteDoc.ho")
+	public String deleteDoc(int dId,Model model) {
+		
+	System.out.println(dId);
+		
+		int result = hService2.deleteDoc(dId);
 
-//	@RequestMapping("i.ho")
-//	public String updatehosinfo(Model model,HMember hm, String hComment, String add1, String add2, String add3, SessionStatus session) {
-//
-//		hm.sethComment(hComment);
-//
-//
-//		System.out.println("hComment : " + hComment);
-//
-//		if(!add1.equals("")) {
-//			hm.sethAddress(add1 + add2 + add3);
-//		}
-//
-//		int result = hService2.updatehosinfo(hm);
-//
-//		if(result > 0) {
-//			session.setComplete();
-//			return "redirect:hosP.ho";
-//		}else {
-//			return "";
-//		}
-//	}
+		System.out.println("re : " + result);
+		if(result > 0) {
 
+				ArrayList<Doctor> doc1 = hService2.docList(hm1.gethId());
+				
+				hm1.setDoctor(doc1);
+				model.addAttribute("hospital",hm1);
+			return "1";
+		} else {
+			return "0";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("updateDoc")
+	public String updateDoc(@ModelAttribute Doctor doc, Model model) {
+		
+		int result = hService2.updateDoc(doc);
+		
+	
+		if(result > 0) {
+			ArrayList<Doctor> doc1 = hm1.getDoctor();
+			for(int i = 0; i<doc1.size();i++) {
+				if(doc1.get(i).getdId() == doc.getdId()) {
+					doc1.set(i, doc);
+				}
+			}
+			model.addAttribute("hospital",hm1);
+			hm1.setDoctor(doc1);
+		
+			return "1";
+		} else {
+			return "0";
+		}
+		
+		
+	}
 
+	
 	@RequestMapping("hosupdate.ho")
 	public String hosupdate(Model model, HMember hm, String pwd, String hPhone) {
 
@@ -381,29 +299,5 @@ public class HospitalController2 {
 
 	}
 
-	@RequestMapping("hrList.ho")
-	public void getReplyList(HttpServletResponse response, int hId) throws JsonIOException, IOException {
-
-		ArrayList<hoReply> hrList = hService2.selectReplyList(hId);
-
-		response.setContentType("application/json; charset=utf-8");
-
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-
-		gson.toJson(hrList, response.getWriter());
-	}
-
-	@RequestMapping("addReply.ho")
-	@ResponseBody
-	public String addReply(hoReply hr) {
-
-		int result = hService2.insertReply(hr);
-
-		if(result > 0) {
-			return "success";
-		} else {
-			return "fail";
-		}
-	}
 
 }

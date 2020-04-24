@@ -7,6 +7,7 @@ import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.board.model.vo.TipBoard;
+import com.ohdogcat.odc.board.model.vo.TipReply;
 
 public interface BoardService {
 
@@ -87,15 +88,23 @@ public interface BoardService {
 	
 	int FreeBoardSearchCount(int fbId);
 	//-------------------------------------------- 여기서부터 멍멍이 게시판 -----------------------------------------------
+
 	
 	
-	int DogBoardCount();
+//	
+//	int DogBoardCount();
+//	
+//	ArrayList<TipBoard> DogBoardList(PageInfo pi);
+//	
+//	int DogBoardWriter(TipBoard tb);
+//	
+//	TipBoard DogBoardView(int tbId);
+//	
+//	int DogBoardReply(TipReply tr);
 	
-	ArrayList<TipBoard> DogBoardList(PageInfo pi);
+
 	
-	int DogBoardWriter(TipBoard tb);
 	
-	TipBoard DogBoardView(int tbId);
-	
+
 	
 }
