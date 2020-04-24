@@ -62,7 +62,9 @@ public class HospitalController3 {
 	@ResponseBody
 	@RequestMapping("insertRe.ho")
 	public String insertRe(hoReply ho) {
+		System.out.println(ho);
 		Integer result = hService3.insertRe(ho);
+		System.out.println(result);
 		return result.toString();
 	}
 	

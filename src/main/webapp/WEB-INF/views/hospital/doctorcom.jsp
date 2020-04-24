@@ -112,6 +112,8 @@
                             
                             </ul>
                             </div>
+               
+				
                             <script>
                             	$(document).ready(function(){
                             		pigo("${loginUser.hId}",1);
@@ -131,36 +133,27 @@
                             				var listCount 
                             				for(var i in list){
                             					var $tr = $("<tr>");
-                            					var $td0 = $("<td width='3%' height='9%'> ")
-                            					var $td1= $("<td width='3%'>").text(list[i].rId);
+                            					var $td1= $("<td width='6%'>").text(list[i].rId);
                             					var $div = $("<div height='100%' width='100%'>").html(list[i].rContent);
-                            					var $td2= $("<td  width='67%'>").append($div);
+                            					var $td2= $("<td  width='60%'>").append($div);
                             					var $td3= $("<td width='8%'>").text(list[i].rWriter);
                             					var $td4= $("<td width='8%'>").text(list[i].rCreateDate);
-                            					var $td5= $("<td width='10%'>");
-                            					
-                            					
-                            					
-                            					$tr.append($td1).append($td2).append($td3).append($td4).append($td5)//.append($td6);
+                            					var $td5= $("<td width='15%'>");
+ 
+                            					$tr.append($td1).append($td2).append($td3).append($td4).append($td5)
                             					if(list[i].level ==2){
-                            						
-                            						$tr.prepend($td0.html('<svg class="bi bi-arrow-return-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
-                            								  '<path fill-rule="evenodd" d="M10.146 5.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 9l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>'
-                            								+' <path fill-rule="evenodd" d="M3 2.5a.5.5 0 00-.5.5v4A2.5 2.5 0 005 9.5h8.5a.5.5 0 000-1H5A1.5 1.5 0 013.5 7V3a.5.5 0 00-.5-.5z" clip-rule="evenodd"/>' 
-                            								  +'</svg>'
+                            					$div2 = '<svg class="bi bi-arrow-return-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
+                      								  '<path fill-rule="evenodd" d="M10.146 5.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 9l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>'
+                        								+' <path fill-rule="evenodd" d="M3 2.5a.5.5 0 00-.5.5v4A2.5 2.5 0 005 9.5h8.5a.5.5 0 000-1H5A1.5 1.5 0 013.5 7V3a.5.5 0 00-.5-.5z" clip-rule="evenodd"/>' 
+                        								  +'</svg>'
+                            					$td1.html($div2 + list[i].rId);
 
-                              			        )).css("background","lightgray");
-                            					
-                            						$td5.append("<button class='del btn btn-danger'>삭제</button><br> <button class='update btn btn-default'>수정</button>");
-                            						/* if(list[i].rStatus =='N'){
-                            							$tr.empty();
-                            						} */
-                            						
+                            						$td5.append(" <button class='update btn btn-warning'>수정</button> &nbsp;&nbsp;<button class='del btn btn-danger'>삭제</button>");
+                            						$tr.css("background","lightgray");
                             					}else{
-                            						/* $td1.after($td0); */
-                            						$td2.attr("colspan","2")
+                            					
                             						$td5.append("<button class='addRe btn btn-primary'>댓글달기</button>");
-                            						//$td6.append("<button>신고하기</button>");
+                            						
                             						
                             					}
                             					
@@ -170,56 +163,52 @@
                             					
            
                             					
-                            					$td0.css("background","white");
+                            					
                             					
                             					$("#reply").append($tr);
                             				}
                             				
                             				$(".addRe").click(function(){
-                            					var ParentHrid = $(this).parents("td").siblings(":eq(0)").text();
-                            				//$(".writeComment").css("display","none");
+                            					var parentHrid = $(this).parents("td").siblings(":eq(0)").text();
+                            					
          									
                             					$(".writeComment").remove();
                             					$tr = $("<tr class='writeComment'>");
                             					$td1= $("<td>").html('<svg class="bi bi-chevron-compact-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
                       								  '<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 01.671.223l3 6a.5.5 0 010 .448l-3 6a.5.5 0 11-.894-.448L9.44 8 6.553 2.224a.5.5 0 01.223-.671z" clip-rule="evenodd"/>'
                   									  +'</svg>')
-                            					$td2 =$("<td colspan='4'>").append("<textarea id='recommentT' cols='120', rows ='4'>");
-                            					$button = $("<button class='btn btn-primary'onclick ='recomment("+hId+","+ParentHrid+");'>").text("입력");
+                            					$td2 =$("<td colspan='3'>").append("<textarea id='recommentT' cols='100', rows ='4'>");
+                            					$button = $("<button class='btn btn-primary'onclick ='recomment("+hId+","+parentHrid+");'>").text("입력");
                             					$td3 =$("<td>").append($button);
-                            					//$td2 =$("<td>").append()
-                            					
-                            					//console.log(hId);
+
                             					$(this).parents("tr").after($tr.append($td1).append($td2).append($td3))
                             					
                             				});
                             				
                             				$(".update").click(function(){
-                            					var rid = $(this).parents("td").siblings(":eq(1)").text();
-                            				//$(".writeComment").css("display","none");
-         										var text = $(this).parents("td").siblings(":eq(2)").children("div").html();
+                            					var rid = $(this).parents("td").siblings(":eq(0)").text().substring(1);
+         										var text = $(this).parents("td").siblings(":eq(1)").children("div").html();
          										text=text.replace(/<br>/g, '\n');
-                            					console.log(text)
+                            					console.log(rid)
                             					$(".writeComment").remove();
                             					$tr = $("<tr class='writeComment'>");
                             					$td1= $("<td>").html('<svg class="bi bi-chevron-compact-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">'+
                       								  '<path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 01.671.223l3 6a.5.5 0 010 .448l-3 6a.5.5 0 11-.894-.448L9.44 8 6.553 2.224a.5.5 0 01.223-.671z" clip-rule="evenodd"/>'
                   									  +'</svg>')
-                            					$td2 =$("<td colspan='4'>").html("<textarea id='recommentT' cols='120', rows ='4'>"+text+"</textarea>");
+                            					$td2 =$("<td colspan='3'>").html("<textarea id='recommentT' cols='120', rows ='4'>"+text+"</textarea>");
                             					
                             					console.log($("#recommentT"));
-                            					$button = $("<button class='btn btn-primary'onclick ='update("+rid+")'>").text("수정");
+                            					$button = $("<button class='btn btn-primary'onclick ='update("+rid+")'>").text("수정완료");
                             					$td3 =$("<td>").append($button);
-                            					//$td2 =$("<td>").append()
-                            					
-                            					//console.log(hId);
+
                             					$(this).parents("tr").after($tr.append($td1).append($td2).append($td3))
                             					
                             				});
                             				
                             				$(".del").click(function(){
                             					
-                            					var rId= $(this).parents("td").siblings(":eq(1)").text();
+                            					var rId= $(this).parents("td").siblings(":eq(0)").text().substring(1);
+                            					console.log(rId)
                             					if(!confirm(rId+"번 댓글을 삭제 하시겠습니까?")){
                             						return false;
                             					}
@@ -297,8 +286,7 @@
                             			return false;
                             		}
                             		var arr = $("#recommentT").val().split("\n");
-                            
-                            		
+
                             		$.ajax({
                             			url:"insertRe.ho",
                             			type:"post",
@@ -312,8 +300,7 @@
                             				}
                             			}
                             		})
-                            		
-                        			
+
                         		}
                             	
                             	function update(rId){

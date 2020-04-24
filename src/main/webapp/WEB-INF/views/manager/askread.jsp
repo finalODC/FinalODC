@@ -108,12 +108,9 @@
               </table>
               <script>
               	$(document).ready(function(){
-              		var a = "${qna.qnaRe.aContent}".split("|||");
+              		var a = "${qna.qnaRe.aContent}";
+              		$("#aContentFill").html(a);
               		
-              		for(var i = 0; i<a.length; i++){
-              			$("#aContentFill").append(a[i]);
-              		}
-              	
               		
               	
               		$("#delCo").click(function(){
@@ -164,14 +161,14 @@
         	  
         	  var arr =  $("#content1").val().split("\n");
               for(var i = 0; i<arr.length;i++){
-            	  arr[i] = "<p>"+arr[i]+"<p>"
+            	  arr[i] = "<p>"+arr[i]+"</p>"
               }
         	  
          
             	$.ajax({
           		url:"insertQnaRe.ma",
           		type:"post",
-          		data:{aContent:arr.join("|||"),
+          		data:{aContent:arr.join(""),
           				refQid:"${qna.qId}"},
           		success:function(data){
           			if(data>0){

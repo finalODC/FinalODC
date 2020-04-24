@@ -96,7 +96,7 @@ public class searchHospitalController {
 	public ModelAndView hosdetail(ModelAndView mv,@RequestParam int hId) {
 
 		HMember hm = shService.gethospital(hId);
-		
+
 		mv.addObject("hm",hm);
 		mv.setViewName("/homepage/inserthospital");
 		
