@@ -68,5 +68,11 @@
 		SET DOC_NAME=#{docName},DOC_INTRO=#{docIntro},DOC_FILE=#{docFile}
 		WHERE DOCID=#{dId}
 	</update>
+	
+	<select id="doclist" resultMap="doctorResultSet">
+		SELECT * FROM DOCTOR
+		WHERE DOC_STATUS = 'Y' AND REF_H_ID = #{hId}
+	
+	</select>
  
  </mapper>

@@ -38,29 +38,6 @@ public class FreeBoardController {
 	 * @param currentPage
 	 * @return
 	 */
-//	@RequestMapping("Fblist.bo")
-//	public ModelAndView boardList(ModelAndView mv, 
-//			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
-//		//@RequestParam 은 페이징 처리용으로 반드시 필요한거다.
-//		System.out.println(currentPage);
-//
-//		int listCount = bService.getFreeListCount();
-//
-//		System.out.println("listCount : " + listCount);
-//
-//		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
-//
-//		ArrayList<FreeBoard> FBlist = bService.selectFreeList(pi);
-//
-//		System.out.println("FBlist : " +  FBlist);
-//
-//		mv.addObject("list",FBlist);
-//		mv.addObject("pi",pi);
-//		mv.setViewName("BoardPageFree");
-//
-//		return mv;
-//	}
-
 	
 	@RequestMapping("Fblist.bo")
 	public ModelAndView boardList(ModelAndView mv, 
@@ -138,11 +115,6 @@ public class FreeBoardController {
 	 * @return
 	 */
 
-	/*
-	 * @RequestMapping("FBview.bo") public String FboardView() {
-	 * return"BoardPageView"; }
-	 */
-
 
 	@RequestMapping("FBviewDetail.bo")
 	public ModelAndView FreeBoardViewDetail(ModelAndView mv,int fbId,
@@ -152,9 +124,6 @@ public class FreeBoardController {
 		
 		FreeBoard fb = bService.selectFreeBoard(fbId);
 
-		System.out.println("게시글 상세조회 : " +fb);
-		System.out.println("mv : " + mv);
-		System.out.println("currentPage : " + currentPage);
 		if(fb != null) {
 			mv.addObject("fb",fb)
 			.addObject("currentPage",currentPage)

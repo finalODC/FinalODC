@@ -46,7 +46,7 @@ public class HospitalController2 {
 	@RequestMapping("info.ho")
 	public String goInfo(Model m, HttpSession session) {
 		hm1 = (HMember)session.getAttribute("loginUser");
-		System.out.println("들어오자 마자"+hm1);
+//		System.out.println("들어오자 마자"+hm1);
 		m.addAttribute("hospital", hm1);
 		
 		return "hospital";
@@ -126,8 +126,6 @@ public class HospitalController2 {
 			  @RequestParam(name="docName",required=false) String docName) {
 		
 
-		ArrayList<Doctor> doc1 = hm1.getDoctor();
-	
 		
 		String renameImageName = saveDoc(file, request);
 		
@@ -154,9 +152,10 @@ public class HospitalController2 {
 		
 		if(result > 0) {
 			
-			doc1.add(doc);
+			ArrayList<Doctor> doc1 = hService2.docList(hm1.gethId());
 			hm1.setDoctor(doc1);
 			model.addAttribute("hospital",hm1);
+		
 			return "redirect:insertdoc.ho";
 		} else {
 			return "redirect:comdoc.ho";
@@ -226,32 +225,30 @@ public class HospitalController2 {
 
 		return renameImageName;
 	}
-
+	@ResponseBody
 	@RequestMapping("deleteDoc.ho")
-	public String deleteDoc(int dId) {
+	public String deleteDoc(int dId,Model model) {
 		
-	
+	System.out.println(dId);
 		
 		int result = hService2.deleteDoc(dId);
 
 		System.out.println("re : " + result);
 		if(result > 0) {
 
-				ArrayList<Doctor> doc1 = hm1.getDoctor();
-				for(int i = 0; i<doc1.size();i++) {
-					if(doc1.get(i).getdId() == dId) {
-						doc1.remove(i);
-					}
-				}
+				ArrayList<Doctor> doc1 = hService2.docList(hm1.gethId());
+				
 				hm1.setDoctor(doc1);
-			return "redirect:insertdoc.ho";
+				model.addAttribute("hospital",hm1);
+			return "1";
 		} else {
-			return "redirect:comdoc.ho";
+			return "0";
 		}
 	}
-
+	
+	@ResponseBody
 	@RequestMapping("updateDoc")
-	public String updateDoc(@ModelAttribute Doctor doc) {
+	public String updateDoc(@ModelAttribute Doctor doc, Model model) {
 		
 		int result = hService2.updateDoc(doc);
 		
@@ -263,11 +260,12 @@ public class HospitalController2 {
 					doc1.set(i, doc);
 				}
 			}
+			model.addAttribute("hospital",hm1);
 			hm1.setDoctor(doc1);
 		
-			return "redirect:insertdoc.ho";
+			return "1";
 		} else {
-			return "redirect:comdoc.ho";
+			return "0";
 		}
 		
 		

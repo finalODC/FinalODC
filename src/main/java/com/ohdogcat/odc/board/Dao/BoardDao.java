@@ -8,11 +8,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ohdogcat.odc.board.model.vo.BoardSearch;
 import com.ohdogcat.odc.board.model.vo.FreeBoard;
+import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.board.model.vo.TipBoard;
-import com.ohdogcat.odc.board.model.vo.FreeReply;
 
 @Repository("bDao")
 public class BoardDao {
@@ -81,7 +80,7 @@ public class BoardDao {
 
 	public FreeBoard FreeBoardUpdateView(int fbId) {
 		
-		System.out.println("Daofbid : " + fbId);
+		
 		return sqlSession.selectOne("boardMapper.FreeBoardUpdateView",fbId);
 	}
 	
@@ -101,70 +100,80 @@ public class BoardDao {
 		
 		return sqlSession.selectOne("boardMapper.FreeBoardSearchCount",fbId);
 	}
-	
-	
+
+
 	//------------------------------------- 여기서 부터 dogBoard 페이지-------------------------------------
 
-	public int DogBoardCount() {
+	public int DogBoardListCount(Map<String, String> Dmap) {
 		
-		return sqlSession.selectOne("TipboardMapper.DogBoardCount");
+		return sqlSession.selectOne("TipboardMapper.DogBoardListCount",Dmap);
 	}
 
 
 
-	public ArrayList<TipBoard> DogBoardList(PageInfo pi) {
+	public ArrayList<TipBoard> DogBoardList(Map<String, String> Dmap, PageInfo pi) {
 		
-		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds =new RowBounds(offset,pi.getBoardLimit());
+		System.out.println(Dmap);
 		
-		return (ArrayList)sqlSession.selectList("TipboardMapper.DogBoardList",pi);
+		return (ArrayList)sqlSession.selectList("TipboardMapper.DogBoardList",Dmap,rowBounds);
 	}
-
-
-
-	public int DogBoardWriter(TipBoard tb) {
-		// TODO Auto-generated method stub
-		return sqlSession.insert("TipboardMapper.DogBoardWriter",tb);
-	}
-
-
-
-	public TipBoard DogBoardView(int tbId) {
-		
-		return sqlSession.selectOne("TipboardMapper.DogBoardView",tbId);
-	}
-
-
-
-	public int DogupdateCount(int tbId) {
-		
-		return sqlSession.update("TipboardMapper.DogupdateCount",tbId);
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
 	
 	
 
+//	public int DogBoardCount() {
+//		
+//		return sqlSession.selectOne("TipboardMapper.DogBoardCount");
+//	}
+//
+//
+//
+//	public ArrayList<TipBoard> DogBoardList(PageInfo pi) {
+//		
+//		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+//		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+//		
+//		return (ArrayList)sqlSession.selectList("TipboardMapper.DogBoardList",pi);
+//	}
+//
+//
+//
+//	public int DogBoardWriter(TipBoard tb) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.insert("TipboardMapper.DogBoardWriter",tb);
+//	}
+//
+//
+//
+//	public TipBoard DogBoardView(int tbId) {
+//		
+//		return sqlSession.selectOne("TipboardMapper.DogBoardView",tbId);
+//	}
+//
+//
+//	
+//	public int DogBoardViewCount(int tbId) {
+//		
+//		return sqlSession.update("TipboardMapper.DogBoardViewCount",tbId);
+//	}
+//	
+//
+//	
+//	
+//	
+//	
+//
+//	public int DogBoardReply(TipReply tr) {
+//		
+//		return sqlSession.insert("TipboardMapper.DogBoardReply",tr);
+//	}
 
 
+//////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@////////////////////////////////////////
 	
-
-
+	
+	
 	
 	
 }

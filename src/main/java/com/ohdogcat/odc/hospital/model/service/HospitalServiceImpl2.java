@@ -65,6 +65,13 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	}
 
 
+	@Override
+	public ArrayList<Doctor> docList(String hId) {
+		
+		return hoDao2.docList(hId);
+	}
+
+
 
 	
 	

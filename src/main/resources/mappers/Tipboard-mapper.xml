@@ -16,13 +16,33 @@
 	<result property="tbStatus" column="TB_STATUS"/>
 	<result property="tbComplain" column="COMPLAIN"/>
 	
+	
 </resultMap>
 
-	<select id="DogBoardCount" resultType="_int">
+<resultMap id="TipReplyResultSet" type="TReply">
+	<id property="trId" column="TRID"/>
+	<result property="trContent" column="RCONTENT"/>
+	<result property="trreftbId" column="REF_TBID"/>
+	<result property="trWriter" column="T_RWRITER"/>
+	<result property="trCreateDate" column="TR_CREATE_DATE"/>
+	<result property="trModifyDate" column="TR_MODIFY_DATE"/>
+	<result property="trStatus" column="TR_STATUS"/>
+</resultMap>
+	
+
+	<select id="DogBoardListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM T_BOARD
 		WHERE TB_STATUS = 'Y'
 		AND TB_TYPE = 'DOG'
+		<if test ="dsearchkey !=null and dsearch != null">
+		<if test ="dsearchkey == 'title'">
+			AND T_BTITLE LIKE '%'||#{dsearch}||'%'
+		</if>
+		<if test ="dsearchkey == 'writer'">
+			AND T_BWRITER LIKE '%'||#{dsearch}||'%'
+		</if>
+	</if>
 	</select>
 	
 	<select id="DogBoardList" resultMap="TipBoardResultSet">
@@ -30,6 +50,14 @@
 		FROM T_BOARD
 		WHERE TB_STATUS = 'Y'
 		AND TB_TYPE= 'DOG'
+		<if test ="dsearchkey !=null and dsearch != null">
+		<if test ="dsearchkey == 'title'">
+			AND T_BTITLE LIKE '%'||#{dsearch}||'%'
+		</if>
+		<if test ="dsearchkey == 'writer'">
+			AND T_BWRITER LIKE '%'||#{dsearch}||'%'
+		</if>
+	</if>
 		ORDER BY TBID DESC
 	</select>
 	
@@ -48,9 +76,14 @@
 		AND TB_STATUS='Y'
 	</select>
 	
-	<update id="DogupdateCount">
+	<update id="DogBoardViewCount">
 		UPDATE T_BOARD
-		SET T_BCOUNT = T_BCOUNT+1
-		WHERE TBID = #{tbId}
+		SET T_BCOUNT = T_BCOUNT +1
+		WHERE TBID= #{tbId}
 	</update>
+	
+	<insert id="DogBoardReply" parameterType="TReply">
+		INSERT INTO T_REPLY VALUES
+		(SEQ_TRID.NEXTVAL,#{trContent},#{trreftbId},#{trWriter},SYSDATE,SYSDATE,'Y')
+	</insert>
 </mapper>
