@@ -93,7 +93,7 @@ public class HMemberController {
 		
 		
 		session.setComplete();
-		return "redirect:hloginp.do";
+		return "homepage/h_index";
 	}
 	
 	@ResponseBody
