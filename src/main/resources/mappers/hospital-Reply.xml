@@ -18,7 +18,7 @@
  	</resultMap>
  	<select id="getListCount" resultType="_int">
  		select count(*) from h_reply
- 		where REF_HID = #{hId} and HR_Status ='Y'
+ 		where REF_HID = #{hId} 
  	
  	</select>
  	

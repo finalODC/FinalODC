@@ -53,10 +53,10 @@
  <select id="login"  resultMap="HMemberResultMap">
  	SELECT * FROM HOSPITAL
  	Left JOIN DOCTOR on( HID = REF_H_ID)
- 	WHERE USERID=#{userId} and H_STATUS = 'Y'
+ 	WHERE USERID=#{userId} and H_STATUS = 'Y'and DOC_STATUS ='Y'
  	
  		<if test="doctor != null">
- 			<!-- WHERE USERID=#{userId} and H_STATUS = 'Y' -->AND DOC_NAME =#{doctor[0].docName} and DOC_STATUS ='Y'
+ 			<!-- WHERE USERID=#{userId} and H_STATUS = 'Y' -->AND DOC_NAME =#{doctor[0].docName} 
  		</if>
  		<!-- <choose>
  		<when test="doctor == null">
