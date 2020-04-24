@@ -19,26 +19,9 @@
  	<result property="hStatus" column="H_STATUS"/>
  	
  	 <collection property="doctor"  javaType ="java.util.ArrayList" resultMap="DoctorResultMap"/> 
- 	
- 	<!--<collection property="hoReply"  javaType ="java.util.ArrayList" resultMap="hoReplyResultMap"/>-->
- 	
- 	<!-- <collection property="posts" ofType="Post"/> -->
- 	
- 
- 	
+
  	</resultMap>
  	
- 	<!-- <resultMap type="hoReply" id="hoReplyResultMap">
- 		<id property ="rId" column="HRID"/>
- 		<result property = "refHid" column="REF_HID"/>
- 		<result property="rContent" column="RCONTENT"/>
- 		<result property="rWriter" column="H_RWRITER"/>
- 		<result property="rCreateDate" column="HR_CREATE_DATE"/>
- 		<result property="rModifyDate" column="HR_MODIFY_DATE"/>
- 		<result property="rStatus" column="HR_STATUS"/>
- 		
- 	
- 	</resultMap> -->
  	
  	<resultMap type="Doctor" id="DoctorResultMap">
  		<id property="dId" column="DOCID"/>
@@ -52,19 +35,14 @@
  	
  <select id="login"  resultMap="HMemberResultMap">
  	SELECT * FROM HOSPITAL
- 	Left JOIN DOCTOR on( HID = REF_H_ID)
- 	WHERE USERID=#{userId} and H_STATUS = 'Y'and DOC_STATUS ='Y'
+ 	Left JOIN (SELECT * FROM DOCTOR WHERE DOC_STATUS ='Y') on( HID = REF_H_ID)
+ 	WHERE USERID=#{userId} and H_STATUS = 'Y'
+ 	
  	
  		<if test="doctor != null">
- 			<!-- WHERE USERID=#{userId} and H_STATUS = 'Y' -->AND DOC_NAME =#{doctor[0].docName} 
+ 		AND DOC_NAME =#{doctor[0].docName} 
  		</if>
- 		<!-- <choose>
- 		<when test="doctor == null">
- 		 Left JOIN H_REPLY on(HID= REF_HID)  
- 			WHERE USERID=#{userId} and H_STATUS = 'Y' and DOC_STATUS ='Y'
- 		</when> 
-
- 	</choose>-->
+ 	
  </select>	
  
   <select id="checkBusiness" parameterType="HMember" resultType="_int">
