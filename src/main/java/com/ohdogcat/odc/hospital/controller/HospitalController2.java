@@ -112,7 +112,7 @@ public class HospitalController2 {
 		if(result > 0) {
 			model.addAttribute("hospital",hm1);
 			System.out.println(hm1);
-			return "redirect:chart.ho";
+			return "redirect:info.ho";
 		} else {
 			return "redirect:comdoc.ho";
 		}
@@ -138,14 +138,9 @@ public class HospitalController2 {
 			}
 		}
 		
-		
 		doc.setDocIntro(docIntro);
 		
 		doc.setDocName(docName);
-		
-		System.out.println("intro , name : " + docIntro + docName);
-		
-		System.out.println("doc : " + doc);
 		
 		int result = hService2.indoc(doc);
 		
@@ -163,6 +158,97 @@ public class HospitalController2 {
 		
 	}
 
+	
+	@ResponseBody
+	@RequestMapping("deleteDoc.ho")
+	public String deleteDoc(int dId,Model model) {
+		
+	System.out.println(dId);
+		
+		int result = hService2.deleteDoc(dId);
+
+		System.out.println("re : " + result);
+		if(result > 0) {
+
+				ArrayList<Doctor> doc1 = hService2.docList(hm1.gethId());
+				
+				hm1.setDoctor(doc1);
+				model.addAttribute("hospital",hm1);
+			return "1";
+		} else {
+			return "0";
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("updateDoc")
+	public String updateDoc(@ModelAttribute Doctor doc, Model model,HttpServletRequest request,
+			  @RequestParam(name="docImage",required=false) MultipartFile file,@RequestParam(value="oriImg", required=false)String oriImg) {
+		System.out.println(file);
+		if(file != null) {
+			String renameDocImageName = upDoc(file, request);
+			
+			if(!file.getOriginalFilename().equals("")) {
+				// 서버에 업로드
+		
+				if(renameDocImageName != null) {		// 파일이 잘 저장된 경우
+					doc.setDocFile(renameDocImageName);
+					
+				}
+			}
+		}else {
+			doc.setDocFile(oriImg);
+		}
+		
+		int result = hService2.updateDoc(doc);
+		
+		if(result > 0) {
+			ArrayList<Doctor> doc1 = hm1.getDoctor();
+			for(int i = 0; i<doc1.size();i++) {
+				if(doc1.get(i).getdId() == doc.getdId()) {
+					doc1.set(i, doc);
+				}
+			}
+			
+			model.addAttribute("hospital",hm1);
+			hm1.setDoctor(doc1);
+		
+			return "1";
+		} else {
+			return "0";
+		}
+		
+		
+	}
+
+	
+	@RequestMapping("hosupdate.ho")
+	public String hosupdate(Model model, HMember hm, String pwd, String hPhone) {
+
+
+		String encPwd = be.encode(hm.getUserPwd());
+
+		hm.setUserPwd(encPwd);
+		hm.sethPhone(hPhone);
+
+		System.out.println(hm);
+
+		int result = hService2.hosupdate(hm);
+
+		System.out.println("result : " + result);
+
+		if(result > 0) {
+			//    	  model.addAttribute("loginUser",hm);
+			return "redirect:chart.ho";
+		}else {
+			return "";
+		}
+
+
+		//      return Integer.valueOf(result).toString();
+
+	}
+	
 	public String saveHos(MultipartFile file, HttpServletRequest request) {
 
 		String root = request.getSession().getServletContext().getRealPath("resources");
@@ -225,78 +311,35 @@ public class HospitalController2 {
 
 		return renameImageName;
 	}
-	@ResponseBody
-	@RequestMapping("deleteDoc.ho")
-	public String deleteDoc(int dId,Model model) {
-		
-	System.out.println(dId);
-		
-		int result = hService2.deleteDoc(dId);
-
-		System.out.println("re : " + result);
-		if(result > 0) {
-
-				ArrayList<Doctor> doc1 = hService2.docList(hm1.gethId());
-				
-				hm1.setDoctor(doc1);
-				model.addAttribute("hospital",hm1);
-			return "1";
-		} else {
-			return "0";
-		}
-	}
 	
-	@ResponseBody
-	@RequestMapping("updateDoc")
-	public String updateDoc(@ModelAttribute Doctor doc, Model model) {
-		
-		int result = hService2.updateDoc(doc);
-		
-	
-		if(result > 0) {
-			ArrayList<Doctor> doc1 = hm1.getDoctor();
-			for(int i = 0; i<doc1.size();i++) {
-				if(doc1.get(i).getdId() == doc.getdId()) {
-					doc1.set(i, doc);
-				}
-			}
-			model.addAttribute("hospital",hm1);
-			hm1.setDoctor(doc1);
-		
-			return "1";
-		} else {
-			return "0";
-		}
-		
-		
-	}
+	public String upDoc(MultipartFile file, HttpServletRequest request) {
 
-	
-	@RequestMapping("hosupdate.ho")
-	public String hosupdate(Model model, HMember hm, String pwd, String hPhone) {
+		String image = request.getSession().getServletContext().getRealPath("resources");
 
+		String saveDocImage = image+"\\docImages";
 
-		String encPwd = be.encode(hm.getUserPwd());
+		File folder = new File(saveDocImage);
 
-		hm.setUserPwd(encPwd);
-		hm.sethPhone(hPhone);
-
-		System.out.println(hm);
-
-		int result = hService2.hosupdate(hm);
-
-		System.out.println("result : " + result);
-
-		if(result > 0) {
-			//    	  model.addAttribute("loginUser",hm);
-			return "redirect:chart.ho";
-		}else {
-			return "";
+		if(!folder.exists()) {
+			folder.mkdirs();
 		}
 
+		String originDocImageName = file.getOriginalFilename();
 
-		//      return Integer.valueOf(result).toString();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");                                 // 파일명 바꿔줌
 
+		String renameDocImageName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"."                // 파일명 바꿔줌
+				+ originDocImageName.substring(originDocImageName.lastIndexOf(".")+1);      // 파일명 바꿔줌
+
+		String renamePath = folder + "\\" + renameDocImageName;         // 실제 저장될 파일 경로 + 파일명
+
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (Exception e) {
+			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+
+		return renameDocImageName;
 	}
 
 
