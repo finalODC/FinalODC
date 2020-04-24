@@ -27,7 +27,7 @@
     	FROM H_REPLY H
     	WHERE REF_HID = #{hId}
    		 START WITH ref_HRID IS NULL 
-    	CONNECT BY PRIOR HRID = PARENT_HRID
+    	CONNECT BY PRIOR HRID = ref_HRID
  	
  	</select>
  	
