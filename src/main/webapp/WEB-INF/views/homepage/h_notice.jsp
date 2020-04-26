@@ -11,17 +11,18 @@
 
 
 
-<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css" />
-<link rel="stylesheet" href="${path}/resources/css/font-awesome.min.css" />
-<link rel="stylesheet" href="${path}/resources/css/slicknav.min.css" />
-<link rel="stylesheet"
-	href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="${path}/resources/css/style.css" />
-<link rel="stylesheet" href="${path}/resources/css/stylne.css">
+
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+  
+
+  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
+
 <!-- 폰트 아이콘 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -44,13 +45,13 @@
 	color: #fa296f;
 }
 
-.footer {
+/* .footer {
 	position: absolute;
 	left: 0;
 	bottom: 0;
 	width: 100%;
 	text-align: center;
-}
+} */
 
 #container {
 	height: 500px;
@@ -100,26 +101,27 @@
 	<jsp:include page="common/menubar.jsp"/>
 
 	<!--     @@@@@@@@@@@@@@@@@@@@@ 가운데 내용 @@@@@@@@@@@@@@@@@@@@@-->
+	
+	<div class="col-lg-12" style="background-image: url('${path }/resources/img/bg3.jpg'); height:243px; margin-top:109px; margin-bottom:50px;" align="center">
+		<h1 style="padding-top: 80px">공지사항</h1>
+		
+	
+	</div>
+	
 	<div class="container">
+	
 	<div class="col-lg-12">
 
 
-			<div id="contents" class="col-lg-6">
 
-				<br> <br>
-
-				<h2>&nbsp;&nbsp;&nbsp;공지사항</h2>
-
-				<br> <br>
-
-				<div align="right" style="width: 750px; margin-left: 80px;">
-					<table class="table table-hover" align="center">
+				<div align="right">
+					<table class="table table-hover table-bordered" align="center">
 						<thead>
 							<tr>
-								<th>no.</th>
-								<th>제목</th>
-								<th>글쓴이</th>
-								<th>날짜</th>
+								<th style="width:10%;">no.</th>
+								<th >제목</th>
+								<th style="width:10%">글쓴이</th>
+								<th style="width:20%">날짜</th>
 							</tr>
 						</thead>
 						 <tbody id="tbody1">
@@ -172,7 +174,6 @@
 					</div>
 					<br> <br>
 
-				</div>
 
 			</div>
 

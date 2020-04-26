@@ -30,10 +30,13 @@
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
+	
 <link rel="stylesheet" href="${path }/resources/css/slicknav.min.css" />
 
 <!-- Main Stylesheets -->
+
 <link rel="stylesheet" href="${path }/resources/css/style.css" />
+
 
 <style>
 #aaa {
@@ -99,24 +102,18 @@
 
 							 
 							<HR>
-							<table align="center" id="detail" class="table">
-								<tr align="center" valign="middle">
-									<td colspan="4"><h4 id="detailTitle"></h4><hr></td>
+							<table align="center" id="detail" class="table table-bordered" style="border: 1px solid #dee2e6;">
+								<tr align="center" valign="middle" style="border: 1px solid #dee2e6;">
+									<td colspan="4"><h4 id="detailTitle"></h4></td>
 								</tr>
-								<tr align="right" style="">
-									<th colspan="" style="text-align:right;"></td>
-									<td colspan="" style="text-align: left;"></td>
-									<th colspan="" style="text-align:right;">작성날짜</td>
-									<td id="detailDate" colspan="" style="text-align: left;"></td>
-								</tr>
-								<tr style="border: 1px solid #444444;">
-									<th colspan="" style="text-align:right;"></td>
-									<td colspan="" style="text-align: left;"></td>
-									<th colspan="" style="text-align:right;">첨부파일</td>
-									<td id="detailFile" colspan="" style="text-align: left;"></td>
+								<tr align="right" style="border-left: none;">
+									<th colspan="" style="text-align:left; border-left: 1px solid #dee2e6;">작성날짜</td>
+									<td id="detailDate" colspan="" style="text-align: left; border-left: 1px solid #dee2e6;"></td>
+									<th colspan="" style="text-align:left; border-left: 1px solid #dee2e6;">첨부파일</td>
+									<td id="detailFile" colspan="" style="text-align: left; border-left: 1px solid #dee2e6;"></td>
 								</tr>
 								<tr>
-									<td id="detailContent" colspan="4" style="">
+									<td id="detailContent" colspan="4" >
 									
 									</td>
 								</tr>

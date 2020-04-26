@@ -9,15 +9,17 @@
 
 <head>
 <c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
-  <link rel="stylesheet" href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
+  
+
   <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
 
   <style>
 
