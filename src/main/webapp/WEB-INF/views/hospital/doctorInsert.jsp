@@ -91,11 +91,18 @@
 			</div>
 			<!-- Content Row -->
 			
+			<script>
+				$('#hiwqe').click(function(){
+					var asd = confirm('ㅁㄴㅇ');
+
+
+				})
 			
-			 <div>
+			</script>
+			<%--  <div>
 			${hospital.doctor }
 			${hospital.doctor[0]!=null }
-			</div>  
+			</div>   --%>
 				<div class="row">
 					
 	
@@ -140,12 +147,8 @@
 										</form>
 									</c:forEach>
 								</c:if>
-							
 							</div>
-							<!-- <div style="text-align: center;">
-                            <input type="button" value="의사 등록" class="btn btn-primary">
-                        </div> -->
-                       
+							
 							<div style="text-align: center;">
 								<input id="ss" type='button' class='btn btn-primary copy'
 									value='의사추가' style="width: 100px;">
@@ -169,7 +172,8 @@
 	$(function(){
 		$('.deleteDoc').click(function(){
 			var dId = $(this).prev('.dId').val();
-			console.log(dId);
+			if(confirm('삭제하시겠습니까?')){
+				
 			 $.ajax({
 				url : "deleteDoc.ho",
 				type : "post",
@@ -177,7 +181,6 @@
 					dId:dId
 
 				},success:function(data){
-					console.log("data : " + data);
 					 if(data==1){
 						alert("삭제되었습니다.");
 						location.href="insertdoc.ho";
@@ -187,19 +190,21 @@
 					alert("실패");
 				}
 			}); 
+		}
 		});
 	});
  
 	
 	$(function(){
 		$('.updateDoc').click(function(){
+			if(confirm('수정하시겠습니까?')){
 			var form = $(this).parents(".form1");
-			console.log(form)
+			
 			var formData = new FormData(form[0]);
 
 			var dId = $(this).siblings('.dId').val();
 			var docImage = $(this).siblings('.imageCh').val();
-			console.log(docImage)
+			
 			var docIntro =$(this).siblings('.docIntro').val();
 			var docName = $(this).siblings('.docName').val();
 			var oriImg = $(this).siblings('.oriImg').val();
@@ -220,6 +225,7 @@
 					alert("실패");
 				} 
 			});
+			};
 		});
 	});
 		
@@ -314,6 +320,8 @@
 			 $(function(){
 					$('.indoc').click(function(){
 						
+						if(confirm('등록하시겠습니까?')){
+							
 						var docImage = $('#docFile').val();
 						var docIntro = $('#docIntro').val();
 						var docName = $('#docName').val();
@@ -326,39 +334,27 @@
 								docIntro:docIntro
 								
 							},success:function(data){
-								
 								 if(data==1){
-									location.href="insertdoc.ho";
 									alert("등록되었습니다.");
+									location.href="insertdoc.ho";
+									
 								} 
 							},error:function(result){
 								alert("실패");
 							}
 						});
+						};
 					});
 					
 					
 				}); 
-			 
-			 
-			 
-		 
-			 /* $('.deldoc').click(function() {
-					if ($('.t1').length == 1) {
-						alert('삭제할수 없습니다.');
-					} else {
-						$(".card-columns t1").detach();
-							}
-					}); */
-					
-					
 	
 
 		$("#cccbody").mouseenter(function() {
 			$('.deldoc').click(function() {
 				
 				if ($('.t2').length == 1) {
-					alert('삭제할수 없습니다.');
+					console.log('삭제할수 없습니다.');
 					
 				} else {
 					$(".card-columns ").eq($('.cccbody').length - 1).detach();
@@ -366,12 +362,6 @@
 				}
 			});
 		});
-
-					
-		/* console.log($('.t2').length());
-		
-		 */
-		
 	</script>
 
 	<!-- Footer -->

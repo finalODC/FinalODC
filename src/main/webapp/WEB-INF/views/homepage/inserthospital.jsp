@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="com.ohdogcat.odc.homepage.member.model.vo.*"%>
+	pageEncoding="UTF-8" import="com.ohdogcat.odc.homepage.member.model.vo.*"
+	import="com.ohdogcat.odc.hospital.model.vo.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="kr">
@@ -18,12 +19,12 @@
 	rel="stylesheet">
 
 <!-- Stylesheets -->
-<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 <link rel="stylesheet" href="${ path }/resources/css/bootstrap.min.css" />
 <link rel="stylesheet" href="${ path }/resources/css/style.css" />
 <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
 <style>
+
 #aaa {
 	margin-left: 10%;
 }
@@ -35,74 +36,159 @@
 </style>
 </head>
 <body>
-  <jsp:include page="common/menubar.jsp"/>
 
 	
+  <jsp:include page="common/menubar.jsp"/>
+	
+	
+
+	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 	<div class="container" style="padding-top: 150px;">
-		<div class="row">
-
-
-			<div class="col-lg-12 mb-4">
-
+		<div class="wrap" style="max-width: 1180px; margin: 0 auto;">
+			<h1 style="text-align: left;  width: 100%; height: 120px; border-bottom: 1px solid #999; line-height: 100px; color: #30627e;">${ hospital.hName }</h1>
+			
 				<!-- Approach -->
 				
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">동물 병원</h6>
-					</div>
+					
 					<div class="sea"
-						style="width: 100%; height: 452px; padding: 41px 35px;">
-						<div class="par" style="width: 50%; height: 370px; float: left;">
-
+						style="width: 100%; height: 370px; border: none; margin: 30px 0;">
+						<div class="par" style="width: 50%; height: 370px; float: left; border: none;">
+							<img class=""  id="preview" src="/odc/resources/hosImages/${ hospital.hFile }"
+											style="width: 100%; height: 100%;">
 							<!-- <div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div> -->
 
 						</div>
 						<div class="ssa" style="width: 50%; height: 370px;  float: right;">
 						
-							<div
-								style="width: 100%; height: 370px; border: none; resize: none; text-align: center;" readonly>병원소개</div>
-
+							<div 
+								style="width: 100%; height: 370px; border: none; resize: none; text-align: center;" readonly> <br>
+								
+									<textarea style="width: 90%;  border: none; resize: none;"
+									readonly>${  hospital.hName}</textarea>						
+									<textarea style="width:90%; height:60%;  border:none; resize:none;" readonly>${  hospital.hComment }</textarea>
+									
+									</div>
 						</div>
 
 					</div>
-					<div style="width: 100%; border-top: 1px solid #ebebeb"></div>
-					<div class="two" style="width: 100%; padding: 41px 35px;">
-						<div id="map" style="width: 100%; height: 300px; margin-bottom: 20px"></div>
-
-					<textarea
-						style="width: 90%; height: 200px; border: none; resize: none;"
-						readonly>상세주소</textarea>
-					</div>
-				</div>
-			</div>
-			
-
-			<div class="col-lg-12 mb-4">
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">의료진</h6>
-					</div>
-					<div class="card-columns" id="cccbody" style="column-count: 1;">
+					
+					<script>
+					$(document).ready(function(){
+						var bbb = "주소      " +  "${ hm.hComment}";
 						
-						<div class="card" style="width: 200px; height: auto; display: inline-block; margin: 41px 35px;" id="copy">
-							<div class="card-body text-center">
-								<img class="card-body text-center docImage" name="docImage" id="docImage" style="width: 90%; height: 200px;">
-								<br> <br> 
-								<input type="text" style="text-align: center; width: 100px; border: none;" placeholder="의사이름">
-								<hr>
-								<textarea style="width: 150px; height: 200px; border: none; resize: none;" placeholder="간단한 소개"></textarea>
-							</div>
-						</div>
+						$('.intro').val(bbb);
+					});
+					</script>
+					
+					<h4 style="margin: 80px 0 30px 0; color: #222; text-align: center;">찾아가는길</h4>
+					
+					<div style="width: 100%;"></div>
+					<div class="two" style="width: 100%;">
+						<div id="map" style="width: 100%; height: 300px; margin-bottom: 20px"></div>
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807&libraries=services">
+						
+						
+						</script>
+					<script type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807">
+					
+					
+					</script>
+						
+					<script >
+					
+					var mapContainer = document.getElementById('map'), 
+				    mapOption = {
+				        center: new kakao.maps.LatLng(33.450701, 126.570667), 
+				        level: 3 
+				    };  
+
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+				// 주소-좌표 변환 객체
+				 var geocoder= new kakao.maps.services.Geocoder();
+				var addr ="${ hm.hAddress}".split("//");
+				var hname ="${ hm.hName}"
+				console.log(addr);
+				geocoder.addressSearch(addr[1], function(result, status) {
+
+				
+				     if (status === kakao.maps.services.Status.OK) {
+
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+				      
+				        var marker = new kakao.maps.Marker({
+				            map: map,
+				            position: coords
+				        });
+
+				     
+				        var infowindow = new kakao.maps.InfoWindow({
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+hname+'</div>'
+				        });
+				        infowindow.open(map, marker);
+
+				        map.setCenter(coords);
+				    } 
+				});    
+					
+						
+					
+					</script>
+					<textarea
+						style="width: 90%; height: 50px; border: none; resize: none;" id="add1" 
+						readonly></textarea>
+						<textarea style="width:90%;  border:none; resize:none;" readonly>전화번호 ${ hospital.hPhone }
+						</textarea>
+					</div>
+					
+					<h4 style="margin: 80px 0 30px 0; color: #222; text-align: center;">의료진</h4>
+				
+			<script>
+			$(document).ready(function(){
+				var aaa = "상세주소      " +  "${ hm.hAddress}".split("//");
+				$("#add1").val(aaa);
+				});
+			</script>
+
+				<div class="sea"
+						style="width: 100%; height: 452px; ">
+			<div class="">
+					
+					<div class="" id="cccbody" style="column-count: 1;">
+						<c:if test="${ hospital.doctor[0]!=null }">
+								<c:forEach var="b" items="${ hospital.doctor }">
+							
+								<div class=""
+									style="width: 200px; height: auto; display: inline-block; margin: 25px 0 0 25px;"
+									id="copy">
+									
+									
+									<div class="" style="text-align: center;">
+										<img class="" name="docFile" src="/odc/resources/docImages/${b.docFile }"
+											id="docFile" style="width: 90%; height: 200px;"> 
+										 <br><br> <input type="text"
+											style="text-align: center; width: 100px; border: none;" name="docName" class="docName"
+											value="${b.docName }">
+										<br><br>
+										<textarea
+											style=" text-align:center; width: 150px; height: 200px; border: none; resize: none;" name="docIntro" class="docIntro"
+											placeholder="간단한 소개">${ b.docIntro }</textarea>
+									</div>
+			
+								</div>
+							
+									</c:forEach>
+								</c:if>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-lg-12 mb-4">
-				<div class="card shadow mb-4">
-					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">댓글</h6>
-					</div>
-					<table class="table table-bordered" align="center" width="100%" >
+			<div class="">
+				<div class="">
+					
+					<table class="table table-bordered" align="center" width="100%" style="border: none;">
 						<tbody id="reply"></tbody>
 					
 					</table>
@@ -113,10 +199,10 @@
                             </ul>
 					</div>
 					
-					<table align="center" width="510" border="1" cellspacing="0">
+					<table align="center" width="510" border="1" cellspacing="0" style="border:none;">
 						<tr>
 							<td>
-								<textarea rows="3" cols="55" id="hrContent" style="resize: none; border:0;"></textarea>
+								<textarea rows="3" cols="55" id="hrContent" style="resize: none; "></textarea>
 							</td>
 							<td>
 								<button onclick="insertComment()">등록하기</button>
@@ -155,49 +241,7 @@
 
 				</div>
 		</footer>
-			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3e673705a792756e975aa786d62b3807&libraries=services"></script>
-				<script>
-				
-					var area="${hm.hAddress}";
-					var name="${hm.hName}";
-
-					var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
-					    mapOption = {
-					        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-					        level: 3 // 지도의 확대 레벨
-					    };  
-					
-					// 지도를 생성합니다    
-					var map = new kakao.maps.Map(mapContainer, mapOption); 
-					
-					// 주소-좌표 변환 객체를 생성합니다
-					var geocoder = new kakao.maps.services.Geocoder();
-					
-					// 주소로 좌표를 검색합니다
-					geocoder.addressSearch(area, function(result, status) {
-					
-					    // 정상적으로 검색이 완료됐으면 
-					     if (status === kakao.maps.services.Status.OK) {
-					
-					        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-					
-					        // 결과값으로 받은 위치를 마커로 표시합니다
-					        var marker = new kakao.maps.Marker({
-					            map: map,
-					            position: coords
-					        });
-					
-					        // 인포윈도우로 장소에 대한 설명을 표시합니다
-					        var infowindow = new kakao.maps.InfoWindow({
-					            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
-					        });
-					        infowindow.open(map, marker);
-					
-					        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-					        map.setCenter(coords);
-					    } 
-					});    
-					</script>
+			
 					 <script>
 					 
 					 var mxp;
@@ -248,7 +292,7 @@
                             						
                             					}else{
                             				
-                            						if(list[i].rWriter == "${loginUser.userId}" && list[i].rStatus == 'Y'){
+                            						if(list[i].rWriter == "${ userId}" && list[i].rStatus == 'Y'){
                             							$td4.append("<button class='update btn btn-primary'>수정</button> &nbsp;&nbsp;<button class='del btn btn-danger'>삭제</button>");
                             						}
                             						
@@ -377,7 +421,7 @@
                             			type:"post",
                             			data:{refHid:"${hm.hId}",
                             				rContent:arr.join("<br>"),
-                            				rWriter:"${loginUser.userId}"},
+                            				rWriter:"${ userId}"},
                             			success:function(data){
                             				console.log("여기"+data)
                             				
