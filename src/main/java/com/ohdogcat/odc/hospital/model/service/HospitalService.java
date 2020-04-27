@@ -32,6 +32,8 @@ public interface HospitalService {
 
 	int updateDiag(Diagnosis diag);
 
+	Diagnosis viewContent(int dId);
+
 
 
 

@@ -5,16 +5,19 @@
 <head>
     <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=1">
-	<title>비밀번호 찾기</title>
+	<title>아이디 찾기</title>
 	
 	<!-- 개별페이지 CSS -->
+	<link href="css/clean-blog.min.css" rel="stylesheet">
 
-	
 	<!-- 부트스트랩 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 	<!-- JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -62,7 +65,7 @@ height: 370px;
 margin-top: auto;
 margin-bottom: auto;
 border:0;
-background: #f5f6f7;
+background: none;
 }
 
 .social_icon span{
@@ -121,8 +124,8 @@ margin-right: 5px;
 
 .login_btn{
 color: white;
-background-color: #30627e;
-margin-top:40px;
+background-color: #002c5f;
+margin-top:50px;
 width: 70%;
 height: 60px;
 }
@@ -208,9 +211,9 @@ hr{margin-top:0; margin-bottom:0;}
 @media screen and (max-width: 758px){.login_btn{ height: 45px; margin-top: 5px;}}
 @media (min-width: 1200px){.container{max-width: 1140px; height: 90%; padding: 180px;}}
 .tabbtn{width: 100%;table-layout: fixed;border-collapse: collapse;}
-.tabbtn a.on{color: #fff; background: #555;}
+.tabbtn a.on{color: #555; background: #fff;}
 .tabbtn a {display: table-cell;height: 60px;
-font-size: 18px;background: #fff;color: #555;text-align: center;
+font-size: 18px;background: #444;color: #fff;text-align: center;
 vertical-align: middle;}
 
 
@@ -220,16 +223,17 @@ vertical-align: middle;}
 @media screen and (max-width:1023px){.tabbtn a:first-child{border-left: 0;}} 
  
 @media screen and (max-width: 1023px){.tabbtn {display: table;}}
-@media screen and (min-width: 1023px){.tabbtn a {display: table-cell;width: 600px;}}
+@media screen and (min-width: 1023px){.tabbtn a {display: table-cell;width: 300px;}}
 
-.tabCon{padding: 20px 20px;background: #e9ecef;text-align: center;}
+.tabCon {padding: 60px 20px;background: #f5f6f7d0;text-align: center;}
 .txtmt{margin-top: 8px; line-height: 26px;}  
-.txt{margin-top: 20px;}
-.btna a{margin-right: 10px;}
+ 
+.btna a{margin-right: 10px; }
+.btna {background: #f5f6f7d0;}
   
-@media screen and (max-width: 758px){.btna {margin-top: 80px;text-align: center;}}
-@media screen and (min-width: 758px){.btna {margin-top: 20px;text-align: center;}}
-@media screen and (min-width: 1023px){.btna {margin-top: 30px;text-align: center;}}
+@media screen and (max-width: 758px){.btna {padding-top: 20px; padding-bottom: 20px; text-align: center;}}
+@media screen and (min-width: 758px){.btna {padding-top: 20px; padding-bottom: 20px;text-align: center;}}
+@media screen and (min-width: 1023px){.btna {padding-top: 30px; padding-bottom: 30px; text-align: center;}}
 
   
   
@@ -248,33 +252,35 @@ vertical-align: middle;}
         
         
     <div class="container">
-            <div class="loginlogo"><h1 class="loginArea">비밀번호찾기</h1></div>
+            <div class="loginlogo"><h1 class="loginArea">아이디찾기</h1></div>
 	<div class="d-flex justify-content-center h-100">
 		<div class="card" style="width: 600px;">
 			<div class="card-body">
 				<div class="tabbtn">
-				
-					<a href="#">비밀번호찾기</a>
+					<a href="hpidsearch.do" class="on">아이디찾기</a>
+					<a href="hppwdsearch.do">비밀번호찾기</a>
 				</div>
 				<div class="tabParent">
 					<div class="tabCon on">
 						<div class="iconArea">
-                           
-                            <p class="txt"><Strong class="black">
-								고객님의 비밀번호는 ***** 입니다.</Strong></p>
-							<p class="txtmt">이용해주셔서 감사합니다.</p>
-							
+							<input type="email" class="input_area" id="email" name="email" style="width:100%;" placeholder="이메일 주소 입력">
+							<input type="text" class="input_area" id="inputCode" name="inputCode" style="width:100%; display:none;" placeholder="인증 코드 입력" >
+							<br><br>
+							<p class="txt"><Strong class="black">
+								회원 가입 시 등록했던 이메일 주소를 입력해 주세요.</Strong></p>
+							<p class="txtmt">본인인증 시 제공되는 정보는 해당 인증기관에서 직접 수집하므로<br>
+								인증 이외의 용도 또는 저장되지 않습니다.</p>
 						</div>
 						<div class="btnWrap">
-							<input type="submit" value="로그인하러가기" class="btn login_btn">
+							<input type="button" id="findId" value="인증하기" class="btn login_btn">
 						</div>
 					</div>
 				</div>
 			<div class="btna">
-				<a href="">로그인</a>
-				<a href="">회원가입</a>
+				<a href="hloginp.do">로그인</a>
+				<a href="hSignin.do">회원가입</a>
 
-			</div>
+			</div>	
 			<div id="footer">
 				<ul>
 					<li><a>이용약관</a></li>
@@ -297,5 +303,78 @@ vertical-align: middle;}
 	</div>	
 		
 </div>
+
+
+
+
+	<script>
+		var userId;
+		  $('#findId').click(function(){
+			  	var id = $("#email").val();
+			  	var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			  	if(!regExp.test(id)){
+			  		alert('메일형식을 확인해주세요');
+			  		return false;
+			  		
+			  	}
+			 
+			  	$.ajax({
+			  		url:"hp_checkemail.do",
+			  		type:"post",
+			  		data:{email:$("#email").val()},
+			  		success:function(result){
+			  			if(result != ""){
+			  				a = result;
+			  			   $('#inputCode').css('display','');
+		                    var email=$("#email").val();
+		                    $.ajax({
+		            			url:"sendCode.do",
+		            			type:"post",
+		            			data:{email:email},
+		            			success:function(){
+		            				alert("인증메일을 발송하였습니다.")
+		            				$("#findId").click(function(){
+		            					$.ajax({
+		            						url:"codeCheck.do",
+		            						type:"post",
+		            						data:{code:$("#inputCode").val()},
+		            						success:function(result){
+		            							console.log(result);
+		            							if(result != ""){
+		            								console.log("맞아요")
+		            								location.href="hpidResult.do?userId="+a;
+		            							}else{
+		            								console.log("아니요")
+		            							}
+		            						},error:function(){
+		            							console.log("이메일코드체크에러")
+		            						}
+		            						
+		            					})
+		            				})
+		            				
+		            			},error:function(){
+		            				console.log("이메일코드에러")
+		            			}
+		            			
+		            		})
+			  			}else{
+			  				alert('사이트에 등록하지 않은 이메일입니다.');
+			  			}
+			  		}
+			  	})
+                 
+                })
+	
+	</script>
+
+
+
+
+
+
+
+
+
 </body>
 </html>

@@ -108,6 +108,11 @@ public class HospitalDao {
 		return sqlSession.insert("chart-mapper.insertDiag",diag);
 	}
 
+
+	public Diagnosis viewContent(int dId) {
+		return sqlSession.selectOne("chart-mapper.viewContent",dId);
+	}
+
 	
 	
 

@@ -174,7 +174,23 @@ public class HospitalController {
 		return Integer.valueOf(result).toString();
 				
 	}
+	
+	@RequestMapping("viewContent.do")
+	public void viewContent(int dId, HttpServletResponse response) throws JsonIOException, IOException {
 		
+		Diagnosis diag = new Diagnosis();
+		
+		diag = hoService.viewContent(dId);
+		
+		System.out.println(diag);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		gson.toJson(diag,response.getWriter());
+		
+		
+	}
 	
 	
 	

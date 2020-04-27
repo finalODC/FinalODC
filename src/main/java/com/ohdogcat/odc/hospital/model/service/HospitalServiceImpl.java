@@ -70,6 +70,11 @@ public class HospitalServiceImpl implements HospitalService{
 		return hoDao.updateDiag(diag);
 	}
 
+	@Override
+	public Diagnosis viewContent(int dId) {
+		return hoDao.viewContent(dId);
+	}
+
 
 
 	
