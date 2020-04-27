@@ -12,6 +12,7 @@ import com.ohdogcat.odc.board.model.vo.FreeBoard;
 import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.board.model.vo.TipBoard;
+import com.ohdogcat.odc.board.model.vo.TipReply;
 
 @Repository("bDao")
 public class BoardDao {
@@ -32,7 +33,7 @@ public class BoardDao {
 	public ArrayList<FreeBoard> selectFreeList(Map<String,String> map, PageInfo pi) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
-		RowBounds rowBounds =new RowBounds(offset,pi.getBoardLimit());
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		System.out.println(map);
 		return (ArrayList)sqlSession.selectList("boardMapper.selectFreeList",map,rowBounds);
 	}
@@ -119,55 +120,70 @@ public class BoardDao {
 		
 		return (ArrayList)sqlSession.selectList("TipboardMapper.DogBoardList",Dmap,rowBounds);
 	}
+
+
+
+	public int DogBoardWriter(TipBoard tb) {
+		
+		return sqlSession.insert("TipboardMapper.DogBoardWriter",tb);
+	}
+
+
+
+	public TipBoard DogBoardView(int tbId) {
+
+		return sqlSession.selectOne("TipboardMapper.DogBoardView",tbId);
+	}
+
+
+
+	public int DogBoardViewCount(int tbId) {
+
+		return sqlSession.update("TipboardMapper.DogBoardViewCount",tbId);
+	}
+
+
+	//댓글 쓰기
+	public int DogBoardReply(TipReply tr) {
+
+		return sqlSession.insert("TipboardMapper.DogBoardReply",tr);
+	}
+
+
+
+	public ArrayList<TipReply> DogBoardReplyList(int tbId) {
+		
+		return (ArrayList)sqlSession.selectList("TipboardMapper.DogBoardReplyList",tbId);
+	}
+
+
+
+	public TipBoard DogBoardUpdateView(int tbId) {
+
+		return sqlSession.selectOne("TipboardMapper.DogBoardUpdateView",tbId);
+	}
+
+
+
+	public int DogBoardUpdate(TipBoard tb) {
+
+		return sqlSession.update("TipboardMapper.DogBoardUpdate",tb);
+	}
+
+
+	//삭제
+	public int DogBoardDelete(int tbId) {
+		
+		return sqlSession.update("TipboardMapper.DogBoardDelete",tbId);
+	}
+
+
+	//댓글 리스트 불러오기
+	
 	
 	
 
-//	public int DogBoardCount() {
-//		
-//		return sqlSession.selectOne("TipboardMapper.DogBoardCount");
-//	}
-//
-//
-//
-//	public ArrayList<TipBoard> DogBoardList(PageInfo pi) {
-//		
-//		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
-//		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-//		
-//		return (ArrayList)sqlSession.selectList("TipboardMapper.DogBoardList",pi);
-//	}
-//
-//
-//
-//	public int DogBoardWriter(TipBoard tb) {
-//		// TODO Auto-generated method stub
-//		return sqlSession.insert("TipboardMapper.DogBoardWriter",tb);
-//	}
-//
-//
-//
-//	public TipBoard DogBoardView(int tbId) {
-//		
-//		return sqlSession.selectOne("TipboardMapper.DogBoardView",tbId);
-//	}
-//
-//
-//	
-//	public int DogBoardViewCount(int tbId) {
-//		
-//		return sqlSession.update("TipboardMapper.DogBoardViewCount",tbId);
-//	}
-//	
-//
-//	
-//	
-//	
-//	
-//
-//	public int DogBoardReply(TipReply tr) {
-//		
-//		return sqlSession.insert("TipboardMapper.DogBoardReply",tr);
-//	}
+
 
 
 //////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@////////////////////////////////////////

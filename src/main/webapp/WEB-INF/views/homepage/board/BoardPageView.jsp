@@ -353,7 +353,7 @@
 					var $rContent;
 					var $frCreateDate;
 					
-					$("#frCount").text("댓글 ("+ data.length + ")");
+					/* $("#frCount").text("댓글 ("+ data.length + ")"); */
 					
 					if(data.length > 0){
 						  for(var i in data){

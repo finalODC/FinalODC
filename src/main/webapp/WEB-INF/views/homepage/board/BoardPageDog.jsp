@@ -198,7 +198,7 @@
 						</thead>
 
 						<tbody id="tableArea">
-							<c:forEach var="db" items="${list}">
+							<c:forEach var="db" items="${TBlist}">
 
 								<tr class="Dtrc">
 								
@@ -323,7 +323,7 @@
 
 					</div>
 					<br> <br>
-					<button onclick="location.href='DogBoardWriter.bo'" align="right">글쓰기</button>
+					<button onclick="location.href='DogBoardWritergo.bo'" align="right">글쓰기</button>
 				</div>
 
 			</div>

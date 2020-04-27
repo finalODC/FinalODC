@@ -171,32 +171,32 @@
 
 					<table class="table table-bordered" align="center">
 						<tr>
-							<th colspan="3" align="left">&nbsp;&nbsp;${db.tbTitle }<input
+							<th colspan="3" align="left">&nbsp;&nbsp;${cb.tbTitle }<input
 								type="text" style="border: 0px;"></th>
 
 						</tr>
 			
 						<tr>
-							<td align="left">닉네임 &nbsp;|&nbsp;&nbsp; ${db.tbWriter }<input
+							<td align="left">닉네임 &nbsp;|&nbsp;&nbsp; ${cb.tbWriter }<input
 								type="text" style="border: 0px; width: 100px;"></td>
-							<td align="left">날짜 &nbsp;|&nbsp;&nbsp; ${db.tbCreateDate}<input
+							<td align="left">날짜 &nbsp;|&nbsp;&nbsp; ${cb.tbCreateDate}<input
 								type="text" style="border: 0px;" align="left"></td>
-							<td>조회수 &nbsp;|&nbsp;&nbsp; ${db.tbCount }<input type="text"
+							<td>조회수 &nbsp;|&nbsp;&nbsp; ${cb.tbCount }<input type="text"
 								style="border: 0px; width: 20px;" align="left"></td>
 						</tr>
 
 						<tr>
-							<td colspan="3">${db.tbContent }<input type="text"
+							<td colspan="3">${cb.tbContent }<input type="text"
 								style="height: 500px; width: 920px; border: 0px;" readonly></td>
 						</tr>
 					</table>
-					<input type="button" value="목록으로" onclick="location.href='DBlist.bo'" align="left">
+					<input type="button" value="목록으로" onclick="location.href='CBlist.bo'" align="left">
 
 
 					<!-- fbId 값은 위의 fb에 전부 담겨있기 때문에 fb.fbId를 써서 값을 받아와서 넘겨주자 -->
-					<c:if test="${loginUser.userId eq db.tbWriter }">
-						<button onclick="location.href='DogBoardUpdateView.bo?tbId=${db.tbId}'">수정하기</button>
-						<button onclick="location.href='DogBoardDelete.bo?tbId=${db.tbId}'" > 삭제하기</button>
+					<c:if test="${loginUser.userId eq db.cbWriter }">
+						<button onclick="location.href='CatBoardUpdateView.bo?tbId=${cb.tbId}'">수정하기</button>
+						<button onclick="location.href='CBdelete.bo?fbId=${cb.tbId}'" > 삭제하기</button>
 													
 					</c:if>
 			
@@ -216,14 +216,14 @@
 
 							<th
 								style="width: 100px; height: 70px; background-color: steelblue;"
-								id="tbWriter">${db.tbWriter }</th>
+								id="tbWriter">${cb.tbWriter }</th>
 
 							<th style="width: 740px;">&nbsp;<input type="text"
 								style="width: 700px; height: 70px; border: 0px;" id="trContent"></th>
 
 							<td style="width: 100px; background-color: white" align="right"
 								align="center"><input type="button" value="등록하기"
-								style="width: 100px; border: 0px;" id="drSubmit">
+								style="width: 100px; border: 0px;" id="crSubmit">
 							<td>
 						</tr>
 					</table>
@@ -296,20 +296,20 @@
 	
 	$(function(){
 		
-		DogBoardReplyList();
+		CatBoardReplyList();
 		
 		setInterval(function(){
-			DogBoardReplyList();
+			CatBoardReplyList();
 		},3000);
 		
-		$("#drSubmit").on("click",function(){
+		$("#crSubmit").on("click",function(){
 			var trContent = $("#trContent").val();
-			var trreftbId = "${db.tbId}";
+			var trreftbId = "${cb.tbId}";
 			var trWriter = $("#tbWriter").text();
 			
 			$.ajax({
 				
-				url : "DogBoardReply.bo",
+				url : "CatBoardReply.bo",
 				data : {
 					
 					trContent : trContent,
@@ -320,7 +320,7 @@
 				type:"post",
 				success : function(data){
 					if(data =="success"){
-						DogBoardReplyList();
+						CatBoardReplyList();
 						$("#trContent").val("");
 					}
 				},
@@ -334,11 +334,11 @@
 		});
 	});
 	
-	function DogBoardReplyList(){
+	function CatBoardReplyList(){
 		var tbId = ${db.tbId};
 		
 		$.ajax({
-			url:"DogBoardReplyList.bo",
+			url:"CatBoardReplyList.bo",
 			data:{tbId:tbId},
 			dataType:"json",
 			success:function(data){
