@@ -33,9 +33,20 @@
 								#{pBirth},#{neutralYN},#{pWeight},#{pUniqueness},SYSDATE,SYSDATE,DEFAULT)
 	</insert>
 
+	<update id="updatePet" parameterType="Pet">
+		UPDATE PET
+		SET P_CODE=#{pCode},P_NAME=#{pName},P_BREED=#{breed},P_BIRTH=#{pBirth},NEUTRAL=#{neutralYN},P_MODIFY_DATE=DEFAULT
+		<if test="pUniqueness != null">
+    		,P_UNIQUENESS=#{pUniqueness}
+  		</if>
+  		WHERE PID=#{pid}
+	</update>
 
-
-
+	<update id="deletePet" parameterType="_int">
+		UPDATE PET
+		SET P_STATUS='N'
+		WHERE PID=#{pid}
+	</update>
 
 
 

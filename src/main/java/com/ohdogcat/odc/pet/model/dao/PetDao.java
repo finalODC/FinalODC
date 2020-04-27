@@ -20,5 +20,13 @@ public class PetDao {
 	public int insertPet(Pet p) {
 		return sqlSession.insert("PetMapper.insertPet",p);
 	}
+
+	public int updatePet(Pet p) {
+		return sqlSession.update("PetMapper.updatePet",p);
+	}
+
+	public int deletePet(int pid) {
+		return sqlSession.update("PetMapper.deletePet",pid);
+	}
 	
 }

@@ -283,6 +283,8 @@
 		data-target="#myModal">Open modal</button>
 
 	<!-- The Modal -->
+	<form method="POST" action="updatePet.pe">
+	<input type="hidden" name="pid">
 	<div class="modal fade" id="myModal">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
@@ -293,50 +295,57 @@
 							<h1>내 반려동물 정보</h1>
 							<br>
 							<h2>항목을 클릭하여 수정할 수 있습니다.</h2>
+							<hr>
 						</div>
 						<ul>
 							<li class="question"><br>
 								<h3>이름</h3> <br> <label class="choice" id="nameLabel">
-									<span id="pName">sample NAME</span>
+									<span id="pName"></span>
+									<input type="hidden" name="pName">
 							</label></li>
 							<li class="question"><br>
-								<h3>등록코드</h3> <br> <label class="choice"> <span
-									id="pCode">B5616516545654</span>
+								<h3>등록코드</h3> <br> <label class="choice">
+								<span id="pCode"></span>
+								<input type="hidden" name="pCode">
 							</label></li>
 							<li class="question"><br>
-								<h3>품종</h3> <label class="choice"><br> <span
-									id="pBreed">sample breed</span> </label></li>
+								<h3>품종</h3> <label class="choice"><br>
+								<span id="pBreed"></span>
+								<input type="hidden" name="breed">
+								</label>
+							</li>
 							<li class="question"><br>
 								<h3>중성화여부</h3> <label class="choice"> <br> <input
-									type="radio" name="q4" value="Y" checked="checked" /> <span>YEAH
-										:(</span>
-							</label> <label class="choice"> <input type="radio" name="q4"
-									value="N" /> <span>NOT ACTUALLY</span>
+									type="radio" name="neutralYN" value="Y" checked="checked" />
+									<span>예</span>
+							</label> <label class="choice"> <input type="radio" name="neutralYN"value="N" /> 
+							<span>아니요</span>
 							</label></li>
 							<li class="question"><br>
-								<h3>출생년월</h3> <br> <label class="choice"> <span
-									id="pBirth">2020-08</span>
+								<h3>출생년월</h3> <br> <label class="choice"> 
+								<span id="pBirth"></span>
+								<input type="hidden" name="pBirth">
 							</label></li>
 							<li class="question" id="uniqueness"><br>
-								<h3>특이사항</h3> <br> <textarea disabled style="resize: none;"
+								<h3>특이사항</h3> <br>
+								<textarea disabled style="resize: none;"
 									class="choice" name="pUniqueness" id="pUniqueness" cols="57%"
 									rows="10">
-										</textarea></li>
+								</textarea>
+							</li>
 						</ul>
-						<div align="center"
-							style="margin-top: 10px; margin-left: 10px; width: 100%;">
-							<button class="button-submit btn mx-auto">수정하기</button>
-							<button class="button-submit btn mx-auto">돌아가기</button>
+						
+						<div align="center" style="margin-top: 10px; margin-left: 10px; width: 100%;">
+							<button type="submit" class="button-submit btn mx-auto">수정하기</button>
+							<button type="button" class="button-submit btn mx-auto" onclick="deletePet()">삭제하기</button>
 							<br>
 							<button class="button-submit btn mx-auto btn-secondary"
-								data-dismiss="modal" onclick="calcResults('.form')">닫기</button>
+								data-dismiss="modal">닫기</button>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
-
+			
 
 			<!-- Modal footer -->
 			<div class="modal-footer">
@@ -345,8 +354,7 @@
 
 		</div>
 	</div>
-	</div>
-
+	</form>
 
 
 	<!-- Footer Section -->
@@ -389,9 +397,8 @@
 
 	<!-- ajax데이터script -->
 	<script>
-	var fuck=[];
+		var choice;
 		$(function(){
-			alert("Hi");
 			myPetList();
 		});
 		
@@ -406,15 +413,15 @@
 					$tableBody.html("");
 					
 					for(var i in data){
-						fuck[i]=data[i];
 						var $tr=$('<tr class="a" data-toggle="modal" data-target="#myModal">');
+						var $pid=$("<td style='display:none;'>").text(data[i].pid);
 						var $pName=$("<td>").text(data[i].pName);
 						var $pCode=$("<td>").text(data[i].pCode);
 						var $pBreed=$("<td>").text(data[i].breed);
 						var $pGender=$("<td>").text(data[i].pGender);
 						var $pBirth=$("<td>").text(data[i].pBirth);
 						var $detailBtn=$("<td>").html('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open modal</button>');
-						
+						$tr.append($pid);
 						$tr.append($pName);
 						$tr.append($pCode);
 						$tr.append($pBreed);
@@ -423,10 +430,29 @@
 						$tr.append($detailBtn);
 						$tableBody.append($tr);
 					}
-					console.log(fuck);
+					
 					$(function(){
 						$(".a").on("click",function(){
-							console.log(this);
+							var pid=$(this).find("td").first().text();
+							for(var i=0;i<data.length;i++){
+								if(pid==data[i].pid){
+									choice=data[i];
+								}
+							}
+							console.log(choice);
+							$("input[name=pid]").val(choice.pid);
+							$("input[name=pName]").val(choice.pName);
+							$("input[name=breed]").val(choice.breed);
+							$("input[name=pCode]").val(choice.pCode);
+							$("input[name=pBirth]").val(choice.pBirth);
+							
+							$("#pName").text(choice.pName);
+							$("#pBreed").text(choice.breed);
+							$("#pCode").text(choice.pCode);
+							$("#pBirth").text(choice.pBirth);
+							choice.pUniqueness=choice.pUniqueness.replace(/<br>/gi,"\n");
+							console.log(choice.pUniqueness);
+							$("#pUniqueness").val(choice.pUniqueness);
 						});
 					});
 					//console.log(fuck)
@@ -452,40 +478,32 @@
 	    $("#pName").on("click",function(){
 	      if(confirm("반려동물 이름을 수정?")){
 	        var pName=prompt();
-	        // console.log(pName);
+	        $("input[name=pName]").val(pName);
 	        $(this).text(pName);
 	      }
 	    });
-	  });
-	  $(function(){
-	      $("#pCode").on("click",function(){
-	      if(confirm("반려동물 등록코드 수정?")){
-	        var pCode=prompt();
-	        // console.log(pName);
-	        $(this).text(pCode);
-	      }
-	    });
-	  });
-	  $(function(){
-	      $("#pBreed").on("click",function(){
-	      if(confirm("반려동물 품종 수정?")){
-	        var pBreed=prompt();
-	        // console.log(pName);
-	        $(this).text(pBreed);
-	      }
-	    });
-	  });
-	  $(function(){
-	      $("#pBirth").on("click",function(){
-	      if(confirm("반려동물 생일 수정?")){
-	        var pBirth=prompt();
-	        // console.log(pName);
-	        $(this).text(pBirth);
-	      }
-	    });
-	  });
-	  $(function(){
-	    $("#pUniqueness").val("Default테스트\n인식하는가");
+	    
+	    $("#pCode").on("click",function(){
+		      if(confirm("반려동물 등록코드 수정?")){
+		        var pCode=prompt();
+		        $("input[name=pCode]").val(pCode);
+		        $(this).text(pCode);
+		      }
+		    });
+	    $("#pBreed").on("click",function(){
+		      if(confirm("반려동물 품종 수정?")){
+		        var pBreed=prompt();
+		        $("input[name=breed]").val(pBreed);
+		        $(this).text(pBreed);
+		      }
+		    });
+	    $("#pBirth").on("click",function(){
+		      if(confirm("반려동물 생일 수정?")){
+		        var pBirth=prompt();
+		        $("input[name=pBirth]").val(pBirth);
+		        $(this).text(pBirth);
+		      }
+		    });
 	    $("#uniqueness").on("click",function(){
 	        var check=document.getElementById("pUniqueness").disabled;
 	        console.log(check);
@@ -498,9 +516,16 @@
 	        
 	    });
 	  });
+	  
 
 </script>
-
+	
+	<script>
+		function deletePet(){
+			var pid=$("input[name=pid]").val();
+			location.href="deletePet.pe?pid="+pid;
+		}
+	</script>
 
 
 
