@@ -63,11 +63,8 @@
 	
 	
 	
-	<insert id="DogBoardWriter" parameterType="TBoard">
-		INSERT INTO T_BOARD 
-		VALUES(SEQ_TBID.NEXTVAL,#{tbTitle},#{tbWriter},#{tbContent},0,SYSDATE,SYSDATE,'DOG',#{tbCategory},'Y',0)
-	</insert>
 	
+	<!--  게시판 자세히 보기  -->
 	<select id="DogBoardView" resultMap="TipBoardResultSet">
 		SELECT *
 		FROM T_BOARD
@@ -76,14 +73,80 @@
 		AND TB_STATUS='Y'
 	</select>
 	
-	<update id="DogBoardViewCount">
+	<update id="DogBoardViewCount" parameterType="_int">
 		UPDATE T_BOARD
 		SET T_BCOUNT = T_BCOUNT +1
 		WHERE TBID= #{tbId}
 	</update>
 	
+	<!--  게시판 글쓰기  -->
+	<insert id="DogBoardWriter" parameterType="TBoard">
+		INSERT INTO T_BOARD 
+		VALUES(SEQ_TBID.NEXTVAL,#{tbTitle},#{tbWriter},#{tbContent},0,SYSDATE,SYSDATE,'DOG',#{tbCategory},'Y',0)
+	</insert>
+	
+	
+	<!-- 게시판 댓글 관련 sql문 -->
+	
 	<insert id="DogBoardReply" parameterType="TReply">
 		INSERT INTO T_REPLY VALUES
 		(SEQ_TRID.NEXTVAL,#{trContent},#{trreftbId},#{trWriter},SYSDATE,SYSDATE,'Y')
 	</insert>
+	
+	<select id="DogBoardReplyList" resultMap="TipBoardResultSet">
+		SELECT * 
+		FROM T_REPLY
+		WHERE REF_TBID=#{tbId}
+		AND TR_STATUS='Y'
+		ORDER BY TRID ASC
+	</select>	
+		
+		
+	<select id="DogBoardUpdateView" resultMap="TipBoardResultSet">
+		SELECT * 
+		FROM T_BOARD
+		WHERE TBID=#{tbId}
+		AND TB_STATUS='Y'
+		AND TB_TYPE='DOG'
+		
+	</select>
+	
+	<update id="DogBoardUpdate" parameterType="TBoard">
+		UPDATE T_BOARD
+		SET T_BTITLE=#{tbTitle},T_BCONTENT=#{tbContent},TB_MODIFY_DATE=#{tbModifyDate}
+		WHERE TBID=#{tbId}
+	</update>
+	
+	<update id="DogBoardDelete" parameterType="_int">
+		UPDATE T_BOARD
+		SET TB_STATUS='N'
+		WHERE TBID=#{tbId}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

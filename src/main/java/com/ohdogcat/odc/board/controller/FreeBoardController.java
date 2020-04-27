@@ -123,7 +123,8 @@ public class FreeBoardController {
 	
 		
 		FreeBoard fb = bService.selectFreeBoard(fbId);
-
+		
+		
 		if(fb != null) {
 			mv.addObject("fb",fb)
 			.addObject("currentPage",currentPage)
@@ -134,7 +135,7 @@ public class FreeBoardController {
 		return mv;
 	}
 
-
+	//댓글쓰기
 	@RequestMapping("addFreeReply.bo")
 	@ResponseBody
 	public String addFreeReply(FreeReply fr) {
@@ -148,10 +149,11 @@ public class FreeBoardController {
 			return "fail";
 		}
 	}
-
+	
+	//댓글 리스트 부르기
 	@RequestMapping("frList.bo")
 	public void getFreeReplyList(HttpServletResponse response,int fbId) throws JsonIOException, IOException {
-		;
+		
 
 		ArrayList<FreeReply> frList = bService.selectFreeReplyList(fbId);
 

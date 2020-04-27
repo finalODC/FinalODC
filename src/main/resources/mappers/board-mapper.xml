@@ -111,7 +111,7 @@
 	
 </select>
 
-<select id="boardSearchListCount" resultType="_int">
+<!-- <select id="boardSearchListCount" resultType="_int">
 	SELECT COUNT(*)
 	FROM F_BOARD
 	WHERE FB_STATUS='Y'
@@ -140,7 +140,7 @@
 		AND F_BTITLE LIKE '%' || #{fbTitle} || '%'
 	</if>
 
-</select>
+</select> -->
 
 
 <select id="FreeBoardUpdateView" resultMap="FreeBoardResultSet">

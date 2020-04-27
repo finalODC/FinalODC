@@ -1,18 +1,27 @@
 package com.ohdogcat.odc.board.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.board.model.service.TipBoardService;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.board.model.vo.TipBoard;
+import com.ohdogcat.odc.board.model.vo.TipReply;
 import com.ohdogcat.odc.common.Pagination;
 
 @Controller
@@ -21,86 +30,7 @@ public class TipBoardController {
 	@Autowired
 	private TipBoardService tbService;
 	
-//	@RequestMapping("tboardgo.bo")
-//	public String TipBoardGo() {
-//		return "BoardPageFree";
-//	}
 
-//	@RequestMapping("DBlist.bo")
-//	public ModelAndView DogBoardList(ModelAndView mv,
-//			@RequestParam(value = "currentPage", required = false, defaultValue = "1") int currentPage) {
-//
-//		int listCount = bService.DogBoardCount();
-//
-//		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-//
-//		System.out.println("listCount" + listCount);
-//
-//		ArrayList<TipBoard> DBlist = bService.DogBoardList(pi);
-//
-//		mv.addObject("list", DBlist);
-//		mv.addObject("pi", pi);
-//		mv.setViewName("BoardPageDog");
-//
-//		System.out.println(pi);
-//		System.out.println(DBlist);
-//		return mv;
-//	}
-//
-//	/**
-//	 * 글쓰기 버튼 클릭시 BoardWriter로 보내버리는 코드 
-//	 * @return
-//	 */
-//	@RequestMapping("insertDogBoard.bo")
-//	public String BoardWriterView() {
-//
-//		return "BoardPageDogWriter";
-//	}
-//	
-//	
-//	@RequestMapping("DogBoardWriter.bo")
-//	public String DogBoardWriter(TipBoard tb) {
-//		//HttpServletRequest 이란 홈페이지에서 받은 값을 서블렛으로 보내주는 메소드 
-//		//RequestMapping 있을경우에는 굳이 안써도 된다.
-//		// 
-//		
-//		int result = bService.DogBoardWriter(tb);
-//		
-//		if(result > 0) {
-//			return "redirect:DBlist.bo";
-//		}else {
-//			return "";
-//		}
-//	}
-//	
-//	@RequestMapping("DogBoardView.bo")
-//	public ModelAndView DogBoardView(ModelAndView mv,int tbId,
-//			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
-//		
-//		TipBoard tb = bService.DogBoardView(tbId);
-//		
-//		if(tb != null) {
-//			mv.addObject("tb",tb);
-//			mv.addObject("currentPage",currentPage);
-//			mv.setViewName("BoardPageDogView");
-//		}else {
-//			
-//		}
-//		return mv;
-//	}
-//
-//	@RequestMapping("DogBoardAddReply.bo")
-//	@ResponseBody
-//	public String DogBoardReply(TipReply tr) {
-//		
-//		int result = bService.DogBoardReply(tr);
-//		
-//		if(result > 0) {
-//			return "success";
-//		}else {
-//			return "fail";
-//		}
-//	}
 	//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 	
 	@RequestMapping("DBlist.bo")
@@ -110,7 +40,7 @@ public class TipBoardController {
 			@RequestParam(value="dsearch",required=false)String dsearch) {
 		Map<String, String> Dmap = new HashMap<String, String>();
 		Dmap.put("dsearchkey",dsearchkey);
-		Dmap.put("search",dsearch);
+		Dmap.put("dsearch",dsearch);
 		
 		int listCount = tbService.DogBoardListCount(Dmap);
 		
@@ -120,11 +50,132 @@ public class TipBoardController {
 		
 		mv.addObject("dsearchkey",dsearchkey);
 		mv.addObject("dsearch",dsearch);
-		mv.addObject("list",TBlist);
+		mv.addObject("TBlist",TBlist);
 		mv.addObject("pi",pi);
 		mv.setViewName("BoardPageDog");
 		
 		return mv;
 	}
+	
+	
+	//캔슬키
+	@RequestMapping("DogcencleW.bo")
+	public String cencleWrite() {
+		System.out.println(">>");
+		return "redirect:DBlist.bo";
+		}
+	
+	// 게시판 자세히 보기
+	@RequestMapping("DogBoardView.bo")
+	public ModelAndView DogBoardView(ModelAndView Dmv,int tbId,
+						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		TipBoard tb = tbService.DogBoardView(tbId);
+		
+		
+		
+		System.out.println("tbId :  " + tbId);
+		
+		
+		if(tb != null) {
+			Dmv.addObject("db",tb)
+			   .addObject("currentPage",currentPage)
+			   .setViewName("BoardPageDogView");
+		}else {
+			
+		}
+		return Dmv;
+	}
+	
+	
 
+	// 글쓰기 페이지 가기
+	@RequestMapping("DogBoardWritergo.bo")
+	public String DogBoardWritergo() {
+		return "BoardPageDogWriter";
+	}
+	
+	
+	// 글쓰기 
+	@RequestMapping("DogBoardWriter.bo")
+	public String DogBoardWriter(TipBoard tb,HttpServletRequest request) {
+		
+		int result = tbService.DogBoardWriter(tb);
+		
+		if(result > 0) {
+			return "redirect:DBlist.bo"; 
+		}else {
+			return "";
+		}
+		
+	}
+	
+	
+	// 댓글쓰기
+	@RequestMapping("DogBoardReply.bo")
+	@ResponseBody
+	public String DogBoardReply(TipReply tr) {
+		
+		int result = tbService.DogBoardReply(tr);
+		
+		
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	//댓글 리스트 보기
+	@RequestMapping("DogBoardReplyList.bo")
+	public void DogBoardReplyList(HttpServletResponse response,int tbId) throws JsonIOException, IOException {
+		
+		ArrayList<TipReply> trList = tbService.DogBoardReplyList(tbId);
+		
+		System.out.println("trList = " + trList);
+		
+		response.setContentType("application/json; charset=utf-8 ");
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		
+		gson.toJson(trList,response.getWriter());
+		
+		
+	}
+	
+	// 업테이트 페이지 가기
+	@RequestMapping("DogBoardUpdateView.bo")
+	public ModelAndView DogBoardUpdateView(ModelAndView Dmv,int tbId) {
+		
+		Dmv.addObject("db",tbService.DogBoardUpdateView(tbId)).setViewName("BoardPageDogUpdate");
+		
+		return Dmv;
+	}
+	 
+	//페이지 업데이트
+	@RequestMapping("DogBoardUpdate.bo")
+	public ModelAndView DogBoardUpdate(ModelAndView Dmv,TipBoard tb) {
+		
+		int result= tbService.DogBoardUpdate(tb);
+		
+		if(result > 0) {
+			Dmv.addObject("db",tb.getTbId()).setViewName("redirect:DBlist.bo");
+		}
+		return Dmv;
+	}
+	
+	@RequestMapping("DogBoardDelete.bo")
+	public String DogBoardDelete(int tbId,HttpServletRequest request) {
+		
+		int result = tbService.DogBoardDelete(tbId);
+		
+		if(result >0) {
+			return "redirect:DBlist.bo";
+		}else {
+			return "";
+		}
+		
+	}
+	
 }

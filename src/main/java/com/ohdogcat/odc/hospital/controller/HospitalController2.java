@@ -59,7 +59,7 @@ public class HospitalController2 {
 
 	@RequestMapping("hosinfo.ho")
 	public String goHosInfo() {
-		return "inserthospital2";
+		return "detailHospital";
 	}
 
 	@RequestMapping("insertdoc.ho")
@@ -118,7 +118,7 @@ public class HospitalController2 {
 		}
 		
 	}
-	
+
 	@RequestMapping("indoc.ho")
 	public String indoc(Doctor doc, HttpServletRequest request, Model model,
 			  @RequestParam(name="docImage",required=false) MultipartFile file,
@@ -181,7 +181,7 @@ public class HospitalController2 {
 	}
 	
 	@ResponseBody
-	@RequestMapping("updateDoc")
+	@RequestMapping("updateDoc.ho")
 	public String updateDoc(@ModelAttribute Doctor doc, Model model,HttpServletRequest request,
 			  @RequestParam(name="docImage",required=false) MultipartFile file,@RequestParam(value="oriImg", required=false)String oriImg) {
 		System.out.println(file);
@@ -221,7 +221,7 @@ public class HospitalController2 {
 		
 	}
 
-	
+	@ResponseBody
 	@RequestMapping("hosupdate.ho")
 	public String hosupdate(Model model, HMember hm, String pwd, String hPhone) {
 

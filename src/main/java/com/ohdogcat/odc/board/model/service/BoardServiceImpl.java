@@ -78,6 +78,11 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.FreeBoardUpdateView(fbId);
 	}
 	
+	@Override
+	public int FreeBoardUpdate(FreeBoard fb) {
+		
+		return bDao.FreeBoardUpdate(fb);
+	}
 	
 	@Override
 	public int FreeBoardDelete(int fbId) {
@@ -85,11 +90,6 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.FreeBoardDelete(fbId);
 	}
 	
-	@Override
-	public int FreeBoardUpdate(FreeBoard fb) {
-
-		return bDao.FreeBoardUpdate(fb);
-	}
 
 	@Override
 	public int FreeBoardSearchCount(int fbId) {

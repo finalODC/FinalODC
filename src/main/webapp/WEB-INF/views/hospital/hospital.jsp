@@ -123,20 +123,6 @@
 
 								<div class="card" style="width: 500px text-align=center;">
 									<div class="card-body text-center">
-									
-									
-										<%-- <table style="width: 90%; height: 200px; border: none;" >
-											<tr>
-												<td>병원시간</td>
-												<td><input type="text" id="hComment" name="hComment" value="${ hospital.hComment }"></td>
-											</tr>
-											<tr>
-												<td>진료동물</td>
-												<td><input type="text" id="hComment" name="hComment" value="${ hospital.hComment }"></td>
-											</tr>
-										</table> --%>
-
-	
 										<textarea style="width: 90%; height: 200px; border: none; resize: none;" id="hComment" name="hComment"
 											>${ hospital.hComment }</textarea>
 
