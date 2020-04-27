@@ -143,7 +143,7 @@ public class HMemberController {
 		if(result >0) {
 			session.setComplete();
 			m1.addAttribute("msg","회원가입이 완료되었습니다.");
-			return "homepage/hloginp.do";
+			return "homepage/h_login6";
 			
 		}else {
 			//에러 페이지
