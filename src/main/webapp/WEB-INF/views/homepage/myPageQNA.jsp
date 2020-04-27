@@ -174,17 +174,7 @@
 
 										<tr>
 											<th class="tatd">첨부파일:</th>
-											<td>		
-											<c:if test="${ !empty qna.qFile }">
-												<a href="/odc/resources/qnaFiles/${ qna.qFile }"  id="file"></a>
-											<script>
-        										$(document).ready(function(){
-        											var filename= "${qna.qFile}".substring(12)
-        											$("#file").text(filename).prop("download",filename);
-        									
-        										})
-        									</script>
-									</c:if> </td>
+											<td><span><input type="file" name="qFile"></span></td>
 										</tr>
 
 									</tbody>
@@ -365,11 +355,19 @@
 								var qna=data.list[i];
 							}
 						}
+						
+						
 						console.log(qna);
+						
+						
 						$("#detailTitle").text(qna.qTitle);
 						$("#detailDate").text(qna.qDate);
+						
+						
 						if(qna.qFile!=null){
-							$("#detailFile").text(qna.qFile);
+							var fileN = qna.qFile.substring(12);
+							$a = $("<a href='/odc/resources/qnaFiles/"+qna.qFile+"' download='"+fileN+"' >").text(fileN);
+							$("#detailFile").append($a);
 						}else{
 							$("#detailFile").text("첨부파일없음");
 						}
