@@ -27,8 +27,12 @@
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="https://kit.fontawesome.com/ddfd73bace.js"
 	crossorigin="anonymous"></script>
+<!--  제이 쿼리 -->
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 
-<!-- 스마트 에디터 -->
+
 
 <style>
 .main-menu li a:hover {
@@ -83,10 +87,9 @@
 #SearchBtn {
 	width: 50px;
 	border: 0px;
-	background: white;
+	background-color: white;
 }
 </style>
-</head>
 </head>
 
 
@@ -114,15 +117,7 @@
 							<li><a href="search-result.html">반려동물 관리</a></li>
 							<li><a href="single-property.html"></a></li>
 						</ul></li>
-					<!-- <li><a href="#"></a>
-          <ul class="sub-menu">
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="search-result.html">Search Result</a></li>
-            <li><a href="single-property.html">Property</a></li>
-          </ul>
-        </li>
-        <li><a href="news.html">News</a></li> -->
-					<!-- <li><a href="#">로그인</a></li> -->
+
 				</ul>
 				<div class="header-right">
 					<div class="user-panel">
@@ -140,14 +135,11 @@
 		<div class="row">
 			<div id="aside" align="center" class="col-lg-2">
 				<div align="left">
-					<br>
-					<br> <br>
-					<br>
+					<br> <br> <br> <br>
 
 					<ul>
-						<A href="Fblist.bo">
-						<!-- Fblist.bo로 매핑된 메소드를 호출하여 값을 불러오고 페이지로 이동한다. -->
-						
+						<A href="Fblist.bo"> <!-- Fblist.bo로 매핑된 메소드를 호출하여 값을 불러오고 페이지로 이동한다. -->
+
 							<h4 style="height: 40px;" align="">자유 게시판</h4>
 						</A>
 						<br>
@@ -156,7 +148,9 @@
 						<a>
 							<h4>정보 공유 게시판</h4>
 						</a>
-						<hr style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;" align="left">
+						<hr
+							style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;"
+							align="left">
 
 						<a href="DBlist.bo">
 							<h5>
@@ -166,7 +160,7 @@
 							</h5>
 						</a>
 						<br>
-						<a href="ohdogcat_CatBoardPage.html">
+						<a href="CBlist.bo">
 							<h5>
 								<i class="fas fa-cat">&nbsp;</i>고양이
 								게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i
@@ -182,18 +176,17 @@
 
 			<div id="contents" class="col-lg-6">
 
-				<br>
-				<br>
+				<br> <br>
 
 				<h2>
-					&nbsp;&nbsp;&nbsp;Cat board &nbsp; <i class="fas fa-bell"></i>
+					&nbsp;&nbsp;&nbsp;Cat board &nbsp; <i class="fas fa-paw"></i>
 				</h2>
 
-				<br>
-				<br>
+				<br> <br>
 
 				<div align="right" style="width: 750px; margin-left: 80px;">
 					<table class="table table-hover" align="center">
+
 						<thead>
 							<tr>
 								<th>no.</th>
@@ -203,99 +196,134 @@
 								<th>조회수</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>강아지는 역시</td>
-								<td>포메리안</td>
-								<td>20/04/06</td>
-								<td>4</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>요즘 저희 강아지가털이 많이빠져요</td>
-								<td>tlqkrus123</td>
-								<td>20/04/06</td>
-								<td>48</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>사랑스러운 우리 애</td>
-								<td>wlsehtro</td>
-								<td>20/04/06</td>
-								<td>75</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>저희애가 요즘 하악질을 많이하는데요...</td>
-								<td>ajsclzls</td>
-								<td>20/04/06</td>
-								<td>5</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>요즘 어던 사료가 제일</td>
-								<td>삽살개</td>
-								<td>20/04/06</td>
-								<td>84</td>
-							</tr>
-							<tr>
-								<td>6</td>
-								<td>크림히어로즈에 나오는 루루가</td>
-								<td>루루</td>
-								<td>20/04/06</td>
-								<td>2</td>
-							</tr>
+
+						<tbody id="tableArea">
+							<c:forEach var="cb" items="${CBlist}">
+
+								<tr class="Ctrc">
+								
+									<td>${cb.tbId }</td>
+									<td>${cb.tbTitle }</td>
+									<td>${cb.tbWriter }</td>
+									<td>${cb.tbCreateDate }</td>
+									<td>${cb.tbCount }</td>
+
+								</tr>
+							</c:forEach>
 						</tbody>
+
+
 					</table>
+
+					<!-- 클릭 이벤트시 게시판 디테일로 가는 스크립트 -->
+					<script>
+						$('.Ctrc').click(function(){
+							var bb= $(this).find("td:eq(0)").text()
+							
+							location.href='CatBoardView.bo?tbId='+bb;
+						});
+					</script>
+					<!--  @@@@@@@@@@@@@@@@@@@@검색 @@@@@@@@@@@@@@@@@@@@ -->
 
 					<div class="btn-toolbar d-flex justify-content-center">
 
+						<!-- 이전버튼 -->
 						<div class="btn-group">
-							<button type="button" class="btn btn-secondary"><<</button>
+
+							<c:if test="${pi.currentPage eq 1 }">
+								<input type="button" value="[이전]" class="btn btn-secondary" />
+							</c:if>
+
+							<c:if test="${pi.currentPage ne 1 }">
+								<c:url var="before" value="CBlist.bo">
+									<c:param name="currentPage" value="${ pi.currentPage -1 }" />
+								</c:url>
+								<input type="button" class="btn btn-secondary" value="[이전]"
+									onclick="getList(${pi.currentPage-1});" />
+							</c:if>
 						</div>
 
-						<div class="btn-group" align="center">
-							<button type="button" class="btn btn-secondary">1</button>
-							<button type="button" class="btn btn-secondary">2</button>
-							<button type="button" class="btn btn-secondary">3</button>
-							<button type="button" class="btn btn-secondary">4</button>
-							<button type="button" class="btn btn-secondary">5</button>
-							<button type="button" class="btn btn-secondary">6</button>
-							<button type="button" class="btn btn-secondary">7</button>
-							<button type="button" class="btn btn-secondary">8</button>
-							<button type="button" class="btn btn-secondary">9</button>
-						</div>
 
+
+						<!-- 페이지 숫자버튼 -->
+						<c:forEach var="p" begin="${ pi.startPage }" end="${pi.endPage }">
+
+							<div class="btn-group" align="center">
+
+								<c:if test="${ p eq pi.currentPage }">
+									<button class="btn btn-secondary">${ p }</button>
+								</c:if>
+
+
+								<c:if test="${ p ne pi.currentPage }">
+									<c:url var="pagination" value="TBlist.bo">
+										<c:param name="currentPage" value="${ p }" />
+									</c:url>
+									<button class="btn btn-secondary" onclick="getList(${p});">${ p }</button>
+								</c:if>
+							</div>
+
+						</c:forEach>
+
+
+						<!-- 다음으로 가는 버튼  -->
 						<div class="btn-group">
-							<button type="button" class="btn btn-secondary">>></button>
+							<c:if test="${pi.currentPage eq pi.maxPage }">
+								<input type="button" class="btn btn-secondary" value="다음" />
+							</c:if>
+							<c:if test="${ pi.currentPage ne pi.maxPage }">
+
+								<input value="[다음]" type="button"
+									onclick="getList(${pi.currentPage+1});"
+									class="btn btn-secondary" />
+							</c:if>
 						</div>
 					</div>
 
+
+					<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    검색 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 					<br>
 
 					<div align="center" id="SearchDiv">
 						<table border="1">
 							<tr>
-								<td><select style="border: 0px;">
-										<option value="제목">제목</option>
-										<option value="작성자">작성자</option>
-										<option value="내용">내용</option>
-								</select></td>
-								<td><input id="Search" type="text" style="border: 0px;"
-									placeholder="검색어를 입력하세요"></td>
+								<c:if test="${csearchkey!=null and csearch !=null }">
+									<td><select style="border: 0px;" id="CatboardSearchkey">
+											<option value="title">제목</option>
+											<option value="writer">작성자</option>
+
+									</select></td>
+
+									<td><input id="CatboardSearchval" type="text"
+										style="border: 0px;" value="${ search}"
+										placeholder="검색어를 입력하세요"></td>
+									<script>
+								$("#CatboardSearchkey").val("${csearchkey}");
+								</script>
+								</c:if>
+								<c:if test="${csearchkey==null or csearch ==null }">
+									<td><select style="border: 0px;" id="CatboardSearchkey">
+											<option value="title">제목</option>
+											<option value="Writer">작성자</option>
+
+									</select></td>
+
+									<td><input id="CatboardSearchval" type="text"
+										style="border: 0px;" placeholder="검색어를 입력하세요"></td>
+								</c:if>
 								<td>
-									<button id="searchBtn" style="border: 0px; background: white;">
+									<button id="searchBtn" style="border: 0px; background: white;"
+										onclick="getList(1)">
 										&nbsp;<i class="fas fa-search"></i>
+
 									</button>
 								</td>
 							</tr>
 						</table>
 
 					</div>
-					<br>
-					<br>
-					<button align="right">글쓰기</button>
+					<br> <br>
+					<button onclick="location.href='CatBoardWritergo.bo'" align="right">글쓰기</button>
 				</div>
 
 			</div>
@@ -331,7 +359,17 @@
 	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
 
 	<script src="${path }/resources/js/main.js"></script>
-</body>
+	
+	<script>
+	function getList(currentPage){
 
+		var dsearchkey = $("#CatboardSearchkey").val();
+		var dsearch = $("#CatboardSearchval").val();
+		
+		location.href="?currentPage=" + currentPage+"&csearchkey=" + csearchkey +"&csearch="+csearch ;
+	}
+	</script>
+</body>
+	
 
 </html>

@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.common.Pagination;
+import com.ohdogcat.odc.homepage.searchHospital.model.vo.hPagination;
 import com.ohdogcat.odc.manager.Notice.model.vo.Notice;
 import com.ohdogcat.odc.manager.Notice.model.vo.NoticeSearchCondition;
 import com.ohdogcat.odc.manager.Notice.service.NoticeService;
@@ -58,7 +59,7 @@ public class NoticeController {
 		
 		int listCount = nService.NoticeListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = hPagination.getPageInfo(currentPage, listCount,10);
 		
 		ArrayList<Notice> list = nService.getNoticeList(pi);
 		
@@ -78,7 +79,7 @@ public class NoticeController {
 		
 		int listCount = nService.NoticeListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = hPagination.getPageInfo(currentPage, listCount,10);
 		
 		response.setContentType("application/json; charset=utf-8");
 		
@@ -162,7 +163,7 @@ public class NoticeController {
 		
 		int listCount = nService.homeNoticeListCount(ns);
 
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = hPagination.getPageInfo(currentPage, listCount,10);
 		
 		ArrayList<Notice> list = nService.homeNoticeList(pi,ns);
 	
@@ -192,7 +193,7 @@ public class NoticeController {
 		
 		int listCount = nService.homeNoticeListCount(ns);
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = hPagination.getPageInfo(currentPage, listCount,10);
 		
 		response.setContentType("application/json; charset=utf-8");
 		  

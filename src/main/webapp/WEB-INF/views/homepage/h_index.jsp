@@ -50,13 +50,13 @@ box-shadow: 0 0 0 0 !important;
   <div class="jumbotron" style="height: 969px; margin: 0px;">
     <div class="container">
         <br><br><br><br><br><br><br><br><br><br><br>
-      <h1>주변 동물병원을 찾아보세요!</h1>
-      <h2>가입만 하면 편하게 찾을 수 있습니다!</h2>
+      <h1>동물의 동물에 의한 동물을 위한 서비스</h1>
+      <h1>OH! DOG CAT</h1>
 
         <div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 260px">
           <div class="card">
           <div class="card-body">
-            <div class="button-area d-flex justify-content-center" style="margin-top: 10%;">
+            <div class="button-area d-flex justify-content-center" style="margin-top: 7%;">
               <input id="hosbtn1" type="button" value="병원으로 로그인" onclick="javascript:location.href='hloginp.do'" class="btn login_btn">						
           </div>
           <div class="button-area d-flex justify-content-center" >

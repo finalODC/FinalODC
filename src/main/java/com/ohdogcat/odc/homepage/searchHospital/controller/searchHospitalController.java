@@ -54,7 +54,7 @@ public class searchHospitalController {
 		
 		int listCount = shService.hospitalListCount(hs);
 		
-		PageInfo pi = hPagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = hPagination.getPageInfo(currentPage, listCount,6);
 		
 		ArrayList<HMember> list = shService.hospitalSearchList(pi,hs);
 		
@@ -82,7 +82,7 @@ public class searchHospitalController {
 		
 		int listCount = shService.hospitalListCount(hs);
 		
-		PageInfo pi = hPagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = hPagination.getPageInfo(currentPage, listCount,6);
 		
 		response.setContentType("application/json; charset=utf-8");
 		

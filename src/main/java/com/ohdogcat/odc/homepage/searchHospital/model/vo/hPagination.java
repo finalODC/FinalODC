@@ -3,7 +3,7 @@ package com.ohdogcat.odc.homepage.searchHospital.model.vo;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 
 public class hPagination {
-	public static PageInfo getPageInfo(int currentPage,int listCount) {
+	public static PageInfo getPageInfo(int currentPage,int listCount,int boardLim) {
 
 		// 페이지 정보를 담아줄 PageInfo 참조변수 선언
 		PageInfo pi = null;
@@ -13,7 +13,7 @@ public class hPagination {
 		int startPage;				// 현재 페이지에서 보여질 페이징 버튼의 시작 페이지
 		int endPage;				// 현재 페이지에서 보여질 페이징 버튼의 끝 페이지
 
-		int boardLimit = 6;			// 한 페이지에서 보여질 게시글 갯수
+		int boardLimit = boardLim;			// 한 페이지에서 보여질 게시글 갯수
 
 		// * maxPage - 총 페이지 수
 		maxPage = (int)Math.ceil((double)listCount/boardLimit);

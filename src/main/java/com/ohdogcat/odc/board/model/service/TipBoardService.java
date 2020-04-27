@@ -40,7 +40,33 @@ public interface TipBoardService {
 	
 	// -----------------------ㅇㅕ 기 서부터는 catBoard 입니다.----------------------
 	
-	int CatBoardListCount(Map<String,String>Cmap);
+	//게시판 카운트
+	int CatBoardListCount(Map<String,String> Cmap);
 	
-	ArrayList<TipBoard> CatBoardList(Map<String,String>Cmap,PageInfo pi);
+	// 게시판 리스트
+	ArrayList<TipBoard> CatBoardList(Map<String,String> Cmap,PageInfo pi);
+	
+	//게시판 작성
+	int CatBoardWriter(TipBoard tb);
+	
+	//게시판 상세 보기 
+	TipBoard CatBoardView(int tbId);
+	
+	//게시판 수정페이지 가기
+	TipBoard CatBoardUpdateView(int tbId);
+	//게시판 수정하기
+	int CatBoardUpdate(TipBoard tb);
+	
+	// 게시판 삭제
+	int CatBoardDelete(int tbId);
+	
+	//댓글 넣기
+	int CatBoardReply(TipReply tr);
+	
+	//댓글 불러오기
+	
+	
+	
+	
+	
 }

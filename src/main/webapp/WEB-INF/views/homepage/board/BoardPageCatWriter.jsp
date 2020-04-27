@@ -160,7 +160,7 @@
 							</h5>
 						</a>
 						<br>
-						<a href="ohdogcat_CatBoardPage.html">
+						<a href="CBlist.bo">
 							<h5>
 								<i class="fas fa-cat">&nbsp;</i>고양이
 								게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i

@@ -146,7 +146,7 @@
 							</h5>
 						</a>
 						<br>
-						<a href="ohdogcat_CatBoardPage.html">
+						<a href="CBlist.bo">
 							<h5>
 								<i class="fas fa-cat">&nbsp;</i>고양이
 								게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i
@@ -164,7 +164,7 @@
 				<br> <br>
 				<!-- 게시판 view 에요 @@@@@@@@@@@@@@@@@@@@@@@ -->
 				
-				<h3>&nbsp;&nbsp;&nbsp;강아지 게시판</h3>
+				<h3>&nbsp;&nbsp;&nbsp;고양이 게시판</h3>
 				<hr>
 				<br> <br>
 				<div class="container" align="right">
@@ -194,9 +194,9 @@
 
 
 					<!-- fbId 값은 위의 fb에 전부 담겨있기 때문에 fb.fbId를 써서 값을 받아와서 넘겨주자 -->
-					<c:if test="${loginUser.userId eq db.cbWriter }">
+					<c:if test="${loginUser.userId eq cb.tbWriter }">
 						<button onclick="location.href='CatBoardUpdateView.bo?tbId=${cb.tbId}'">수정하기</button>
-						<button onclick="location.href='CBdelete.bo?fbId=${cb.tbId}'" > 삭제하기</button>
+						<button onclick="location.href='CatBoardDelete.bo?tbId=${cb.tbId}'" > 삭제하기</button>
 													
 					</c:if>
 			
@@ -335,7 +335,7 @@
 	});
 	
 	function CatBoardReplyList(){
-		var tbId = ${db.tbId};
+		var tbId = ${cb.tbId};
 		
 		$.ajax({
 			url:"CatBoardReplyList.bo",

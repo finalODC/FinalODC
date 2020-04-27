@@ -177,5 +177,131 @@ public class TipBoardController {
 		}
 		
 	}
+	//----------------------------- Cat Board 페이지 ---------------------------------
+	// 게시판 리스트
+	@RequestMapping("CBlist.bo")
+	public ModelAndView CatBoardList(ModelAndView Cmv,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage,
+			@RequestParam(value="csearchkey",required=false)String csearchkey,
+			@RequestParam(value="csearch",required=false)String csearch) {
+		Map<String, String> Cmap = new HashMap<String, String>();
+		Cmap.put("csearchkey",csearchkey);
+		Cmap.put("csearch",csearch);
+		System.out.println("냐옹이");
+		
+		int listCount = tbService.CatBoardListCount(Cmap);
+		System.out.println(listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		ArrayList<TipBoard> CBlist = tbService.CatBoardList(Cmap, pi);
+		
+		Cmv.addObject("dsearchkey",csearchkey);
+		Cmv.addObject("dsearch",csearch);
+		Cmv.addObject("CBlist",CBlist);
+		Cmv.addObject("pi",pi);
+		Cmv.setViewName("BoardPageCat");
+		
+		System.out.println("CBlist" + CBlist);
+		
+		return Cmv;
+	}
+	//캔슬키
+	@RequestMapping("CatcencleW.bo")
+	public String CcencleWrite() {
+		System.out.println(">>");
+		return "redirect:CBlist.bo";
+		}
+	//글쓰기 버튼시 글쓰기가기
+	@RequestMapping("CatBoardWritergo.bo")
+	public String CatBoardWritergo() {
+		return "BoardPageCatWriter";
+	}
+	
+	//글쓰기
+	@RequestMapping("CatBoardWriter.bo")
+	public String CatBoardWriter(TipBoard tb,HttpServletRequest request) {
+		
+		int result = tbService.CatBoardWriter(tb);
+		
+		if(result > 0) {
+			return "redirect:CBlist.bo"; 
+		}else {
+			return "";
+		}
+		
+	}
+	
+	// 게시판 자세히 보기
+	@RequestMapping("CatBoardView.bo")
+	public ModelAndView CatBoardView(ModelAndView Cmv,int tbId,
+						@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		TipBoard tb = tbService.CatBoardView(tbId);
+		
+		
+		
+		System.out.println("tbId :  " + tbId);
+		
+		
+		if(tb != null) {
+			Cmv.addObject("cb",tb)
+			   .addObject("currentPage",currentPage)
+			   .setViewName("BoardPageCatView");
+		}else {
+			
+		}
+		return Cmv;
+	}
+	
+	// 업테이트 페이지 가기
+	@RequestMapping("CatBoardUpdateView.bo")
+	public ModelAndView CatBoardUpdateView(ModelAndView Cmv,int tbId) {
+		
+		Cmv.addObject("cb",tbService.CatBoardUpdateView(tbId)).setViewName("BoardPageCatUpdate");
+		
+		return Cmv;
+	}
+	 
+	//페이지 업데이트
+	@RequestMapping("CatBoardUpdate.bo")
+	public ModelAndView CatBoardUpdate(ModelAndView Cmv,TipBoard tb) {
+		
+		int result= tbService.CatBoardUpdate(tb);
+		
+		if(result > 0) {
+			Cmv.addObject("cb",tb.getTbId()).setViewName("redirect:CBlist.bo");
+		}
+		return Cmv;
+	}
+	
+	//페이지 삭제
+	
+	@RequestMapping("CatBoardDelete.bo")
+	public String CatBoardDelete(int tbId,HttpServletRequest request) {
+		
+		int result = tbService.CatBoardDelete(tbId);
+		
+		if(result >0) {
+			return "redirect:CBlist.bo";
+		}else {
+			return "";
+		}
+		
+	}
+	
+	@RequestMapping("CatBoardReply.bo")
+	@ResponseBody
+	public String CatBoardReply(TipReply tr) {
+		
+		int result = tbService.CatBoardReply(tr);
+		
+		
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
 	
 }

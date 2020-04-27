@@ -83,6 +83,64 @@ public class TipBoardServiceImpl implements TipBoardService{
 	
 		return bDao.DogBoardDelete(tbId);
 	}
+//----------------------------------- 여기서부터 cat board ---------------------------
+	
+	@Override
+	public int CatBoardListCount(Map<String, String> Cmap) {
+		
+		return bDao.CatBoardListCount(Cmap);
+	}
+
+	@Override
+	public ArrayList<TipBoard> CatBoardList(Map<String, String> Cmap, PageInfo pi) {
+		
+		return bDao.CatBoardList(Cmap,pi);
+	}
+
+	//게시판 작성
+	@Override
+	public int CatBoardWriter(TipBoard tb) {
+		
+		return bDao.CatBoardWriter(tb);
+	}
+
+	//게시판 상세보기
+	
+	@Override
+	public TipBoard CatBoardView(int tbId) {
+
+		return bDao.CatBoardView(tbId);
+	}
+
+	
+	//게시판 수정페이지 가기
+	@Override
+	public TipBoard CatBoardUpdateView(int tbId) {
+
+		return bDao.CatBoardUpdateView(tbId);
+	}
+
+	//게시판 수정하기
+	@Override
+	public int CatBoardUpdate(TipBoard tb) {
+		
+		return bDao.CatBoardUpdate(tb);
+	}
+	//게시판 삭제
+
+	@Override
+	public int CatBoardDelete(int tbId) {
+
+		return bDao.CatBoardDelete(tbId);
+	}
+
+	@Override
+	public int CatBoardReply(TipReply tr) {
+
+		return bDao.CatBoardReply(tr);
+	}
+	
+	
 	
 	
 }

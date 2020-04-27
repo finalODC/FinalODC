@@ -16,15 +16,12 @@
 	rel="stylesheet">
 
 <c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
-  <link rel="stylesheet" href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
-
+  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
 <style>
 #aaa {
 	margin-left: 10%;
@@ -32,6 +29,8 @@
 
 .btn{
 	font-size:17px;
+	width:150px;
+	margin:5px;
 }
 .form-control{
 	font-size:15px;
@@ -130,8 +129,8 @@
 
 								<br>
 
-								<input type="hidden" value="0" id="pwdCheck">
-								<button class="btn btn-primary btn-lg" type="submit"
+								<in	put type="hidden" value="0" id="pwdCheck">
+								<button class="btn btn-danger btn-lg" type="submit"
 									style="float: right;">확인</button>
 
 							</form>
@@ -147,20 +146,8 @@
 
 	<!-- Footer Section -->
 	<br>
-	<hr>
-	<br>
-	<footer class="footer">
-		<div class="container">
-			<div class="copyright">
-				Copyright &copy;
-				<script>
-					document.write(new Date().getFullYear());
-				</script>
-				권한은 전적으로 나한테 있습니다.
 
-			</div>
-			</div>
-	</footer>
+<jsp:include page="common/footer.jsp"/>
 	<!-- Footer Section end -->
 
 	<!--====== Javascripts & Jquery ======-->

@@ -13,7 +13,6 @@
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
   
-
   <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
@@ -61,7 +60,7 @@ background-color: white;
   background: url("https://s3.amazonaws.com/codecademy-content/projects/adoptly/bg.jpg")
     no-repeat center center;
   background-size: cover;
-  height: 780px;
+  height: 786px;
   text-align: center;
   margin-top: 105px;
   margin-bottom: 0;
@@ -88,8 +87,7 @@ box-shadow: 0 0 0 0 !important;
 
   <div class="jumbotron" >
     <div class="container">
-      <div style="margin-top: 5%;">
-      <h3>간편하게 동물병원을 찾자!</h3>
+      <div style="margin-top: 7%;">
     </div>
       <br>
       <div class="d-flex justify-content-center" >
