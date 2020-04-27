@@ -146,7 +146,7 @@
 							<hr>
 							<h4 id="lee" class="mb-3">문의 작성하기 &nbsp;&nbsp;</h4>
 							<hr>
-							<form action="insertQNA.qn" method="POST" onsubmit="return add();">
+							<form action="insertQNA.qn" method="POST" onsubmit="return add();" enctype="multipart/form-data">
 								<input type="hidden" name="qWriter" value="${loginUser.userId }">
 								<table id="nok" class="table table-bordered"
 									style="background: white;">
@@ -355,11 +355,19 @@
 								var qna=data.list[i];
 							}
 						}
+						
+						
 						console.log(qna);
+						
+						
 						$("#detailTitle").text(qna.qTitle);
 						$("#detailDate").text(qna.qDate);
+						
+						
 						if(qna.qFile!=null){
-							$("#detailFile").text(qna.qFile);
+							var fileN = qna.qFile.substring(12);
+							$a = $("<a href='/odc/resources/qnaFiles/"+qna.qFile+"' download='"+fileN+"' >").text(fileN);
+							$("#detailFile").append($a);
 						}else{
 							$("#detailFile").text("첨부파일없음");
 						}

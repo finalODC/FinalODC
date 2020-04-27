@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -74,14 +75,18 @@
                               <th width="100px">첨부파일: </th>
                               <td>
                               
-        						<%--<c:if test="${ !empty qna.originalFileName }">
-									<a href="${ contextPath }/resources//${ qna.renameFileName }" download="${ qna.originalFileName }">${ qna.originalFileName }</a>
-					
-									</c:if> --%>
-									
-								<c:if test="${!empty qna.qFile }">
-									파일 다운로드
-								</c:if>
+        						<c:if test="${ !empty qna.qFile }">W
+        							
+									<a href="/odc/resources/qnaFiles/${ qna.qFile }"  id="file"></a>
+											<script>
+        								$(document).ready(function(){
+        									var filename= "${qna.qFile}".substring(12)
+        									$("#file").text(filename).prop("download",filename);
+        									
+        								})
+        							</script>
+									</c:if> 
+
                              
                               </td>
                           </tr>

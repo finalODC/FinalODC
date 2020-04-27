@@ -1,16 +1,20 @@
 package com.ohdogcat.odc.qna.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -27,13 +31,51 @@ public class QnaController {
 	private QnaService qService;
 
 	@RequestMapping("insertQNA.qn")
-	public String insertQNA(Qna q) {
+	public String insertQNA(Qna q, HttpServletRequest request,  @RequestParam(value="qnaFile",required=false) MultipartFile file) {
+		
+		String renameFileName = saveFile(file, request);
+		if(!file.getOriginalFilename().equals("")) {
+			if(renameFileName != null) {
+				q.setqFile(renameFileName);
+			}
+
+		}
 		System.out.println(q);
 		int result=qService.insertQna(q);
 		
-		
+
 		return "redirect:myqnalist.qn";
 	}
+	
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+
+		String root = request.getSession().getServletContext().getRealPath("resources");
+
+		String savePath = root+"\\qnaFiles";
+
+		File folder = new File(savePath);
+
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+
+		String originFileName = file.getOriginalFilename();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");                                
+
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+originFileName;    
+
+		String renamePath = folder + "\\" + renameFileName;    
+
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (Exception e) {
+			System.out.println("파일 전송 에러 : " + e.getMessage());
+		}
+
+		return renameFileName;
+	}
+	
 
 	/*
 	 * @RequestMapping("myqnalist.qn") public void qnaList(HttpServletResponse
@@ -73,7 +115,6 @@ public class QnaController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,listCount);
 		ArrayList<Qna> list = qService.selectQnaList(pi,userId);
-		System.out.println(list.get(0).getQnaRe());
 		Map hmap = new HashMap();
 		
 		hmap.put("list", list);
