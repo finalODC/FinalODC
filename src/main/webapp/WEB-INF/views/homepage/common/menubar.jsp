@@ -31,7 +31,7 @@
         <a href="gomainPage.do" class="float-left navbar-light " style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
       <ul class="main-menu">
         <li><a href="searchhospital.do">병원찾기</a></li>
-        <li><a href="community.do">커뮤니티</a>
+        <li><a href="#">커뮤니티</a>
           <ul class="sub-menu">
             <li><a href="hgonoticelist.do">공지사항</a></li>
             <li><a href="Fblist.bo">자유게시판</a></li>

@@ -100,9 +100,8 @@
 <body>
 	<jsp:include page="common/menubar.jsp"/>
 
-	<!--     @@@@@@@@@@@@@@@@@@@@@ 가운데 내용 @@@@@@@@@@@@@@@@@@@@@-->
-	
-	<div class="col-lg-12" style="background-image: url('${path }/resources/img/bg3.jpg'); height:243px; margin-top:109px; margin-bottom:50px;" align="center">
+
+	<div class="col-lg-12" style="background-image: url('${path }/resources/img/bg2.jpg'); height:243px; margin-top:109px; margin-bottom:50px;" align="center">
 		<h1 style="padding-top: 80px">공지사항</h1>
 		
 	
@@ -185,21 +184,7 @@
 
 
 
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="copy">© Adoptly</div>
-				</div>
-				<div class="col-md-10">
-					<ul class="nav nav-pills pull-right">
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+ <jsp:include page="common/footer.jsp"/>
 	
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 

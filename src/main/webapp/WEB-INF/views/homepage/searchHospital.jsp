@@ -12,33 +12,35 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	
-	<c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
-  	<link rel="stylesheet" href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
- 	 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
- 	 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-  	<link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
- 	 <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
- 	 <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
- 	 <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
-  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  	<link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
 	
 	<style>
 
     .page-link{
-    padding: .5rem 1.3rem !important; 
-    font-size:18px !important; 
+    padding: .4rem 0.6rem !important; 
+    font-size:15px !important; 
     }
 	</style>
 	
 </head>
 <body>
 
-  <jsp:include page="common/menubar.jsp"/>
+  	<jsp:include page="common/menubar.jsp"/>
 
-	<div class="container" style="padding-top: 150px;">
+
+	<div class="col-lg-12" style="background-image: url('${path }/resources/img/bg2.jpg'); height:243px; margin-top:109px; margin-bottom:50px;" align="center">
+		<h1 style="padding-top: 80px">병원검색</h1>
+		
 	
-		<br>
+	</div>
+
+	<div class="container">
+	
 		<div class="d-flex justify-content-center">
 			<div class="input-group form-group"  style="width: 50%;">
             <select id="searchkey" name="searchkey" class="input_area" style="width: 20%; margin-left: 80px; font-size: 17px; ">
@@ -51,7 +53,7 @@
 			  </div>
 			</div>
 		  </div>
-		  	<br><br>
+		  	<br>
 		<div class="row" id="search">
 	
 		</div>
@@ -63,16 +65,8 @@
 
 
 	<!-- Footer Section -->
-	<br>
-	<hr>
-	<br>
-	<footer class="footer">
-		<div class="container">
-			<div class="copyright">
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> 권한은 전적으로 나한테 있습니다.
-
-		</div>
-	</footer>
+<br>
+<jsp:include page="common/footer.jsp"/>
 
 
   <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>

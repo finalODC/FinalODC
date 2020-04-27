@@ -108,5 +108,10 @@ public class memberController {
 	public String gomainpage() {
 		return "homepage/h_mainpage";
 	}
+	
+	@RequestMapping("goadminpage.do")
+	public String goadminpage() {
+		return "manager/managerMain";
+	}
 
 }
