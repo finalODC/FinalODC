@@ -39,8 +39,6 @@
 		UPDATE MEMBER
 		SET USERPWD=#{userPwd}
 		WHERE USERID=#{userId}
-		
-		
 	</update>
 
 

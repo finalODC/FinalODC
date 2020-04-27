@@ -75,5 +75,27 @@
 		WHERE DOC_STATUS = 'Y' AND REF_H_ID = #{hId}
 	
 	</select>
+	
+	<select id="checkmail" resultType="String">
+		SELECT USERID FROM HOSPITAL
+		WHERE H_EMAIL=#{hEmail}
+	</select>
+	
+	
+	
+	<select id="hpcheckPwd" resultType="_int">
+		SELECT COUNT(*)
+		FROM HOSPITAL
+		WHERE USERID=#{userId}
+		AND H_EMAIL=#{hEmail}
+	</select>
+	
+	<update id="hospitalPwd" parameterType="HMember">
+		UPDATE HOSPITAL
+		SET USERPWD=#{userPwd}
+		WHERE USERID=#{userId}
+	</update>
+	
+	
  
  </mapper>

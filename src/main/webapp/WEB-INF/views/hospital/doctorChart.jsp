@@ -266,7 +266,6 @@
                     					diag += "<td>"+list[i]["hName"]+"</td>";
                     					diag += "<td>"+list[i]["dWriter"]+"</td>";
                     					diag += "</tr>";
-              							
               						}
               						
               						$('#diagList').append(diag);
@@ -317,6 +316,50 @@
                           			}
                           			
                           			$("#diagPage").append(nextli.append(nextbu)).append(maxli.append(maxbu));
+                          			
+                          			
+                          			
+                          			/* 진단서 상세보기 */
+                          			$("#diagList td").click(function () {
+                   				    	var dId = $(this).parent().find("td").eq(1).text();
+                   				    	console.log(dId);
+                   				    	$.ajax({
+                   				    		url:"viewContent.do",
+                   				    		type:"post",
+                   				    		data:{
+                   				    			dId:dId
+                   				    		},success:function(data){
+                   				    			console.log(data);
+                   				    			$('#diagNo').text(data.dId);
+                   				    			$('#diagDate').text(data.dDate);
+                   				    			$('#diagHospital').text(data.hName);
+                   				    			$('#diagDoctor').text(data.dWriter);
+                   				    			$('#diagView').text(data.dContent);
+                                        		
+                   				    		 	if(data.dMedicine != null){
+                   				    				var medi=data.dMedicine.split("//");
+                   				    				console.log(medi);
+                   				    				
+                   				    				for(var i=0; i<medi.length;i++){
+                   				    					var mediName = medi[i].split(",");
+                   				    					console.log(mediName[0]);
+                   				    					$('#diagView').html($('#diagView').html()+"<br>"+mediName[0]);
+                   				    				                   				    					
+                   				    				}
+                   				    				
+                   				    			} 
+                   				    			
+                   				    		},error:function(){
+                   				    			console.log('진단서 상세보기 에러');	
+                   				    		}
+                   				    		
+                   				    		
+                   				    	})
+                   				    		
+                   				    	
+                   				    	
+                    			 	  })
+                          			
               						
               					},error:function(){
               						alert("진단서 리스트 오류");
@@ -396,6 +439,9 @@
                           			}
                           			
                           			$("#specPage").append(nextli.append(nextbu)).append(maxli.append(maxbu));
+                          			
+                          			
+                          			
                     			},error:function(){
                     				console.log('에러');
                     			}
@@ -601,23 +647,7 @@
 
                     <!-- 진료기록 클릭 스크립트 -->
                     
-                    <script>
-                   /*    $(function () {
-                    	$("#diagList").mouseenter(function(){
-                        $("#diagList td").click(function () {
-                          $(this).parent().siblings(".plus").css("display", "none");
-                          var $tr = $("<tr class='plus'>");
-                          var $td = $("<td colspan='6'>");
-                          var $div = $("<div>");
-                          $div.html("dsadadadas<br> dsadsadasda<br>")
-                          $td.append($div);
-                          $tr.append($td);
-						  
-                          $(this).parent("tr").after($tr);
-                        })
-                      });
-                      }); */
-                    </script>
+                  
 
 
 
@@ -671,6 +701,7 @@
                   <button type="button" class="btn btn-primary" id="submitButton">저장하기</button>
                   
                   
+                  <br><br><br>
                   
                   <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -683,27 +714,24 @@
                           <table border="1"  class="table table-hover" style="font-size: 12px;">
                             <thead>
                               <tr>
-                                <td>번호</td>
                                 <td>진료번호</td>
                                 <td>진료날짜</td>
-                                <td>진료내용</td>
                                 <td>진료병원</td>
                                 <td>진료의사</td>
                               </tr>
                             </thead>
                             <tbody id="diagContents" >
-                              <tr>
-                                <td colspan="6" height="200px;">
-                                  
-
-                                </td>
-
-
+                            <tr>
+                                <td id="diagNo"></td>
+                                <td id="diagDate"></td>
+                                <td id="diagHospital"></td>
+                                <td id="diagDoctor"></td>
                               </tr>
-  
+                              <tr>
+                                <td id="diagView" colspan="5" height="200px;">
+                                </td>
+                              </tr>
                             </tbody>
-  
-  
                           </table>
                         </fieldset>
                    
@@ -718,7 +746,15 @@
             </div>
            
            <script>
-           	
+               $(function () {
+       				$("#diagList").mouseenter(function(){
+       				    
+     		   		 });
+       		 	 }); 
+           
+           
+           
+           
            function addRow(){
         	   var length = $('#mediTable tr').length;
         	   

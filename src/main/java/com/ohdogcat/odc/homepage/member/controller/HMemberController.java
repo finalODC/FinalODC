@@ -127,7 +127,7 @@ public class HMemberController {
 	
 	
 	@RequestMapping("hInsert.do")
-	public String hInsert(HMember m,String add1, String add2, String add3, SessionStatus session) {
+	public String hInsert(Model m1,HMember m,String add1, String add2, String add3, SessionStatus session) {
 		
 		
 		m.setUserPwd(bCryptPasswordEncoder.encode(m.getUserPwd()));
@@ -142,7 +142,8 @@ public class HMemberController {
 		int result = hmService.hInsert(m);
 		if(result >0) {
 			session.setComplete();
-			return "redirect:hloginp.do";
+			m1.addAttribute("msg","회원가입이 완료되었습니다.");
+			return "homepage/h_login6";
 			
 		}else {
 			//에러 페이지

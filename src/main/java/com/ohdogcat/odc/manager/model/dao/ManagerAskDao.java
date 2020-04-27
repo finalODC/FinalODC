@@ -17,19 +17,19 @@ public class ManagerAskDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	public int getListCount() {
+	public int getListCount(int check) {
 		
-		return sqlSession.selectOne("managerAskMapper.getListcount");
+		return sqlSession.selectOne("managerAskMapper.getListcount",check);
 	}
 
-	public ArrayList<Qna> getQnaList(PageInfo pi) {
+	public ArrayList<Qna> getQnaList(int check, PageInfo pi) {
 		
 		int offset = (pi.getCurrentPage()-1) *pi.getBoardLimit();
-		
+
 		RowBounds rw = new RowBounds(offset,pi.getBoardLimit());
 		
 		
-		return (ArrayList)sqlSession.selectList("managerAskMapper.getList",null,rw);
+		return (ArrayList)sqlSession.selectList("managerAskMapper.getList",check,rw);
 	}
 
 	public Qna getQnd(int qId) {

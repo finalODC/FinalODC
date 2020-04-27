@@ -8,9 +8,9 @@ import com.ohdogcat.odc.qna.model.vo.QnaReply;
 
 public interface ManagerAskService {
 
-	int getListCount();
+	int getListCount(int check);
 
-	ArrayList<Qna> getQnaList(PageInfo pi);
+	ArrayList<Qna> getQnaList(int check, PageInfo pi);
 
 	Qna getQna(int qId);
 
