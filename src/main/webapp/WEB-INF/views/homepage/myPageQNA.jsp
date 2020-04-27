@@ -146,7 +146,7 @@
 							<hr>
 							<h4 id="lee" class="mb-3">문의 작성하기 &nbsp;&nbsp;</h4>
 							<hr>
-							<form action="insertQNA.qn" method="POST" onsubmit="return add();">
+							<form action="insertQNA.qn" method="POST" onsubmit="return add();" enctype="multipart/form-data">
 								<input type="hidden" name="qWriter" value="${loginUser.userId }">
 								<table id="nok" class="table table-bordered"
 									style="background: white;">
@@ -174,7 +174,17 @@
 
 										<tr>
 											<th class="tatd">첨부파일:</th>
-											<td><span><input type="file" name="qFile"></span></td>
+											<td>		
+											<c:if test="${ !empty qna.qFile }">
+												<a href="/odc/resources/qnaFiles/${ qna.qFile }"  id="file"></a>
+											<script>
+        										$(document).ready(function(){
+        											var filename= "${qna.qFile}".substring(12)
+        											$("#file").text(filename).prop("download",filename);
+        									
+        										})
+        									</script>
+									</c:if> </td>
 										</tr>
 
 									</tbody>

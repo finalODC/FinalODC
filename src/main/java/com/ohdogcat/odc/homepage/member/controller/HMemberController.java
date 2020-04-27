@@ -81,7 +81,7 @@ public class HMemberController {
 			}
 			
 		}else {
-			mv.addObject("msg","aa");
+			mv.addObject("msg","아이디와 비밀번호를 확인해주세요");
 			mv.setViewName("homepage/h_login6");
 		}
 		
