@@ -669,6 +669,51 @@
                  
                   </div>
                   <button type="button" class="btn btn-primary" id="submitButton">저장하기</button>
+                  
+                  
+                  
+                  <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">진료 상세 내용 조회</h6>
+                    </div>
+                    <div class="card-body">
+  
+                      <div id="recode" align="center">
+                        <fieldset style="border-radius: 10%; border :1px solid balck; ">
+                          <table border="1"  class="table table-hover" style="font-size: 12px;">
+                            <thead>
+                              <tr>
+                                <td>번호</td>
+                                <td>진료번호</td>
+                                <td>진료날짜</td>
+                                <td>진료내용</td>
+                                <td>진료병원</td>
+                                <td>진료의사</td>
+                              </tr>
+                            </thead>
+                            <tbody id="diagContents" >
+                              <tr>
+                                <td colspan="6" height="200px;">
+                                  
+
+                                </td>
+
+
+                              </tr>
+  
+                            </tbody>
+  
+  
+                          </table>
+                        </fieldset>
+                   
+                      </div>
+  
+                    </div>
+  
+                 
+                  </div>
+                  
               </div>
             </div>
            
