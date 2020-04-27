@@ -160,7 +160,7 @@
 							</h5>
 						</a>
 						<br>
-						<a href="ohdogcat_CatBoardPage.html">
+						<a href="CBlist.bo">
 							<h5>
 								<i class="fas fa-cat">&nbsp;</i>고양이
 								게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i
@@ -177,7 +177,7 @@
 			<div id="contents" class="col-lg-6">
 
 				<br> <br>
-				<form action="CatPageUpdate.bo?tbId=${cb.tbId}" method="post" id="updateView">
+				<form action="CatPageUpdate.bo?tbId=${cb.tbId}" method="post" id="CatupdateView">
 				<h2>&nbsp;&nbsp;&nbsp;수정하기</h2>
 
 				<br> <br>
@@ -209,7 +209,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<button type="button" id="ubtn">수정하기</button>
+					<button type="button" id="cubtn">수정하기</button>
 					<button type="button" onclick="Catgotoback()">취소</button>
 
 
@@ -268,10 +268,10 @@
         $(function(){
           //공지작성
         
-          $("#ubtn").click(function(){
+          $("#cubtn").click(function(){
         	  oEditors.getById["editer"].exec("UPDATE_CONTENTS_FIELD", []);
 
-        	   $("#updateView").submit()
+        	   $("#CatupdateView").submit()
   
           });
 

@@ -19,6 +19,8 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	private BoardDao bDao;
 
+	
+	
 	@Override
 	public int getFreeListCount(Map<String, String> map) {
 		

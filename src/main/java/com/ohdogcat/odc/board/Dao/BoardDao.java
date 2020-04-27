@@ -177,6 +177,9 @@ public class BoardDao {
 		return sqlSession.update("TipboardMapper.DogBoardDelete",tbId);
 	}
 
+	
+
+
 
 	//댓글 리스트 불러오기
 	
@@ -189,6 +192,63 @@ public class BoardDao {
 //////////////////@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@////////////////////////////////////////
 	
 	
+	public int CatBoardListCount(Map<String, String> Cmap) {
+		
+		return sqlSession.selectOne("TipboardMapper.CatBoardListCount",Cmap);
+	}
+
+
+
+	public ArrayList<TipBoard> CatBoardList(Map<String, String> Cmap, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds =new RowBounds(offset,pi.getBoardLimit());
+		System.out.println("Cmap : "+ Cmap);
+		
+		return (ArrayList)sqlSession.selectList("TipboardMapper.CatBoardList",Cmap,rowBounds);
+	}
+
+
+	//게시판 작성
+	public int CatBoardWriter(TipBoard tb) {
+		
+		return sqlSession.insert("TipboardMapper.CatBoardWriter",tb);
+	}
+
+
+
+	public TipBoard CatBoardView(int tbId) {
+
+		return sqlSession.selectOne("TipboardMapper.CatBoardView",tbId);
+	}
+
+
+
+	public TipBoard CatBoardUpdateView(int tbId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("TipboardMapper.CatBoardUpdateView",tbId);
+	}
+
+
+
+	public int CatBoardUpdate(TipBoard tb) {
+
+		return sqlSession.update("TipboardMapper.CatBoardUpdate",tb);
+	}
+
+
+
+	public int CatBoardDelete(int tbId) {
+
+		return sqlSession.update("TipboardMapper.CatBoardDelete",tbId);
+	}
+
+
+
+	public int CatBoardReply(TipReply tb) {
+
+		return sqlSession.insert("TipboardMapper.CatBoardReply",tb);
+	}
 	
 	
 	
