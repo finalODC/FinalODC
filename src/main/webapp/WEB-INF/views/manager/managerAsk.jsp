@@ -52,11 +52,11 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-  
+  		
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">문의
           </h1>
-          
+          	
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -64,9 +64,13 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
+              <select id="selCheck">
+              	<option value="0">전체보기</option>
+              	<option value="1">답변대기</option>
+              </select>
                 
                 <table class="table table-bordered table-hover" style="text-align: center;" id="dataTable" width="100%" cellspacing="0">
-        
+        	
                   <thead>
                     <tr>
                       <th width="60px">번호</th>
@@ -80,11 +84,7 @@
                     </tr>
                   </thead>
                   
-                 <%--  <div>
-                  	${list["2"]["qId"] }
-                  	${list["2"]["qnaRe"]["aContent"]}
-                  
-                  </div> --%>
+      
                  
                   <tbody id="askbody">
                    
@@ -108,15 +108,24 @@
       <!-- Bootstrap core JavaScript-->
 
       <script>
-        $(function(){
+        $(document).ready(function(){
+        	$("#selCheck").val(${check});
         	pegination(${currentPage});
+        	
+        	$("#selCheck").on(
+        		"change", function(){
+        		pegination(1);
+        	});
         });
         
+        
+        
         function pegination(currentPage){
+        	var check = $("#selCheck").val();
         	$.ajax({
         		url:"mAskAjax.ma",
         		type:"post",
-        		data:{currentPage:currentPage},
+        		data:{currentPage:currentPage,check:check},
         		success:function(data){
         			var pi = data["pi"];
         			var list = data["list"];
@@ -143,7 +152,8 @@
 		                    var qId=$(this).find("td:eq(0)").text();
 		                    console.log(qId);
 						
-		                    location.href="askread.ma?qId="+qId +"&currentPage="+cu;
+		                    location.href="askread.ma?qId="+qId +"&currentPage="+cu+"&check="+check;
+		                    
 		                  });
         			 
         			 $("#paging").empty();

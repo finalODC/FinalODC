@@ -29,22 +29,40 @@ public class ManagerAskController {
 	@Autowired
 	private ManagerAskService mAService;
 	
+	/**
+	 * 문의 페이지가기
+	 * @param m
+	 * @param check
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("mAsk.ma")
-	public String managerAsk(Model m,@RequestParam(value ="currentPage", required=false,defaultValue="1")int currentPage) {
-		m.addAttribute("currentPage", currentPage);
+	public String managerAsk(Model m,@RequestParam(value ="check", required=false,defaultValue="0")int check,
+			@RequestParam(value ="currentPage", required=false,defaultValue="0")int currentPage) {
+		m.addAttribute("check", check);
+		m.addAttribute("currentPage",currentPage);
 		
 		return "managerAsk";
 	}
 	
 	
+	/**
+	 * 문의 목록 보기
+	 * @param currentPage
+	 * @param response
+	 * @param check
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
 	@RequestMapping("mAskAjax.ma")
-	public void managerAskAjax(ModelAndView mv,int currentPage,
-										HttpServletResponse response) throws JsonIOException, IOException {
-		int listCount = mAService.getListCount();
+	public void managerAskAjax(int currentPage,
+										HttpServletResponse response, 
+										@RequestParam(value="check", required=false,defaultValue="0" )int check) throws JsonIOException, IOException {
+		int listCount = mAService.getListCount(check);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		ArrayList<Qna> list = mAService.getQnaList(pi);
+		ArrayList<Qna> list = mAService.getQnaList(check,pi);
 		
 		Map hm = new HashMap();
 		hm.put("list", list);
@@ -56,11 +74,12 @@ public class ManagerAskController {
 	}
 	
 	@RequestMapping("askread.ma")
-	public ModelAndView managerReadAsk(ModelAndView mv, int qId, int currentPage) {
+	public ModelAndView managerReadAsk(ModelAndView mv, int qId, int currentPage,int check) {
 		
 		Qna qna = mAService.getQna(qId);
 		mv.addObject("qna",qna);
 		mv.addObject("currentPage",currentPage);
+		mv.addObject("check",check);
 		mv.setViewName("askread");
 		return mv;
 	}
@@ -70,7 +89,6 @@ public class ManagerAskController {
 	public String insertAnswer(QnaReply qr) {
 		
 		Integer result =  mAService.insertAnswer(qr);
-		System.out.println(qr);
 		
 		return result.toString();
 	}

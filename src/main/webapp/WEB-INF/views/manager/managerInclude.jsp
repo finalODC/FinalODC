@@ -10,7 +10,7 @@
 	<c:set var = "path" value="${pageContext.servletContext.contextPath }" scope="application"/>
   <link href="${path }/resources/css/manager/all.min.css" rel="stylesheet" type="text/css">
   <link href="${path }/resources/css/manager/css.css" rel="stylesheet">
-  <link href="${path }/resources/css/manager/1_content.css" rel="stylesheet">
+  <%-- <link href="${path }/resources/css/manager/1_content.css" rel="stylesheet"> --%>
 
 
   <!-- Custom styles for this template-->

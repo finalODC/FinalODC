@@ -17,16 +17,16 @@ public class ManagerAskServiceImpl implements ManagerAskService {
 	private ManagerAskDao mADao;
 	
 	@Override
-	public int getListCount() {
+	public int getListCount(int check) {
 		
 		
-		return mADao.getListCount();
+		return mADao.getListCount(check);
 	}
 
 	@Override
-	public ArrayList<Qna> getQnaList(PageInfo pi) {
+	public ArrayList<Qna> getQnaList(int check,PageInfo pi) {
 		
-		return mADao.getQnaList(pi);
+		return mADao.getQnaList(check,pi);
 	}
 
 	@Override

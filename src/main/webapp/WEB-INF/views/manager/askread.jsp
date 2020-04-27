@@ -75,9 +75,9 @@
                               <th width="100px">첨부파일: </th>
                               <td>
                               
-        						<c:if test="${ !empty qna.qFile }">W
+        						<c:if test="${ !empty qna.qFile }">
         							
-									<a href="/odc/resources/qnaFiles/${ qna.qFile }"  id="file"></a>
+									<a href="${path }/resources/qnaFiles/${ qna.qFile }"  id="file"></a>
 											<script>
         								$(document).ready(function(){
         									var filename= "${qna.qFile}".substring(12)
@@ -126,7 +126,7 @@
               				success:function(data){
               					if(data>0){
               						alert("삭제완료");
-              	          			location.href="askread.ma?qId=${qna.qId}&currentPage=${currentPage}";
+              	          			location.href="askread.ma?qId=${qna.qId}&currentPage=${currentPage}check=${check}";
               					}else{
               						alert("삭제실패");
               					}
@@ -162,7 +162,6 @@
         
         
           $("#recomment").click(function(){
-        	  console.log($("#content1").val());
         	  
         	  var arr =  $("#content1").val().split("\n");
               for(var i = 0; i<arr.length;i++){
@@ -178,7 +177,7 @@
           		success:function(data){
           			if(data>0){
           				alert("답변작성 성공");
-              			location.href="askread.ma?qId=${qna.qId}&currentPage=${currentPage}";
+              			location.href="askread.ma?qId=${qna.qId}&currentPage=${currentPage}&check=${check}";
           			}else{
           				alert("답변작성 실패");
           			}
@@ -201,7 +200,7 @@
               $(document).ready(function(){
             	  $("#goaskmain").click(function(){
             			if(confirm("목록으로 가겠습니까?")){
-            				location.href="mAsk.ma?currentPage=${currentPage}";
+            				location.href="mAsk.ma?currentPage=${currentPage}&check=${check}";
             			}
               })
              

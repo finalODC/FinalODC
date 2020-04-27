@@ -21,16 +21,25 @@
 
  	</resultMap>
  	
- 	<select id="getListcount" resultType="_int">
+ 	<select id="getListcount"  resultType="_int">
  	SELECT COUNT(*) FROM QNA
+ 	LEFT JOIN (SELECT * FROM QNAANSWER WHERE A_STATUS = 'Y') ON (QID =REF_QID)
  	WHERE Q_STATUS ='Y'
+ 	<if test='_parameter==1'>
+ 		and REF_QID is null
+ 	</if>
+ 	
  		
  	</select>
  	
-	<select id = "getList" resultMap="QnaResultMap">
+	<select id = "getList"  resultMap="QnaResultMap">
 	SELECT * FROM QNA
 	LEFT JOIN (SELECT * FROM QNAANSWER WHERE A_STATUS = 'Y') ON (QID =REF_QID)
  	WHERE Q_STATUS ='Y'
+ 	<if test='_parameter==1'>
+ 		and REF_QID is null
+ 	</if>
+ 	
  	ORDER BY QID DESC
 	
 	</select>
@@ -39,7 +48,7 @@
 	SELECT * FROM QNA
 	LEFT JOIN (SELECT * FROM QNAANSWER WHERE A_STATUS = 'Y') ON (QID =REF_QID)
  	WHERE Q_STATUS ='Y' and QID=#{qId}
-	
+ 		
 	</select>
 	
 	<insert id="insertAnswer">
