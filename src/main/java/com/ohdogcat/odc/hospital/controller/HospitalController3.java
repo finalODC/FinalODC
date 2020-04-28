@@ -30,17 +30,14 @@ public class HospitalController3 {
 
 	@RequestMapping("getcomment.ho")
 	public void getHComment(HttpServletResponse response,int hId ,@RequestParam(value="currentPage", required=false, defaultValue="0")int currentPage) throws JsonIOException, IOException {
-		System.out.println("hId"+hId);
 		
 		int listCount = hService3.getListCount(hId);
 		
-		System.out.println("listCount"+listCount);
 		PageInfo pi = Pagination2.getPageInfo(currentPage, listCount);
 		
 		
 		ArrayList<hoReply> re = hService3.getList(hId, pi);
 		
-		System.out.println(re);
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		response.setContentType("application/json; charset=UTF-8");
@@ -62,9 +59,7 @@ public class HospitalController3 {
 	@ResponseBody
 	@RequestMapping("insertRe.ho")
 	public String insertRe(hoReply ho) {
-		System.out.println(ho);
 		Integer result = hService3.insertRe(ho);
-		System.out.println(result);
 		return result.toString();
 	}
 	
