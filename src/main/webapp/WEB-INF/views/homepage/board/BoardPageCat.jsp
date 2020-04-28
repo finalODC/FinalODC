@@ -14,24 +14,39 @@
 
 
 
-  <link rel="stylesheet"href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
 
 
-  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-  
-
-  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400'
+	rel='stylesheet' type='text/css'>
 
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script src="https://kit.fontawesome.com/ddfd73bace.js"crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+<link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet'
+	type='text/css'>
+<link href="${path }/resources/css/font-awesome.min.css"
+	rel='stylesheet' type='text/css'>
+<link href="${path }/resources/css/slicknav.min.css" rel='stylesheet'
+	type='text/css'>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
+<link href="${path }/resources/css/style.css" rel='stylesheet'
+	type='text/css'>
+<link href="${path }/resources/css/stylne.css" rel='stylesheet'
+	type='text/css'>
+
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/ddfd73bace.js"
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 
 
 
@@ -91,8 +106,8 @@
 	background-color: white;
 }
 
-a{
-	color : black;
+a {
+	color: black;
 }
 </style>
 </head>
@@ -109,18 +124,18 @@ a{
 				<a href="" class="float-left navbar-light "
 					style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
 				<ul class="main-menu">
-					<li><a href="#">병원찾기</a></li>
-					<li><a href="cuponcheck.html">커뮤니티</a>
+					<li><a href="searchhospital.do">병원찾기</a></li>
+					<li><a href="Fblist.bo">커뮤니티</a>
 						<ul class="sub-menu">
-							<li><a href="about-us.html">공지사항</a></li>
-							<li><a href="search-result.html">자유게시판</a></li>
-							<li><a href="single-property.html">TIP</a></li>
+							<li><a href="hgonoticelist.do">공지사항</a></li>
+							<li><a href="Fblist.bo">자유게시판</a></li>
+							<li><a href="DBlist.bo">TIP</a></li>
 						</ul></li>
 					<li><a href="#">마이페이지</a>
 						<ul class="sub-menu">
-							<li><a href="about-us.html">정보수정</a></li>
-							<li><a href="search-result.html">반려동물 관리</a></li>
-							<li><a href="single-property.html"></a></li>
+							<li><a href="mypageperson.do">정보수정</a></li>
+							<li><a href="mypagepet.do">반려동물 관리</a></li>
+							<li><a href="myqnalist.qn">문의사항</a></li>
 						</ul></li>
 
 				</ul>
@@ -154,10 +169,8 @@ a{
 							<h4>정보 공유 게시판</h4>
 						</a>
 						<br>
-						<hr
-							style="border: solid 2px black; width: 200px;"
-							align="left">
-							<br>
+						<hr style="border: solid 2px black; width: 200px;" align="left">
+						<br>
 
 						<a href="DBlist.bo">
 							<h5>
@@ -186,7 +199,7 @@ a{
 				<br> <br>
 
 				<h2>
-					&nbsp;&nbsp;&nbsp;Cat board &nbsp; <i class="fas fa-bell"></i> 
+					&nbsp;&nbsp;&nbsp;Cat board &nbsp; <i class="fas fa-bell"></i>
 				</h2>
 
 				<br> <br>
@@ -208,7 +221,7 @@ a{
 							<c:forEach var="cb" items="${CBlist}">
 
 								<tr class="Ctrc">
-								
+
 									<td>${cb.tbId }</td>
 									<td>${cb.tbTitle }</td>
 									<td>${cb.tbWriter }</td>
@@ -330,7 +343,8 @@ a{
 
 					</div>
 					<br> <br>
-					<button type="button" class="btn btn-outline-info" onclick="location.href='CatBoardWritergo.bo'" align="right">글쓰기</button>
+					<button type="button" class="btn btn-outline-info"
+						onclick="location.href='CatBoardWritergo.bo'" align="right">글쓰기</button>
 				</div>
 
 			</div>
@@ -342,21 +356,39 @@ a{
 
 
 
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="copy">© Adoptly</div>
-				</div>
-				<div class="col-md-10">
-					<ul class="nav nav-pills pull-right">
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="copy" style="font-size: 15px;">© 승제쌤도와조</div>
+        </div>
+        <div class="col-md-10">
+          <ul class="nav nav-pills pull-right">
+			<c:if test="${loginUser.userId=='admin' }">
+				<input id="adminbtn" type="button" class="btn  btn-outline-info	" value="관리자페이지로">
+			</c:if>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+  <script>
+  var adminid
+	$(function(){
+		$('#adminbtn').click(function(){
+	  		adminid = "${loginUser.userId}";
+	  		if(adminid!="admin"){
+	  			alert("부적절한 접근입니다!");
+	  		}else{
+	  			location.href="goadminpage.do?userId="+adminid;
+	  		}
+	  	
+		});
+	});
+  	
+  </script>
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
 	<script src="${path }/resources/js/bootstrap.min.js"></script>
@@ -366,7 +398,7 @@ a{
 	<script src="${path }/resources/js/jquery.magnific-popup.min.js"></script>
 
 	<script src="${path }/resources/js/main.js"></script>
-	
+
 	<script>
 	function getList(currentPage){
 
@@ -377,6 +409,6 @@ a{
 	}
 	</script>
 </body>
-	
+
 
 </html>

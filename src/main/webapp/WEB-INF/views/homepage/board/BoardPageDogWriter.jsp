@@ -100,28 +100,20 @@ a{
 				<a href="" class="float-left navbar-light "
 					style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
 				<ul class="main-menu">
-					<li><a href="#">병원찾기</a></li>
-					<li><a href="cuponcheck.html">커뮤니티</a>
+					<li><a href="searchhospital.do">병원찾기</a></li>
+					<li><a href="Fblist.bo">커뮤니티</a>
 						<ul class="sub-menu">
-							<li><a href="about-us.html">공지사항</a></li>
-							<li><a href="search-result.html">자유게시판</a></li>
-							<li><a href="single-property.html">TIP</a></li>
+							<li><a href="hgonoticelist.do">공지사항</a></li>
+							<li><a href="Fblist.bo">자유게시판</a></li>
+							<li><a href="DBlist.bo">TIP</a></li>
 						</ul></li>
 					<li><a href="#">마이페이지</a>
 						<ul class="sub-menu">
-							<li><a href="about-us.html">정보수정</a></li>
-							<li><a href="search-result.html">반려동물 관리</a></li>
-							<li><a href="single-property.html"></a></li>
+							<li><a href="mypageperson.do">정보수정</a></li>
+							<li><a href="mypagepet.do">반려동물 관리</a></li>
+							<li><a href="myqnalist.qn">문의사항</a></li>
 						</ul></li>
-					<!-- <li><a href="#"></a>
-          <ul class="sub-menu">
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="search-result.html">Search Result</a></li>
-            <li><a href="single-property.html">Property</a></li>
-          </ul>
-        </li>
-        <li><a href="news.html">News</a></li> -->
-					<!-- <li><a href="#">로그인</a></li> -->
+
 				</ul>
 				<div class="header-right">
 					<div class="user-panel">
@@ -198,11 +190,11 @@ a{
 							</tr>
 							<tr>
 								<th>아이디</th>
-								<td><input type="text" readonly name="tbWriter" value="${ loginUser.userId }"></td>
+								<td><input type="text" style="border:0px" readonly name="tbWriter" value="${ loginUser.userId }"></td>
 							</tr>
 							<tr>
 								<th style="width: 100px; height: 500px;">내용</th>
-								<td><textarea id="editer" rows="25" cols="100" name="tbContent"></textarea></td>
+								<td><textarea id="editer" rows="25" cols="140" name="tbContent"></textarea></td>
 
 							</tr>
 							
@@ -227,21 +219,39 @@ a{
 
 
 
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="copy">© Adoptly</div>
-				</div>
-				<div class="col-md-10">
-					<ul class="nav nav-pills pull-right">
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="copy" style="font-size: 15px;">© 승제쌤도와조</div>
+        </div>
+        <div class="col-md-10">
+          <ul class="nav nav-pills pull-right">
+			<c:if test="${loginUser.userId=='admin' }">
+				<input id="adminbtn" type="button" class="btn  btn-outline-info	" value="관리자페이지로">
+			</c:if>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+  <script>
+  var adminid
+	$(function(){
+		$('#adminbtn').click(function(){
+	  		adminid = "${loginUser.userId}";
+	  		if(adminid!="admin"){
+	  			alert("부적절한 접근입니다!");
+	  		}else{
+	  			location.href="goadminpage.do?userId="+adminid;
+	  		}
+	  	
+		});
+	});
+  	
+  </script>
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
 	<script src="${path }/resources/js/bootstrap.min.js"></script>

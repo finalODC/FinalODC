@@ -96,20 +96,20 @@ a{
 				<a href="" class="float-left navbar-light "
 					style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
 				<ul class="main-menu">
-					<li><a href="#">병원찾기</a></li>
-					<li><a href="cuponcheck.html">커뮤니티</a>
+					<li><a href="searchhospital.do">병원찾기</a></li>
+					<li><a href="Fblist.bo">커뮤니티</a>
 						<ul class="sub-menu">
-							<li><a href="about-us.html">공지사항</a></li>
-							<li><a href="search-result.html">자유게시판</a></li>
-							<li><a href="single-property.html">TIP</a></li>
+							<li><a href="hgonoticelist.do">공지사항</a></li>
+							<li><a href="Fblist.bo">자유게시판</a></li>
+							<li><a href="DBlist.bo">TIP</a></li>
 						</ul></li>
 					<li><a href="#">마이페이지</a>
 						<ul class="sub-menu">
-							<li><a href="about-us.html">정보수정</a></li>
-							<li><a href="search-result.html">반려동물 관리</a></li>
-							<li><a href="single-property.html"></a></li>
+							<li><a href="mypageperson.do">정보수정</a></li>
+							<li><a href="mypagepet.do">반려동물 관리</a></li>
+							<li><a href="myqnalist.qn">문의사항</a></li>
 						</ul></li>
-			
+
 				</ul>
 				<div class="header-right">
 					<div class="user-panel">
@@ -140,9 +140,11 @@ a{
 						<a>
 							<h4>정보 공유 게시판</h4>
 						</a>
+						<br>
 						<hr
 							style="border: solid 2px black; width: 200px;"
 							align="left">
+							<br>
 
 						<a href="DBlist.bo">
 							<h5>
@@ -196,7 +198,7 @@ a{
 								style="height: 500px; width: 920px; border: 0px;" readonly></td>
 						</tr>
 					</table>
-					<input type="button" value="목록으로" onclick="location.href='DBlist.bo'" align="left">
+					<input type="button" value="목록으로" class="btn btn-outline-secondary" onclick="location.href='DBlist.bo'" align="left">
 					
 					<c:if test ="${loginUser.userId != db.tbWriter }">
 						<button id="complain" type="button" class="btn btn-outline-danger"> 신고하기</button>
@@ -222,8 +224,8 @@ a{
 
 					<!-- fbId 값은 위의 fb에 전부 담겨있기 때문에 fb.fbId를 써서 값을 받아와서 넘겨주자 -->
 					<c:if test="${loginUser.userId eq db.tbWriter }">
-						<button onclick="location.href='DogBoardUpdateView.bo?tbId=${db.tbId}'">수정하기</button>
-						<button onclick="location.href='DogBoardDelete.bo?tbId=${db.tbId}'" > 삭제하기</button>
+						<button type="button" class="btn btn-outline-success" onclick="location.href='DogBoardUpdateView.bo?tbId=${db.tbId}'">수정하기</button>
+						<button type="button" class="btn btn-outline-danger" onclick="location.href='DogBoardDelete.bo?tbId=${db.tbId}'" > 삭제하기</button>
 													
 					</c:if>
 			
@@ -242,15 +244,15 @@ a{
 						<tr id="comment">
 
 							<th
-								style="width: 100px; height: 70px; background-color: steelblue;"
-								id="trWriter">${db.tbWriter }</th>
+								style="width: 140px; height: 70px; background-color: steelblue;"
+								id="trWriter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${db.tbWriter }</th>
 
-							<th style="width: 740px;">&nbsp;<input type="text"
+							<th style="width: 720px;">&nbsp;<input type="text"
 								style="width: 700px; height: 70px; border: 0px;" id="trContent"></th>
 
 							<td style="width: 100px; background-color: white" align="right"
 								align="center"><input type="button" value="등록하기"
-								style="width: 100px; border: 0px;" id="drSubmit">
+								style="width: 100px; border: 0px; background-color :white;" id="drSubmit">
 							<td>
 						</tr>
 					</table>
@@ -293,21 +295,39 @@ a{
 
 
 
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="copy">© Adoptly</div>
-				</div>
-				<div class="col-md-10">
-					<ul class="nav nav-pills pull-right">
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="copy" style="font-size: 15px;">© 승제쌤도와조</div>
+        </div>
+        <div class="col-md-10">
+          <ul class="nav nav-pills pull-right">
+			<c:if test="${loginUser.userId=='admin' }">
+				<input id="adminbtn" type="button" class="btn  btn-outline-info	" value="관리자페이지로">
+			</c:if>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+  <script>
+  var adminid
+	$(function(){
+		$('#adminbtn').click(function(){
+	  		adminid = "${loginUser.userId}";
+	  		if(adminid!="admin"){
+	  			alert("부적절한 접근입니다!");
+	  		}else{
+	  			location.href="goadminpage.do?userId="+adminid;
+	  		}
+	  	
+		});
+	});
+  	
+  </script>
 
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
@@ -383,9 +403,9 @@ a{
 					  for(var i in data){
 						  
 						  $tr = $("<tr style='border: 1px solid black;' id='commentView'>");
-						  $trWriter= $("<th style='width:100px; height:70px; background-color:steelblue;' align='center'>").text(data[i].trWriter);
+						  $trWriter= $("<th style='width:100px; height:70px; background-color:steelblue;' align='center'>&nbsp;&nbsp;&nbsp;&nbsp;").text(data[i].trWriter);
 						  $trContent=$("<td style='width: 740px;'><input type='text' value='내용' style='width: 700px; height: 70px; border: 0px;'readonly>").text(data[i].trContent);
-						  $trCreateDate=$("<td style='width: 100px; background-color: tan;' align='center'><input type='text'style='width: 80px; font-size: 10px; border: 0px;'>").text(data[i].trCreateDate);
+						  $trCreateDate=$("<td style='width: 100px; background-color: white;' align='center'><input type='text'style='width: 80px; font-size: 10px; border: 0px;'>").text(data[i].trCreateDate);
 						  
 						  $tr.append($trWriter);
 						  $tr.append($trContent);
