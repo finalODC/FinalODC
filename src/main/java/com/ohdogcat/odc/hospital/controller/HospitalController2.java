@@ -46,9 +46,7 @@ public class HospitalController2 {
 	@RequestMapping("info.ho")
 	public String goInfo(Model m, HttpSession session) {
 		hm1 = (HMember)session.getAttribute("loginUser");
-//		System.out.println("들어오자 마자"+hm1);
 		m.addAttribute("hospital", hm1);
-		
 		return "hospital";
 	}
 
@@ -71,47 +69,33 @@ public class HospitalController2 {
 	public String goCom() {
 		return "doctorcom";
 	}
-	
 
 	@RequestMapping("updatehosinfo.ho")
 	public String updatehosinfo(HMember hm, HttpServletRequest request, Model model,
 							  @RequestParam(name="hImage",required=false) MultipartFile file,
-							  String hComment,
-							  String add1, String add2, String add3) {
+							  String hComment, String add1, String add2, String add3) {
 		
 		String renameFileName = saveHos(file, request);
 		
 		if(!file.getOriginalFilename().equals("")) {
-			// 서버에 업로드
-	
-			if(renameFileName != null) {		// 파일이 잘 저장된 경우
+			if(renameFileName != null) {
 				hm.sethFile(renameFileName);
 				hm1.sethFile(renameFileName);
-				
 			}
 		}
 		
-		System.out.println("file : " + file);
-		
 		hm.sethComment(hComment);
 		hm1.sethComment(hComment);
-		
-		System.out.println("hComment : " + hComment);
 		
 		if(!add1.equals("") && add1 !=null) {
 			hm.sethAddress(add1 +"//"+ add2+"//" + add3);
 			hm1.sethAddress(add1 +"//"+ add2+"//" + add3);
 		}
 		
-		System.out.println(add1 + add2 + add3);
-		
 		int result = hService2.updatehosinfo(hm);
-		
-		System.out.println(result);
 	
 		if(result > 0) {
 			model.addAttribute("hospital",hm1);
-			System.out.println(hm1);
 			return "redirect:info.ho";
 		} else {
 			return "redirect:comdoc.ho";
@@ -119,23 +103,18 @@ public class HospitalController2 {
 		
 	}
 
-	@ResponseBody
 	@RequestMapping("indoc.ho")
 	public String indoc(Doctor doc, HttpServletRequest request, Model model,
 			  @RequestParam(name="docImage",required=false) MultipartFile file,
 			  @RequestParam(name="docIntro",required=false) String docIntro, 
 			  @RequestParam(name="docName",required=false) String docName) {
 		
-
-		
 		String renameImageName = saveDoc(file, request);
 		
 		if(!file.getOriginalFilename().equals("")) {
-			// 서버에 업로드
 	
-			if(renameImageName != null) {		// 파일이 잘 저장된 경우
+			if(renameImageName != null) {
 				doc.setDocFile(renameImageName);
-				
 			}
 		}
 		
@@ -145,19 +124,18 @@ public class HospitalController2 {
 		
 		int result = hService2.indoc(doc);
 		
-		
-//		if(result > 0) {
+		if(result > 0) {
 			
 			ArrayList<Doctor> doc1 = hService2.docList(hm1.gethId());
 			hm1.setDoctor(doc1);
 			model.addAttribute("hospital",hm1);
-		
-//			return "redirect:insertdoc.ho";
-//		} else {
-//			return "redirect:comdoc.ho";
-//		}
 
-			return Integer.valueOf(result).toString();
+//			return Integer.valueOf(result).toString();
+			return "redirect:insertdoc.ho";
+		} else {
+			return "redirect:comdoc.ho";
+		}
+
 	}
 
 	
@@ -165,15 +143,10 @@ public class HospitalController2 {
 	@RequestMapping("deleteDoc.ho")
 	public String deleteDoc(int dId,Model model) {
 		
-	System.out.println(dId);
-		
 		int result = hService2.deleteDoc(dId);
 
-		System.out.println("re : " + result);
 		if(result > 0) {
-
 				ArrayList<Doctor> doc1 = hService2.docList(hm1.gethId());
-				
 				hm1.setDoctor(doc1);
 				model.addAttribute("hospital",hm1);
 			return "1";
@@ -186,16 +159,13 @@ public class HospitalController2 {
 	@RequestMapping("updateDoc.ho")
 	public String updateDoc(@ModelAttribute Doctor doc, Model model,HttpServletRequest request,
 			  @RequestParam(name="docImage",required=false) MultipartFile file,@RequestParam(value="oriImg", required=false)String oriImg) {
-		System.out.println(file);
+		
 		if(file != null) {
 			String renameDocImageName = upDoc(file, request);
 			
 			if(!file.getOriginalFilename().equals("")) {
-				// 서버에 업로드
-		
-				if(renameDocImageName != null) {		// 파일이 잘 저장된 경우
+				if(renameDocImageName != null) {
 					doc.setDocFile(renameDocImageName);
-					
 				}
 			}
 		}else {
@@ -214,41 +184,29 @@ public class HospitalController2 {
 			
 			model.addAttribute("hospital",hm1);
 			hm1.setDoctor(doc1);
-		
-			return "1";
+
+			return Integer.valueOf(result).toString();
 		} else {
 			return "0";
 		}
-		
-		
 	}
 
 	@ResponseBody
 	@RequestMapping("hosupdate.ho")
 	public String hosupdate(Model model, HMember hm, String pwd, String hPhone) {
 
-
 		String encPwd = be.encode(hm.getUserPwd());
 
 		hm.setUserPwd(encPwd);
 		hm.sethPhone(hPhone);
 
-		System.out.println(hm);
-
 		int result = hService2.hosupdate(hm);
-
-		System.out.println("result : " + result);
-
+		
 		if(result > 0) {
-			//    	  model.addAttribute("loginUser",hm);
-			return "redirect:chart.ho";
+			return "redirect:insertdoc.ho";
 		}else {
 			return "";
 		}
-
-
-		//      return Integer.valueOf(result).toString();
-
 	}
 	
 	public String saveHos(MultipartFile file, HttpServletRequest request) {
@@ -265,12 +223,12 @@ public class HospitalController2 {
 
 		String originFileName = file.getOriginalFilename();
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");                                 // 파일명 바꿔줌
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");              
 
-		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"."                // 파일명 바꿔줌
-				+ originFileName.substring(originFileName.lastIndexOf(".")+1);      // 파일명 바꿔줌
+		String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"." 
+				+ originFileName.substring(originFileName.lastIndexOf(".")+1); 
 
-		String renamePath = folder + "\\" + renameFileName;         // 실제 저장될 파일 경로 + 파일명
+		String renamePath = folder + "\\" + renameFileName; 
 
 		try {
 			file.transferTo(new File(renamePath));
@@ -298,12 +256,12 @@ public class HospitalController2 {
 
 		String originImageName = file.getOriginalFilename();
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");                                 // 파일명 바꿔줌
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");                        
 
-		String renameImageName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"."                // 파일명 바꿔줌
-				+ originImageName.substring(originImageName.lastIndexOf(".")+1);      // 파일명 바꿔줌
+		String renameImageName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"."  
+				+ originImageName.substring(originImageName.lastIndexOf(".")+1);    
 
-		String renamePath = folder + "\\" + renameImageName;         // 실제 저장될 파일 경로 + 파일명
+		String renamePath = folder + "\\" + renameImageName;       
 
 		try {
 			file.transferTo(new File(renamePath));
@@ -328,12 +286,12 @@ public class HospitalController2 {
 
 		String originDocImageName = file.getOriginalFilename();
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");                                 // 파일명 바꿔줌
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");        
 
-		String renameDocImageName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"."                // 파일명 바꿔줌
-				+ originDocImageName.substring(originDocImageName.lastIndexOf(".")+1);      // 파일명 바꿔줌
+		String renameDocImageName = sdf.format(new java.sql.Date(System.currentTimeMillis()))+"."     
+				+ originDocImageName.substring(originDocImageName.lastIndexOf(".")+1);  
 
-		String renamePath = folder + "\\" + renameDocImageName;         // 실제 저장될 파일 경로 + 파일명
+		String renamePath = folder + "\\" + renameDocImageName;    
 
 		try {
 			file.transferTo(new File(renamePath));

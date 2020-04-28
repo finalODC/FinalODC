@@ -45,7 +45,7 @@
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application" />
 	<div class="container" style="padding-top: 150px;">
 		<div class="wrap" style="max-width: 1180px; margin: 0 auto;">
-			<h1 style="text-align: left;  width: 100%; height: 120px; border-bottom: 1px solid #999; line-height: 100px; color: #30627e;">${ hospital.hName }</h1>
+			<h1 style="text-align: left;  width: 100%; height: 120px; border-bottom: 1px solid #999; line-height: 100px; color: #30627e;">${ hm.hName }</h1>
 			
 				<!-- Approach -->
 				
@@ -53,7 +53,7 @@
 					<div class="sea"
 						style="width: 100%; height: 370px; border: none; margin: 30px 0;">
 						<div class="par" style="width: 50%; height: 370px; float: left; border: none;">
-							<img class=""  id="preview" src="/odc/resources/hosImages/${ hospital.hFile }"
+							<img class="hFile"  id="preview" src="/odc/resources/hosImages/${ hm.hFile }"
 											style="width: 100%; height: 100%;">
 							<!-- <div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div> -->
 
@@ -64,8 +64,8 @@
 								style="width: 100%; height: 370px; border: none; resize: none; text-align: center;" readonly> <br>
 								
 									<textarea style="width: 90%;  border: none; resize: none;"
-									readonly>${  hospital.hName}</textarea>						
-									<textarea style="width:90%; height:60%;  border:none; resize:none;" readonly>${  hospital.hComment }</textarea>
+									readonly>${  hm.hName}</textarea>						
+									<textarea style="width:90%; height:60%;  border:none; resize:none;" readonly>${  hm.hComment }</textarea>
 									
 									</div>
 						</div>
@@ -73,6 +73,18 @@
 					</div>
 					
 					<script>
+					$('.hFile').each(function(index,value){
+						
+					 var imagename = "noImage.jpg";
+					 
+					 if(value.hFile!= null){
+						  imagename = value.hFile;
+					  }
+
+					 $img.attr('src','/odc/resources/hosImages/'+imagename);
+					
+					});
+					
 					$(document).ready(function(){
 						var bbb = "주소      " +  "${ hm.hComment}";
 						
@@ -157,8 +169,8 @@
 			<div class="">
 					
 					<div class="" id="cccbody" style="column-count: 1;">
-						<c:if test="${ hospital.doctor[0]!=null }">
-								<c:forEach var="b" items="${ hospital.doctor }">
+						<c:if test="${ hm.doctor[0]!=null }">
+								<c:forEach var="b" items="${ hm.doctor }">
 							
 								<div class=""
 									style="width: 200px; height: auto; display: inline-block; margin: 25px 0 0 25px;"

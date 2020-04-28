@@ -54,7 +54,7 @@
 			</div>
 		  </div>
 		  	<br>
-		<div class="row" id="search">
+		<div class="row" id="search" width="1200px">
 	
 		</div>
 		<div id="pagination" >
@@ -127,7 +127,7 @@
 				  currentPage:page
 			},
 			success:function(data){
-				
+				console.log(data);
 				$div= $('#search');
 				$div.html("");
 				
@@ -141,14 +141,18 @@
 				}
 				
 				$.each(data,function(index,value){
-					
+					 var imagename = "noImage.jpg";
 				
-					  $div4=$('<div class="col-lg-4 col-md-4 hlist" style="margin-bottom: 10px;">');
+					  $div4=$('<div class="col-lg-4 col-md-4 hlist" style="margin-bottom: 10px; ">');
 					  $a=$('<a href="hosdetail.do?hId='+value.hId+'">');
 					  
-					  $div2=$('<div class="card" style="width:400px">');
-					  $img=$('<img class="card-img-top" alt="Card image" style="width:100%">');
-					  $img.attr('src','https://imagescdn.gettyimagesbank.com/500/14/141/351/0/510351863.jpg');
+					  $div2=$('<div class="card" style="width:400px; height:300px;">');
+					  $img=$('<img class="card-img-top" alt="Card image" style="width:400px; height:200px;">');
+					  if(value.hFile!= null){
+						  imagename = value.hFile;
+					  }
+					  $img.attr('src','/odc/resources/hosImages/'+imagename);
+					  
 					  $div3=$('<div class="card-body">');
 					  $h4=$('<h4 class="card-title">').text(value.hName);
 					  $p=$('<p class="card-text">').text(value.hAddress);
@@ -160,7 +164,6 @@
 					  $a.append($div2);
 					  $div4.append($a);
 					  $div.append($div4);
-					  
 					  
 					
 				});

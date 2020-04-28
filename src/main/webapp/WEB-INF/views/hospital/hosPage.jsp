@@ -38,32 +38,31 @@
                 <div class="sidebar-brand-text mx-3"></div>
             </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - 메인으로 -->
 
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <div class="sidebar-heading">메뉴</div>
+
+			<hr class="sidebar-divider">
 
 
 
             <!-- Nav Item - 품의 관리 -->
-            <li class="nav-item">
-               <c:url var = "chart" value="chart.ho"/>
-              <a class="nav-link" href="${chart }">
-            <i class="fa fa-calendar-alt fa-2x"></i> <span>진료기록 조회 / 처방</span></a></li>
 
-         <li class="nav-item"><a class="nav-link"
-            href="info.ho"> <i
-               class="fa fa-calendar-alt fa-2x"></i> <span>내 병원 관리</span></a></li>
-               
-         <li class="nav-item"><a class="nav-link"
-            href="hosP.ho"> <i
-               class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
 
-		<li class="nav-item"><a class="nav-link" href="hlogout.do"> <i
+			<li class="nav-item"><a class="nav-link" href="info.ho"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>내 병원 관리</span></a></li>
+					
+			<li class="nav-item"><a class="nav-link" href="insertdoc.ho"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>의사 관리</span></a></li>
+					
+			<li class="nav-item"><a class="nav-link" href="comdoc.ho"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>댓글 관리</span></a></li>
+	
+			<li class="nav-item"><a class="nav-link" href="hosP.ho"> <i
+					class="fa fa-calendar-alt fa-2x"></i> <span>계정정보 변경</span></a></li>
+					
+			<li class="nav-item"><a class="nav-link" href="hlogout.do"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>로그아웃</span></a></li>
 
             <!-- Divider -->
@@ -117,47 +116,21 @@
                                 id="hPhone" placeholder="-제외" maxlength="12">
                         </div>
                         <br>
-
-                        <!-- <div class="mb-4">
-                            <label for="country">주소</label><br>
-                            <div class="row">
-                                <div class="inputgroup" style="width: 30%; margin-right: 2%;">
-                                    <input type="text" class="form-control" placeholder="" id="add1" name="add1">
-                                </div>
-
-                                <div class="inputgroup" style="width: 30%;">
-                                    <input type="text" class="form-control" placeholder="" id="add2" name="add2">
-                                </div>
-                                <br><br>
-                                <div class="inputgroup" style="width: 50%; margin-right: 2%;">
-                                    <input type="text" class="form-control" placeholder="" id="add3" name="add3">
-                                </div>
-                                <div class="inputgroup" style="width: 10%; margin-right: 2%;">
-                                    <input type="button" value="주소찾기" class="form-control" style="color: #fff;
-                                    background-color: #4e73df;
-                                    border-color: #4e73df">
-                                </div>
-                            </div>
-                        </div> -->
-                        
-                        <!-- <button class="btn btn-primary btn-lg" id="hosupdate" type="submit">변경하기</button> -->
+                       
                    <input  class="btn btn-primary btn-lg" id="hosupdate" type="button" value="변경하기" >
 
                     </form>
                 </div>
             </div>
-
         </div>
-
-
-
     </div>
     </div>
 
    <script>
  	$(function(){
       	$('#hosupdate').on('click',function(){
-      		
+
+			if(confirm('변경하시겠습니까?')){
          var pwd1 = $('#pwd1').val();
          var pwd2 = $('#pwd2').val();
          var hPhone = $('#hPhone').val();
@@ -185,7 +158,7 @@
             },success:function(data){
                if(data!=1){
             	alert('정보가 변경되었습니다');
-                location.href="chart.ho";
+                location.href="insertdoc.ho";
                }
             },error:function(data){
             	alert("에러발생");
@@ -193,7 +166,7 @@
                	
             }
          });
-
+		};
       });
    });
    </script>
@@ -208,10 +181,7 @@
     </footer>
     <!-- End of Footer -->
 
-    </div>
-    <!-- End of Content Wrapper -->
-
-    </div>
+  
     <!-- End of Page Wrapper -->
 
 
