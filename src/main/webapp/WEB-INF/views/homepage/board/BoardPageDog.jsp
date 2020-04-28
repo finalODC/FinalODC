@@ -11,26 +11,24 @@
 
 
 
-<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css" />
-<link rel="stylesheet" href="${path}/resources/css/font-awesome.min.css" />
-<link rel="stylesheet" href="${path}/resources/css/slicknav.min.css" />
-<link rel="stylesheet"
-	href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="${path}/resources/css/style.css" />
-<link rel="stylesheet" href="${path}/resources/css/stylne.css">
-<!-- 폰트 아이콘 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="https://kit.fontawesome.com/ddfd73bace.js"
-	crossorigin="anonymous"></script>
-<!--  제이 쿼리 -->
-<script src="https://code.jquery.com/jquery-3.4.1.js"
-	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-	crossorigin="anonymous"></script>
+  <link rel="stylesheet"href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+
+
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+  
+
+  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/ddfd73bace.js"crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
 
 
 
@@ -160,7 +158,7 @@
 							</h5>
 						</a>
 						<br>
-						<a href="ohdogcat_CatBoardPage.html">
+						<a href="CBlist.bo">
 							<h5>
 								<i class="fas fa-cat">&nbsp;</i>고양이
 								게시판&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i
@@ -231,14 +229,14 @@
 						<div class="btn-group">
 
 							<c:if test="${pi.currentPage eq 1 }">
-								<input type="button" value="[이전]" class="btn btn-secondary" />
+								<input type="button" value="이전" class="btn btn-secondary" />
 							</c:if>
 
 							<c:if test="${pi.currentPage ne 1 }">
 								<c:url var="before" value="TBlist.bo">
 									<c:param name="currentPage" value="${ pi.currentPage -1 }" />
 								</c:url>
-								<input type="button" class="btn btn-secondary" value="[이전]"
+								<input type="button" class="btn btn-secondary" value="이전"
 									onclick="getList(${pi.currentPage-1});" />
 							</c:if>
 						</div>
@@ -273,7 +271,7 @@
 							</c:if>
 							<c:if test="${ pi.currentPage ne pi.maxPage }">
 
-								<input value="[다음]" type="button"
+								<input value="다음" type="button"
 									onclick="getList(${pi.currentPage+1});"
 									class="btn btn-secondary" />
 							</c:if>

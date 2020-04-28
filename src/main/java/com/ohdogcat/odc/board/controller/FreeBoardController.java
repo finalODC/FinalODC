@@ -161,7 +161,7 @@ public class FreeBoardController {
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-
+		System.out.println("frList : " + frList);
 
 		gson.toJson(frList,response.getWriter());
 	}
