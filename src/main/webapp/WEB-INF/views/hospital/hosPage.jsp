@@ -157,11 +157,19 @@
    <script>
  	$(function(){
       	$('#hosupdate').on('click',function(){
+      		
          var pwd1 = $('#pwd1').val();
          var pwd2 = $('#pwd2').val();
          var hPhone = $('#hPhone').val();
-         console.log("aaaa");
-         console.log(pwd2)
+         
+         var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+         
+         if(!regex.test($("#pwd1").val())){
+     		alert("비밀번호 형식이 다릅니다.")
+     		$("pwd1").focus();
+     		return false;
+     	}
+         
          if (pwd1 != pwd2) {
             alert('비밀번호를 다시 확인해 주세요');
             return false;

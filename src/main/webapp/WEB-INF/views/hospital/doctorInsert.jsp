@@ -325,6 +325,20 @@
 						var docImage = $('#docFile').val();
 						var docIntro = $('#docIntro').val();
 						var docName = $('#docName').val();
+						
+						if(docImage == null){
+							alert('사진을 넣어주세요');
+							return false
+						}
+						if(docIntro == null){
+							alert('설명을 입력해주요');
+							return false
+						}
+						if(docName == null){
+							alert('이름을 입력해주세요');
+							return false
+						}
+						
 						$.ajax({
 							url : "indoc.ho",
 							type : "post",
