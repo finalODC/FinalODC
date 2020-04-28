@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -110,8 +111,15 @@ public class memberController {
 	}
 	
 	@RequestMapping("goadminpage.do")
-	public String goadminpage() {
-		return "manager/managerMain";
+	public ModelAndView goadminpage(ModelAndView mv, @RequestParam(value="userId", required = false,defaultValue="user")String userId) {
+		
+		if(userId.equals("admin")) {
+			mv.setViewName("manager/managerMain");
+		}else {
+			mv.setViewName("homepage/h_mainpage");
+		}
+		
+		return mv;
 	}
 
 }
