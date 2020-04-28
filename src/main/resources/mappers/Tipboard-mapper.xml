@@ -219,6 +219,12 @@
 		ORDER BY TRID ASC
 	</select>
 
+	<update id="CatBoardComplain">
+		UPDATE T_BOARD
+		SET COMPLAIN = COMPLAIN +1
+		WHERE TBID=${tbId}
+		
+	</update>
 
 
 

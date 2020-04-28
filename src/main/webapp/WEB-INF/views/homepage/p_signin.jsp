@@ -347,8 +347,8 @@ body {
 						</c:if>
 					</div>
 					<div class='pets-birthday'>
-						<label for='pets-birthday'>*출생년월(월까지 입력)</label> 
-						<input id='pets-birthday' name="pBirth" placeholder='YYYY-MM' type='text'>
+						<label for='pets-birthday'>*출생년월(월까지 입력가능)</label> 
+						<input id='pets-birthday' name="pBirth" placeholder='YY/MM/DD' type='text'>
 					</div>
 				</div>
 				<div class='set'>

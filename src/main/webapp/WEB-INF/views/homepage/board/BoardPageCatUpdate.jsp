@@ -11,24 +11,26 @@
 
 
 
-  <link rel="stylesheet"href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${path}/resources/css/font-awesome.min.css" />
+<link rel="stylesheet" href="${path}/resources/css/slicknav.min.css" />
+<link rel="stylesheet"
+	href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="${path}/resources/css/style.css" />
+<link rel="stylesheet" href="${path}/resources/css/stylne.css">
+<!-- 폰트 아이콘 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/ddfd73bace.js"
+	crossorigin="anonymous"></script>
 
-
-  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-  
-
-  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
-
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script src="https://kit.fontawesome.com/ddfd73bace.js"crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="${path}/resources/se2/js/service/HuskyEZCreator.js"
+	charset="utf-8"></script>
 
 
 <style>
@@ -62,6 +64,9 @@
 	float: left;
 	margin-left: 330px;
 }
+a{
+	color : black;
+}
 
 #contents {
 	width: 700px;
@@ -94,28 +99,20 @@
 				<a href="" class="float-left navbar-light "
 					style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
 				<ul class="main-menu">
-					<li><a href="#">병원찾기</a></li>
-					<li><a href="cuponcheck.html">커뮤니티</a>
+					<li><a href="searchhospital.do">병원찾기</a></li>
+					<li><a href="Fblist.bo">커뮤니티</a>
 						<ul class="sub-menu">
-							<li><a href="about-us.html">공지사항</a></li>
-							<li><a href="search-result.html">자유게시판</a></li>
-							<li><a href="single-property.html">TIP</a></li>
+							<li><a href="hgonoticelist.do">공지사항</a></li>
+							<li><a href="Fblist.bo">자유게시판</a></li>
+							<li><a href="DBlist.bo">TIP</a></li>
 						</ul></li>
 					<li><a href="#">마이페이지</a>
 						<ul class="sub-menu">
-							<li><a href="about-us.html">정보수정</a></li>
-							<li><a href="search-result.html">반려동물 관리</a></li>
-							<li><a href="single-property.html"></a></li>
+							<li><a href="mypageperson.do">정보수정</a></li>
+							<li><a href="mypagepet.do">반려동물 관리</a></li>
+							<li><a href="myqnalist.qn">문의사항</a></li>
 						</ul></li>
-					<!-- <li><a href="#"></a>
-          <ul class="sub-menu">
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="search-result.html">Search Result</a></li>
-            <li><a href="single-property.html">Property</a></li>
-          </ul>
-        </li>
-        <li><a href="news.html">News</a></li> -->
-					<!-- <li><a href="#">로그인</a></li> -->
+
 				</ul>
 				<div class="header-right">
 					<div class="user-panel">
@@ -148,7 +145,7 @@
 						<a>
 							<h4>정보 공유 게시판</h4>
 						</a>
-						<hr style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;" align="left">
+						<hr style="border: solid 2px black; width: 200px;" align="left">
 
 						<a href="DBlist.bo">
 							<h5>
@@ -191,20 +188,20 @@
 							</tr>
 							<tr>
 								<th>아이디</th>
-								<td><input type="text" readonly name="tbWriter" value="${cb.tbWriter}"></td> 
+								<td><input type="text" style="border:0px" readonly name="tbWriter" value="${cb.tbWriter}"></td> 
 										
 								
 							</tr>
 							<tr>
 								<th style="width: 100px; height: 500px;">내용</th>
-								<td><textarea id="editer" rows="25" cols="100" name="tbContent">${cb.tbContent }</textarea></td>
+								<td><textarea id="editer" rows="25" cols="140" name="tbContent">${cb.tbContent }</textarea></td>
 
 							</tr>
 							
 						</tbody>
 					</table>
-					<button type="button" id="cubtn">수정하기</button>
-					<button type="button" onclick="Catgotoback()">취소</button>
+					<button type="button" class="btn btn-outline-success" style="border:1px solid green" id="cubtn">수정하기</button>
+					<button type="button" class="btn btn-outline-danger"style="border:1px solid red" onclick="Catgotoback()">취소</button>
 
 
 
@@ -222,21 +219,39 @@
 
 
 
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="copy">© Adoptly</div>
-				</div>
-				<div class="col-md-10">
-					<ul class="nav nav-pills pull-right">
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <div class="copy" style="font-size: 15px;">© 승제쌤도와조</div>
+        </div>
+        <div class="col-md-10">
+          <ul class="nav nav-pills pull-right">
+			<c:if test="${loginUser.userId=='admin' }">
+				<input id="adminbtn" type="button" class="btn  btn-outline-info	" value="관리자페이지로">
+			</c:if>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+  <script>
+  var adminid
+	$(function(){
+		$('#adminbtn').click(function(){
+	  		adminid = "${loginUser.userId}";
+	  		if(adminid!="admin"){
+	  			alert("부적절한 접근입니다!");
+	  		}else{
+	  			location.href="goadminpage.do?userId="+adminid;
+	  		}
+	  	
+		});
+	});
+  	
+  </script>
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 
 	<script src="${path }/resources/js/bootstrap.min.js"></script>

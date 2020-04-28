@@ -66,6 +66,11 @@ public interface TipBoardService {
 	//댓글 불러오기
 	ArrayList<TipReply> CatBoardReplyList(int tbId);
 	
+
+	int CatBoardComplain(TipBoard tip);
+	
+	
+	
 	
 	
 	

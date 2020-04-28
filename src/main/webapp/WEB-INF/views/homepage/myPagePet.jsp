@@ -37,18 +37,23 @@
 
 
 <style>
+.btn{
+	font-size:17px;
+	width:150px;
+	margin:5px;
+}
 #aaa {
 	margin-left: 10%;
 }
 
 #insertDog {
 	background-image:
-		url(https://post-phinf.pstatic.net/MjAxNzA5MjBfMjI1/MDAxNTA1ODg0NjMyNDgw.9GzMHmgvTppZHJAb2BOq1pdQJQqX79NTv003csX-Q6cg.k88VnGh5SQbQiZkDllPRYrmX0kWu1kd0u3CsqWPkfRsg.PNG/20170920_134618.png?type=w1200);
+		url("https://post-phinf.pstatic.net/MjAxNzA5MjBfMjI1/MDAxNTA1ODg0NjMyNDgw.9GzMHmgvTppZHJAb2BOq1pdQJQqX79NTv003csX-Q6cg.k88VnGh5SQbQiZkDllPRYrmX0kWu1kd0u3CsqWPkfRsg.PNG/20170920_134618.png?type=w1200");
 }
 
 #insertCat {
 	background-image:
-		url("http://cdn.ppomppu.co.kr/zboard/data3/2019/0910/m_20190910001740_upyzieih.jpeg");
+		url("https://www.dailysecu.com/news/photo/201910/72863_68975_3514.png");
 }
 
 @font-face {
