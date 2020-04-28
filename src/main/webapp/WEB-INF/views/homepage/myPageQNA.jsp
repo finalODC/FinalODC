@@ -191,6 +191,7 @@
 
 					</div>
 				</section>
+				
 				<script>
 					
 					function add(){
@@ -213,10 +214,11 @@
 
 	<!-- Footer Section -->
 	<br>
+	<br><br><br>
 	<hr>
-	<br>
+	<jsp:include page="common/footer.jsp"/>
 	<!-- Footer Section end -->
-	
+		
 
 	<!--====== Javascripts & Jquery ======-->
 
@@ -440,7 +442,7 @@
 			});
 		});
 	</script>
-	<jsp:include page="common/footer.jsp"/>
+	
 </body>
 
 </html>
