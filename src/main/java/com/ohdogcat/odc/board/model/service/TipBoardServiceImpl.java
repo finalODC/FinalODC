@@ -139,6 +139,12 @@ public class TipBoardServiceImpl implements TipBoardService{
 
 		return bDao.CatBoardReply(tr);
 	}
+
+	@Override
+	public ArrayList<TipReply> CatBoardReplyList(int tbId) {
+
+		return bDao.CatBoardReplyList(tbId);
+	}
 	
 	
 	

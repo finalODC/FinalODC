@@ -231,15 +231,7 @@
 		<hr>
 		<br>
 		<footer class="footer">
-			<div class="container">
-				<div class="copyright">
-					Copyright &copy;
-					<script>
-						document.write(new Date().getFullYear());
-					</script>
-					권한은 전적으로 나한테 있습니다.
-
-				</div>
+			<jsp:include page="common/footer.jsp"/>
 		</footer>
 			
 					 <script>

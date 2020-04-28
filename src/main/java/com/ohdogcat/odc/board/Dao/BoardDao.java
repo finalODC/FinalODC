@@ -152,7 +152,10 @@ public class BoardDao {
 
 
 	public ArrayList<TipReply> DogBoardReplyList(int tbId) {
+		System.out.println(tbId);
 		
+		ArrayList list = (ArrayList)sqlSession.selectList("TipboardMapper.DogBoardReplyList",tbId);
+		System.out.println("dao" + list);
 		return (ArrayList)sqlSession.selectList("TipboardMapper.DogBoardReplyList",tbId);
 	}
 
@@ -248,6 +251,13 @@ public class BoardDao {
 	public int CatBoardReply(TipReply tb) {
 
 		return sqlSession.insert("TipboardMapper.CatBoardReply",tb);
+	}
+
+
+
+	public ArrayList<TipReply> CatBoardReplyList(int tbId) {
+
+		return (ArrayList)sqlSession.selectList("TipboardMapper.CatBoardReplyList",tbId);
 	}
 	
 	

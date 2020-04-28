@@ -11,22 +11,24 @@
 
 
 
-<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css" />
-<link rel="stylesheet" href="${path}/resources/css/font-awesome.min.css" />
-<link rel="stylesheet" href="${path}/resources/css/slicknav.min.css" />
-<link rel="stylesheet"
-	href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="${path}/resources/css/style.css" />
-<link rel="stylesheet" href="${path}/resources/css/stylne.css">
-<!-- 폰트 아이콘 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="https://kit.fontawesome.com/ddfd73bace.js"
-	crossorigin="anonymous"></script>
+  <link rel="stylesheet"href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+
+
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+  
+
+  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/ddfd73bace.js"crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
 
 <style>
 .main-menu li a:hover {
@@ -103,7 +105,7 @@
 							<li><a href="search-result.html">반려동물 관리</a></li>
 							<li><a href="single-property.html"></a></li>
 						</ul></li>
-			
+
 				</ul>
 				<div class="header-right">
 					<div class="user-panel">
@@ -163,7 +165,7 @@
 
 				<br> <br>
 				<!-- 게시판 view 에요 @@@@@@@@@@@@@@@@@@@@@@@ -->
-				
+
 				<h3>&nbsp;&nbsp;&nbsp;고양이 게시판</h3>
 				<hr>
 				<br> <br>
@@ -175,7 +177,7 @@
 								type="text" style="border: 0px;"></th>
 
 						</tr>
-			
+
 						<tr>
 							<td align="left">닉네임 &nbsp;|&nbsp;&nbsp; ${cb.tbWriter }<input
 								type="text" style="border: 0px; width: 100px;"></td>
@@ -190,18 +192,21 @@
 								style="height: 500px; width: 920px; border: 0px;" readonly></td>
 						</tr>
 					</table>
-					<input type="button" value="목록으로" onclick="location.href='CBlist.bo'" align="left">
+					<input type="button" value="목록으로"
+						onclick="location.href='CBlist.bo'" align="left">
 
 
 					<!-- fbId 값은 위의 fb에 전부 담겨있기 때문에 fb.fbId를 써서 값을 받아와서 넘겨주자 -->
 					<c:if test="${loginUser.userId eq cb.tbWriter }">
-						<button onclick="location.href='CatBoardUpdateView.bo?tbId=${cb.tbId}'">수정하기</button>
-						<button onclick="location.href='CatBoardDelete.bo?tbId=${cb.tbId}'" > 삭제하기</button>
-													
+						<button
+							onclick="location.href='CatBoardUpdateView.bo?tbId=${cb.tbId}'">수정하기</button>
+						<button
+							onclick="location.href='CatBoardDelete.bo?tbId=${cb.tbId}'">
+							삭제하기</button>
+
 					</c:if>
-			
+
 					<script>
-						
 						
 					</script>
 
@@ -216,7 +221,7 @@
 
 							<th
 								style="width: 100px; height: 70px; background-color: steelblue;"
-								id="tbWriter">${cb.tbWriter }</th>
+								id="trWriter">${cb.tbWriter }</th>
 
 							<th style="width: 740px;">&nbsp;<input type="text"
 								style="width: 700px; height: 70px; border: 0px;" id="trContent"></th>
@@ -234,7 +239,7 @@
 
 						<table id="rtb">
 							<thead id="comment">
-			
+
 
 
 
@@ -293,92 +298,102 @@
 	<script src="${path }/resources/js/main.js"></script>
 
 	<script>
-	
-	$(function(){
-		
-		CatBoardReplyList();
-		
-		setInterval(function(){
+		$(function() {
+
 			CatBoardReplyList();
-		},3000);
-		
-		$("#crSubmit").on("click",function(){
-			var trContent = $("#trContent").val();
-			var trreftbId = "${cb.tbId}";
-			var trWriter = $("#tbWriter").text();
-			
-			$.ajax({
-				
-				url : "CatBoardReply.bo",
-				data : {
-					
-					trContent : trContent,
-					trreftbId : trreftbId,
-					trWriter : trWriter
-					
-				},
-				type:"post",
-				success : function(data){
-					if(data =="success"){
-						CatBoardReplyList();
-						$("#trContent").val("");
+
+			setInterval(function() {
+				CatBoardReplyList();
+			}, 3000);
+
+			$("#crSubmit").on("click", function() {
+				var trContent = $("#trContent").val();
+				var trreftbId = "${cb.tbId}";
+				var trWriter = $("#tbWriter").text();
+
+				$.ajax({
+
+					url : "CatBoardReply.bo",
+					data : {
+
+						trContent : trContent,
+						trreftbId : trreftbId,
+						trWriter : trWriter
+
+					},
+					type : "post",
+					success : function(data) {
+						if (data == "success") {
+							CatBoardReplyList();
+							$("#trContent").val("");
+						}
+					},
+					error : function() {
+						console.log("전송실패");
 					}
-				},
-				error : function(){
-					console.log("전송실패");
-				}
-				
+
+				});
+
 			});
-			
-			
 		});
-	});
-	
-	function CatBoardReplyList(){
-		var tbId = ${cb.tbId};
-		
-		$.ajax({
-			url:"CatBoardReplyList.bo",
-			data:{tbId:tbId},
-			dataType:"json",
-			success:function(data){
-				$tableBody = $("#rtb tbody");
-				$tableBody.html("");
-				console.log(data)
-				var $tr;
-				var $trWriter;
-				var $trContent;
-				var $trCreateDate;
-				
-				
-				
-				if(data.length > 0){
-					  for(var i in data){
-						  
-						  $tr = $("<tr style='border: 1px solid black;' id='commentView'>");
-						  $trWriter= $("<th style='width:100px; height:70px; background-color:steelblue;' align='center'>").text(data[i].trWriter);
-						  $trContent=$("<td style='width: 740px;'><input type='text' value='내용' style='width: 700px; height: 70px; border: 0px;'readonly>").text(data[i].trContent);
-						  $trCreateDate=$("<td style='width: 100px; background-color: tan;' align='center'><input type='text'style='width: 80px; font-size: 10px; border: 0px;'>").text(data[i].trCreateDate);
-						  
-						  $tr.append($trWriter);
-						  $tr.append($trContent);
-						  $tr.append($trCreateDate);
-						  $tableBody.append($tr);
-					  }
-				}else{
-					$tr = $("<tr>");
-					$trContent = $("<td colspan='3'>").text("등록된 댓글이 없습니다.");
-					
-					$tr.append($trContent);
-					$tableBody.append($tr);
-				}
-		},error:function(){
-			console.log("전송실패");
+
+		function CatBoardReplyList() {
+			var tbId = $
+			{
+				db.tbId
+			}
+			;
+
+			$
+					.ajax({
+						url : "CatBoardReplyList.bo",
+						data : {
+							tbId : tbId
+						},
+						dataType : "json",
+						success : function(data) {
+							$tableBody = $("#rtb tbody");
+							$tableBody.html("");
+							console.log(data)
+							var $tr;
+							var $trWriter;
+							var $trContent;
+							var $trCreateDate;
+
+							if (data.length > 0) {
+								for ( var i in data) {
+
+									$tr = $("<tr style='border: 1px solid black;' id='commentView'>");
+									$trWriter = $(
+											"<th style='width:100px; height:70px; background-color:steelblue;' align='center'>")
+											.text(data[i].trWriter);
+									$trContent = $(
+											"<td style='width: 740px;'><input type='text' value='내용' style='width: 700px; height: 70px; border: 0px;'readonly>")
+											.text(data[i].trContent);
+									$trCreateDate = $(
+											"<td style='width: 100px; background-color: tan;' align='center'><input type='text'style='width: 80px; font-size: 10px; border: 0px;'>")
+											.text(data[i].trCreateDate);
+
+									$tr.append($trWriter);
+									$tr.append($trContent);
+									$tr.append($trCreateDate);
+									$tableBody.append($tr);
+								}
+							} else {
+								$tr = $("<tr>");
+								$trContent = $("<td colspan='3'>").text(
+										"등록된 댓글이 없습니다.");
+
+								$tr.append($trContent);
+								$tableBody.append($tr);
+							}
+						},
+						error : function() {
+							console.log("전송실패");
+						}
+
+					});
 		}
-			
-		});
-	}
-		
 	</script>
 </body>
 

@@ -119,6 +119,7 @@ public class HospitalController2 {
 		
 	}
 
+	@ResponseBody
 	@RequestMapping("indoc.ho")
 	public String indoc(Doctor doc, HttpServletRequest request, Model model,
 			  @RequestParam(name="docImage",required=false) MultipartFile file,
@@ -145,17 +146,18 @@ public class HospitalController2 {
 		int result = hService2.indoc(doc);
 		
 		
-		if(result > 0) {
+//		if(result > 0) {
 			
 			ArrayList<Doctor> doc1 = hService2.docList(hm1.gethId());
 			hm1.setDoctor(doc1);
 			model.addAttribute("hospital",hm1);
 		
-			return "redirect:insertdoc.ho";
-		} else {
-			return "redirect:comdoc.ho";
-		}
-		
+//			return "redirect:insertdoc.ho";
+//		} else {
+//			return "redirect:comdoc.ho";
+//		}
+
+			return Integer.valueOf(result).toString();
 	}
 
 	

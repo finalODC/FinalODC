@@ -62,6 +62,19 @@
       </div>
     </div>
     </nav>
+     <c:set var="test" value="${loginUser}"/>
   </header  class="masthead">
+  
+  <script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+    <script>
+	  $(function(){
+		var test = "${test}";
+		console.log(test.indexOf("Doctor"));
+	  	if(test.indexOf("Doctor")!=-1){
+		  	console.log($('.main-menu').children().eq(2).text());
+		  	$('.main-menu').children().eq(2).html("");
+	  	}
+	  });
+  </script>
 </body>
 </html>
