@@ -22,13 +22,14 @@ import com.ohdogcat.odc.pet.model.vo.Pet;
 public class PetController {
 	@Autowired
 	private PetService pService;
-	
+	@RequestMapping("pet.pe")
+	public String pet() {
+		return "myPagePet";
+	}
 	
 	@RequestMapping("mypetlist.pe")
 	public void myPetList(HttpServletResponse response,@RequestParam int mId) throws JsonIOException, IOException {
-		System.out.println(mId);
 		ArrayList<Pet> list=pService.selectMyPetList(mId);
-		System.out.println(list);
 		
 		response.setContentType("application/json; charset=utf-8");
 		
@@ -43,13 +44,27 @@ public class PetController {
 	}
 	@RequestMapping("inserPet.pe")
 	public String insertPet(Pet p) {
-		System.out.println(p);
 		int result=pService.insertPet(p);
 		System.out.println(result);
 		return "myPagePet";
 	}
 	
-
+	@RequestMapping("updatePet.pe")
+	public String updatePet(Pet p) {
+		System.out.println("PATHCHECK");
+		System.out.println(p);
+		pService.updatePet(p);
+		
+		return "redirect:pet.pe";
+	}
+	
+	@RequestMapping("deletePet.pe")
+	public String deletePet(@RequestParam int pid) {
+		System.out.println(pid);
+		int result=pService.deletePet(pid);
+		System.out.println(result);
+		return "redirect:pet.pe";
+	}
 
 
 

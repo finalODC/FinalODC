@@ -22,4 +22,14 @@ public class PetServiceImpl implements PetService {
 		return pDao.insertPet(p);
 	}
 
+	@Override
+	public int updatePet(Pet p) {
+		return pDao.updatePet(p);
+	}
+
+	@Override
+	public int deletePet(int pid) {
+		return pDao.deletePet(pid);
+	}
+
 }
