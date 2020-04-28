@@ -56,7 +56,7 @@
 <body>
 
 	<!-- Header Section -->
-	<jsp:include page="common/menubar.jsp" />
+	<jsp:include page="common/menubar.jsp"/>
 	<!-- Header Section end -->
 
 	<div class="container" style="padding-top: 150px;">
@@ -215,18 +215,8 @@
 	<br>
 	<hr>
 	<br>
-	<footer class="footer">
-		<div class="container">
-			<div class="copyright">
-				Copyright &copy;
-				<script>
-					document.write(new Date().getFullYear());
-				</script>
-				권한은 전적으로 나한테 있습니다.
-
-			</div>
-	</footer>
 	<!-- Footer Section end -->
+	
 
 	<!--====== Javascripts & Jquery ======-->
 
@@ -250,13 +240,7 @@
 			QnaList();
 		}); */
 		$(function(){
-			alert(pageNo+","+userId);
 			getList(pageNo);
-			
-		});
-		$(function(){
-			alert($(".a"));
-			console.log($(".a"));
 			
 		});
 		
@@ -349,7 +333,6 @@
 				   $(".a").click(function(){
 						console.log($(this).find("td").first().text());
 						var qId=$(this).find("td").first().text();
-						alert(qId);
 						for(var i=0;i<data.list.length;i++){
 							if(data.list[i].qId==qId){
 								var qna=data.list[i];
@@ -456,7 +439,7 @@
 			});
 		});
 	</script>
-
+	<jsp:include page="common/footer.jsp"/>
 </body>
 
 </html>

@@ -295,7 +295,7 @@ body {
 
 
 <body>
-	<jsp:include page="common/menubar.jsp" />
+	<jsp:include page="common/menubar.jsp"/>
 
 
 	
@@ -406,21 +406,6 @@ body {
 	
 
 
-	<div class="footer" style="width: 100%;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="copy">© Adoptly</div>
-				</div>
-				<div class="col-md-10">
-					<ul class="nav nav-pills pull-right">
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
 
 
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
@@ -433,9 +418,6 @@ body {
 
 	<script src="${path }/resources/js/main.js"></script>
 	<script>
-		$(function(){
-			alert("${species}");
-		});
 		function add(){
 			var arr = $("#spc").val().split("\n");
 			for(var i = 0; i<arr.length;i++){
