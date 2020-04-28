@@ -113,7 +113,6 @@
 					</div>
 
 
-					<br> <Br> <br> <br> <Br> <Br> <Br>
 				</div>
 
 
@@ -128,21 +127,7 @@
 
 
 
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2">
-					<div class="copy">© Adoptly</div>
-				</div>
-				<div class="col-md-10">
-					<ul class="nav nav-pills pull-right">
-						<li><a href="#">FAQ</a></li>
-						<li><a href="#">Contact</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+ <jsp:include page="common/footer.jsp"/>
 
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
 

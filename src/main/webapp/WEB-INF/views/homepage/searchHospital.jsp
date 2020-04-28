@@ -25,6 +25,13 @@
     padding: .4rem 0.6rem !important; 
     font-size:15px !important; 
     }
+    
+    a{
+    color:black;
+    }
+    a:hover {
+	color:#30627e;
+}
 	</style>
 	
 </head>
@@ -39,7 +46,7 @@
 	
 	</div>
 
-	<div class="container">
+	<div class="container" style="min-height: 959px;">
 	
 		<div class="d-flex justify-content-center">
 			<div class="input-group form-group"  style="width: 50%;">

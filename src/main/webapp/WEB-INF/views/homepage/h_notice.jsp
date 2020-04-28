@@ -107,7 +107,7 @@
 	
 	</div>
 	
-	<div class="container">
+	<div class="container" style="min-height: 711px;">
 	
 	<div class="col-lg-12">
 
