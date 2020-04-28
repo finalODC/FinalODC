@@ -11,24 +11,26 @@
 
 
 
-  <link rel="stylesheet"href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+<link rel="stylesheet" href="${path}/resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${path}/resources/css/font-awesome.min.css" />
+<link rel="stylesheet" href="${path}/resources/css/slicknav.min.css" />
+<link rel="stylesheet"
+	href="https://s3.amazonaws.com/codecademy-content/projects/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="${path}/resources/css/style.css" />
+<link rel="stylesheet" href="${path}/resources/css/stylne.css">
+<!-- 폰트 아이콘 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/ddfd73bace.js"
+	crossorigin="anonymous"></script>
 
-
-  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-  
-
-  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
-  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
-
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script src="https://kit.fontawesome.com/ddfd73bace.js"crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.js"integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="${path}/resources/se2/js/service/HuskyEZCreator.js"
+	charset="utf-8"></script>
 
 
 <style>
@@ -78,6 +80,10 @@
 	width: 325px;
 	padding: 10px;
 	border: 0px;
+}
+
+a{
+	color : black;
 }
 </style>
 </head>
@@ -148,7 +154,7 @@
 						<a>
 							<h4>정보 공유 게시판</h4>
 						</a>
-						<hr style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;" align="left">
+						<hr style="border: solid 2px black; width: 200px;" align="left">
 
 						<a href="DBlist.bo">
 							<h5>

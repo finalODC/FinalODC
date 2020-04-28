@@ -161,5 +161,12 @@
 	SET F_BTITLE=#{fbTitle},F_BCONTENT=#{fbContent},FB_MODIFY_DATE=#{fbModifydate}
 	WHERE FBID=#{fbId}
 </update>
+
+<update id="FreeBoardComplain">
+		UPDATE F_BOARD
+		SET COMPLAIN = COMPLAIN +1
+		WHERE FBID=${fbId}
+		
+	</update>
 	
 </mapper>

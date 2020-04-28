@@ -145,6 +145,13 @@ public class TipBoardServiceImpl implements TipBoardService{
 
 		return bDao.CatBoardReplyList(tbId);
 	}
+
+	//게시판 신고수 업데이트 
+	@Override
+	public int CatBoardComplain(TipBoard tip) {
+		
+		return bDao.CatBoardComplain(tip);
+	}
 	
 	
 	

@@ -87,23 +87,8 @@ public interface BoardService {
 	int FreeBoardDelete(int fbId);
 	
 	int FreeBoardSearchCount(int fbId);
-	//-------------------------------------------- 여기서부터 멍멍이 게시판 -----------------------------------------------
 
-	
-	
-//	
-//	int DogBoardCount();
-//	
-//	ArrayList<TipBoard> DogBoardList(PageInfo pi);
-//	
-//	int DogBoardWriter(TipBoard tb);
-//	
-//	TipBoard DogBoardView(int tbId);
-//	
-//	int DogBoardReply(TipReply tr);
-	
-
-	
+	int FreeBoardComplain(FreeBoard fb);
 	
 
 	

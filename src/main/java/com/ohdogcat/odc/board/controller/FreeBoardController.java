@@ -203,6 +203,14 @@ public class FreeBoardController {
 		return mv;
 	}
 
+	@ResponseBody
+	@RequestMapping("FreeBoardComplain.bo")
+	public String FreeBoardComplain(FreeBoard fb) {
+		
+		Integer result = bService.FreeBoardComplain(fb);
+		
+		return result.toString();
+	}
 	
 	//---------------------------------------- 여기서부터 DOGBOARDPAGE -----------------------------------------------------
 

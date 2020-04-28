@@ -99,6 +99,12 @@ public class BoardServiceImpl implements BoardService{
 		return bDao.FreeBoardSearchCount(fbId);
 	}
 	//----------------------------------------------- 여기서 부터 dogboard 페이지 -------------------------------------------------
+
+	@Override
+	public int FreeBoardComplain(FreeBoard fb) {
+
+		return bDao.FreeBoardComplain(fb);
+	}
 	
 //	// 리스트 카운터
 //	@Override
