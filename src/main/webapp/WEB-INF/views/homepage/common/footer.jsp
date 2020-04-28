@@ -35,7 +35,7 @@
 	  		if(adminid!="admin"){
 	  			alert("부적절한 접근입니다!");
 	  		}else{
-	  			location.href="goadminpage.do";
+	  			location.href="goadminpage.do?userId="+adminid;
 	  		}
 	  	
 		});

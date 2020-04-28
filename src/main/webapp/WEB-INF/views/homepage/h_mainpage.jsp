@@ -105,7 +105,8 @@ box-shadow: 0 0 0 0 !important;
             </div>
             </div>
             <div class="button-area d-flex justify-content-center ">
-              <input id="search" type="submit" value="찾기" class="btn login_btn">				
+              <input id="search" type="submit" value="찾기" class="btn login_btn">
+
             </div>
           </form>
           </div>
@@ -127,6 +128,7 @@ box-shadow: 0 0 0 0 !important;
   
   <script src="${path }/resources/js/main.js"></script>
   
+
 
 
 
