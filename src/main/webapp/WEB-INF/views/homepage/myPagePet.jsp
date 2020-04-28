@@ -37,18 +37,23 @@
 
 
 <style>
+.btn{
+	font-size:17px;
+	width:150px;
+	margin:5px;
+}
 #aaa {
 	margin-left: 10%;
 }
 
 #insertDog {
 	background-image:
-		url(https://post-phinf.pstatic.net/MjAxNzA5MjBfMjI1/MDAxNTA1ODg0NjMyNDgw.9GzMHmgvTppZHJAb2BOq1pdQJQqX79NTv003csX-Q6cg.k88VnGh5SQbQiZkDllPRYrmX0kWu1kd0u3CsqWPkfRsg.PNG/20170920_134618.png?type=w1200);
+		url("https://post-phinf.pstatic.net/MjAxNzA5MjBfMjI1/MDAxNTA1ODg0NjMyNDgw.9GzMHmgvTppZHJAb2BOq1pdQJQqX79NTv003csX-Q6cg.k88VnGh5SQbQiZkDllPRYrmX0kWu1kd0u3CsqWPkfRsg.PNG/20170920_134618.png?type=w1200");
 }
 
 #insertCat {
 	background-image:
-		url("http://cdn.ppomppu.co.kr/zboard/data3/2019/0910/m_20190910001740_upyzieih.jpeg");
+		url("https://www.dailysecu.com/news/photo/201910/72863_68975_3514.png");
 }
 
 @font-face {
@@ -209,7 +214,7 @@
 <body>
 
 
-	<jsp:include page="common/menubar.jsp" />
+	<jsp:include page="common/menubar.jsp"/>
 
 
 	<div class="container" style="padding-top: 150px;">
@@ -245,7 +250,6 @@
 										<th>분류</th>
 										<th>성별</th>
 										<th>출생년월</th>
-										<th>상세보기</th>
 
 									</tr>
 								</thead>
@@ -266,6 +270,7 @@
 								style="width: 600px; height: 300px; margin-top: 30px; margin-left: 50px; margin-right: 30px;">
 							</div>
 							<h2 align="center">반려견 등록하시개</h2>
+							<hr>
 							<div id="insertCat"
 								style="width: 600px; height: 300px; margin-top: 30px; margin-left: 50px; margin-right: 30px;">
 							</div>
@@ -277,11 +282,7 @@
 			</div>
 		</div>
 	</div>
-	<h2>Extra Large Modal</h2>
-	<!-- Button to Open the Modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal"
-		data-target="#myModal">Open modal</button>
-
+	
 	<!-- The Modal -->
 	<form method="POST" action="updatePet.pe">
 	<input type="hidden" name="pid">
@@ -361,18 +362,8 @@
 	<br>
 	<hr>
 	<br>
-	<footer class="footer">
-		<div class="container">
-			<div class="copyright">
-				Copyright &copy;
-				<script>
-					document.write(new Date().getFullYear());
-				</script>
-				권한은 전적으로 나한테 있습니다.
-
-			</div>
-	</footer>
 	<!-- Footer Section end -->
+	<jsp:include page="common/footer.jsp"/>
 
 	<!--====== Javascripts & Jquery ======-->
 
@@ -420,14 +411,12 @@
 						var $pBreed=$("<td>").text(data[i].breed);
 						var $pGender=$("<td>").text(data[i].pGender);
 						var $pBirth=$("<td>").text(data[i].pBirth);
-						var $detailBtn=$("<td>").html('<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Open modal</button>');
 						$tr.append($pid);
 						$tr.append($pName);
 						$tr.append($pCode);
 						$tr.append($pBreed);
 						$tr.append($pGender);
 						$tr.append($pBirth);
-						$tr.append($detailBtn);
 						$tableBody.append($tr);
 					}
 					

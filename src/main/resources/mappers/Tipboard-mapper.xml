@@ -96,7 +96,7 @@
 		(SEQ_TRID.NEXTVAL,#{trContent},#{trreftbId},#{trWriter},SYSDATE,SYSDATE,'Y')
 	</insert>
 
-	<select id="DogBoardReplyList" resultMap="TipBoardResultSet">
+	<select id="DogBoardReplyList" parameterType="_int" resultMap="TipReplyResultSet">
 		SELECT *
 		FROM T_REPLY
 		WHERE REF_TBID=#{tbId}
@@ -210,7 +210,21 @@
 		(SEQ_TRID.NEXTVAL,#{trContent},#{trreftbId},#{trWriter},SYSDATE,SYSDATE,'Y')
 		
 	</insert>
+	
+	<select id="CatBoardReplyList" resultMap="TipBoardResultSet">
+		SELECT *
+		FROM T_REPLY
+		WHERE REF_TBID=#{tbId}
+		AND TR_STATUS='Y'
+		ORDER BY TRID ASC
+	</select>
 
+	<update id="CatBoardComplain">
+		UPDATE T_BOARD
+		SET COMPLAIN = COMPLAIN +1
+		WHERE TBID=${tbId}
+		
+	</update>
 
 
 

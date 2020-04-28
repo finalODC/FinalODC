@@ -45,54 +45,84 @@
 							<!--업무 이동! -->
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary" >공지 &nbsp;<input type="button" value="+" class="btn btn-primary btn-sm"></h6>
+									<h6 class="m-0 font-weight-bold text-primary" >공지 &nbsp;<input type="button" value="+" id="gonotice" class="btn btn-primary btn-sm"></h6>
 								</div>
 								<div class="card-body">
 									<table class="table table-hover" style="font-size: 12px;">
+									<thead>
 										<tr>
 											<th>글번호</th>
 											<th>제목</th>
-											<th>작성자</th>
 											<th>날짜</th>
+											<th>상태</th>
 										</tr>
-										<tr>
-											<td name="num">4</td>
-											<td name="title">월드컵제목</td>
-											<td name="writer">기업1</td>
-											<td name="date">2020-01-20</td>
-										</tr>
-										<tr>
-											<td name="num">3</td>
-											<td name="title">월드컵제목</td>
-											<td name="writer">기업1</td>
-											<td name="date">2020-01-20</td>
-										</tr>
-										<tr>
-											<td name="num">2</td>
-											<td name="title">월드컵제목</td>
-											<td name="writer">기업1</td>
-											<td name="date">2020-01-19</td>
-										</tr>
+									</thead>
+										<tbody id="tbody1">
+										
+										</tbody>
                                     </table>
                                     
-                                    <nav aria-label="Page navigation example">
-										<ul class="pagination pagination-sm justify-content-center">
-											<li class="page-item disabled"><a class="page-link"
-												href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-													<span class="sr-only">Previous</span>
-											</a></li>
-											<li class="page-item disabled"><a class="page-link"
-												href="#">1</a></li>
-											<li class="page-item"><a class="page-link" href="#">2</a></li>
-											<li class="page-item"><a class="page-link" href="#">3</a></li>
-											<li class="page-item"><a class="page-link" href="#"
-												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-													<span class="sr-only">Next</span>
-											</a></li>
-										</ul>
-									</nav>
+                                    
 								</div>
 							</div>
+							<script>
+							$(document).ready(function(){
+								getList();
+								$("#gonotice").click(function(){
+									location.href="gonoticelist.do";
+								});
+								
+							});
+							
+							 function getList(){
+						        	$.ajax({
+						        		url:"getNoticeList.do",
+						        		type:"post",
+						        		data:{
+						        			currentPage:1
+						        		},success:function(data){
+						         			$tbody=$('#tbody1');
+						        			$tbody.html(""); 
+
+						        			$.each(data,function(index,value){
+						        				if(index <5){
+						        					$tr=$('<tr>');
+							        				$td1=$('<td>').text(value.nId);
+							        				$td2=$('<td>').text(value.nTitle);
+							        				$td3=$('<td>').text(value.nCreateDate);
+							        				$td4=$('<td>').text(value.nStatus);
+							        				
+							        				$tr.append($td1);
+							        				$tr.append($td2);
+							        				$tr.append($td3);
+							        				$tr.append($td4);
+							        				$tbody.append($tr);
+							        				
+						        				}
+						        				
+						/*                         <th>번호</th>
+						                        <th>제목</th>
+						                        <th>작성날짜</th>
+						                        <th>상태</th> */
+						        			});
+						        			
+						        			console.log(data);
+						        			
+						        	          $("#tbody1 td").click(function(){  
+						        	               if(!$(this).prop("cellIndex")==0){
+						        	                var id = $(this).parent("tr").find("td").eq("0").text();
+						        	                location.href="NoticeDetail.do?nId="+id;
+						        	               } 
+						        	            });
+						        			
+						        		},error:function(data){
+						        			
+						        		}
+						        	});
+						        }
+							
+							
+							</script>
 
 
 							<!-- Color System -->
@@ -112,9 +142,9 @@
 									<thead>
 										<tr>
 											<th style="width:15%">문의번호</th>
-											<th style="width:55%">제목</th>
+											<th style="width:50%">제목</th>
 											<th style="width:15%">작성자</th>
-											<th style="width:15%">작성일자</th>
+											<th style="width:20%">작성일자</th>
 						
 										</tr>
 										</thead>

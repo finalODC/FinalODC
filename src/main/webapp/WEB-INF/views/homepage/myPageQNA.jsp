@@ -13,38 +13,52 @@
 <meta name="keywords" content="real estate, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
-<link href="img/favicon.ico" rel="shortcut icon" />
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+  
 
-<!-- Google font -->
-<link
-	href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i,900%7cRoboto:400,400i,500,500i,700,700i&display=swap"
-	rel="stylesheet">
+  <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link href="${path }/resources/css/style.css" rel='stylesheet' type='text/css'>
+  <link href="${path }/resources/css/stylne.css" rel='stylesheet' type='text/css'>
 
-
-<!-- Stylesheets -->
-<link rel="stylesheet" href="${path }/resources/css/bootstrap.min.css" />
+<!-- 폰트 아이콘 -->
 <link rel="stylesheet"
-	href="${path }/resources/css/font-awesome.min.css" />
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-	crossorigin="anonymous">
-	
-<link rel="stylesheet" href="${path }/resources/css/slicknav.min.css" />
-
-<!-- Main Stylesheets -->
-
-<link rel="stylesheet" href="${path }/resources/css/style.css" />
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/ddfd73bace.js"
+	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
 
 
 <style>
-#aaa {
-	margin-left: 10%;
-}
 
 .a hover{
 	background:lightgray;
+}
+
+.btn{
+	font-size:17px;
+	width:150px;
+	margin:5px;
+}
+
+#nok2{
+color: white;
+}
+
+#nok2:hover {
+	color:black !important;
+	background-color: white !important;
+	text-decoration: none !important;
+}
+
+#lee:hover {
+	color:#30627e;
+	cursor: pointer;
 }
 
 
@@ -56,15 +70,12 @@
 <body>
 
 	<!-- Header Section -->
-	<jsp:include page="common/menubar.jsp" />
+	<jsp:include page="common/menubar.jsp"/>
 	<!-- Header Section end -->
 
 	<div class="container" style="padding-top: 150px;">
-		<div class="row">
 			<div class="col-lg-12 col-md-12">
-
-				<section class="page-section portfolio">
-					<div id="right1" class=".float-right col-md-8 order-md-1 container">
+					<div id="right1" class=".float-right col-lg-12 col-md-8 order-md-1 container">
 						<div>
 							<table align="center" width="420px">
 								<tr style="text-align: center;">
@@ -80,11 +91,11 @@
 
 
 
-						<div class="col-md-8 order-md-1" id="aaa">
+						<div class=" col-lg-12 col-md-8 order-md-1" id="aaa">
 							<h4 class="mb-3">내 문의 현황</h4>
 							<hr>
 
-							<table id="qnaList" class="table"
+							<table id="qnaList" class="table table-hover"
 								style="border-bottom: 1px solid #dee2e6; background: white;">
 								<thead>
 									<tr>
@@ -102,7 +113,7 @@
 
 							 
 							<HR>
-							<table align="center" id="detail" class="table table-bordered" style="border: 1px solid #dee2e6;">
+							<table align="center" id="detail" class="table table-bordered " style="border: 1px solid #dee2e6;">
 								<tr align="center" valign="middle" style="border: 1px solid #dee2e6;">
 									<td colspan="4"><h4 id="detailTitle"></h4></td>
 								</tr>
@@ -153,7 +164,7 @@
 									<tbody>
 										<tr>
 											<th class="tatd">카테고리:</th>
-											<td><select>
+											<td><select class="form-control">
 													<option value="1">계정관련</option>
 													<option value="2">게시판관련</option>
 													<option value="3">기타</option>
@@ -174,7 +185,7 @@
 
 										<tr>
 											<th class="tatd">첨부파일:</th>
-											<td><span><input type="file" name="qFile"></span></td>
+											<td><span><input type="file" name="qnaFile"></span></td>
 										</tr>
 
 									</tbody>
@@ -183,14 +194,17 @@
 
 							<div class="float-right">
 								<input id="nok2" class="btn btn-link"
-									style="background: #002c5f; color: white;" type="submit"
+									style="background: #30627e; " type="submit"
 									value="문의 등록" onclick="" class="pull-right" />
 							</div>
 							</form>
 						</div>
 
 					</div>
+
 				</section>
+				
+
 				<script>
 					
 					function add(){
@@ -205,7 +219,6 @@
 				</script>
 			</div>
 		</div>
-	</div>
 
 
 
@@ -213,20 +226,16 @@
 
 	<!-- Footer Section -->
 	<br>
-	<hr>
-	<br>
-	<footer class="footer">
-		<div class="container">
-			<div class="copyright">
-				Copyright &copy;
-				<script>
-					document.write(new Date().getFullYear());
-				</script>
-				권한은 전적으로 나한테 있습니다.
 
-			</div>
-	</footer>
+	<br>
+	<div style="margin-top: 100px"></div>
+
+	<br><br><br>
+	<hr>
+
+	<jsp:include page="common/footer.jsp"/>
 	<!-- Footer Section end -->
+		
 
 	<!--====== Javascripts & Jquery ======-->
 
@@ -250,13 +259,7 @@
 			QnaList();
 		}); */
 		$(function(){
-			alert(pageNo+","+userId);
 			getList(pageNo);
-			
-		});
-		$(function(){
-			alert($(".a"));
-			console.log($(".a"));
 			
 		});
 		
@@ -349,7 +352,6 @@
 				   $(".a").click(function(){
 						console.log($(this).find("td").first().text());
 						var qId=$(this).find("td").first().text();
-						alert(qId);
 						for(var i=0;i<data.list.length;i++){
 							if(data.list[i].qId==qId){
 								var qna=data.list[i];
@@ -367,6 +369,7 @@
 						if(qna.qFile!=null){
 							var fileN = qna.qFile.substring(12);
 							$a = $("<a href='/odc/resources/qnaFiles/"+qna.qFile+"' download='"+fileN+"' >").text(fileN);
+							$("#detailFile").html("");
 							$("#detailFile").append($a);
 						}else{
 							$("#detailFile").text("첨부파일없음");
@@ -456,7 +459,7 @@
 			});
 		});
 	</script>
-
+	
 </body>
 
 </html>

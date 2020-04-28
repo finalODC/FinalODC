@@ -12,7 +12,6 @@
 
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-  
   <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>
@@ -105,7 +104,8 @@ box-shadow: 0 0 0 0 !important;
             </div>
             </div>
             <div class="button-area d-flex justify-content-center ">
-              <input id="search" type="submit" value="찾기" class="btn login_btn">				
+              <input id="search" type="submit" value="찾기" class="btn login_btn">
+
             </div>
           </form>
           </div>
@@ -127,6 +127,7 @@ box-shadow: 0 0 0 0 !important;
   
   <script src="${path }/resources/js/main.js"></script>
   
+
 
 
 

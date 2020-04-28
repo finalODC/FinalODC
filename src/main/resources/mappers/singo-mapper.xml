@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="singoMapper"> <!-- 사용할 맵퍼의 이름을 정해주고 이걸로 불러온다 -->
+
+<!-- ResultMap -->
+
+<resultMap id="FreeResultSet" type="FBoard">
+	<id property="fbId" column="FBID"/>
+	<result property="fbTitle" column="F_BTITLE"/>
+	<result property="fbWriter" column="F_BWRITER"/>
+	<result property="fbContent" column="F_BCONTENT"/>
+	<result property="fbCount" column="F_BCOUNT"/>
+	<result property="fbCreatedate" column="FB_CREATE_DATE"/>
+	<result property="fbModifydate" column="FB_MODIFY_DATE"/>
+	<result property="fbType" column="FB_TYPE"/>
+	<result property="fbStatus" column="FB_STATUS"/>
+	<result property="category" column="CATEGORY"/>
+	<result property="complain" column="COMPLAIN"/>
+</resultMap>
+
+
+<resultMap id="TipResultSet" type="TBoard">
+		<id property="tbId" column="TBID" />
+		<result property="tbTitle" column="T_BTITLE" />
+		<result property="tbWriter" column="T_BWRITER" />
+		<result property="tbContent" column="T_BCONTENT" />
+		<result property="tbCount" column="T_BCOUNT" />
+		<result property="tbCreateDate" column="TB_CREATE_DATE" />
+		<result property="tbModifyDate" column="TB_MODIFY_DATE" />
+		<result property="tbType" column="TB_TYPE" />
+		<result property="tbCategory" column="CATEGORY" />
+		<result property="tbStatus" column="TB_STATUS" />
+		<result property="tbComplain" column="COMPLAIN" />
+
+
+	</resultMap>
+
+
+<!--  새로운 resultMap을설정해주고 mybites에 새로운 설정을 업데이트 해주지 않으면 상관없는 페이지라도 오류가 걸린다. -->
+<select id = "getFListCount" resultType="_int">
+
+  SELECT count(*) 
+ 	FROM F_BOARD
+ 	 WHERE FB_STATUS = 'Y'
+   <![CDATA[
+  AND COMPLAIN >=9
+  ]]>
+ 
+</select>
+
+<select id = "getTListCount" resultType="_int">
+
+  SELECT count(*) 
+ 	FROM T_BOARD
+ 	 WHERE TB_STATUS = 'Y'
+   <![CDATA[
+  AND COMPLAIN >=9
+  ]]>
+ 
+</select>
+<select id ="getFlist" resultMap="FreeResultSet">
+  <![CDATA[
+  SELECT * FROM F_BOARD
+  WHERE COMPLAIN >=9 AND FB_STATUS = 'Y'
+  ]]>
+</select>
+
+<select id ="getTlist" resultMap="TipResultSet">
+  <![CDATA[
+  SELECT * FROM T_BOARD
+ WHERE COMPLAIN >=9 AND TB_STATUS = 'Y'
+  ]]>
+</select>
+
+<!-- sqlSession -->
+
+
+	
+</mapper>

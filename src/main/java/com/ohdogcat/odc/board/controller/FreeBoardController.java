@@ -161,7 +161,7 @@ public class FreeBoardController {
 
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-
+		System.out.println("frList : " + frList);
 
 		gson.toJson(frList,response.getWriter());
 	}
@@ -203,6 +203,14 @@ public class FreeBoardController {
 		return mv;
 	}
 
+	@ResponseBody
+	@RequestMapping("FreeBoardComplain.bo")
+	public String FreeBoardComplain(FreeBoard fb) {
+		
+		Integer result = bService.FreeBoardComplain(fb);
+		
+		return result.toString();
+	}
 	
 	//---------------------------------------- 여기서부터 DOGBOARDPAGE -----------------------------------------------------
 

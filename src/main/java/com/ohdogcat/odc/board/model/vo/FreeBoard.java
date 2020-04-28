@@ -17,8 +17,8 @@ public class FreeBoard {
 	private Date fbModifydate;
 	private String fbType;
 	private String fbStatus;
-	private String Category;
-	private int Complain;
+	private String category;
+	private int complain;
 	
 	public FreeBoard() {
 		super();
@@ -37,8 +37,8 @@ public class FreeBoard {
 		this.fbModifydate = fbModifydate;
 		this.fbType = fbType;
 		this.fbStatus = fbStatus;
-		Category = category;
-		Complain = complain;
+		this.category = category;
+		this.complain = complain;
 	}
 
 	public int getFbId() {
@@ -114,37 +114,20 @@ public class FreeBoard {
 	}
 
 	public String getCategory() {
-		return Category;
+		return category;
 	}
 
 	public void setCategory(String category) {
-		Category = category;
+		this.category = category;
 	}
 
 	public int getComplain() {
-		return Complain;
+		return complain;
 	}
 
 	public void setComplain(int complain) {
-		Complain = complain;
+		this.complain = complain;
 	}
 
-	@Override
-	public String toString() {
-		return "FreeBoard [fbId=" + fbId + ", fbTitle=" + fbTitle + ", fbWriter=" + fbWriter + ", fbContent="
-				+ fbContent + ", fbCount=" + fbCount + ", fbCreatedate=" + fbCreatedate + ", fbModifydate="
-				+ fbModifydate + ", fbType=" + fbType + ", fbStatus=" + fbStatus + ", Category=" + Category
-				+ ", Complain=" + Complain + "]";
-	}
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 }

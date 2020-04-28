@@ -59,24 +59,6 @@ public class ManagerController {
 				 * }
 				 */
 
-	/**
-	 * 팁게시판
-	 * 
-	 * @return
-	 */
-	@RequestMapping("mTip.ma")
-	public String managerTipBoard() {
-		return "managerBoard";
-	}
 
-	/**
-	 * 자유게시판
-	 * 
-	 * @return
-	 */
-	@RequestMapping("mFree.ma")
-	public String managerFreeBoard() {
-		return "managerBoard";
-	}
-
+	
 }

@@ -66,13 +66,7 @@
                               <td><input type="text" placeholder="제목을 입력하세요. " name="subject" class="form-control"readonly/></td>
                           </tr>
                               <th class="tatd">내용: </th>
-                              <td><textarea cols="10" rows="10" placeholder="내용을 입력하세요. " name="content" class="form-control "  style="resize : none;" readonly></textarea></td>
-                          </tr>
-                          <tr>
-                              <th class="tatd">첨부파일: </th>
-                              <td>
-                                
-                              </td>
+                              <div></div>
                           </tr>
                        
                   </tbody>

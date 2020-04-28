@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.board.model.service.TipBoardService;
+import com.ohdogcat.odc.board.model.vo.FreeReply;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.board.model.vo.TipBoard;
 import com.ohdogcat.odc.board.model.vo.TipReply;
@@ -130,6 +131,7 @@ public class TipBoardController {
 	//댓글 리스트 보기
 	@RequestMapping("DogBoardReplyList.bo")
 	public void DogBoardReplyList(HttpServletResponse response,int tbId) throws JsonIOException, IOException {
+		
 		
 		ArrayList<TipReply> trList = tbService.DogBoardReplyList(tbId);
 		
@@ -288,7 +290,7 @@ public class TipBoardController {
 		}
 		
 	}
-	
+	//댓글 쓰기
 	@RequestMapping("CatBoardReply.bo")
 	@ResponseBody
 	public String CatBoardReply(TipReply tr) {
@@ -302,6 +304,34 @@ public class TipBoardController {
 		}else {
 			return "fail";
 		}
+	}
+	
+	
+	
+	//댓글 리스트 부르기
+	@RequestMapping("CatBoardReplyList.bo")
+	public void CatBoardReplyList(HttpServletResponse response,int tbId) throws JsonIOException, IOException {
+		
+
+		ArrayList<TipReply> trList = tbService.CatBoardReplyList(tbId);
+
+		response.setContentType("application/json; charset=utf-8");
+
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+
+		System.out.println("trList :  " + trList );
+		
+		gson.toJson(trList,response.getWriter());
+	}
+	
+	//신고 카운트 
+	
+	@ResponseBody
+	@RequestMapping("CatBoardComplain.bo")
+	public String CatBoardComplain(TipBoard tip) {
+		
+		Integer result = tbService.CatBoardComplain(tip);
+		return  result.toString();
 	}
 	
 }

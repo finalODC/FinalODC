@@ -76,23 +76,6 @@ public class QnaController {
 		return renameFileName;
 	}
 	
-
-	/*
-	 * @RequestMapping("myqnalist.qn") public void qnaList(HttpServletResponse
-	 * response,@RequestParam String userId) throws JsonIOException, IOException {
-	 * System.out.println(userId); ArrayList<Qna>
-	 * list=qService.selectQnaList(userId);
-	 * response.setContentType("application/json; charset=utf-8");
-	 * 
-	 * PageInfo pi = Pagination.getPageInfo(1, 10);
-	 * 
-	 * Map notice = new HashMap();
-	 * 
-	 * notice.put("list", list); notice.put("pi", pi);
-	 * 
-	 * Gson gson=new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-	 * gson.toJson(notice,response.getWriter()); }
-	 */
 	@RequestMapping("myqnalist.qn")
 	public ModelAndView qnaPage(
 			ModelAndView mv,
@@ -126,16 +109,5 @@ public class QnaController {
 		gson.toJson(hmap,response.getWriter());
 	}
 	
-	/*
-	 * @RequestMapping("qdetail.qn") public void qDetail(HttpServletResponse
-	 * response,@RequestParam int qId) throws JsonIOException, IOException {
-	 * System.out.println(qId); Qna q=qService.selectQna(qId);
-	 * System.out.println(q);
-	 * response.setContentType("application/json; charset=utf-8");
-	 * 
-	 * Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-	 * gson.toJson(q,response.getWriter());
-	 * 
-	 * }
-	 */
+	
 }
