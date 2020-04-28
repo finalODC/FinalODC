@@ -201,11 +201,10 @@ color: white;
 						</div>
 
 					</div>
-<<<<<<< HEAD
-=======
+
 				</section>
 				
->>>>>>> branch 'master' of https://github.com/finalODC/FinalODC.git
+
 				<script>
 					
 					function add(){
@@ -227,13 +226,13 @@ color: white;
 
 	<!-- Footer Section -->
 	<br>
-<<<<<<< HEAD
+
 	<br>
 	<div style="margin-top: 100px"></div>
-=======
+
 	<br><br><br>
 	<hr>
->>>>>>> branch 'master' of https://github.com/finalODC/FinalODC.git
+
 	<jsp:include page="common/footer.jsp"/>
 	<!-- Footer Section end -->
 		

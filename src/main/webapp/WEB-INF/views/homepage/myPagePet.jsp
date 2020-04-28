@@ -37,6 +37,11 @@
 
 
 <style>
+.btn{
+	font-size:17px;
+	width:150px;
+	margin:5px;
+}
 #aaa {
 	margin-left: 10%;
 }
