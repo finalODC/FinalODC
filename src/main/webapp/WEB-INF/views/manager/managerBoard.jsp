@@ -69,7 +69,7 @@
                       <td>rlacl123@naver.com</td>
                       <td>20/03/25</td>
                       <td>10</td>
-                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                      
                       
                     </tr>
@@ -81,7 +81,7 @@
                       <td>ehdclal@naver.com</td>
                       <td>20/03/25</td>
                       <td>10</td>
-                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                       
                     </tr>
                     <tr>
@@ -92,7 +92,7 @@
                       <td>vkrlacl@naver.com</td>
                       <td>20/03/25</td>
                       <td>10</td>
-                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                      
                     </tr>
                     <tr>
@@ -103,7 +103,7 @@
                       <td>Rkrenrl@naver.com</td>
                       <td>20/03/25</td>
                       <td>10</td>
-                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                       
                     </tr>
                     <tr>
@@ -114,7 +114,7 @@
                       <td>anffut@naver.com</td>
                       <td>20/03/25</td>
                       <td>10</td>
-                      <td><button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
+                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
                       
                     </tr>
                    
@@ -123,7 +123,7 @@
                   </tbody>
                 </table>
                 <div>
-                <button id="write" style="float: right;" class="btn btn-primary">글쓰기</button>
+                <button id="write" style="float: right;" class="btn btn-primary">체크 리셋</button>
                 <button id="alldel" class="btn btn-danger">체크삭제</button>
          
               

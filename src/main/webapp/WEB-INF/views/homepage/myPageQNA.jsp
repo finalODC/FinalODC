@@ -350,6 +350,7 @@
 						if(qna.qFile!=null){
 							var fileN = qna.qFile.substring(12);
 							$a = $("<a href='/odc/resources/qnaFiles/"+qna.qFile+"' download='"+fileN+"' >").text(fileN);
+							$("#detailFile").html("");
 							$("#detailFile").append($a);
 						}else{
 							$("#detailFile").text("첨부파일없음");
