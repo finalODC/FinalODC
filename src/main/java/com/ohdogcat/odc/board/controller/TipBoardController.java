@@ -324,4 +324,14 @@ public class TipBoardController {
 		gson.toJson(trList,response.getWriter());
 	}
 	
+	//신고 카운트 
+	
+	@ResponseBody
+	@RequestMapping("CatBoardComplain.bo")
+	public String CatBoardComplain(TipBoard tip) {
+		
+		Integer result = tbService.CatBoardComplain(tip);
+		return  result.toString();
+	}
+	
 }

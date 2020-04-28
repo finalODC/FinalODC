@@ -75,6 +75,9 @@
 #comment {
 	
 }
+a{
+	color : black;
+}
 </style>
 </head>
 
@@ -137,7 +140,7 @@
 							<h4>정보 공유 게시판</h4>
 						</a>
 						<hr
-							style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;"
+							style="border: solid 2px black; width: 200px;"
 							align="left">
 
 						<a href="DBlist.bo">
@@ -192,23 +195,46 @@
 								style="height: 500px; width: 920px; border: 0px;" readonly></td>
 						</tr>
 					</table>
-					<input type="button" value="목록으로"
+					
+					<input type="button" class="btn btn-outline-secondary" value="목록으로"
 						onclick="location.href='CBlist.bo'" align="left">
-
+						
+					
+					<c:if test ="${loginUser.userId != cb.tbWriter }">
+						<button id="complain" type="button" class="btn btn-outline-danger"> 신고하기</button>
+						<script>
+						$('#complain').click(function(){
+							$.ajax({
+								url:"CatBoardComplain.bo",
+								type:"get",
+								data:{tbId:"${cb.tbId}"},
+								success:function(data){
+									if(data>0){
+										alert("신고 완료");
+									}else{
+										alert("실패");
+									}
+								},error:function(){
+									alert("에러임")
+								}
+							})
+						});
+					</script>
+					</c:if>
+					
+					
 
 					<!-- fbId 값은 위의 fb에 전부 담겨있기 때문에 fb.fbId를 써서 값을 받아와서 넘겨주자 -->
 					<c:if test="${loginUser.userId eq cb.tbWriter }">
-						<button
+						<button type="button" class="btn btn-outline-success"
 							onclick="location.href='CatBoardUpdateView.bo?tbId=${cb.tbId}'">수정하기</button>
-						<button
+						<button type="button" class="btn btn-outline-danger"
 							onclick="location.href='CatBoardDelete.bo?tbId=${cb.tbId}'">
 							삭제하기</button>
 
 					</c:if>
 
-					<script>
-						
-					</script>
+					
 
 
 					<!--  @@@@@@@@@@@@@@@    댓글 게시판이에오       @@@@@@@@@@@22-->

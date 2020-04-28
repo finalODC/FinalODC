@@ -259,6 +259,24 @@ public class BoardDao {
 
 		return (ArrayList)sqlSession.selectList("TipboardMapper.CatBoardReplyList",tbId);
 	}
+
+
+
+	public int CatBoardComplain(TipBoard tip) {
+		
+		
+		return sqlSession.update("TipboardMapper.CatBoardComplain",tip);
+	}
+
+
+
+	public int FreeBoardComplain(FreeBoard fb) {
+
+		return sqlSession.update("boardMapper.FreeBoardComplain",fb);
+	}
+
+
+
 	
 	
 	
