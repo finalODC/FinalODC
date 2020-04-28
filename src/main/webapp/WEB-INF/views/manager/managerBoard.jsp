@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,13 +73,7 @@
                			<td>${b.fbWriter }</td>
                			<td>${b.fbCreatedate }</td>
                			<td>${b.complain }</td>
-               			
-               			
-               			
-               			
-               			
-               			
-               			<td><button>버튼</button><button>버튼2</button></td>
+               			<td><button class="btn btn-primary reset">초기화</button>&nbsp;&nbsp;<button class="btn btn-danger del">삭제</button></td>
                			</tr>
                		</c:forEach>
                	</c:if>
@@ -93,29 +87,31 @@
                			<td>${b.tbCreateDate }</td>
                			<td>${b.tbComplain }</td>
                			
-               			<td><button>버튼</button><button>버튼2</button></td>
+               			<td><button class="btn btn-primary reset">초기화</button>&nbsp;&nbsp;<button class="btn btn-danger del">삭제</button></td>
                			</tr>
                		</c:forEach>
                	</c:if>
                   </tbody>
                 </table>
                 <div>
-                <button id="write" style="float: right;" class="btn btn-primary">체크 리셋</button>
+                <button id="allreset" style="float: right;" class="btn btn-primary">체크 리셋</button>
                 <button id="alldel" class="btn btn-danger">체크삭제</button>
          			
               
               </div>
-              <div><ul class="pagination justify-content-center pagination-sm">
+              <div>
+              <ul class="pagination justify-content-center pagination-sm">
               
             
               	<c:if test ="${pi.currentPage eq 1 }">
               		<li class="page-item"><a class="page-link">&lt;&lt;</a></li>
               		<li class="page-item"><a class="page-link">&lt;</a></li>
               	</c:if>
-              	
-              	<c:if test ="${pi.currentPage ne 1 } ">
+
+              	<c:if test ="${pi.currentPage ne 1 }">
               		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=1&bStatus=${bStatus }">&lt;&lt;</a></li>
-              		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=${currentPage-1 }&bStatus=${bStatus }">&lt;</a></li>
+              		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=${pi.currentPage-1 }&bStatus=${bStatus }">&lt;</a></li>
+              		
               	</c:if>
      
           
@@ -134,7 +130,7 @@
               	</c:forEach>
               	
               	<c:if test ="${pi.currentPage ne pi.maxPage }">
-              		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=${currentPage+1 }&bStatus=${bStatus }">&gt;</a></li>
+              		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=${pi.currentPage+1 }&bStatus=${bStatus }">&gt;</a></li>
               		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=${pi.maxPage }&bStatus=${bStatus }">&gt;&gt;</a></li>
               	</c:if>
               	<c:if test ="${pi.currentPage eq pi.maxPage }">
@@ -159,33 +155,66 @@
       <!-- Bootstrap core JavaScript-->
       
       <script>
-        $(function(){
-          //공지작성
-          $("#write").click(function(){
-                location.href="noticewrite.html"
+      var checkarr = [];
+        $(document).ready(function(){
+      	//리셋
+      		$(".reset").click(function(){
+              var bId = $(this).parent("td").siblings("td:eq(1)").text();
+              if(confirm(bId+"를 초기화하시겠습니까?")){
+               $.ajax({
+            	   url:"singoReset.ma",
+     				type:"get",
+     				data:{bStatus:${bStatus}, bId:bId},
+     				success:function(data){
+     					if(data>0){
+     						alert("초기화 성공");
+     						location.href="singo.ma?currentPage=${currentPage }&bStatus=${bStatus }";
+     					}else{
+     						alert("실패");
+     					}
+     				},error:function(){
+     					alert("오류");
+     				}
+               })
+              }
             })
-            
-         //보기
+        
           //삭제
           $(".del").click(function(){
-              var bid = $(this).parent("td").siblings("td:eq(1)").text();
-              if(confirm(bid+"를 삭제하시겠습니까?")){
-                location.href=""+bid;
+              var bId = $(this).parent("td").siblings("td:eq(1)").text();
+              if(confirm(bId+"를 삭제하시겠습니까?")){
+               $.ajax({
+            	   url:"singoDel.ma",
+     				type:"get",
+     				data:{bStatus:${bStatus}, bId:bId},
+     				success:function(data){
+     					if(data>0){
+     						alert("삭제 성공");
+     						location.href="singo.ma?currentPage=${currentPage }&bStatus=${bStatus }"
+     					}else{
+     						alert("실패");
+     					}
+     				},error:function(){
+     					alert("오류");
+     				}
+               })
               }
             })
 
           //읽기
           $("#tbody1 td").click(function(){  
             console.log($(this))
-             if(!$(this).prop("cellIndex")==0){
-              var id = $(this).parent("tr").find("td").eq("1").text();
-              location.href="boardread.ma?currentPage=${pi.currentPage}&bStatus=${bStatus}"
-              console.log(id)
+             if($(this).prop("cellIndex")!=0 && $(this).prop("cellIndex")!=6){
+            	 
+              var bId = $(this).parent("tr").find("td").eq("1").text();
+ 
+              location.href="boardread.ma?currentPage=${pi.currentPage}&bStatus=${bStatus}&bId="+bId;
+              
              } 
           })
 
           //체크용 arr
-          var checkarr = [];
+         
           //하나 체크
           $(".check1").on("change",function(){
              if(!$(this).prop("checked")&& $("#checkall").prop("checked")){
@@ -203,8 +232,7 @@
               console.log(checkarr);
              
 
-          }
-          );
+          });
 
           //전체체크
 
@@ -225,6 +253,58 @@
            
           });
         });
+        
+        $("#allreset").click(function(){
+		if(checkarr.length >0){
+			var arr = checkarr.join();
+			if(confirm(arr+"를 초기화 하시겠습니까?")){
+        		$.ajax({
+        			url:"singoResetall.ma",
+        			type:"get",
+        			data:{bStatus:"${bStatus}",arr:arr},
+        			success:function(data){
+     					if(data>0){
+     						alert("초기화 성공");
+     						location.href="singo.ma?currentPage=${currentPage }&bStatus=${bStatus }";
+     					}else{
+     						alert("실패");
+     					}
+     				},error:function(){
+     					alert("오류");
+     				}
+        		})
+        	}
+		}        	
+        	
+        
+        
+        })
+        
+          $("#alldel").click(function(){
+        	  if(checkarr.length >0){
+        		 var arr = checkarr.join();
+      			if(confirm(arr+"를 삭제 하시겠습니까?")){
+      				$.ajax({
+            			url:"singoDelall.ma",
+            			type:"get",
+            			data:{bStatus:"${bStatus}",arr:arr},
+            			success:function(data){
+         					if(data>0){
+         						alert("삭제 성공");
+         						location.href="singo.ma?currentPage=${currentPage }&bStatus=${bStatus }";
+         					}else{
+         						alert("실패");
+         					}
+         				},error:function(){
+         					alert("오류");
+         				}
+            		})
+              	}
+      		}      
+        
+        })
+        
+        
 
       </script>
 
