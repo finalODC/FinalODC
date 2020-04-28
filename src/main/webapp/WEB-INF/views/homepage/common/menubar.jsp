@@ -65,8 +65,8 @@
 		</nav>
 		<c:set var="test" value="${loginUser}" />
 	</header  class="masthead">
-
 	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+
 	<script>
 	  $(function(){
 		var test = "${test}";
@@ -76,6 +76,6 @@
 		  	$('.main-menu').children().eq(2).html("");
 	  	}
 	  });
-  </script>
+ 	 </script>
 </body>
 </html>

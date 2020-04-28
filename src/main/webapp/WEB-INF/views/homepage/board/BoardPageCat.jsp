@@ -117,11 +117,11 @@ a {
 <body>
 	<!--@@@@@@@@@@@@@@@@@@@@@@@@@ 헤더 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 	<header class="header_section" style="background-color: #30627e;">
-		<a href="" class="float-left navbar-light slicknav_menu"
-			style="color: white; font-size: 30px; margin-top: 7px;"><b>Oh!DogCat</b></a>
+		<a href="gomainPage.do" class="float-left navbar-light slicknav_menu"
+			style="color: white; font-size: 30px; margin-top: 7px;"><b >Oh!DogCat</b></a>
 		<nav class="header-nav">
 			<div class="container" style="padding-bottom: 30px;">
-				<a href="" class="float-left navbar-light "
+				<a href="gomainPage.do" class="float-left navbar-light "
 					style="color: white; font-size: 30px; padding-top: 0px;"><b>Oh!DogCat</b></a>
 				<ul class="main-menu">
 					<li><a href="searchhospital.do">병원찾기</a></li>
@@ -142,12 +142,24 @@ a {
 				<div class="header-right">
 					<div class="user-panel">
 						<!-- <a href="login.html" class="login">로그인</a> -->
-						<a href="selectJoinCase.html" class="register">로그아웃</a>
+						<a href="mlogout.do" class="register">로그아웃</a>
 					</div>
 				</div>
 			</div>
 		</nav>
-	</header class="masthead">
+		<c:set var="test" value="${loginUser}" />
+	</header  class="masthead">
+		
+		<script>
+	  $(function(){
+		var test = "${test}";
+		console.log(test.indexOf("Doctor"));
+	  	if(test.indexOf("Doctor")!=-1){
+		  	console.log($('.main-menu').children().eq(2).text());
+		  	$('.main-menu').children().eq(2).html("");
+	  	}
+	  });
+ 	 </script>
 
 	<!--     @@@@@@@@@@@@@@@@@@@@@ 가운데 내용 @@@@@@@@@@@@@@@@@@@@@-->
 	<div class="">

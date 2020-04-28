@@ -15,8 +15,8 @@
 	<result property="fbModifydate" column="FB_MODIFY_DATE"/>
 	<result property="fbType" column="FB_TYPE"/>
 	<result property="fbStatus" column="FB_STATUS"/>
-	<result property="Category" column="CATEGORY"/>
-	<result property="Complain" column="COMPLAIN"/>
+	<result property="category" column="CATEGORY"/>
+	<result property="complain" column="COMPLAIN"/>
 </resultMap>
 
 <resultMap id="FreeReplyResultSet" type="FReply">
@@ -72,7 +72,7 @@
 <insert id="FreeBoardInsert" parameterType="FBoard">
 	INSERT INTO F_BOARD
 	VALUES(SEQ_FBID.NEXTVAL,#{fbTitle},#{fbWriter},#{fbContent},0,SYSDATE,SYSDATE
-	,#{fbType},'Y',#{Category},0)
+	,#{fbType},'Y',#{category},0)
 </insert><!-- 틀리면 fbStatus를 'Y'로 넣어보자 -->
 
 <select id="selectFreeBoard" resultMap="FreeBoardResultSet">
