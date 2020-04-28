@@ -12,7 +12,6 @@
 
   <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-  
   <link href="${path }/resources/css/bootstrap.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
   <link href="${path }/resources/css/slicknav.min.css" rel='stylesheet' type='text/css'>

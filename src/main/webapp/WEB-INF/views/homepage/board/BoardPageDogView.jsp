@@ -75,6 +75,10 @@
 #comment {
 	
 }
+
+a{
+	color : black;
+}
 </style>
 </head>
 
@@ -137,7 +141,7 @@
 							<h4>정보 공유 게시판</h4>
 						</a>
 						<hr
-							style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;"
+							style="border: solid 2px black; width: 200px;"
 							align="left">
 
 						<a href="DBlist.bo">
@@ -193,7 +197,28 @@
 						</tr>
 					</table>
 					<input type="button" value="목록으로" onclick="location.href='DBlist.bo'" align="left">
-
+					
+					<c:if test ="${loginUser.userId != db.tbWriter }">
+						<button id="complain" type="button" class="btn btn-outline-danger"> 신고하기</button>
+						<script>
+						$('#complain').click(function(){
+							$.ajax({
+								url:"CatBoardComplain.bo",
+								type:"get",
+								data:{tbId:"${db.tbId}"},
+								success:function(data){
+									if(data>0){
+										alert("신고 완료");
+									}else{
+										alert("실패");
+									}
+								},error:function(){
+									alert("에러임")
+								}
+							})
+						});
+					</script>
+					</c:if>
 
 					<!-- fbId 값은 위의 fb에 전부 담겨있기 때문에 fb.fbId를 써서 값을 받아와서 넘겨주자 -->
 					<c:if test="${loginUser.userId eq db.tbWriter }">

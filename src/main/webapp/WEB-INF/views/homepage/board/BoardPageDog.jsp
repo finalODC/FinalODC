@@ -87,6 +87,10 @@
 	border: 0px;
 	background-color: white;
 }
+
+a{
+	color : black;
+}
 </style>
 </head>
 
@@ -147,7 +151,7 @@
 							<h4>정보 공유 게시판</h4>
 						</a>
 						<hr
-							style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;"
+							style="border: solid 2px black; width: 200px;"
 							align="left">
 
 						<a href="DBlist.bo">
@@ -321,7 +325,7 @@
 
 					</div>
 					<br> <br>
-					<button onclick="location.href='DogBoardWritergo.bo'" align="right">글쓰기</button>
+					<button type="button" class="btn btn-outline-info" onclick="location.href='DogBoardWritergo.bo'" align="right">글쓰기</button>
 				</div>
 
 			</div>

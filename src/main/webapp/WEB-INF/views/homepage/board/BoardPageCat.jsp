@@ -90,6 +90,10 @@
 	border: 0px;
 	background-color: white;
 }
+
+a{
+	color : black;
+}
 </style>
 </head>
 
@@ -149,9 +153,11 @@
 						<a>
 							<h4>정보 공유 게시판</h4>
 						</a>
+						<br>
 						<hr
-							style="border: solid 2px rgba(0, 36, 134, 0.616); width: 200px;"
+							style="border: solid 2px black; width: 200px;"
 							align="left">
+							<br>
 
 						<a href="DBlist.bo">
 							<h5>
@@ -180,7 +186,7 @@
 				<br> <br>
 
 				<h2>
-					&nbsp;&nbsp;&nbsp;Cat board &nbsp; <i class="fas fa-paw"></i>
+					&nbsp;&nbsp;&nbsp;Cat board &nbsp; <i class="fas fa-bell"></i> 
 				</h2>
 
 				<br> <br>
@@ -324,7 +330,7 @@
 
 					</div>
 					<br> <br>
-					<button type="button"  class="btn btn-outline-dark" onclick="location.href='CatBoardWritergo.bo'" align="right">글쓰기</button>
+					<button type="button" class="btn btn-outline-info" onclick="location.href='CatBoardWritergo.bo'" align="right">글쓰기</button>
 				</div>
 
 			</div>
