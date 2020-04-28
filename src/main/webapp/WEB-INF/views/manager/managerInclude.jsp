@@ -95,8 +95,8 @@
   data-parent="#accordionSidebar">
   <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">상세 메뉴</h6>
-      <a class="collapse-item" href="mFree.ma">자유게시판</a> 
-      <a class="collapse-item" href="mTip.ma">정보게시판</a> 
+      <a class="collapse-item" href="singo.ma?bStatus=0">자유게시판</a> 
+      <a class="collapse-item" href="singo.ma?bStatus=1">정보게시판</a> 
   </div>
 </div>
 </li>

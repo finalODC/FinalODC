@@ -45,6 +45,7 @@
 		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/Tipboard-mapper.xml"/>
 		<mapper resource="mappers/hospital-Reply.xml"/>
+		<mapper resource="mappers/singo-mapper.xml"/>
 	</mappers>
 	
 	

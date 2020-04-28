@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +35,10 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">신고
           </h1>
-          
+          <div>
+          ${list }<br>
+          ${pi }
+          </div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -49,7 +53,6 @@
                     <tr>
                       <th><input type="checkbox" id="checkall">전체</th>
                       <th>번호</th>
-                      <th>분류</th>
                       <th>제목</th>
                       <th>작성자</th>
                       <th>작성날짜</th>
@@ -59,82 +62,88 @@
                       
                     </tr>
                   </thead>
-                 
+                 	
                   <tbody id="tbody1">
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>게시글번호</td>
-                      <td>분류</td>
-                      <td>장나물</td>
-                      <td>rlacl123@naver.com</td>
-                      <td>20/03/25</td>
-                      <td>10</td>
-                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                     
-                      
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>ehdclal11</td>
-                      <td>분류</td>
-                      <td>동백꽃</td>
-                      <td>ehdclal@naver.com</td>
-                      <td>20/03/25</td>
-                      <td>10</td>
-                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>vkrlacl</td>
-                      <td>분류</td>
-                      <td>파란이</td>
-                      <td>vkrlacl@naver.com</td>
-                      <td>20/03/25</td>
-                      <td>10</td>
-                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                     
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>Rkrenrl41</td>
-                      <td>분류</td>
-                      <td>신까치</td>
-                      <td>Rkrenrl@naver.com</td>
-                      <td>20/03/25</td>
-                      <td>10</td>
-                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
-                    <tr>
-                      <td><input type="checkbox" class="check1"></td>
-                      <td>anfdut52</td>
-                      <td>분류</td>
-                      <td>신나래</td>
-                      <td>anffut@naver.com</td>
-                      <td>20/03/25</td>
-                      <td>10</td>
-                      <td><button class ="btn btn-primary reset">리셋</button>&nbsp;<button class="btn btn-danger del"  style="width: 80px;">삭제</button></td>
-                      
-                    </tr>
-                   
-                    
-
+                  <c:if test="${bStatus eq 0 }">
+               		<c:forEach var="b" items="${list }"  varStatus="status">
+               		<tr>
+               			<td><input type="checkbox" class="check1"></td>
+               			<td>${b.fbId }</td>
+               			<td>${b.fbTitle }</td>
+               			<td>${b.fbWriter }</td>
+               			<td>${b.fbCreatedate }</td>
+               			<td>${b.complain }</td>
+               			
+               			
+               			
+               			
+               			
+               			
+               			<td><button>버튼</button><button>버튼2</button></td>
+               			</tr>
+               		</c:forEach>
+               	</c:if>
+               	  <c:if test="${bStatus eq 1 }">
+               		<c:forEach var="b" items="${list }"  varStatus="status">
+               		<tr>
+               			<td><input type="checkbox" class="check1"></td>
+               			<td>${b.tbId }</td>
+               			<td>${b.tbTitle }</td>
+               			<td>${b.tbWriter }</td>
+               			<td>${b.tbCreateDate }</td>
+               			<td>${b.tbComplain }</td>
+               			
+               			<td><button>버튼</button><button>버튼2</button></td>
+               			</tr>
+               		</c:forEach>
+               	</c:if>
                   </tbody>
                 </table>
                 <div>
                 <button id="write" style="float: right;" class="btn btn-primary">체크 리셋</button>
                 <button id="alldel" class="btn btn-danger">체크삭제</button>
-         
+         			
               
               </div>
-              <div> 	<ul class="pagination justify-content-center pagination-sm">
-                <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
-                <li class="page-item"><a class="page-link" href="#">&lt;</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">&gt;</a></li>
-                <li class="page-item"><a class="page-link" href="#">&gt;&gt;</a></li>
+              <div><ul class="pagination justify-content-center pagination-sm">
+              
+            
+              	<c:if test ="${pi.currentPage eq 1 }">
+              		<li class="page-item"><a class="page-link">&lt;&lt;</a></li>
+              		<li class="page-item"><a class="page-link">&lt;</a></li>
+              	</c:if>
+              	
+              	<c:if test ="${pi.currentPage ne 1 } ">
+              		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=1&bStatus=${bStatus }">&lt;&lt;</a></li>
+              		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=${currentPage-1 }&bStatus=${bStatus }">&lt;</a></li>
+              	</c:if>
+     
+          
+              	  <c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+              	  <c:if test ="${pi.currentPage eq p }">
+              	  	<li class="page-item"><a class="page-link" >${p }</a></li>
+              		
+              	  </c:if>
+              	   <c:if test ="${pi.currentPage ne p }">
+              	  	<li class="page-item"><a class="page-link" href="singo.ma?currentPage=${p }&bStatus=${bStatus }">${p }</a></li>
+              		
+              	  </c:if>
+              	  
+              	  
+              	  
+              	</c:forEach>
+              	
+              	<c:if test ="${pi.currentPage ne pi.maxPage }">
+              		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=${currentPage+1 }&bStatus=${bStatus }">&gt;</a></li>
+              		<li class="page-item"><a class="page-link" href="singo.ma?currentPage=${pi.maxPage }&bStatus=${bStatus }">&gt;&gt;</a></li>
+              	</c:if>
+              	<c:if test ="${pi.currentPage eq pi.maxPage }">
+              		<li class="page-item"><a class="page-link">&gt;</a></li>
+              		<li class="page-item"><a class="page-link">&gt;&gt;</a></li>
+              	</c:if>
+              	
+                
+              
               </ul></div>
               </div>
             </div>
@@ -170,7 +179,7 @@
             console.log($(this))
              if(!$(this).prop("cellIndex")==0){
               var id = $(this).parent("tr").find("td").eq("1").text();
-              location.href="managerBoardread.html"
+              location.href="boardread.ma?currentPage=${pi.currentPage}&bStatus=${bStatus}"
               console.log(id)
              } 
           })
