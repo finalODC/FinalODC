@@ -174,7 +174,7 @@
 
 										<tr>
 											<th class="tatd">첨부파일:</th>
-											<td><span><input type="file" name="qFile"></span></td>
+											<td><span><input type="file" name="qnaFile"></span></td>
 										</tr>
 
 									</tbody>
