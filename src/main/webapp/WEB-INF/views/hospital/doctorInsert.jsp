@@ -24,6 +24,14 @@
 </head>
 
 <body id="page-top">
+<%-- <c:if test="${!empty msg}">
+	<script>
+	$(function(){
+		alert("${msg}");
+	})
+		
+	</script>
+	</c:if> --%>
 
 	<div id="wrapper">
 
@@ -189,12 +197,12 @@
 				+ "<img class='card-body text-center ImageDoc' name='docFile' id='docFile' style='width: 90%; height: 200px;'src='/odc/resources/docImages/${b.docFile }'>"
 				+ "<label class='btn btn-primary'>"
 				+ "사진등록"
-				+ "<input type='file' class='img-fluid docGetfile docImage'  alt='' style='display: none;' name='docImage'>"
+				+ "<input type='file' class='img-fluid docGetfile docImage' required alt='' style='display: none;' name='docImage'>"
 				+ "</label>"
 				+ "<br> <br>"
-				+ "<input type='text' style='text-align: center; width: 100px; border: none;' placeholder='의사이름' class='docName' id='docName' name='docName' value='${b.docName }'>"
+				+ "<input type='text' style='text-align: center; width: 100px; border: none;' required placeholder='의사이름' class='docName' id='docName' name='docName' value='${b.docName }'>"
 				+ "<hr>"
-				+ "<textarea	style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' class='docIntro' name='docIntro' placeholder='간단한 소개'>${ b.docIntro }"
+				+ "<textarea required style='width: 150px; height: 200px; border: none; resize: none;' id='docIntro' class='docIntro' name='docIntro' placeholder='간단한 소개'>${ b.docIntro }"
 				+ "</textarea>"
 				+ "<button type='submit' class='btn btn-primary insertdoc' id='indoc' value=''>등록</button>"
 				+ "&nbsp"
@@ -253,47 +261,18 @@
 				};
 			};
 		});
-		
-		
-		/* $("#cccbody").click(function() {
-			$('.insertdoc').click(function(){
-				if(confirm('등록하시겠습니까?')){
-				
-				var docIntro = $('#docIntro').val();
-				var docName = $('#docName').val();
-				
-				if(docIntro == ''){
-					alert('설명을 입력해주요');
-					return false
-				}
-				if(docName == ''){
-					alert('이름을 입력해주세요');
-					return false
-				}
-				
-				$.ajax({
-					url : "indoc.ho",
-					type : "post",
-					data : {
-						docIntro:docIntro,
-						docName:docName
-					},success:function(data){
-						 if(data==1){
-							alert("등록되었습니다.");
-							location.href="insertdoc.ho";
-							
-						} 
-					},error:function(data){
-						alert('정보를 입력해 주세요');
-						location.href="insertdoc.ho";
-					}
-				});
-				};
-			});
-		
-			
+
+		/* $("#cccbody").mouseenter(function() {
+		$('.insertdoc').on(function(){
+			if(confirm('등록하시겠습니까?')){
+				return true;
+			} else{
+				return false;
+			};
 		});
-	 */
+		});
+		 */
+
 
 		$("#cccbody").mouseenter(function() {
 			$('.deldoc').click(function() {
