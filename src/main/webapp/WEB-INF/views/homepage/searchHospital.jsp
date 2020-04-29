@@ -202,9 +202,6 @@
     				 $ui.append('<li class="goFirstPage"><a  class="page-link"><<</a></li>');
     				 $ui.append('<li class="goBackPage"><a  class="page-link"><</a></li>');
     			 }
-    			 
-    			 
-    			 
     			for(var i = data.startPage; i<=data.endPage;i++){
     				if(data.currentPage==i){
         				$ui.append('<li class="goPage page-item" data-page='+i+' ><a class="page-link" style="background-color:lightgray">'+i+'</a></li>');
@@ -213,7 +210,6 @@
     					$ui.append('<li class="goPage page-item" data-page='+i+'><a class="page-link">'+i+'</a></li>');
     				}
     			}
-    			
     			if(data.currentPage != data.endPage || data.endPage!=0){
     				$ui.append('<li class="goFrontPage"><a  class="page-link">></a></li>');
     				$ui.append('<li class="goLastPage"><a  class="page-link">>></a></li>');
