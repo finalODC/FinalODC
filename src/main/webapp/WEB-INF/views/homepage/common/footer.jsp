@@ -20,16 +20,20 @@
 			<c:if test="${loginUser.userId=='admin' }">
 				<input id="adminbtn" type="button" class="btn  btn-outline-info	" value="관리자페이지로">
 			</c:if>
+				<input id="adminbtn2" type="button" class="btn  btn-outline-info" value="진료페이지로">
           </ul>
         </div>
       </div>
     </div>
   </div>
+  <c:set var="test" value="${loginUser}" />
   
   	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
   <script>
   var adminid
 	$(function(){
+		$('#adminbtn2').hide();
+		
 		$('#adminbtn').click(function(){
 	  		adminid = "${loginUser.userId}";
 	  		if(adminid!="admin"){
@@ -39,6 +43,18 @@
 	  		}
 	  	
 		});
+		
+		var test = "${test}";
+		
+		
+	  	if(test.indexOf("Doctor")!=-1){
+	  		console.log("asd");
+	  		$('#adminbtn2').show();
+		  	$('#adminbtn2').click(function(){
+		  		location.href="chart.ho";
+		  	});
+	  	}
+		
 	});
   	
   </script>

@@ -73,8 +73,78 @@
   ]]>
 </select>
 
-<!-- sqlSession -->
+<select id="getFDetail" resultMap="FreeResultSet">
+	SELECT * FROM F_BOARD
+	WHERE FBID = #{bId}
+</select>
+<select id="getTDetail" resultMap="TipResultSet">
+	SELECT * FROM T_BOARD
+	WHERE TBID = #{bId}
+</select>
+<update id="singoReset" parameterType="map">
+	<if test="bStatus == 0">
+		UPDATE F_BOARD
+		SET COMPLAIN = 0
+		WHERE FBID =#{bId}
+	</if>
+	
+	<if test="bStatus == 1">
+		UPDATE T_BOARD
+		SET COMPLAIN = 0
+		WHERE TBID=#{bId}
+	</if>
 
+</update>
+<update id="singoDel" parameterType="map">
+	
+	<if test="bStatus == 0">
+		UPDATE F_BOARD
+		SET FB_STATUS = 'N'
+		WHERE FBID =#{bId}
+	</if>
+	
+	<if test="bStatus == 1">
+		UPDATE T_BOARD
+		SET TB_STATUS = 'N'
+		WHERE TBID=#{bId}
+	</if>
+	
+</update>
+
+<update id="singoFResetall" parameterType="map">
+		UPDATE F_BOARD
+		SET COMPLAIN = 0
+		WHERE FBID In
+	<foreach collection="bids" item="bids" index="index" separator="," open="(" close=")">
+	#{bids}
+	</foreach>
+
+</update>
+<update id="singoTResetall" parameterType="map">
+
+	UPDATE T_BOARD
+	SET COMPLAIN = 0	
+	WHERE TBID IN
+	<foreach collection="bids" item="bids" index="index" separator="," open="(" close=")">
+	#{bids}
+	</foreach>
+</update>
+<update id="singoFDelall" parameterType="map">
+		UPDATE F_BOARD
+		SET FB_STATUS = 'N'
+		WHERE FBID IN
+	<foreach collection="bids" item="bids" separator="," open="(" close=")" >
+			#{bids}
+	</foreach>
+</update>
+<update id="singoTDelall" parameterType="map">
+	UPDATE T_BOARD
+		SET TB_STATUS = 'N'	
+		WHERE TBID IN
+	<foreach collection="bids" item="bids" separator="," open="(" close=")" >
+			#{bids}
+	</foreach>
+</update>
 
 	
 </mapper>
