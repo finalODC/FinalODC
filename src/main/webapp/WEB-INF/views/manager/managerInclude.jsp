@@ -21,6 +21,15 @@
       <script src="${path }/resources/js/manager/bootstrap.bundle.min.js"></script>
 </head>
 <body>
+	<c:if test="${loginUser.userId ne  'admin'}">
+	<script>
+		$(document).ready(function(){
+			alert("비정상적 접근");
+			location.href="hlogout.do";
+		})
+	
+	</script>
+	</c:if>
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
  <c:url var="main" value="mMain.ma"/>
@@ -100,6 +109,7 @@
   </div>
 </div>
 </li>
+
 <!-- Divider -->
 <hr class="sidebar-divider">
 
@@ -110,7 +120,8 @@
     <span>홈페이지</span></a>
 </li>
 
-
+<li class="nav-item"><a class="nav-link" href="hlogout.do"><i class="fa fa-check-circle fa-2x"></i>
+    <span>로그아웃</span></a></li>
 
 
     </ul>

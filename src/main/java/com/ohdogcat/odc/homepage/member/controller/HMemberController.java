@@ -51,6 +51,7 @@ public class HMemberController {
 			@RequestParam(value="dName",required=false) String dName ) {
 		String pwd = m.getUserPwd();
 		if(m.getUserId().equals("admin")&& pwd.equals("admin")) {
+			mv.addObject("loginUser",m);
 			mv.setViewName("redirect:mMain.ma");
 			return mv;
 		}
