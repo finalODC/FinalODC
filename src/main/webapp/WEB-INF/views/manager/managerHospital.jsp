@@ -101,17 +101,6 @@
 					<tr>
 						<td align="center">${ b.hId }</td>
 						<td align="left">
-						<%-- <c:if test="${ !empty loginUser }">
-						<c:url var="bdetail" value="bdetail.bo">
-						<c:param name="bId" value="${ b.bId }"/>
-						<c:param name="currentPage" value="${ pi.currentPage }"/>
-					</c:url> 
-					<a href="${ bdetail }">${ b.bTitle }</a>
-				</c:if>
-				
-				<c:if test="${ empty loginUser }">
-					${ b.bTitle }				
-				</c:if>--%>
 				
 				${b.userId }
 			</td>

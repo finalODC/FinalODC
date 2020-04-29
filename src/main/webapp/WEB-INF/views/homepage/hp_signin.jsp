@@ -336,7 +336,7 @@ hr{margin-top:0; margin-bottom:0;}
            	var emCh = false;
             
             $("#hCode").on("propertychange change keyup paste input",function(){
-            	business = false;
+            	business =false;
             	
             });
             
@@ -372,6 +372,7 @@ hr{margin-top:0; margin-bottom:0;}
             			$("#hName").select();
             		}
             	})
+            	
             	 $("#idview").text("아이디는 영문 소문자 와 숫자만 가능합니다.")
             	
             	//유저이름
@@ -496,9 +497,7 @@ hr{margin-top:0; margin-bottom:0;}
             	}
        		
             function check(){
-            	
-            	console.log(idCh);
-            	console.log(emCh);
+
             	//특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
             	var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 

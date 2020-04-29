@@ -37,12 +37,9 @@
  	SELECT * FROM HOSPITAL
  	Left JOIN (SELECT * FROM DOCTOR WHERE DOC_STATUS ='Y') on( HID = REF_H_ID)
  	WHERE USERID=#{userId} and H_STATUS = 'Y'
- 	
- 	
- 		<if test="doctor != null">
+	<if test="doctor != null">
  		AND DOC_NAME =#{doctor[0].docName} 
- 		</if>
- 	
+ 	</if>
  </select>	
  
   <select id="checkBusiness" parameterType="HMember" resultType="_int">

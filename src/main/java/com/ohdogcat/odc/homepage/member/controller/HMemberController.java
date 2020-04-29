@@ -63,7 +63,6 @@ public class HMemberController {
 			doc.add(doctor);
 			m.setDoctor(doc);
 		}
-		System.out.println(m.getDoctor() == null);
 		
 		m = hmService.loginMem(m);
 		if(m!=null &&bCryptPasswordEncoder.matches(pwd, m.getUserPwd())) {
