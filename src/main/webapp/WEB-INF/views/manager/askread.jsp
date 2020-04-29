@@ -126,7 +126,7 @@
               				success:function(data){
               					if(data>0){
               						alert("삭제완료");
-              	          			location.href="askread.ma?qId=${qna.qId}&currentPage=${currentPage}check=${check}";
+              	          			location.href="askread.ma?qId=${qna.qId}&currentPage=${currentPage}&check=${check}";
               					}else{
               						alert("삭제실패");
               					}
