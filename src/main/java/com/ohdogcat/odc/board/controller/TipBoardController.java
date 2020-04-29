@@ -324,6 +324,8 @@ public class TipBoardController {
 		gson.toJson(trList,response.getWriter());
 	}
 	
+
+	
 	//신고 카운트 
 	
 	@ResponseBody

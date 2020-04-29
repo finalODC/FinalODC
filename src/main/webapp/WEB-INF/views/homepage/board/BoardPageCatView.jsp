@@ -368,7 +368,7 @@ a{
 			$("#crSubmit").on("click", function() {
 				var trContent = $("#trContent").val();
 				var trreftbId = "${cb.tbId}";
-				var trWriter = $("#tbWriter").text();
+				var trWriter = $("#trWriter").text();
 
 				$.ajax({
 
@@ -397,18 +397,11 @@ a{
 		});
 
 		function CatBoardReplyList() {
-			var tbId = $
-			{
-				db.tbId
-			}
-			;
+			var tbId = ${cb.tbId};
 
-			$
-					.ajax({
+			$.ajax({
 						url : "CatBoardReplyList.bo",
-						data : {
-							tbId : tbId
-						},
+						data : {tbId : tbId},
 						dataType : "json",
 						success : function(data) {
 							$tableBody = $("#rtb tbody");
