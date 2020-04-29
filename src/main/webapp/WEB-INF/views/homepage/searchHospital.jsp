@@ -162,7 +162,10 @@
 					  
 					  $div3=$('<div class="card-body">');
 					  $h4=$('<h4 class="card-title">').text(value.hName);
-					  $p=$('<p class="card-text">').text(value.hAddress);
+					  var add =value.hAddress.split("//").join(" ");
+					  
+					  
+					  $p=$('<p class="card-text">').text(add);
 					  
 					  $div3.append($h4);
 					  $div3.append($p);
