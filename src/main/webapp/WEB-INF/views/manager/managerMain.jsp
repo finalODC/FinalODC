@@ -221,9 +221,9 @@
 
 						<br>
 						
-						<div class="col-lg-6 mb-4">
+						<!-- <div class="col-lg-6 mb-4">
 
-							<!-- Approach -->
+							Approach
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">신고 &nbsp;<input type="button" value="+" class="btn btn-primary btn-sm"></h6>
@@ -284,7 +284,7 @@
 
 						</div>
 					</div>
-
+ -->
 
 
 
