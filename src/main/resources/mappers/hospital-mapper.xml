@@ -42,6 +42,11 @@
 		WHERE USERID=#{userId}
  	</update>
  	
+ 	<select id="insertdoctor" parameterType="DOCTOR">
+ 		SELECT * FROM DOCTOR
+ 		WHERE REF_H_ID=#{refHid} AND DOC_STATUS='Y'
+ 	</select>
+ 	
  	<!-- 병원 설명 등록 -->
  	<update id="updatehosinfo" parameterType="HMember">
  		UPDATE HOSPITAL

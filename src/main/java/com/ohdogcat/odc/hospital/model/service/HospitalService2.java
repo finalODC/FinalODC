@@ -41,4 +41,6 @@ public interface HospitalService2 {
 	int updateDoc(Doctor doc);
 
 	ArrayList<Doctor> docList(String hId);
+
+	int insertdoctor(HMember hm);
 }

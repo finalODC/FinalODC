@@ -259,15 +259,7 @@ hr{margin-top:0; margin-bottom:0;}
                 </div>
                 
                 
-                
-        <!--      <div class="chkType">
-				<div class="chkType2">
-					<input type="checkbox" id="chk1" name="saveid">
-					<label for="chk1">아이디 저장</label>
-					
-                </div>
-			</div> -->
-  		
+
 
 					<br>
 					<div class="button-area d-flex justify-content-center ">

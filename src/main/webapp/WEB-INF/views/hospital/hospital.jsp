@@ -28,6 +28,17 @@
 
 <body id="page-top">
 
+
+<c:if test="${!empty msg}">
+	<script>
+	$(function(){
+		alert("${msg}");
+	})
+		
+	</script>
+	</c:if> 
+	
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -99,7 +110,7 @@
 										<img class="card-body text-center"  id="preview" src="/odc/resources/hosImages/${hospital.hFile }"
 											style="width: 100%; height: 250px;"> <label
 											class="btn btn-primary ">사진선택 <input type="file" name="hImage"
-											class="img-fluid" alt="" id="getfile" style="display: none;">
+											class="img-fluid" accept="image/*" id="getfile" style="display: none;">
 										</label> 
 									</div>
 								</div>
@@ -181,7 +192,20 @@
 
 			};
 		};
+		
+		$('#updatehosinfo').click(function(){
+			if(confirm('수정하시겠습니까?')){
+				return true;
+				
+			} else{
+				return false;
+			}
+		})
+		
+		
+		
 	</script>
+	
 	
 	<footer class="sticky-footer bg-white">
 		<div class="container my-auto">

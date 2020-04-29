@@ -35,10 +35,6 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">신고
           </h1>
-          <div>
-          ${list }<br>
-          ${pi }
-          </div>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">

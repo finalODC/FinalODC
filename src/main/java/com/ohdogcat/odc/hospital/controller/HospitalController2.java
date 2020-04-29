@@ -37,6 +37,7 @@ import com.ohdogcat.odc.hospital.model.vo.hoReply;
 public class HospitalController2 {
 	
 	private HMember hm1;
+	
 	@Autowired
 	private HospitalService2 hService2;
 
@@ -96,11 +97,25 @@ public class HospitalController2 {
 	
 		if(result > 0) {
 			model.addAttribute("hospital",hm1);
-			return "redirect:info.ho";
+			model.addAttribute("msg","수정이 완료되었습니다.");
+			return "hospital";
 		} else {
 			return "redirect:comdoc.ho";
 		}
 		
+	}
+	
+	@ResponseBody
+	@RequestMapping("insertdoctor.ho")
+	public String insertdoctor(HMember hm,  Model model) {
+		
+		hm.getDoctor();
+		
+		int result = hService2.insertdoctor(hm);
+
+		model.addAttribute("hospital",hm1);
+		
+		return "1";
 	}
 
 	@RequestMapping("indoc.ho")
@@ -131,6 +146,8 @@ public class HospitalController2 {
 			model.addAttribute("hospital",hm1);
 
 //			return Integer.valueOf(result).toString();
+
+//			model.addAttribute("msg","등록되었습니다.");
 			return "redirect:insertdoc.ho";
 		} else {
 			return "redirect:comdoc.ho";
@@ -154,6 +171,8 @@ public class HospitalController2 {
 			return "0";
 		}
 	}
+	
+	
 	
 	@ResponseBody
 	@RequestMapping("updateDoc.ho")

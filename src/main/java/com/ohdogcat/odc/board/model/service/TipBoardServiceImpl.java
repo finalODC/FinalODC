@@ -143,6 +143,8 @@ public class TipBoardServiceImpl implements TipBoardService{
 	@Override
 	public ArrayList<TipReply> CatBoardReplyList(int tbId) {
 
+		System.out.println("서비스 켓댓글 : " + tbId);
+		
 		return bDao.CatBoardReplyList(tbId);
 	}
 

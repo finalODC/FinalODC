@@ -256,7 +256,9 @@ public class BoardDao {
 
 
 	public ArrayList<TipReply> CatBoardReplyList(int tbId) {
-
+		
+		System.out.println("켓보드 댓글 리스트 : "+ tbId);
+		
 		return (ArrayList)sqlSession.selectList("TipboardMapper.CatBoardReplyList",tbId);
 	}
 

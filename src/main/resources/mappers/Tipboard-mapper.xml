@@ -211,14 +211,15 @@
 		
 	</insert>
 	
-	<select id="CatBoardReplyList" resultMap="TipBoardResultSet">
+	<select id="CatBoardReplyList" parameterType="_int" resultMap="TipBoardResultSet">
 		SELECT *
 		FROM T_REPLY
 		WHERE REF_TBID=#{tbId}
 		AND TR_STATUS='Y'
 		ORDER BY TRID ASC
 	</select>
-
+	
+	
 	<update id="CatBoardComplain">
 		UPDATE T_BOARD
 		SET COMPLAIN = COMPLAIN +1
