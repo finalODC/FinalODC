@@ -163,28 +163,24 @@
 				$("#add1").val(aaa);
 				});
 			</script>
-
-				<div class="sea"
-						style="width: 100%; height: 452px; ">
+				<div class="sea" style="width: 100%; height: 452px; ">
 			<div class="">
-					
-					<div class="" id="cccbody" style="column-count: 1;">
-						<c:if test="${ hospital.doctor[0]!=null }">
-								<c:forEach var="b" items="${ hospital.doctor }">
+					<div class="insertdoctor" id="cccbody" style="column-count: 1;">
+						<c:if test="${ hm.doctor[0]!=null }">
+								<c:forEach var="b" items="${ hm.doctor }">
 								<div class=""
 									style="width: 200px; height: auto; display: inline-block; margin: 25px 0 0 25px;"
 									id="copy">
-									
 									<div class="" style="text-align: center;">
-										<img class="" name="docFile" src="/odc/resources/docImages/${b.docFile }"
+										<img class="docFile" name="docFile" src="/odc/resources/docImages/${b.docFile }"
 											id="docFile" style="width: 90%; height: 200px;"> 
 										 <br><br> <input type="text"
-											style="text-align: center; width: 100px; border: none;" name="docName" class="docName"
+											style="text-align: center; width: 100px; border: none;" name="docName" class="docName" readonly
 											value="${b.docName }">
 										<br><br>
 										<textarea
 											style=" text-align:center; width: 150px; height: 200px; border: none; resize: none;" name="docIntro" class="docIntro"
-											placeholder="간단한 소개">${ b.docIntro }</textarea>
+											readonly placeholder="간단한 소개">${ b.docIntro }</textarea>
 									</div>
 			
 								</div>
@@ -192,6 +188,31 @@
 									</c:forEach>
 								</c:if>
 					</div>
+					
+					<script>
+						/* $('.insertdoctor').on(function(){
+							var docFile = $('.docFile').val();
+							var docName = $('.docName').val();
+							var docIntro = $('.docIntro').val();
+							
+							$.ajax({
+								url:"insertdoctor",
+								type:"post",
+								data:{
+									docFile:docFile,
+									docName:docName,
+									docIntro:docIntro
+								},
+								success:function(data){
+									console.log("성공");
+									location.href="insertdoc.ho";
+									
+								},error:function(){
+									console.log("에러");
+								}
+							});
+						}); */
+					</script>
 				</div>
 			</div>
 			<br><br><br>

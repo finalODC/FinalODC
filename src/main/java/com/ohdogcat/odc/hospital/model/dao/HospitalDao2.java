@@ -76,6 +76,12 @@ public class HospitalDao2 {
 		return (ArrayList)sqlSession.selectList("hospitalMapper.doclist", hId);
 	}
 
+
+	public int insertdoctor(HMember hm) {
+		
+		return sqlSession.selectOne("hospitalMapper.insertdoctor", hm);
+	}
+
 	
 			
 }
