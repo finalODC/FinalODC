@@ -17,20 +17,18 @@
  	<result property="hCreateDate" column="H_CREATE_DATE"/>
  	<result property="hModifyDate" column="H_MODIFY_DATE"/>
  	<result property="hStatus" column="H_STATUS"/>
- 	
+ 	 <collection property="doctor"  javaType ="java.util.ArrayList" resultMap="DoctorResultMap1"/> 
  <!-- 	<collection property="hoReply" javaType="java.util.ArrayList" resultMap="hoReplyResultSet1"/> -->
-
  	</resultMap>
  	
- 	 	<resultMap type="hoReply" id="hoReplyResultSet1">
-		<id property="hrId" column="HRID"/>
-		<result property="hrContent" column="RCONTENT"/>
-		<result property="hrefBid" column="REF_HID"/>
-		<result property="hrWriter" column="H_RWRITER"/>
-		<result property="hrCreateDate" column="HR_CREATE_DATE"/>
-		<result property="hrModifyDate" column="HR_MODIFY_DATE"/>
-		<result property="hrStatus" column="HR_STATUS"/>
-	</resultMap>
+ 	<resultMap type="Doctor" id="DoctorResultMap1">
+ 		<id property="dId" column="DOCID"/>
+ 		<result property="refHid" column="REF_H_ID"/>
+ 		<result property="docName" column="DOC_NAME"/>
+ 		<result property="docIntro" column="DOC_INTRO"/>
+ 		<result property="docFile" column="DOC_FILE"/>
+ 		<result property="docStatus" column="DOC_STATUS"/>
+ 	</resultMap>
  	
  	<select id="hospitalListCount" resultType="_int">
  		SELECT COUNT(*)
@@ -57,10 +55,9 @@
  	</select>
  	
  	<select id="gethospital" resultMap="HospitalResultMap1">
- 	 SELECT *
- 	 FROM HOSPITAL
- 	 WHERE H_STATUS='Y'
- 	 AND HID=#{hId}
+  	SELECT * FROM HOSPITAL
+ 	Left JOIN (SELECT * FROM DOCTOR WHERE DOC_STATUS ='Y') on( HID = REF_H_ID)
+ 	WHERE HID=#{hId} and H_STATUS = 'Y'
  	</select>
 
 </mapper>

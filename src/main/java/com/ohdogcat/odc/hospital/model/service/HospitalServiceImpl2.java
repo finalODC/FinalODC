@@ -72,6 +72,13 @@ public class HospitalServiceImpl2 implements HospitalService2{
 	}
 
 
+	@Override
+	public int insertdoctor(HMember hm) {
+		
+		return hoDao2.insertdoctor(hm);
+	}
+
+
 
 	
 	

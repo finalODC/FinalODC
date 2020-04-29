@@ -28,6 +28,7 @@ public class searchHospitalDao {
 	}
 
 	public HMember gethoispital(int hId) {
+		System.out.println(hId);
 		return sqlSession.selectOne("hospitalsearchMapper.gethospital",hId);
 	}
 

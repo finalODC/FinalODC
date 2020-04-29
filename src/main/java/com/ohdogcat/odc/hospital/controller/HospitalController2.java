@@ -37,6 +37,7 @@ import com.ohdogcat.odc.hospital.model.vo.hoReply;
 public class HospitalController2 {
 	
 	private HMember hm1;
+	
 	@Autowired
 	private HospitalService2 hService2;
 
@@ -102,7 +103,21 @@ public class HospitalController2 {
 		}
 		
 	}
+	
+	@ResponseBody
+	@RequestMapping("insertdoctor.ho")
+	public String insertdoctor(HMember hm,  Model model) {
+		
+		hm.getDoctor();
+		
+		int result = hService2.insertdoctor(hm);
 
+		model.addAttribute("hospital",hm1);
+		
+		return "1";
+	}
+
+	@ResponseBody
 	@RequestMapping("indoc.ho")
 	public String indoc(Doctor doc, HttpServletRequest request, Model model,
 			  @RequestParam(name="docImage",required=false) MultipartFile file,
@@ -154,6 +169,8 @@ public class HospitalController2 {
 			return "0";
 		}
 	}
+	
+	
 	
 	@ResponseBody
 	@RequestMapping("updateDoc.ho")
