@@ -68,7 +68,6 @@
 	 <li class="nav-item"><a class="nav-link"
 				href="hlogout.do"> <i
 					class="fa fa-calendar-alt fa-2x"></i> <span>로그아웃</span></a></li>
-	
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -227,12 +226,6 @@
                   				
                   			});
                   			
-                  			
-                  			
-                  			
-                  			
-                  			
-                  			
                   			                 			
                   		});     
                   		
@@ -377,12 +370,17 @@
                     				var html="";
                     			
                     				for(var i in list){
-                    					html += "<tr>";
-                    					html += "<td>"+list[i]["dDate"]+"</td>";
-                    					html += "<td>"+list[i]["dUnique"]+"</td>";
-                    					html += "<td>"+list[i]["dWriter"]+"</td>";
-                    					html += "</tr>";
+                    					if(list[i]["dUnique"] !=null){
+                    						html += "<tr>";
+                        					html += "<td>"+list[i]["dDate"]+"</td>";
+                        					html += "<td>"+list[i]["dUnique"]+"</td>";
+                        					html += "<td>"+list[i]["dWriter"]+"</td>";
+                        					html += "</tr>";
+                    					}
+                    					
                     				}		
+                    				
+                    				
                     				
                     				$('#uniqueTable').append(html);
                     				
@@ -730,12 +728,11 @@
                       </div>
   
                     </div>
-  
-                 
                   </div>
                   
               </div>
             </div>
+           
            
            <script>
                $(function () {
@@ -743,9 +740,6 @@
        				    
      		   		 });
        		 	 }); 
-           
-           
-           
            
            function addRow(){
         	   var length = $('#mediTable tr').length;
@@ -760,15 +754,11 @@
         		   html += '<td><input type="text" style="width:100%; padding:0px" ></td>';
         		   html += '</tr>';
         		   
-        		   
         		   $('#mediTable:last').append(html);
         	   }else{
         		   alert("최대 10개까지 가능합니다");
         		   return false;
         	   }
-        	   
-        	   
-        	   
         	   
            }
            
@@ -782,14 +772,8 @@
         	   }
            }
            
-           
-           
-           
-           
            	$('#submitButton').click(function(){
-           		
            		if(confirm('진단서를 저장하시겠습니까')){
-           			
            		 $.ajax({
            			url:"updateWeight.do",
            			type:"post",
@@ -807,7 +791,6 @@
            			}
            			
            		}); 
-           		
            		
            		var hId = ${loginUser.hId};
            		var dId = ${loginUser.doctor[0].dId};
@@ -827,6 +810,7 @@
            		var medi = arr.join("//");
            		
            		console.log(medi);
+           		
            		 $.ajax({
            			url:"updateDiag.do",
            			type:"post",
