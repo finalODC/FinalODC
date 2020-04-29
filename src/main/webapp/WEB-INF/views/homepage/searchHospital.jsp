@@ -153,7 +153,7 @@
 					  $div4=$('<div class="col-lg-4 col-md-4 hlist" style="margin-bottom: 10px; ">');
 					  $a=$('<a href="hosdetail.do?hId='+value.hId+'">');
 					  
-					  $div2=$('<div class="card" style="width:400px; height:300px;">');
+					  $div2=$('<div class="card" style="width:400px; height:350px;">');
 					  $img=$('<img class="card-img-top" alt="Card image" style="width:400px; height:200px;">');
 					  if(value.hFile!= null){
 						  imagename = value.hFile;

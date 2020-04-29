@@ -151,7 +151,7 @@
 					<textarea
 						style="width: 90%; height: 50px; border: none; resize: none;" id="add1" 
 						readonly></textarea>
-						<textarea style="width:90%;  border:none; resize:none;" readonly>전화번호 ${ hospital.hPhone }
+						<textarea style="width:90%;  border:none; resize:none;" readonly>전화번호 ${ hm.hPhone }
 						</textarea>
 					</div>
 					
@@ -169,13 +169,11 @@
 			<div class="">
 					
 					<div class="" id="cccbody" style="column-count: 1;">
-						<c:if test="${ hm.doctor[0]!=null }">
-								<c:forEach var="b" items="${ hm.doctor }">
-							
+						<c:if test="${ hospital.doctor[0]!=null }">
+								<c:forEach var="b" items="${ hospital.doctor }">
 								<div class=""
 									style="width: 200px; height: auto; display: inline-block; margin: 25px 0 0 25px;"
 									id="copy">
-									
 									
 									<div class="" style="text-align: center;">
 										<img class="" name="docFile" src="/odc/resources/docImages/${b.docFile }"
@@ -196,6 +194,7 @@
 					</div>
 				</div>
 			</div>
+			<br><br><br>
 
 			<div class="">
 				<div class="">
