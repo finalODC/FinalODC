@@ -295,7 +295,7 @@
                             						
                             					}else{
                             				
-                            						if(list[i].rWriter == "${ userId}" && list[i].rStatus == 'Y'){
+                            						if(list[i].rWriter == "${ loginUser.userId}" && list[i].rStatus == 'Y'){
                             							$td4.append("<button class='update btn btn-primary'>수정</button> &nbsp;&nbsp;<button class='del btn btn-danger'>삭제</button>");
                             						}
                             						
@@ -424,7 +424,7 @@
                             			type:"post",
                             			data:{refHid:"${hm.hId}",
                             				rContent:arr.join("<br>"),
-                            				rWriter:"${ userId}"},
+                            				rWriter:"${ loginUser.userId}"},
                             			success:function(data){
                             				console.log("여기"+data)
                             				
