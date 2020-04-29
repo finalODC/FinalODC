@@ -257,7 +257,7 @@ a{
 
 							<th
 								style="width: 140px; height: 70px; background-color: steelblue;"
-								id="trWriter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${db.tbWriter }</th>
+								id="trWriter">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${loginUser.userId}</th>
 
 							<th style="width: 720px;">&nbsp;<input type="text"
 								style="width: 700px; height: 70px; border: 0px;" id="trContent"></th>
