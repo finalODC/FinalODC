@@ -48,8 +48,7 @@
 			<h1 style="text-align: left;  width: 100%; height: 120px; border-bottom: 1px solid #999; line-height: 100px; color: #30627e;">${ hm.hName }</h1>
 			
 				<!-- Approach -->
-				
-					
+
 					<div class="sea"
 						style="width: 100%; height: 370px; border: none; margin: 30px 0;">
 						<div class="par" style="width: 50%; height: 370px; float: left; border: none;">
@@ -58,6 +57,7 @@
 							<!-- <div name="image" style="width: 100%; height: 400px; padding: 1%">이미지</div> -->
 
 						</div>
+						
 						<div class="ssa" style="width: 50%; height: 370px;  float: right;">
 						
 							<div 
@@ -254,7 +254,7 @@
 					</table>
 				</div>
 			</div>
-
+		
 		</div>
 
 		<!-- Footer Section -->
@@ -265,7 +265,6 @@
 		<footer class="footer">
 			<jsp:include page="common/footer.jsp"/>
 		</footer>
-			
 					 <script>
 					 
 					 var mxp;
@@ -283,8 +282,7 @@
                             				$("#reply").empty();
                             				var list = data["list"];
                             				var pi = data["pi"];
-                            				console.log(list);
-                            				console.log(pi)
+                       						
                             				mxp =  Math.ceil((pi.listCount+1)/10)
                             				
                             				for(var i in list){
@@ -296,7 +294,7 @@
                             					var $td2= $("<td  width='60%'>").append($div);
                             					var $td3= $("<td width='10%'>").text(list[i].rCreateDate);
                             					var $td4= $("<td width='30%'>");
-                            			
+                            					var butt ="<button class='update btn btn-primary'>수정</button> &nbsp;&nbsp;<button class='del btn btn-danger'>삭제</button>";
                             					
                             					
                             					
@@ -311,13 +309,35 @@
                             								  +'</svg>'
     
                             								 +"${hm.hName}")
-                            					
-                            		
-                            						
+                            						if("${loginUser.hId}" == "${hm.hId}"){
+                                     					 $td4.append(butt);
+                            						}
                             					}else{
-                            				
-                            						if(list[i].rWriter == "${ loginUser.userId}" && list[i].rStatus == 'Y'){
-                            							$td4.append("<button class='update btn btn-primary'>수정</button> &nbsp;&nbsp;<button class='del btn btn-danger'>삭제</button>");
+                            						
+                            						if("${loginUser.hId}" ==""){
+                            							if("${loginUser.userId}" !="admin"){
+                            								if(list[i].rWriter == "${ loginUser.userId}" && list[i].rStatus == 'Y'){
+                                								$td4.append(butt);
+                            								}
+                            							
+                            							}else{
+                            								if(!list[i].rWriter.includes("(관리자)") && list[i].rStatus == 'Y'){
+                            									if(list[i].rWriter=="Oh!DocCat"){
+                            									$td4.append("<button class='update btn btn-primary'>수정</button> &nbsp;&nbsp;");
+                            									}
+                            									$td4.append("<button class='del btn btn-danger'>삭제</button>");
+                            								}
+                            							}
+                            						}else{
+                            							if("${loginUser.hId}" == "${hm.hId}"){
+                            						  		if(list[i].rWriter == "${ loginUser.userId}"+"(관리자)" && list[i].rStatus == 'Y'){
+                                							 $td4.append(butt);
+                                							}
+                            							}else{
+                            							 if(list[i].rWriter == "${ loginUser.userId}"+"(HP)" && list[i].rStatus == 'Y'){
+                                    						 $td4.append(butt);
+                                    						}
+                            							}
                             						}
                             						
                             					}
@@ -440,17 +460,28 @@
                             			return false;
                             		}
                             		var arr = $("#hrContent").val().split("\n");
+                            		var writer ="${ loginUser.userId}";
+                            		if("${loginUser.userId}" == "admin"){
+                            			writer = "Oh!DocCat";
+                            		}
+                            		
+                            		if("${loginUser.hId}" !=""){
+            							if("${loginUser.hId}" == "${hm.hId}"){
+            								writer += "(관리자)"
+            							}else{
+            								writer += "(HP)"
+            							}
+            						}
+                            		
                             		$.ajax({
                             			url:"insertRe.ho",
                             			type:"post",
                             			data:{refHid:"${hm.hId}",
                             				rContent:arr.join("<br>"),
-                            				rWriter:"${ loginUser.userId}"},
+                            				rWriter:writer},
                             			success:function(data){
-                            				console.log("여기"+data)
                             				
                             					$("#hrContent").val("");
-                            					console.log(mxp)
                             					pigo("${hm.hId}",mxp);
                             					if(data>0){
                             				}

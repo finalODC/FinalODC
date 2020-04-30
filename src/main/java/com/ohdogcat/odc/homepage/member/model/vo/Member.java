@@ -12,6 +12,12 @@ public class Member {
 	private Date mCreateDate;
 	private Date mModifyDate;
 	private String mStatus;
+	private String hId;
+	{
+		hId = null;
+	}
+	
+	
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -83,11 +89,15 @@ public class Member {
 	public void setmStatus(String mStatus) {
 		this.mStatus = mStatus;
 	}
+	
+	public String gethId() {
+		return hId;
+	}
 	@Override
 	public String toString() {
 		return "Member [mId=" + mId + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", email=" + email + ", phone=" + phone + ", mCreateDate=" + mCreateDate + ", mModifyDate="
-				+ mModifyDate + ", mStatus=" + mStatus + "]";
+				+ mModifyDate + ", mStatus=" + mStatus + "]" +hId;
 	}
 	
 	

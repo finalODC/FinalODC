@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import com.ohdogcat.odc.hospital.model.vo.Doctor;
-import com.ohdogcat.odc.hospital.model.vo.hoReply;
 
 public class HMember {
 	private String hId;
@@ -21,6 +20,11 @@ public class HMember {
 	private Date hModifyDate;
 	private String hStatus;
 	
+	
+	
+
+
+
 	//private ArrayList<hoReply> hoReply;
 	private ArrayList<Doctor> doctor;
 	
@@ -187,6 +191,7 @@ public class HMember {
 	public void setDoctor(ArrayList<Doctor> doctor) {
 		this.doctor = doctor;
 	}
+	
 
 	@Override
 	public String toString() {
