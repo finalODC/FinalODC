@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ohdogcat.odc.homepage.member.model.vo.Member;
+import com.ohdogcat.odc.manager.Membermanage.model.vo.memberBlack;
 
 @Repository("mDao")
 public class MemberDao {
@@ -26,6 +27,10 @@ public class MemberDao {
 	public int idCheck(String id) {
 
 		return sqlSession.selectOne("memberMapper.idCheck",id);
+	}
+
+	public memberBlack memberCheck(Member m) {
+		return sqlSession.selectOne("memberMapper.memberCheck",m);
 	}
 
 }

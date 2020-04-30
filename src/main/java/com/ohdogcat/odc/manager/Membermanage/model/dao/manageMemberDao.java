@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.manager.Membermanage.model.vo.manageMember;
+import com.ohdogcat.odc.manager.Membermanage.model.vo.memberBlack;
 
 @Repository("managemDao")
 public class manageMemberDao {
@@ -43,6 +44,10 @@ public class manageMemberDao {
 
 	public int delManageMember(int mid) {
 		return sqlSession.update("manageMember.delManageMember",mid);
+	}
+
+	public int blackmember(memberBlack mb) {
+		return sqlSession.insert("manageMember.memberblack",mb);
 	}
 
 }

@@ -134,7 +134,6 @@
 				  currentPage:page
 			},
 			success:function(data){
-				console.log(data);
 				$div= $('#search');
 				$div.html("");
 				

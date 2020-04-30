@@ -1,6 +1,7 @@
 package com.ohdogcat.odc.manager.Membermanage.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import com.google.gson.JsonIOException;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.common.Pagination;
 import com.ohdogcat.odc.manager.Membermanage.model.vo.manageMember;
+import com.ohdogcat.odc.manager.Membermanage.model.vo.memberBlack;
 import com.ohdogcat.odc.manager.Membermanage.service.manageMemberService;
 
 @Controller
@@ -121,6 +123,31 @@ public class manageMemberController {
 		}
 		gson.toJson(msg,response.getWriter());
 		
+	}
+	
+	@RequestMapping("blackmember.do")
+	public ModelAndView blackmember(ModelAndView mv, @RequestParam(value="day",required = false, defaultValue = "7") int day, 
+									@RequestParam(value="bReason",required = false)String bReason,
+									String userId) {
+		
+		memberBlack mb = new memberBlack();
+		
+		
+		
+		mb.setUserId(userId);
+		mb.setDay(day);
+		mb.setbReason(bReason);
+		
+		int result = managemService.blackmember(mb);
+		
+		if(result>0) {
+
+			mv.addObject("msg","회원 정지 성공");			
+		}else {
+			mv.addObject("msg", "회원 정지 오류!");
+		}
+		mv.setViewName("manager/managerMember");
+		return mv;
 	}
 	
 //	@RequestMapping("mMemberList.do")

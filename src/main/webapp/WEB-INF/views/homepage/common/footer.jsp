@@ -26,9 +26,11 @@
       </div>
     </div>
   </div>
-  <c:set var="test" value="${loginUser}" />
+ 
   
   	<script src="${path }/resources/js/jquery-3.2.1.min.js"></script>
+  	
+  	 <c:set var="test" value="${loginUser}" />
   <script>
   var adminid
 	$(function(){
@@ -45,8 +47,6 @@
 		});
 		
 		var test = "${test}";
-		
-		
 	  	if(test.indexOf("Doctor")!=-1){
 	  		console.log("asd");
 	  		$('#adminbtn2').show();

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,7 +86,7 @@
                   </tbody>
                 </table>
               </div>
-              <button class="btn btn-info" data-toggle="modal" data-target="#myModal">
+              
               </button>
               <div id="pagination">
 <!--               <ul class="pagination justify-content-center pagination-sm">
@@ -117,11 +118,11 @@
                   
                   <!-- Modal body -->
                   <div class="modal-body">
-                    <form action="" method="POST" id="sssss">
+                    <form action="blackmember.do" method="POST" id="sssss">
                       <table style="width:100%; padding: 10px">
                     <tr>
                       <td>아이디</td>
-                      <td colspan="2"><input type="text" class="form-control" name = "mid" id="id" readonly></td>
+                      <td colspan="2"><input type="text" class="form-control" name = "userId" id="id" readonly></td>
                     </tr>
                     <tr>
                       <td>날짜</td>
@@ -131,10 +132,9 @@
                     </tr>
                     <tr>
                       <td> <span >사유</span><br></td>
-                      <td> <input type="text" class="form-control" style="height: 200px"></td>
+                      <td> <input type="text"  name="bReason" class="form-control" style="height: 200px"></td>
                     </tr>
                       </table>
-
                     </form>
                   </div>
                   
@@ -150,6 +150,15 @@
 
       </div>
       <!-- End of Page Wrapper -->
+       	<c:if test="${!empty msg}">
+		<script>
+		$(function(){
+			alert("${msg}");
+		})
+			
+		</script>
+		</c:if> 
+      
       <script>
       
       var page=1;
@@ -157,13 +166,13 @@
         	  
         	  
             //정지 모달
-            $(".stop").click(function(){
-             var mid = $(this).parent("td").siblings("td:eq(0)").text();
-              $("#id").val(mid ) 
-            });
+            
 
             $("#ssubmit").click(function(){
-              $("#sssss").submit()
+            	if(confirm($('#id').val()+"를 정지하시겠습니까?")){
+            		$("#sssss").submit()
+                  }
+              
             })
 
             //삭제
@@ -172,10 +181,13 @@
               if(confirm(mid+"를 정지하시겠습니까?")){
                 location.href=""+mid;
               }
-            })
+            });
+            
             
            
             getmember();
+            
+   
    	
             
            
@@ -211,7 +223,8 @@
               			}else{
               				$a1.text('N');
               			}
-              			$buttontd=$('<td>');
+              			$buttontd=$('<td>');              			
+              			$button1=$('<button class="btn btn-info stop" data-toggle="modal" data-target="#myModal" style="width: 80px;">').html("정지");
               			$button2=$('<button class="btn btn-danger del"  style="width: 80px;">').html("삭제");
               			
               			
@@ -222,6 +235,7 @@
               			$tr.append($mcreateDate);
               			$tr.append($a1);
               			
+              			$buttontd.append($button1);
               			$buttontd.append($button2);
               			
               			$tr.append($buttontd);
@@ -247,6 +261,12 @@
                    		 });
                    	 }
                      });
+                    
+                    $(".stop").click(function(){
+                        var mid = $(this).parent("td").siblings("td:eq(1)").text();
+                        console.log(mid);
+                         $("#id").val(mid) 
+                       });
               		
               	},error:function(data){
               		console.log(data);

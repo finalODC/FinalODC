@@ -17,6 +17,15 @@
 	<result property="mStatus" column="M_STATUS"/>
 	</resultMap>
 	
+	<resultMap type="com.ohdogcat.odc.manager.Membermanage.model.vo.memberBlack" id="memberblackResultSet">
+	<id property="bNum" column="BNUM"/>
+	<result property="userId" column="USERID"/>
+	<result property="bReason" column="BLACK_CONTENT"/>
+	<result property="day" column="BLACK_DAY"/>
+	<result property="black_sDate" column="BLACK_S_DATE"/>
+	<result property="black_eDate" column="BLACK_E_DATE"/>
+	</resultMap>
+	
 	
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER
@@ -34,6 +43,15 @@
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE USERID=#{id}
+	</select>
+	
+	<select id="memberCheck" parameterType="Member" resultMap="memberblackResultSet">
+		<![CDATA[
+		select *
+		from(SELECT * FROM MEMBERBLACK WHERE USERID=#{userId} ORDER BY Black_e_date DESC)
+		WHERE ROWNUM=1 AND SYSDATE<BLACK_E_DATE
+		]]>
+		
 	</select>
 
 

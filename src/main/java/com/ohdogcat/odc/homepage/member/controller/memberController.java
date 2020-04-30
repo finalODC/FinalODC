@@ -1,5 +1,9 @@
 package com.ohdogcat.odc.homepage.member.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ohdogcat.odc.homepage.member.model.vo.Member;
 import com.ohdogcat.odc.homepage.member.service.MemberService;
+import com.ohdogcat.odc.manager.Membermanage.model.vo.memberBlack;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -55,17 +60,38 @@ public class memberController {
 		
 		
 		Member loginUser = mService.loginMember(m);
+		
+		memberBlack mb = mService.memberCheck(m);
 
+		System.out.println(mb);
 		
-		if(loginUser!=null && bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
-			mv.addObject("loginUser",loginUser);
-			mv.setViewName("homepage/h_mainpage");
-			
-		}else {
-			mv.setViewName("homepage/h_login1");
-		}
 		
-			
+			if(loginUser!=null && bcryptPasswordEncoder.matches(m.getUserPwd(), loginUser.getUserPwd())) {
+				
+				if(mb==null) {
+					mv.addObject("loginUser",loginUser);
+					mv.setViewName("homepage/h_mainpage");					
+				}else {
+					
+
+					DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+					String sDate = df.format(mb.getBlack_sDate());
+					String eDate = df.format(mb.getBlack_eDate());
+					
+					String msg = "정지된 회원입니다."+sDate+"부터"+eDate+" 로그인 할 수 없습니다. "
+									+"정지 사유는 " + mb.getbReason() + " 입니다.";
+					
+					mv.addObject("msg",msg);
+					mv.setViewName("homepage/h_login1");
+				}
+				
+			}else {
+				mv.addObject("msg","비밀번호와 아이디를 확인해 주세요!");
+				mv.setViewName("homepage/h_login1");
+				
+			}
+		
+
 			return mv;
 		
 	}

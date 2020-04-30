@@ -1,6 +1,7 @@
 package com.ohdogcat.odc.homepage.member.service;
 
 import com.ohdogcat.odc.homepage.member.model.vo.Member;
+import com.ohdogcat.odc.manager.Membermanage.model.vo.memberBlack;
 
 public interface MemberService {
 
@@ -24,5 +25,14 @@ public interface MemberService {
 	 * @return
 	 */
 	int idCheck(String id);
+
+	/**
+	 * 멤버 정지상태 체크
+	 * @param m
+	 * @return
+	 */
+	memberBlack memberCheck(Member m);
+
+
 
 }

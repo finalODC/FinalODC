@@ -45,5 +45,11 @@
 	SET M_STATUS='N'
 	WHERE MID = #{mid}
 	</update>
+	
+	<insert id="memberblack" parameterType="com.ohdogcat.odc.manager.Membermanage.model.vo.memberBlack">
+	INSERT INTO MEMBERBLACK
+	VALUES(SEQ_BNUM.NEXTVAL,#{userId},#{bReason},#{day},SYSDATE,SYSDATE+#{day})
+	
+	</insert>
 
 </mapper>

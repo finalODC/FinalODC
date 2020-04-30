@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.manager.Membermanage.model.dao.manageMemberDao;
 import com.ohdogcat.odc.manager.Membermanage.model.vo.manageMember;
+import com.ohdogcat.odc.manager.Membermanage.model.vo.memberBlack;
 
 @Service("managemService")
 public class manageMemberServiceImpl implements manageMemberService {
@@ -40,6 +41,11 @@ public class manageMemberServiceImpl implements manageMemberService {
 	@Override
 	public int delManageMember(int mid) {
 		return managemDao.delManageMember(mid);
+	}
+
+	@Override
+	public int blackmember(memberBlack mb) {
+		return managemDao.blackmember(mb);
 	}
 
 }

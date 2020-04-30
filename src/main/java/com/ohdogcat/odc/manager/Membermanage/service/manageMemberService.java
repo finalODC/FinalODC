@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.ohdogcat.odc.board.model.vo.PageInfo;
 import com.ohdogcat.odc.manager.Membermanage.model.vo.manageMember;
+import com.ohdogcat.odc.manager.Membermanage.model.vo.memberBlack;
 
 public interface manageMemberService {
 
@@ -39,5 +40,8 @@ public interface manageMemberService {
 	 * @return
 	 */
 	int delManageMember(int mid);
+
+
+	int blackmember(memberBlack mb);
 
 }
