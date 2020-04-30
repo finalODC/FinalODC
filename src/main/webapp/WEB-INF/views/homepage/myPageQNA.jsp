@@ -162,16 +162,7 @@ color: white;
 								<table id="nok" class="table table-bordered"
 									style="background: white;">
 									<tbody>
-										<tr>
-											<th class="tatd">카테고리:</th>
-											<td><select class="form-control">
-													<option value="1">계정관련</option>
-													<option value="2">게시판관련</option>
-													<option value="3">기타</option>
-
-
-											</select></td>
-										</tr>
+										
 										<tr>
 											<th class="tatd">제목:</th>
 											<td><input type="text" placeholder="제목을 입력하세요. "
@@ -276,25 +267,7 @@ color: white;
 				   console.log(data);
 				   
 				   var listText="";
-				   /* $tableBody=$("#qnaList tbody");
-					$tableBody.html("");
-					for(var i in data.list){
-					
-						var $tr=$("<tr class='qnatb'>");
-						var $qId=$("<td>").text(data.list[i].qId);
-						var $qTitle=$("<td>").text(data.list[i].qTitle);
-						var $qWriter=$("<td>").text(data.list[i].qWriter);
-						var $qDate=$("<td>").text(data.list[i].qDate);
-						var $answer=$("<td>").text("답변완료");
-						$tr.append($qId);
-						$tr.append($qTitle);
-						$tr.append($qWriter);
-						$tr.append($qDate);
-						$tr.append($answer);
-						
-						$tableBody.append($tr);
-						
-					} */
+				   
 				   for(var i in data.list){
 						listText +="<tr class='a'>";
 						listText +="<td align='left'>"+ data.list[i].qId +"</td>";
@@ -310,7 +283,8 @@ color: white;
 						
 						listText +="<td align='left'>";
 						 if(data.list[i].qFile != null) {
-							listText +=data.list[i].qFile;	
+							 var fileN = data.list[i].qFile.substring(12);
+							listText +=fileN;	
 						}else {
 							listText +="첨부파일없음";
 						}
@@ -321,17 +295,14 @@ color: white;
 						
 						
 				   }
-				   
-				   // 페이징 처리
+				   //페이징처리
 				   listText += "<tr align='center' height='20'>";
 				   listText += "<td colspan='6'>";
-				   // [이전]
 				   if(pageNo == 1){
 					   listText +=	"[이전] &nbsp;";
 				   }else{
 					   listText += "<a href='javascript:void(0);' onclick='getList("+ (pageNo - 1) +")'>[이전]</a> &nbsp;";
 				   }
-					// 페이지 
 					for(var p= data.pi.startPage; p<= data.pi.endPage; p++){
 						if(p == data.pi.currentPage){
 							listText += "<font color='red' size='4'><b>"+ [ p ] + "</b></font>";
@@ -339,7 +310,6 @@ color: white;
 							listText +=  "<a href='javascript:void(0);' onclick='getList("+ p + ")'>" + p + "</a> &nbsp;";
 						}						
 					}
-					// [다음]
 					if(pageNo == data.pi.maxPage){
 						listText += "[다음]";
 					}else{
@@ -391,53 +361,6 @@ color: white;
 				}
 			});
 		}
-		/* function getDetail(qId){
-			$.ajax({
-				url:"qdetail.qn",
-				data:{qId:qId},
-				dataType:"json",
-				type:"post",
-				success:function(data){
-					console.log(data);
-				},error:function(){
-					alert("실패");
-				}
-			});
-		} */
-		/* function QnaList(){
-			$.ajax({
-				url:"myqnalist.qn",
-				dataType:"json",
-				data:{userId:userId},
-				success:function(data){
-					console.log(data.length);
-					$tableBody=$("#qnaList tbody");
-					$tableBody.html("");
-					for(var i in data){
-						var $tr=$("<tr class='qnatb'>");
-						var $qId=$("<td>").text(data[i].qId);
-						var $qTitle=$("<td>").text(data[i].qTitle);
-						var $qWriter=$("<td>").text(data[i].qWriter);
-						var $qDate=$("<td>").text(data[i].qDate);
-						var $answer=$("<td>").text("답변완료");
-						$tr.append($qId);
-						$tr.append($qTitle);
-						$tr.append($qWriter);
-						$tr.append($qDate);
-						$tr.append($answer);
-						
-						$tableBody.append($tr);
-						
-					}
-					$(".qnatb").on("click",function(){
-						alert($(this).find("td").first().text());
-						$
-					});
-				},error:function(){
-					alert("data전송 실패");
-				}
-			});
-		} */
 		
 		
 	</script>

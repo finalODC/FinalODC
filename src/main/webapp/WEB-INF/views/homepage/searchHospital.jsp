@@ -162,7 +162,10 @@
 					  
 					  $div3=$('<div class="card-body">');
 					  $h4=$('<h4 class="card-title">').text(value.hName);
-					  $p=$('<p class="card-text">').text(value.hAddress);
+					  var add =value.hAddress.split("//").join(" ");
+					  
+					  
+					  $p=$('<p class="card-text">').text(add);
 					  
 					  $div3.append($h4);
 					  $div3.append($p);
@@ -202,9 +205,6 @@
     				 $ui.append('<li class="goFirstPage"><a  class="page-link"><<</a></li>');
     				 $ui.append('<li class="goBackPage"><a  class="page-link"><</a></li>');
     			 }
-    			 
-    			 
-    			 
     			for(var i = data.startPage; i<=data.endPage;i++){
     				if(data.currentPage==i){
         				$ui.append('<li class="goPage page-item" data-page='+i+' ><a class="page-link" style="background-color:lightgray">'+i+'</a></li>');
@@ -213,7 +213,6 @@
     					$ui.append('<li class="goPage page-item" data-page='+i+'><a class="page-link">'+i+'</a></li>');
     				}
     			}
-    			
     			if(data.currentPage != data.endPage || data.endPage!=0){
     				$ui.append('<li class="goFrontPage"><a  class="page-link">></a></li>');
     				$ui.append('<li class="goLastPage"><a  class="page-link">>></a></li>');

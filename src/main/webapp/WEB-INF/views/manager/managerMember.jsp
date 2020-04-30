@@ -85,6 +85,8 @@
                   </tbody>
                 </table>
               </div>
+              <button class="btn btn-info" data-toggle="modal" data-target="#myModal">
+              </button>
               <div id="pagination">
 <!--               <ul class="pagination justify-content-center pagination-sm">
                 <li class="page-item"><a class="page-link" href="#">&lt;&lt;</a></li>
@@ -104,22 +106,22 @@
 
         <!-- The Modal -->
             <div class="modal fade" id="myModal" style="text-align: center;">
-              <div class="modal-dialog modal-sm">
+              <div class="modal-dialog modal-md">
                 <div class="modal-content">
                 
                   <!-- Modal Header -->
                   <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
+                    <h4 class="modal-title">회원 정지</h4>
                     <button type="button" class="close" data-dismiss="modal">×</button>
                   </div>
                   
                   <!-- Modal body -->
                   <div class="modal-body">
                     <form action="" method="POST" id="sssss">
-                      <table>
+                      <table style="width:100%; padding: 10px">
                     <tr>
                       <td>아이디</td>
-                      <td colspan="2"><input type="text" class="form-control mb-2 mr-sm-2" name = "mid" id="id" readonly></td>
+                      <td colspan="2"><input type="text" class="form-control" name = "mid" id="id" readonly></td>
                     </tr>
                     <tr>
                       <td>날짜</td>
@@ -129,7 +131,7 @@
                     </tr>
                     <tr>
                       <td> <span >사유</span><br></td>
-                      <td> <textarea cols="25" rows="3" name="scomment"></textarea></td>
+                      <td> <input type="text" class="form-control" style="height: 200px"></td>
                     </tr>
                       </table>
 

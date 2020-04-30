@@ -508,7 +508,7 @@
 	  
 
 </script>
-	
+
 	<script>
 		function deletePet(){
 			var pid=$("input[name=pid]").val();
