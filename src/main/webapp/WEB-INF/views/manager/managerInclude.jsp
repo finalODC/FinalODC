@@ -40,7 +40,7 @@
         </div>
         <div class="sidebar-brand-text mx-3">관리페이지</div>
       </a>
-
+     
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
 
@@ -50,6 +50,12 @@
         <a class="nav-link" href="${main }">
           <i class="fa fa-home fa-2x"></i>
           <span>메인으로</span></a>
+      </li>
+       <li class="nav-item">
+     
+        <a class="nav-link" href="mainpage.do">
+          <i class="fa fa-home fa-2x"></i>
+          <span>홈페이지 가기</span></a>
       </li>
 
       <!-- Divider -->

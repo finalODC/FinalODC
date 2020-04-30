@@ -38,7 +38,7 @@
 			<!-- Sidebar - 로고 -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="../intranet/intranet_main.html">
+				href="mainpage.do">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-home"></i>
 				</div>
@@ -294,7 +294,7 @@
                             			data:{refHid:hId,
                             				parentHrid:parentHrId,
                             				rContent:arr.join("<br>"),
-                            				rWriter:"${loginUser.hName}"},
+                            				rWriter:"${loginUser.userId}"+"(관리자)"},
                             			success:function(data){
                             				if(data>0){
                             					pigo(hId,$(".cu").text());
