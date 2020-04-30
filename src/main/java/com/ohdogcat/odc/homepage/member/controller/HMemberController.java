@@ -122,6 +122,7 @@ public class HMemberController {
 	
 	@RequestMapping("hInsert.do")
 	public String hInsert(Model m1,HMember m,String add1, String add2, String add3) {
+
 		
 		
 		m.setUserPwd(bCryptPasswordEncoder.encode(m.getUserPwd()));
