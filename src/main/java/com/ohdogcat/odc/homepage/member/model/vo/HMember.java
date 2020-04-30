@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import com.ohdogcat.odc.hospital.model.vo.Doctor;
-import com.ohdogcat.odc.hospital.model.vo.hoReply;
 
 public class HMember {
 	private String hId;
@@ -20,7 +19,16 @@ public class HMember {
 	private Date hCreateDate;
 	private Date hModifyDate;
 	private String hStatus;
+	private String mId;
 	
+	{
+		mId = null;
+	}
+	
+	
+
+
+
 	//private ArrayList<hoReply> hoReply;
 	private ArrayList<Doctor> doctor;
 	
@@ -187,13 +195,17 @@ public class HMember {
 	public void setDoctor(ArrayList<Doctor> doctor) {
 		this.doctor = doctor;
 	}
+	
+	public String getmId() {
+		return mId;
+	}
 
 	@Override
 	public String toString() {
 		return "HMember [hId=" + hId + ", userId=" + userId + ", userPwd=" + userPwd + ", hCode=" + hCode + ", hName="
 				+ hName + ", hAddress=" + hAddress + ", hPhone=" + hPhone + ", hEmail=" + hEmail + ", hComment="
 				+ hComment + ", hFile=" + hFile + ", hCreateDate=" + hCreateDate + ", hModifyDate=" + hModifyDate
-				+ ", hStatus=" + hStatus + ", hoReply=" +", doctor=" + doctor + "]";   //hoReply + 
+				+ ", hStatus=" + hStatus + ", hoReply=" +", doctor=" + doctor + "]" +mId;   //hoReply + 
 	}
 
 

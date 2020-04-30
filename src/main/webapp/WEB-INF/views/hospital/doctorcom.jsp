@@ -138,6 +138,7 @@
                             					var $td3= $("<td width='8%'>").text(list[i].rWriter);
                             					var $td4= $("<td width='8%'>").text(list[i].rCreateDate);
                             					var $td5= $("<td width='15%'>");
+                            					var butts = "<button class='update btn btn-warning'>수정</button> &nbsp;&nbsp;<button class='del btn btn-danger'>삭제</button>";
  
                             					$tr.append($td1).append($td2).append($td3).append($td4).append($td5)
                             					if(list[i].level ==2){
@@ -147,13 +148,14 @@
                         								  +'</svg>'
                             					$td1.html($div2 + list[i].rId);
 
-                            						$td5.append(" <button class='update btn btn-warning'>수정</button> &nbsp;&nbsp;<button class='del btn btn-danger'>삭제</button>");
+                            						$td5.append(butts);
                             						$tr.css("background","lightgray");
                             					}else{
-                            					
-                            						$td5.append("<button class='addRe btn btn-primary'>댓글달기</button>");
-                            						
-                            						
+                            						if(list[i].rWriter=="${loginUser.userId}"+"(관리자)" && list[i].rStatus =='Y'){
+                            							$td5.append(butts)
+                            						}else{
+                            							$td5.append("<button class='addRe btn btn-primary'>댓글달기</button>");
+                            						}          						
                             					}
                             					
                             					if(list[i].rStatus =='N'){
