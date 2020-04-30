@@ -61,8 +61,7 @@ public class ManagerHopitalController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<HMember> list = mHService.gethMemberList(sHm,pi);
 		response.setContentType("application/json; charset=UTF-8");
-		Gson gson =new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		//Gson gson = new Gson();
+		Gson gson =new GsonBuilder().setDateFormat("yyyy-MM-dd").create();;
 		Map hMap = new HashMap();
 		hMap.put("list",list);		
 		hMap.put("pi",pi);

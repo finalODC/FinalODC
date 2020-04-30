@@ -246,7 +246,7 @@ hr{margin-top:0; margin-bottom:0;}
 		<div class="d-flex justify-content-center " style="background-color: #f5f6f7d0; height: 1500px; ">
 			<div class="card" style="width: 600px; margin: 50px;">
 			<div class="card-body" align="center">
-				<form action="hInsert.do" method="post" onsubmit="return check();">
+			 <form action="hInsert.do" method="post" onsubmit="return check();">  
 				     <h5>병원명</h5>
 					<div class="inputgroup">
 						<input type="text" id="hName" name ="hName" class="input_area" placeholder="병원이름을 입력해주세요.">
@@ -305,7 +305,7 @@ hr{margin-top:0; margin-bottom:0;}
                     <div class="button-area d-flex justify-content-center ">
 						<input type="submit" value="회원가입" class="btn login_btn" id="QWER">						
                     </div>
-                </form>
+              </form>  
 			</div>
 		
 		</div>
@@ -331,12 +331,26 @@ hr{margin-top:0; margin-bottom:0;}
             </div>
 
             <script>
-            var business = false;
-            var idCh = false;
-           	var emCh = false;
+
+            function chk(bl){
+            	var pro=bl;
+            	
+            	this.getProBl= function(){
+            		return this.pro;
+            		
+            	}
+            	
+            	this.setProBl= function(bl){
+            		this.pro = bl;
+            	}
+            }
+            
+            var bisichk = new chk(false);
+            var idchk = new chk(false);
+            var emchk = new chk(false);
             
             $("#hCode").on("propertychange change keyup paste input",function(){
-            	business =false;
+            	bisichk.setProBl(false);
             	
             });
             
@@ -357,7 +371,7 @@ hr{margin-top:0; margin-bottom:0;}
             			
             				if(result=="ok"){
             					alert("가입가능한 번호입니다.");
-            					business=true;
+            					bisichk.setProBl(true);
             				} else{
             					alert("이미 가입된 번호입니다.");
             					$("#hCode").select();
@@ -378,7 +392,7 @@ hr{margin-top:0; margin-bottom:0;}
             	//유저이름
                $("#userId").on("propertychange change keyup paste input",function(){
             	   var id= $(this).val();
-            	   idCh =false;
+            	   idchk.setProBl(false);
             	    var regid  =/^[a-z0-9]+$/;
             	   if(id.length >0 && id.length <6){
             		   $("#idview").text("아이디가 짧습니다.").css("color","tomato");
@@ -396,8 +410,7 @@ hr{margin-top:0; margin-bottom:0;}
             	 			success:function(result){
             	 				console.log(result);
             	 				if(result ==0 ){
-            	 					console.log("회원가입 가능");
-            	 					idCh= true;
+            	 					idchk.setProBl(true);
             	 					  $("#idview").text("가입가능한 아이디입니다.").css("color","green");
             	 					//아이디 가능 체크
             	 				}else{
@@ -414,7 +427,7 @@ hr{margin-top:0; margin-bottom:0;}
             //이메일 인증
             
                   $("#hMail").on("propertychange change keyup paste input",function(){
-            	emCh = false;
+                	  emchk.setProBl(false);
             	
             });
             
@@ -448,11 +461,10 @@ hr{margin-top:0; margin-bottom:0;}
                          						url:"codeCheck.do",
                          						type:"post",
                          						data:{code:$("#fillCode").val()},
-                         						success:function(result){
-                         							console.log(result);
+                         						success:function(result){                 
                          							if(result != ""){
                          								alert("확인완료");
-                         								emCh = true;
+                         								emchk.setProBl(true);
                          							}else{
                          								alert("코드를 다시 확인해주세요");
                          							}
@@ -495,50 +507,65 @@ hr{margin-top:0; margin-bottom:0;}
           			 } 
       			 }).open();
             	}
+            	
+         /*   $("#QWER").click(function(){
+        	  console.log(!bisichk.getProBl()&&bisichk.getProBl()!="undefined");
+        	  console.log(bisichk.getProBl());
+        	  console.log(idchk.getProBl());
+        	  console.log(emchk.getProBl());
+        	  
+           })
+            	 */
        		
             function check(){
-
+       
             	//특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
             	var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 
             	if(!regex.test($("#pwd").val())){
             		alert("비밀 번호 형식이 다릅니다.")
             		$("pwd").focus();
+            
             		return false;
             	}
             	
             	if($("#pwd").val() !=$("#pwd2").val()){
             		alert("비밀번호가 다릅니다.")
             		$("#pwd").select();
+            	
             		return false;
             	}
-            	 if(!business){
+            	 if(!bisichk.getProBl()&&bisichk.getProBl()!="undefined"){
             		alert("병원명과 사업자번호를 확인해주세요");
             		$("#hCode").select();
+            
             		return false;
             	} 
             	
-            	if(!idCh){
-            		alert("아이디 중복을 확인해주세요.")
+            	if(!idchk.getProBl()&&bisichk.getProBl()!="undefined"){
+            		alert("아이디를 확인해주세요.")
             		$("#userId").select();
+            	
             		return false;
             	}
             	
-            	if(!emCh){
+            	if(!emchk.getProBl()&&bisichk.getProBl()!="undefined"){
             		alert("이메일 인증을 진행해주세요.")
             		$("#hMail").select();
+            	
             		return false;
             	}
             	
             	if($("#add1").val()==""){
             		alert("주소를 입력해주세요");
+            	
             		return false
             	}
-            	
             
             	
             	return true;
             }
+         
             	
             </script>
             
