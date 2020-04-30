@@ -78,7 +78,8 @@ public class memberController {
 					String sDate = df.format(mb.getBlack_sDate());
 					String eDate = df.format(mb.getBlack_eDate());
 					
-					String msg = "정지된 회원입니다."+sDate+"부터"+eDate+" 로그인 할 수 없습니다. "
+					String msg = "정지된 회원입니다.                                                           "
+									+sDate+"부터"+eDate+"까지 로그인 할 수 없습니다.                   "
 									+"정지 사유는 " + mb.getbReason() + " 입니다.";
 					
 					mv.addObject("msg",msg);

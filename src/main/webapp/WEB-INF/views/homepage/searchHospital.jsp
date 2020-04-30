@@ -106,6 +106,7 @@
 			}else{
 				key = $('#searchkey').val();
 				val = $('#searchval').val();
+				$('#searchval').val("");
 				page=1;
 			}
 			
