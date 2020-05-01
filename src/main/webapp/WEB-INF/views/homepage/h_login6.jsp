@@ -235,6 +235,7 @@ hr{margin-top:0; margin-bottom:0;}
 			<div class="card-body">
 			<input type="checkbox" id ="doclogin"><label for="doclogin">의사로그인하기</label>
 			<div style="float:right;">
+						<a  id="goindex" href="goIndex.do" style="color: black;">홈으로</a>
 						<a  id="idFind" href="hpidsearch.do" style="color: black;">아이디 찾기</a>
 						<a  id="pwdFind" href="hppwdsearch.do" style="color: black;">비밀번호 찾기</a>
              </div>

@@ -241,8 +241,10 @@ hr{margin-top:0; margin-bottom:0;}
 					<input type="checkbox" id="chk1" name="saveid">
 					<label for="chk1">아이디 저장</label>
 					<div class="linkBtn">
+						<a  id="goindex" href="goIndex.do" style="color: black;">홈으로</a>
 						<a  id="idFind" href="idsearch.do" style="color: black;">아이디 찾기</a>
 						<a  id="pwdFind" href="pwdsearch.do" style="color: black;">비밀번호 찾기</a>
+						
                     </div>
                 </div>
 			</div>
